@@ -8,20 +8,31 @@
     <!--Linea separadora (CSS)-->
 
 </head>
-<h1> CINEMABA- compra tu ticket aqui</h1>
+<h1> CINEGLOBAL- compra tu ticket aqui</h1>
  
 <body>
-    <h4>Registrarse:</h3>
-
-        <form action="Registrarse"></form>
-
-        <label for="email">Correo Electronico:</label>
+    <p>En esta paginas podras visualizar y decidir que pelicula queres mirar en cines de la zona. </p>
+    <h4>Registrarse</h4> 
+    <form action="Registrarse"></form> <!--Centrar el titutlo con el correo electronico, que quede mas cerca (CSS)-->
+     <label for="email">Correo Electronico:</label>
         <input type="text" id="email" name="email">
         <button type="submit">Enviar</button>
         </form>
         <br><br>
-       
-    <label for="Categoria">Categoria:</label>
+
+       <div class="listas-en-fila">
+
+        <ul>
+            <li>Peliculas</li>  
+            <li>Cartelera</li>
+            <li>Promociones</li>
+             <li>Contacto</li>
+        </ul>
+        </div>
+        <br><br>
+
+
+    <label for="Categoria">Categoria:</label> <!--Opcion de selecionar categoria y que cambie de pestaña (JavaScript)-->
     <select id="cat">
         <option value="cat1">Accion</option>
         <option value="cat2">Comedia</option>
