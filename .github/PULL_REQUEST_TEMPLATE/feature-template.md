@@ -23,4 +23,5 @@
 - [ ] No hay conflictos de merge pendientes
 - [ ] El PR sigue el flujo `feature → develop`
 - [ ] El spec correspondiente está actualizado
+- [ ] El changelog.md esta actualizado
 
