@@ -7,6 +7,9 @@
 - Nombre:
 - Rol en el equipo:
 
+## Issue relacionada
+- Closes #
+
 ## Archivos modificados
 - 
 - 
