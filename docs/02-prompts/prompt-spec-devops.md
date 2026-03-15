@@ -73,3 +73,5 @@ La plantilla release-template.md debe servir para la entrega final desde release
 - checklist final de validación
 
 Ambas plantillas deben estar redactadas en español, en Markdown, con formato claro y profesional para un proyecto universitario.
+
+11. Hace un commit con el mensaje: feat(setup): Update changelog.md. Luego push de la rama feature/devops-project-setup
