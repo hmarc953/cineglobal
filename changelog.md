@@ -13,3 +13,9 @@
 - Creación de `spec-devops.md`
 - Creacion de `prompt-specs-devops.md`
 - Configuración de templates de PR
+
+## [PR #8] - 2026-03-15
+- **Autor:** Alejandro Bartomioli (Especialista en IA)
+- **Resumen:** Implementación de metodología SDD, configuración de herramientas de IA y estandarización de specs.
+- **Link:** https://github.com/hmarc953/cineglobal/pull/8
+- **Detalle:** Integración de `sdd-decisions.md`, `spec-template.md` y `spec-ia.md` siguiendo el flujo de trabajo de CineGlobal.
