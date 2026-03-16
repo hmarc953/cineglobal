@@ -37,8 +37,3 @@
 ---
 **Validación del Especialista en IA:** [Pendiente / Aprobado]
 
-
-### Justificación del Diseño del Template:
-- **Trazabilidad:** La sección de "Relación con el Plan Maestro" obliga a cada integrante a no desviarse de los objetivos del Coordinador.
-- **Enfoque en IA:** Se incluye una sección de "Estrategia de IA" para que el equipo reflexione sobre qué modelo y técnica (Chain-of-thought, etc.) es mejor para su tarea antes de pedir el código.
-- **Criterios de Aceptación:** Actúan como una lista de verificación (checklist) para el proceso de Code Review, asegurando que nada se dé por terminado si no cumple los requisitos técnicos.

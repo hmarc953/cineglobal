@@ -23,7 +23,7 @@ Para la Actividad Obligatoria N°1, el flujo de SDD se estructura en:
 4. **Generación:** Código basado estrictamente en la Spec.
 
 ## 4. Template de spec-[rol].md adoptado
-Para estandarizar el trabajo, el equipo utilizará el siguiente formato:
+Para estandarizar el trabajo, el equipo utilizará el siguiente formato ubicado en `spec-template.md`.
 
 ### Estructura del Template:
 1. **Relación con el Plan Maestro:** Referencia a los RF del coordinador.
@@ -32,10 +32,18 @@ Para estandarizar el trabajo, el equipo utilizará el siguiente formato:
 4. **Estrategia de IA (Prompting):** Modelo y técnica a utilizar.
 5. **Criterios de Aceptación:** Checklist de validación.
 
+**Justificación:**
+1. **Mapeo de Requerimientos:** Evita funciones fuera de alcance.
+2. **Contratos Técnicos:** La IA genera código compatible entre roles.
+3. **Control de Calidad:** Facilita la auditoría de prompts.
+
 ### Justificación del Diseño:
 - **Trazabilidad:** Asegura que nadie programe algo que no esté en el `plan.md`.
 - **Contexto para IA:** Obliga al integrante a definir el "cómo" antes de pedir el código, mejorando la calidad de la respuesta de la IA.
 - **Uniformidad:** Facilita la revisión del Especialista en IA (Rol 3.4).
+
+La presente metodología SDD se integra con el plan.md (RF-01 al RF-05) asegurando que cada componente generado por IA mantenga trazabilidad con los requerimientos definidos por el rol de DevOps.
+
 
 ## 5. Decisiones Técnicas del Especialista en IA
 - **Decisión 1: Uso de "System Prompts" basados en el plan.md**
