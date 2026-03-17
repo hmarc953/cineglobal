@@ -19,3 +19,9 @@
 - **Resumen:** Implementación de metodología SDD, configuración de herramientas de IA y estandarización de specs.
 - **Link:** https://github.com/hmarc953/cineglobal/pull/8
 - **Detalle:** Integración de `sdd-decisions.md`, `spec-template.md` y `spec-ia.md` siguiendo el flujo de trabajo de CineGlobal.
+
+## [PR #6] - 2026-03-17
+- **Autor:** Santiago Ariel Samitier (Documentador / Diseñador UX)
+- **Resumen:** Creacion del mockup y spec-ux.md. Tambien cree el texto del README y sus conexiónes  .
+- **Link:** https://github.com/hmarc953/cineglobal/pull/6
+- **Detalle:** En esta pull reques se encunetra lo referido anteriormente en resumen.
