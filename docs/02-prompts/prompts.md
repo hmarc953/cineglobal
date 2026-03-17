@@ -13,14 +13,28 @@ Este documento centraliza las interacciones con IA que permitieron el desarrollo
 ## Detalles técnicos de los Prompts
 *(Cada archivo prompts-x.md debe seguir esta estructura para cumplir con los puntos de la rúbrica)*:
 
-- **Integrante:** [Nombre del integrante]
+# Registro de Prompt #[Número]
+
+## Datos Generales
+- **Integrante:** [Nombre]
+- **Rol:** [Ej: DevOps / Frontend]
+- **Archivo aplicado:** [Ej: index.html]
+- **Relación con Plan Maestro:** [Ej: RF-01]
+
+## Configuración de IA (Rol Especialista)
 - **Modelo IA utilizado:** [Ej: Gemini 3 Flash / Claude 3.5 / GPT-4o]
 - **Método de Prompting:** [Ej: Chain-of-Thought / Few-Shot / Role Prompting]
+
+## Ejecución
 - **Código del Prompt:**
+> [Texto del prompt aquí]
 
+- **Resultado Esperado:** [Lo que queríamos obtener]
+- **Resultado Obtenido:** [Lo que la IA entregó]
+- **Evidencia:** [Captura de pantalla o link]
 
-- **Evidencia:** [Captura de pantalla]
-- **Resultado Esperado:** [Breve descripción]
-- **Resultado Obtenido:** [Descripción real]
-- **Correcciones manuales:** [Qué tuvimos que ajustar en el código después de la IA]
-- **Archivo aplicado:** [Ruta del archivo, ej: `src/main.js`]
+## Refinamiento Humano
+- **Correcciones manuales:** [Qué ajustes tuviste que hacerle al código de la IA para que funcione]
+
+---
+*Validado por el Especialista en IA: [ ]*

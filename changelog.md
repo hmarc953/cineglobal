@@ -1,4 +1,4 @@
-# Changelog
+9# Changelog
 
 ## Actividad Obligatoria 1
 
@@ -20,8 +20,37 @@
 - **Link:** https://github.com/hmarc953/cineglobal/pull/8
 - **Detalle:** Integración de `sdd-decisions.md`, `spec-template.md` y `spec-ia.md` siguiendo el flujo de trabajo de CineGlobal.
 
+<<<<<<< HEAD
 ## [PR #6] - 2026-03-17
 - **Autor:** Santiago Ariel Samitier (Documentador / Diseñador UX)
 - **Resumen:** Creacion del mockup y spec-ux.md. Tambien cree el texto del README y sus conexiónes  .
 - **Link:** https://github.com/hmarc953/cineglobal/pull/6
 - **Detalle:** En esta pull reques se encunetra lo referido anteriormente en resumen.
+=======
+## [PR #9] - 2026-03-15
+- **Autor:** Alejandro Bartomioli (Especialista en IA)
+- **Resumen:** Trazabilidad de Prompts: Creación de 5 registros detallados (prompts-1.md a prompts-5.md) con campos para: modelo, técnica de prompting, resultado esperado/obtenido y correcciones manuales.
+Índice de Prompts: Actualización de docs/02-prompts/prompts.md para centralizar el acceso a los registros.
+Auditoría de Entorno: Actualización de docs/02-prompts/sdd-decisions.md con la tabla de herramientas de IA y extensiones (GitHub Copilot) utilizadas por el equipo.
+- **Link:** https://github.com/hmarc953/cineglobal/pull/9
+- **Detalle:** 
+Archivos modificados por el rol
+
+docs/02-prompts/prompts-1.md
+
+docs/02-prompts/prompts-2.md
+
+docs/02-prompts/prompts-3.md
+
+docs/02-prompts/prompts-4.md
+
+docs/02-prompts/prompts-5.md
+
+docs/02-prompts/prompts.md
+
+docs/02-prompts/sdd-decisions.md
+
+docs/03-specs/actividad-obligatoria-1/spec-ia.md
+
+changelog.md (entrada del rol de IA)
+>>>>>>> 93201c6325e0f5fe9d496283c1c7167cfe3d7fb0
