@@ -20,8 +20,8 @@ Esta primera entrega incluye la estructura de página con listado de películas,
 
 ## Documentación
 
-- Mockup: [Enlace al mockup](link)
-- Índice de Prompts: [Enlace al índice de prompts](link)
+- Mockup: [Enlace al mockup](https://www.figma.com/design/NfChLFCsX27WSaDCEiaevS/Sin-t%C3%ADtulo?node-id=0-1&m=dev&t=h8AO4rUf5W6hzUwA-1)
+- Índice de Prompts: [Enlace al índice de prompts](docs/02-prompts/prompts.md)
 - Changelog: [Enlace al changelog](changelog.md)
 
 ## 2 Integrantes del Grupo
