@@ -58,5 +58,16 @@ Como Especialista en IA, he auditado y confirmado que todos los integrantes del 
 - [x] **GitHub Copilot / Copilot Chat** (para asistencia en generación de código).
 - [x] **GitHub Pull Requests and Issues** (para la gestión de revisiones de código).
 
+### Auditoría de Integrantes:
+| Integrante | GitHub Copilot | GitHub PR Extension | Estado |
+| :--- | :---: | :---: | :--- |
+| Marc Holste (DevOps) | ✅ | ✅ | Verificado |
+| Santiago Ariel Samitier (UX) | ✅ | ✅ | Verificado |
+| Milagros Magali Araujo (Front) | ✅ | ✅ | Verificado |
+| Alejandro Bartomioli (IA) | ✅ | ✅ | Verificado |
+
+*Nota: Se realizó una sesión de revisión técnica donde se constató el correcto funcionamiento del modo "Agente" en Copilot para todos los miembros.*
+
+
 ---
 *Este documento constituye la base metodológica para el desarrollo de CineGlobal.*
