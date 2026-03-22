@@ -8,12 +8,13 @@
     <!--Linea separadora (CSS)-->
 
 </head>
-<h1> CINEGLOBAL- compra tu ticket aqui</h1>
+<h1> CINEGLOBAL</h1>
  
 <body>
     <p>Hace de tus fin de semanas mas divertidos. </p>
 
-
+    <nav>
+        <!--FILTROS-->
      <label for="Por cine">Por Cine:</label> <!--Opcion de selecionar categoria y que cambie de pestaña (JavaScript)-->
     <select id="cat">
         <option value="cat1">Palermo</option>
@@ -21,6 +22,7 @@
         <option value="cat3">Lavalle</option>
         <option value="cat4">Puerto Madero</option>
     </select>
+
     <label for="Categoria">Categoria:</label> <!--Opcion de selecionar categoria y que cambie de pestaña (JavaScript)-->
     <select id="cat">
         <option value="cat1">Accion</option>
@@ -30,10 +32,13 @@
         </select>
 
      <button type="button">Aplicar filtro</button>
-    
+    </nav>
     <br>
     <br>
-   
+   <main>
+    <section>
+
+        <article>
     <div class="GALERIA-IMAGENES"> <!--Alinear las imagenes de manera horizontal (CSS)-->
     <img src="../image_eec56fad.jpeg" alt="Hoppers Operacion Castor" width="300" height="350">
     <p>HOPPERS OPERACION CASTOR</p>
@@ -41,20 +46,25 @@
     <br>
     <time datetime="21:00HS">21:00HS</time>
     <br>
-    <a href="https://www.cinemark.com.ar/pelicula/hoppers-operacion-castor" target="_blank">Compra boleto aqui</a>
+    <a href="https://www.cinemark.com.ar/pelicula/hoppers-operacion-castor" target="_blank">Compra boleto aqui</a>  
+    </article>
+
+    <br>
 <br>
 <br>
 <br>
-<br>
+    <article>
     <img src="../scream-7.jpg" alt="Scream" width="300" height="350">
     <p>SCREAM 7</p>
     <data value="PROXIMAMENTE">Fecha de estreno: PROXIMAMENTE</data>
     <br>
     
     <a href="https://www.cinemark.com.ar/pelicula/scream-7" target="_blank">Compra boleto aqui</a>
+    </article>
 <br>
 <br>
 <br>
+<article>
     <img src="../MV5BNDJhYjFkYWUtYzE0ZC00NTNjLTk2YzgtYzIyZGVhNWUxZjlmXkEyXkFqcGc@._V1_.jpg" alt="Elvis" width="300" height="350">
 <br>
 <p>EL AGENTE SECRETO</p>
@@ -63,6 +73,9 @@
     <time datetime="21:00HS">20:00HS</time>
     <br>
     <a href="https://multiplex.com.ar/peliculas/el-agente-secreto/" target="_blank">Compra boleto aqui</a>
+</article>
+    </section>
+   </main>
 </body>
 </div>
 </html>
