@@ -46,3 +46,9 @@ docs/02-prompts/sdd-decisions.md
 docs/03-specs/actividad-obligatoria-1/spec-ia.md
 
 changelog.md (entrada del rol de IA)
+
+## [PR #6] - 2026-03-17
+- **Autor:** Santiago Ariel Samitier (Documentador / Diseñador UX)
+- **Resumen:** Creacion del mockup y spec-ux.md. Tambien cree el texto del README y sus conexiones.
+- **Link:** https://github.com/hmarc953/cineglobal/pull/6
+- **Detalle:** En esta pull request se encuentra lo referido anteriormente en resumen.
