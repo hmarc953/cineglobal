@@ -20,13 +20,6 @@
 - **Link:** https://github.com/hmarc953/cineglobal/pull/8
 - **Detalle:** Integración de `sdd-decisions.md`, `spec-template.md` y `spec-ia.md` siguiendo el flujo de trabajo de CineGlobal.
 
-<<<<<<< HEAD
-## [PR #6] - 2026-03-17
-- **Autor:** Santiago Ariel Samitier (Documentador / Diseñador UX)
-- **Resumen:** Creacion del mockup y spec-ux.md. Tambien cree el texto del README y sus conexiónes  .
-- **Link:** https://github.com/hmarc953/cineglobal/pull/6
-- **Detalle:** En esta pull reques se encunetra lo referido anteriormente en resumen.
-=======
 ## [PR #9] - 2026-03-15
 - **Autor:** Alejandro Bartomioli (Especialista en IA)
 - **Resumen:** Trazabilidad de Prompts: Creación de 5 registros detallados (prompts-1.md a prompts-5.md) con campos para: modelo, técnica de prompting, resultado esperado/obtenido y correcciones manuales.
@@ -53,4 +46,9 @@ docs/02-prompts/sdd-decisions.md
 docs/03-specs/actividad-obligatoria-1/spec-ia.md
 
 changelog.md (entrada del rol de IA)
->>>>>>> 93201c6325e0f5fe9d496283c1c7167cfe3d7fb0
+
+## [PR #6] - 2026-03-17
+- **Autor:** Santiago Ariel Samitier (Documentador / Diseñador UX)
+- **Resumen:** Creacion del mockup y spec-ux.md. Tambien cree el texto del README y sus conexiones.
+- **Link:** https://github.com/hmarc953/cineglobal/pull/6
+- **Detalle:** En esta pull request se encuentra lo referido anteriormente en resumen.
