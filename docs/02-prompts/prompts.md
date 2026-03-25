@@ -7,7 +7,7 @@ Este documento centraliza las interacciones con IA que permitieron el desarrollo
 2. [Prompt 2 — README.md con GitHub Copilot (Few-shot)](./prompts-2.md)
 3. [Prompt 3 — Investigación SDD y template de specs con Gemini (Chain-of-thought)](./prompts-3.md)
 4. [Prompt 4 — Code review PR #16 con GPT-4o (Zero-shot)](./prompts-4.md)
-5. [Prompt 5 — Estructura HTML5 con Gemini 1.5 Pro (Few-shot)](./prompts-5.md)
+5. [Prompt 5 — Estructura HTML5 con GitHub Copilot — Claude Haiku 4.5 (Few-shot)](./prompts-5.md)
 
 ## Comparativa de modelos
 

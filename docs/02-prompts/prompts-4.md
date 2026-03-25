@@ -16,7 +16,7 @@
 
 ### Prompt exacto:
 
-```
+````
 Actúa como un Senior Software Engineer realizando code review profesional.
 Estás analizando los cambios de una Pull Request activa.
 
@@ -63,7 +63,7 @@ No completes la sección "DECISION DEL REVISOR HUMANO".
 Debe quedar vacía para edición manual.
 Publica comentarios directamente en la Pull Request en las líneas correspondientes.
 No respondas en el chat salvo para el resumen final.
-
+````
 
 ### Resultado esperado:
 
@@ -71,11 +71,12 @@ Obtener un análisis estructurado y profesional del código HTML del Frontend (P
 
 ### Resultado obtenido:
 
-GPT-4o generó el análisis de la PR con hallazgos sobre el HTML: etiquetas semánticas faltantes, atributos `alt` incompletos en imágenes, `<label>` del formulario sin asociación correcta con `for`, y comentarios CSS/JS insuficientes. Emitió una decisión REQUEST CHANGES indicando que el HTML necesitaba ajustes menores antes del merge.
+GPT-4o generó el análisis de la PR con hallazgos sobre `meta viewport`, asociación incorrecta entre `label` e `id`, estructura DOM inválida, rutas de imágenes rotas, formato inválido en `time` y enlaces externos con `target="_blank"` sin `rel="noopener noreferrer"`.
 
 ### Evidencia:
 
-![Evidencia Prompt #4](./imagenes_evidencias/img_evidencia_prompt4.jpg)
+> Los comentarios del code review están publicados directamente en la PR #16 del repositorio:
+> https://github.com/hmarc953/cineglobal/pull/16
 
 ## Refinamiento Humano
 

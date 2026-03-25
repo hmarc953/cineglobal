@@ -73,9 +73,9 @@ changelog.md (entrada del rol de IA)
   docs/02-prompts/prompts-5.md
   docs/02-prompts/prompts.md
   docs/02-prompts/comparativa-modelos.md
-  docs/02-prompts/imagenes_evidencias/img_evidencias_prompt1.jpg
-  docs/02-prompts/imagenes_evidencias/img_evidencias_prompt2.jpg
-  docs/02-prompts/imagenes_evidencias/img_evidencias_prompt3.jpg
-  docs/02-prompts/imagenes_evidencias/img_evidencias_prompt4.jpg
-  docs/02-prompts/imagenes_evidencias/img_evidencias_prompt5.jpg
+  docs/02-prompts/imagenes_evidencia/img_evidencias_prompt1.jpg
+  docs/02-prompts/imagenes_evidencia/img_evidencias_prompt2.jpg
+  docs/02-prompts/imagenes_evidencia/img_evidencias_prompt3.jpg
+  docs/02-prompts/imagenes_evidencia/img_evidencias_prompt4.jpg
+  docs/02-prompts/imagenes_evidencia/img_evidencias_prompt5.jpg
 
