@@ -1,30 +1,63 @@
-﻿'# Plantilla PR de Feature
+﻿# 🟣 PULL REQUEST – Actividad Obligatoria N.º 1 – Programación Web I
 
-## Descripción breve
-- ¿Qué cambios incluye este PR?
+---
 
-## Rol del integrante
-- Nombre:
-- Rol en el equipo:
+## 📌 Datos del Estudiante
 
-## Issue relacionada
-- Closes #
+- **Nombre y Apellido:**  
+- **Número de Matrícula:**  
+- **Carrera:** Tecnicatura Universitaria en Programación de Sistemas  
+- **Materia:** Programación Web I  
+- **Profesor:** Lic. Matías Velasquez  
+- **Cuatrimestre/Año:** 1º Cuatrimestre / 2026
+- **Rol asignado para esta entrega:** _(Ej.: Coordinador/DevOps, Desarrollador Frontend, Documentador/UX, Especialista en IA)_
 
-## Archivos modificados
-- 
-- 
-- 
+---
 
-## Referencias
-- Spec relacionado en `docs/03-specs/`:
-- Actualización en `changelog.md`:
+## 📂 Rama de trabajo
 
-## Checklist de validación antes del merge
-- [ ] Código probado localmente y sin errores en consola
-- [ ] Cambios revisados y coherentes con el spec
-- [ ] Documentación mínima actualizada si aplica
-- [ ] No hay conflictos de merge pendientes
-- [ ] El PR sigue el flujo `feature → develop`
-- [ ] El spec correspondiente está actualizado
-- [ ] El changelog.md esta actualizado
+- **Nombre de la rama:** `feature/<rol>-<descripcion>`  
+  _Ejemplo: `feature/frontend-add-html-structure`_
 
+---
+
+## 📝 Descripción del trabajo realizado
+
+_Describir brevemente qué tareas se llevaron a cabo en esta rama, qué archivos se modificaron o agregaron, y qué objetivo se cumplió según el rol asignado._
+
+---
+
+## 📄 Archivos modificados / agregados
+
+- `README.md`  
+_(Agregar o eliminar según corresponda)_
+
+---
+
+## ✅ Checklist
+
+- [ ] Trabajé sobre una rama `feature/` creada a partir de `develop`
+- [ ] Realicé commits claros y explicativos
+- [ ] Completé mi sección asignada según el rol
+- [ ] Actualicé el archivo `changelog.md` con el resumen de esta PR
+- [ ] Solicité revisión al Coordinador/DevOps
+- [ ] La PR incluye solo cambios relacionados con mi tarea asignada
+
+---
+
+## 🧠 Comentarios adicionales
+
+_(Opcional – Aclaraciones, dificultades encontradas, sugerencias, etc.)_
+
+---
+
+## 🧾 Enlace a la consigna
+
+[📄 Consigna Actividad Obligatoria N.º 1 - GitHub](URL_DE_LA_CONSIGNA_A_COMPLETAR)
+
+---
+
+## ⚠ IMPORTANTE
+
+🚫 Sin esta Pull Request **no se justifica participación individual**.  
+✅ Recordá que el `changelog.md` debe reflejar los cambios aprobados.

@@ -9,7 +9,6 @@ CineGlobal es una aplicación web front-end que permite visualizar películas y 
 Esta primera entrega incluye:
 
 - Estructura de página con listado de películas.
-- Filtros simples (por cine y género) usando JavaScript.
 - Vista de detalle de película (información básica y horarios de funciones).
 - Interfaz web diseñada para visualización en escritorio.
 - Documentación del proyecto en `README.md` y `plan.md`.
@@ -22,16 +21,13 @@ Esta primera entrega incluye:
 ## 4. Requerimientos funcionales del sistema
 
 - **RF-01**: Mostrar lista de películas con su título, género y sinopsis breve.
-- **RF-02**: Permitir filtrar películas por cine y/o género.
-- **RF-03**: Mostrar detalles de una película seleccionada (sinopsis, duración, clasificación, horarios).
-- **RF-04**: El usuario puede navegar entre la lista de películas y la vista de detalle mediante enlaces o botones.
-- **RF-05**: Cargar datos de películas desde un arreglo estático en JavaScript.
+- **RF-02**: El usuario puede navegar entre la lista de películas y la vista de detalle mediante enlaces o botones.
 
 ## 5. Reglas o supuestos del sistema
 
 - No se implementa backend ni base de datos.
 - Los horarios y datos de películas serán estáticos (mock) definidos en el front-end.
-- El foco es aprender HTML/CSS/JS y manipulación del DOM.
+- El foco es aprender HTML
 
 ## 6. Funcionalidades previstas para futuras iteraciones
 
