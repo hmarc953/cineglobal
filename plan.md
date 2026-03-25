@@ -21,15 +21,13 @@ Esta primera entrega incluye:
 ## 4. Requerimientos funcionales del sistema
 
 - **RF-01**: Mostrar lista de películas con su título, género y sinopsis breve.
-- **RF-02**: Permitir filtrar películas por cine y/o género.
-- **RF-03**: Mostrar detalles de una película seleccionada (sinopsis, duración, clasificación, horarios).
-- **RF-04**: El usuario puede navegar entre la lista de películas y la vista de detalle mediante enlaces o botones.
+- **RF-02**: El usuario puede navegar entre la lista de películas y la vista de detalle mediante enlaces o botones.
 
 ## 5. Reglas o supuestos del sistema
 
 - No se implementa backend ni base de datos.
 - Los horarios y datos de películas serán estáticos (mock) definidos en el front-end.
-- El foco es aprender HTML y manipulación del DOM.
+- El foco es aprender HTML
 
 ## 6. Funcionalidades previstas para futuras iteraciones
 

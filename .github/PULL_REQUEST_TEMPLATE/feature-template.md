@@ -30,9 +30,6 @@ _Describir brevemente qué tareas se llevaron a cabo en esta rama, qué archivos
 ## 📄 Archivos modificados / agregados
 
 - `README.md`  
-- `index.html`  
-- `docs/01-mockup/mockup.png`  
-- `docs/02-prompts/prompt-01.md`  
 _(Agregar o eliminar según corresponda)_
 
 ---
@@ -56,7 +53,7 @@ _(Opcional – Aclaraciones, dificultades encontradas, sugerencias, etc.)_
 
 ## 🧾 Enlace a la consigna
 
-[📄 Consigna Actividad Obligatoria N.º 1 - GitHub](https://github.com/hmarc953/CineGlobal/blob/develop/README.md)
+[📄 Consigna Actividad Obligatoria N.º 1 - GitHub](URL_DE_LA_CONSIGNA_A_COMPLETAR)
 
 ---
 
