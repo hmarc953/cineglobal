@@ -25,3 +25,6 @@
 ### Fixed
 - [feature/devops-fix-project-structure-and-changelog] Corrección de la estructura del proyecto y el changelog.
   PR: [#21](https://github.com/hmarc953/cineglobal/pull/21) - @hmarc953 (Coordinador / DevOps)
+
+- [feature/devops-fix-template] Corrección del release-template.
+  PR: [#22](https://github.com/hmarc953/cineglobal/pull/22) - @hmarc953 (Coordinador / DevOps)
