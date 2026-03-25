@@ -60,3 +60,22 @@ changelog.md (entrada del rol de IA)
 - **Resumen:** Creacion del mockup y spec-ux.md. Tambien cree el texto del README y sus conexiones.
 - **Link:** https://github.com/hmarc953/cineglobal/pull/6
 - **Detalle:** En esta pull request se encuentra lo referido anteriormente en resumen.
+
+## [PR #19] - 2026-03-24
+- **Autor:** Alejandro Bartomioli (Especialista en IA)
+- **Resumen:** Se actualizaron los 5 prompts, mas el comparativa-modelos.md y el index de prompts.md.
+- **Link:** https://github.com/hmarc953/cineglobal/pull/19
+- **Detalle:**  de Archivos modificados:
+  docs/02-prompts/prompts-1.md
+  docs/02-prompts/prompts-2.md
+  docs/02-prompts/prompts-3.md
+  docs/02-prompts/prompts-4.md
+  docs/02-prompts/prompts-5.md
+  docs/02-prompts/prompts.md
+  docs/02-prompts/comparativa-modelos.md
+  docs/02-prompts/imagenes_evidencia/img_evidencias_prompt1.jpg
+  docs/02-prompts/imagenes_evidencia/img_evidencias_prompt2.jpg
+  docs/02-prompts/imagenes_evidencia/img_evidencias_prompt3.jpg
+  docs/02-prompts/imagenes_evidencia/img_evidencias_prompt4.jpg
+  docs/02-prompts/imagenes_evidencia/img_evidencias_prompt5.jpg
+
