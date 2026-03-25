@@ -24,4 +24,4 @@
 
 ### Fixed
 - [feature/devops-fix-project-structure-and-changelog] Corrección de la estructura del projecto y el changelog.
-  PR: [#20](https://github.com/hmarc953/cineglobal/pull/20) - @hmarc953 (Coordinador / DevOps)
+  PR: [#21](https://github.com/hmarc953/cineglobal/pull/21) - @hmarc953 (Coordinador / DevOps)
