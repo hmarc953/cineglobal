@@ -2,6 +2,14 @@
 
 ## Actividad Obligatoria 1
 
+## [Unreleased]
+
+### Added
+
+### Changed
+- [feature/frontend-add-html-structure] Estructura HTML5 básica.  
+  PR: [#16](https://github.com/hmarc953/cineglobal/pull/16#issue-4117167796) - @9919-Mili (Especialista en Desarrollador Frontend)
+
 ### PR #1 - Configuración inicial del proyecto y documentación DevOps
 **Autor:** Marc Holste (Coordinador / DevOps)
 
