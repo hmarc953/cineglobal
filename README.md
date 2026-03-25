@@ -14,7 +14,7 @@ Tecnologías utilizadas:
 - HTML
 
 ### Objetivo del entregable
-Esta primera entrega incluye la estructura de página con listado de películas, filtros simples por cine y género usando JavaScript, vista de detalle de película con información básica y horarios de funciones, interfaz web diseñada para visualización en escritorio, y documentación del proyecto en README.md y plan.md.
+Esta primera entrega incluye la estructura de página con listado de películas, vista de detalle de película con información básica y horarios de funciones, interfaz web diseñada para visualización en escritorio, y documentación del proyecto en README.md y plan.md.
 
 ## Documentación
 
