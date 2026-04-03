@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [Release Actividad Obligatoria N°1] - 2026-03-25
+
 ### Added
 - [feature/devops-project-setup] Estructura inicial del proyecto.  
   PR: [#1](https://github.com/hmarc953/cineglobal/pull/1) - @hmarc953 (Coordinador / DevOps)

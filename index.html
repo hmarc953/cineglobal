@@ -14,25 +14,58 @@
  
     <p>Hace de tus fin de semanas mas divertidos. </p>
 
+    <section>
+        <h2>Géneros disponibles</h2>
+        <ul>
+            <li>Acción</li>
+            <li>Comedia</li>
+            <li>Drama</li>
+            <li>Terror</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Cines participantes</h2>
+        <ul>
+            <li>Cine Palermo</li>
+            <li>Cine Abasto</li>
+            <li>Cine Lavalle</li>
+            <li>Cine Puerto Madero</li>
+        </ul>
+    </section>
+
     <nav>
         <!--FILTROS-->
-     <label for="cine">Por Cine:</label> <!--Opcion de selecionar categoria y que cambie de pestaña (JavaScript)-->
-    <select id="cine">
-        <option value="cine1">Palermo</option>
-        <option value="cine2">Abasto</option>
-        <option value="cine3">Lavalle</option>
-        <option value="cine4">Puerto Madero</option>
-    </select>
+        <fieldset>
+            <legend>Filtros de búsqueda</legend>
+            
+            <label for="cine">Por Cine:</label> <!--Opcion de selecionar categoria y que cambie de pestaña (JavaScript)-->
+            <select id="cine">
+                <option value="cine1">Palermo</option>
+                <option value="cine2">Abasto</option>
+                <option value="cine3">Lavalle</option>
+                <option value="cine4">Puerto Madero</option>
+            </select>
 
-    <label for="cat">Categoria:</label> <!--Opcion de selecionar categoria y que cambie de pestaña (JavaScript)-->
-    <select id="cat">
-        <option value="cat1">Accion</option>
-        <option value="cat2">Comedia</option>
-        <option value="cat3">Drama</option>
-        <option value="cat4">Terror</option>
-        </select>
+            <label for="cat">Categoria:</label> <!--Opcion de selecionar categoria y que cambie de pestaña (JavaScript)-->
+            <select id="cat">
+                <option value="cat1">Accion</option>
+                <option value="cat2">Comedia</option>
+                <option value="cat3">Drama</option>
+                <option value="cat4">Terror</option>
+            </select>
 
-     <button type="button">Aplicar filtro</button>
+            <label for="clasificacion">Clasificación de edades:</label> <!--Filtro por clasificación de edades-->
+            <select id="clasificacion">
+                <option value="todas">Todas</option>
+                <option value="atp">ATP</option>
+                <option value="13">+13</option>
+                <option value="16">+16</option>
+                <option value="18">+18</option>
+            </select>
+
+            <button type="button">Aplicar filtro</button>
+        </fieldset>
     </nav>
     <br>
     <br>
