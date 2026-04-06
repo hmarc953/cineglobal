@@ -29,14 +29,14 @@ Mi tarea consiste en liderar la implementación de la metodología SDD, definir 
 ## 5. Criterios de Aceptación
 
 ### Criterios para el PR Inicial (Hito 1)
-- [ ] El archivo `sdd-decisions.md` está presente y explica por qué usar SDD en CineGlobal.
-- [ ] Existe un template de especificación disponible para el resto de los roles.
-- [ ] Este archivo (`spec-ia.md`) ha sido commiteado antes de la fase de codificación.
+- [x] El archivo `sdd-decisions.md` está presente y explica por qué usar SDD en CineGlobal.
+- [x] Existe un template de especificación disponible para el resto de los roles.
+- [x] Este archivo (`spec-ia.md`) ha sido commiteado antes de la fase de codificación.
 
 ### Criterios para el PR Final (Hito 2)
-- [ ] Se presentan 5 archivos de prompts documentados con capturas de pantalla.
-- [ ] El archivo `comparativa-modelos.md` incluye un análisis técnico de las diferencias de respuesta entre dos IAs.
-- [ ] Cada prompt documentado indica claramente el método de prompting utilizado (Few-shot, Zero-shot, etc.).
+- [x] Se presentan 5 archivos de prompts documentados con capturas de pantalla.
+- [x] El archivo `comparativa-modelos.md` incluye un análisis técnico de las diferencias de respuesta entre dos IAs.
+- [x] Cada prompt documentado indica claramente el método de prompting utilizado (Few-shot, Zero-shot, etc.).
 
 ---
 **Firma:** Especialista en IA y Prompt Engineering
