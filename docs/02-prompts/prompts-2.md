@@ -1,82 +1,55 @@
-# Registro de Prompt #2
+# Registro de Prompt #3
 
 ## Datos Generales
 
-- **Integrante:** Santiago Ariel Samitier
-- **Rol:** Documentador / Diseñador UX
-- **Archivo aplicado:** `README.md`
-- **Relación con Plan Maestro:** RF-DOC-01 — Documentación general del proyecto visible en el repositorio
+- **Integrante:** Alejandro Bartomioli
+- **Rol:** Especialista en IA y Prompt Engineering
+- **Archivo aplicado:** `docs/02-prompts/sdd-decisions.md` y `docs/03-specs/actividad-obligatoria-1/spec-template.md`
+- **Relación con Plan Maestro:** RF-IA-01 — Investigación e implementación de la metodología SDD en el equipo
 
 ## Configuración de IA
 
-- **Modelo IA utilizado:** GitHub Copilot (claude-3.5-sonnet)
-- **Método de Prompting:** Few-shot prompting (se proporcionó la estructura base como ejemplo)
+- **Modelo IA utilizado:** Gemini 1.5 Pro (Google)
+- **Método de Prompting:** Chain-of-thought prompting (se le pidió que razone paso a paso: primero explicar qué es SDD, luego cómo aplica al contexto del proyecto, y finalmente generar el template concreto)
 
 ## Ejecución
 
 ### Prompt exacto:
 
 ```
-Hola necesito que en el archivo README.md escribas este contenido en markdown
-utilizando el archivo plan.md como contexto. Y utilizar como base estructural esto:
-
-Nombre de mi proyecto
-
-Datos Académicos
-· Carrera: Tecnicatura Universitaria en Programación de Sistemas
-· Materia: Programación Web I
-
-Descripción
-Breve descripción del proyecto:
-(Indicar en uno o dos párrafos qué hace el proyecto, su propósito y alcance).
-
-Objetivo del entregable
-(Explicar qué se busca lograr con esta entrega, por ejemplo: estructura HTML5 inicial,
-documentación y mockup de referencia, registro de prompts de IA, etc.)
-
-Documentación:
-Mockup (créame un espacio para ingresar un link a otra parte del proyecto)
-Índice de Prompts (créame un espacio para ingresar un link a otra...)
-
-agrega el link del apartado changelog que está en el proyecto al link
-
-cambiame en la sección del objetivo del entregable la parte de "primera entrega"
-por el objetivo global del proyecto
-
-Hola necesito que utilices como contexto plan.md para sacar las tecnologías
-utilizadas en este proyecto. Colocar en la sección breve descripción del
-proyecto en forma de lista. Y necesito que en la fila modifique el
-n° de matrícula: 44556 por 153041
-
-En la parte del README.md la parte del link de mockup pone este link:
-https://www.figma.com/design/NfChLFCsX27WSaDCEiaevS/Sin-título?node-id=0-1&m=dev&t=h8AO4rUf5W6hzUwA-1
-Y también pone los otros links de changelog y prompts uniéndolo con el archivo
-prompts.md (Utilizando esta forma de unión: ../)
+Investiga la metodología SDD (Spec-driven development) y define cómo
+se aplica al proyecto: qué información debe tener cada spec-[rol].md,
+en qué orden se escriben, y cómo se validan contra el plan.md.
 ```
 
 ### Resultado esperado:
 
-Generar el `README.md` completo del proyecto CineGlobal con: título, datos académicos, descripción con tecnologías, objetivo del proyecto global, sección de documentación con links al mockup de Figma, índice de prompts y changelog. Con los datos de los integrantes correctos (matrícula 153041 para Alejandro Bartomioli).
+Obtener una explicación clara de SDD aplicada al contexto del proyecto, con el orden correcto de escritura de los archivos spec y las instrucciones para validarlos contra el `plan.md` maestro.
 
 ### Resultado obtenido:
 
-GitHub Copilot generó el `README.md` con la estructura solicitada. Incluyó la descripción del proyecto tomada del `plan.md`, las tecnologías (HTML, CSS, JavaScript), y los links con rutas relativas usando `../`. El archivo quedó completo y bien formateado.
+Gemini respondió definiendo SDD como un enfoque donde las especificaciones detalladas actúan como "fuente de verdad" antes de escribir una sola línea de código funcional. Estructuró la respuesta en dos secciones principales:
+
+**1. El Orden de Escritura (Flujo de Trabajo)** — jerarquía lógica de 4 niveles:
+1. `plan.md` — el mapa de ruta de alto nivel (el "Qué" y el "Por qué")
+2. `spec-arquitecto.md` — la estructura técnica y flujo de datos (el "Cómo")
+3. `spec-frontend.md` / `spec-backend.md` — los detalles de implementación específicos por rol
+4. `spec-qo.md` — los criterios de aceptación y pruebas
+
+**2. Contenido de cada `spec-[rol].md`** — definiendo que cada archivo debe funcionar como un contrato técnico sin ambigüedades.
 
 ### Evidencia:
 
-> El `README.md` resultante está visible en la rama `develop` del repositorio: https://github.com/hmarc953/cineglobal/blob/develop/README.md
-
-![Evidencia Prompt #2](./imagenes_evidencias/img_evidencia_prompt2.jpg)
+![Evidencia Prompt #3](./imagenes_evidencias/img_evidencia_prompt3.jpg)
 
 ## Refinamiento Humano
 
-- Se realizaron múltiples iteraciones en la misma conversación para ir refinando el archivo (se usó "volvé atrás" para corregir la sección de objetivo).
-- Se corrigió el número de matrícula manualmente (44556 → 153041).
-- Se verificó que los links relativos con `../` apuntaran correctamente a los archivos del repositorio.
-- Se ajustó el objetivo del entregable para que refleje el objetivo global del proyecto y no solo la primera entrega.
+- Se ajustó el template para agregar una sección de "Trazabilidad con plan.md" que Gemini no incluyó en el primer intento.
+- Se simplificó el lenguaje de algunas secciones para que sea más directo y útil para el equipo.
+- Se distribuyó el template a cada integrante antes de que empezaran a desarrollar, verificando que lo usaran correctamente en sus specs individuales.
 
 ---
 
-**Archivo o sección del proyecto donde se aplicó:** `README.md` (raíz del repositorio)
+**Archivo o sección del proyecto donde se aplicó:** `docs/02-prompts/sdd-decisions.md` y `docs/03-specs/actividad-obligatoria-1/spec-template.md`
 
 *Validado por el Especialista en IA: Alejandro Bartomioli*
