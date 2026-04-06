@@ -19,6 +19,8 @@ Esta primera entrega incluye la estructura de página con listado de películas,
 ### Funcionalidades Planeadas para Próximas Entregas
 - [ ] Implementar estilos CSS para mejorar la apariencia visual de la página.
 - [ ] Mejorar estilo de Mockupt 
+- [ ] Redactar archivos .md
+
 
 ## Documentación
 

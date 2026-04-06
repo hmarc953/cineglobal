@@ -30,6 +30,3 @@
 
 - [feature/devops-fix-template] Corrección del release-template.
   PR: [#22](https://github.com/hmarc953/cineglobal/pull/22) - @hmarc953 (Coordinador / DevOps)
-
-- [fix/completar-criterios-spec-ia] Completar criterios de aceptación en spec-ia.md.
-  PR: [#23](https://github.com/hmarc953/cineglobal/pull/23) - @abartomioli (Especialista en IA / Prompt Engineering)
