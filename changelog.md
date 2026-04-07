@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [Release Actividad Obligatoria N°1] - 2026-03-25
+
 ### Added
 - [feature/devops-project-setup] Estructura inicial del proyecto.  
   PR: [#1](https://github.com/hmarc953/cineglobal/pull/1) - @hmarc953 (Coordinador / DevOps)
@@ -28,3 +30,6 @@
 
 - [feature/devops-fix-template] Corrección del release-template.
   PR: [#22](https://github.com/hmarc953/cineglobal/pull/22) - @hmarc953 (Coordinador / DevOps)
+
+- [fix/correcciones-actividad-obligatoria-1] Correccion de release/actividad-obligatoria-1
+  PR: [#27] (https://github.com/hmarc953/cineglobal/pull/27#issue-4214600472) - @9919-Mili (Coodinador / DevOps)

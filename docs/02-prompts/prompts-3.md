@@ -1,55 +1,92 @@
-# Registro de Prompt #3
+# Registro de Prompt #4
 
 ## Datos Generales
 
-- **Integrante:** Alejandro Bartomioli
-- **Rol:** Especialista en IA y Prompt Engineering
-- **Archivo aplicado:** `docs/02-prompts/sdd-decisions.md` y `docs/03-specs/actividad-obligatoria-1/spec-template.md`
-- **Relación con Plan Maestro:** RF-IA-01 — Investigación e implementación de la metodología SDD en el equipo
+- **Integrante:** Marc Holste
+- **Rol:** Coordinador / DevOps
+- **Archivo aplicado:** Pull Request #16 — revisión del código HTML del Frontend
+- **Relación con Plan Maestro:** RF-DEV-03 — Administración de Pull Requests con code review asistido por IA
 
 ## Configuración de IA
 
-- **Modelo IA utilizado:** Gemini 1.5 Pro (Google)
-- **Método de Prompting:** Chain-of-thought prompting (se le pidió que razone paso a paso: primero explicar qué es SDD, luego cómo aplica al contexto del proyecto, y finalmente generar el template concreto)
+- **Modelo IA utilizado:** GPT-4o (OpenAI)
+- **Método de Prompting:** Zero-shot prompting (instrucciones directas sin ejemplos previos, con estructura de output definida)
 
 ## Ejecución
 
 ### Prompt exacto:
 
+````
+Actúa como un Senior Software Engineer realizando code review profesional.
+Estás analizando los cambios de una Pull Request activa.
+
+INSTRUCCIONES IMPORTANTES:
+- Identifica problemas reales del código
+- Enumera los hallazgos (1, 2, 3, ...)
+- Cada hallazgo debe ser independiente
+- Sé claro, técnico y concreto
+- No inventes problemas hipotéticos sin evidencia en el código
+- No incluyas sugerencias de tests
+
+Para cada hallazgo usa EXACTAMENTE esta estructura:
+
+==========================================================================
+HALLAZGO #<numero>
+Archivo:
+Linea:
+Tipo de problema:
+(bug | performance | seguridad | legibilidad | diseño | otro)
+Severidad:
+(baja | media | alta | critica)
+Explicación técnica:
+Por qué esto es un problema real.
+Sugerencia de mejora:
+Cambio concreto recomendado.
+Ejemplo de código corregido (si aplica):
+```codigo
+ejemplo
 ```
-Investiga la metodología SDD (Spec-driven development) y define cómo
-se aplica al proyecto: qué información debe tener cada spec-[rol].md,
-en qué orden se escriben, y cómo se validan contra el plan.md.
-```
+DECISION DEL REVISOR HUMANO:
+[ ] Aceptar sugerencia
+[ ] Rechazar sugerencia
+Justificación del revisor humano:
+(Completar manualmente si se rechaza)
+
+Al final agrega:
+RESUMEN GENERAL DE LA PR
+Evaluación global de calidad y riesgos técnicos
+
+DECISIÓN FINAL SUGERIDA POR IA:
+APPROVE / REQUEST CHANGES / COMMENT ONLY
+
+No completes la sección "DECISION DEL REVISOR HUMANO".
+Debe quedar vacía para edición manual.
+Publica comentarios directamente en la Pull Request en las líneas correspondientes.
+No respondas en el chat salvo para el resumen final.
+````
 
 ### Resultado esperado:
 
-Obtener una explicación clara de SDD aplicada al contexto del proyecto, con el orden correcto de escritura de los archivos spec y las instrucciones para validarlos contra el `plan.md` maestro.
+Obtener un análisis estructurado y profesional del código HTML del Frontend (PR #16), con hallazgos concretos enumerados, severidad clasificada, sugerencias de mejora con código de ejemplo, y una decisión final sugerida por la IA para que el revisor humano complete manualmente.
 
 ### Resultado obtenido:
 
-Gemini respondió definiendo SDD como un enfoque donde las especificaciones detalladas actúan como "fuente de verdad" antes de escribir una sola línea de código funcional. Estructuró la respuesta en dos secciones principales:
-
-**1. El Orden de Escritura (Flujo de Trabajo)** — jerarquía lógica de 4 niveles:
-1. `plan.md` — el mapa de ruta de alto nivel (el "Qué" y el "Por qué")
-2. `spec-arquitecto.md` — la estructura técnica y flujo de datos (el "Cómo")
-3. `spec-frontend.md` / `spec-backend.md` — los detalles de implementación específicos por rol
-4. `spec-qo.md` — los criterios de aceptación y pruebas
-
-**2. Contenido de cada `spec-[rol].md`** — definiendo que cada archivo debe funcionar como un contrato técnico sin ambigüedades.
+GPT-4o generó el análisis de la PR con hallazgos sobre `meta viewport`, asociación incorrecta entre `label` e `id`, estructura DOM inválida, rutas de imágenes rotas, formato inválido en `time` y enlaces externos con `target="_blank"` sin `rel="noopener noreferrer"`.
 
 ### Evidencia:
 
-![Evidencia Prompt #3](./imagenes_evidencias/img_evidencia_prompt3.jpg)
+> Los comentarios del code review están publicados directamente en la PR #16 del repositorio:
+> https://github.com/hmarc953/cineglobal/pull/16
 
 ## Refinamiento Humano
 
-- Se ajustó el template para agregar una sección de "Trazabilidad con plan.md" que Gemini no incluyó en el primer intento.
-- Se simplificó el lenguaje de algunas secciones para que sea más directo y útil para el equipo.
-- Se distribuyó el template a cada integrante antes de que empezaran a desarrollar, verificando que lo usaran correctamente en sus specs individuales.
+- El Coordinador revisó cada hallazgo marcando "Aceptar" o "Rechazar" manualmente.
+- Se descartó el hallazgo sobre performance por estar fuera del alcance de esta entrega (HTML estático sin JS).
+- Se aceptaron las sugerencias sobre semántica y atributos `alt`.
+- Los comentarios fueron publicados en las líneas exactas del diff de la PR.
 
 ---
 
-**Archivo o sección del proyecto donde se aplicó:** `docs/02-prompts/sdd-decisions.md` y `docs/03-specs/actividad-obligatoria-1/spec-template.md`
+**Archivo o sección del proyecto donde se aplicó:** PR #16 — `index.html` (code review asistido)
 
 *Validado por el Especialista en IA: Alejandro Bartomioli*

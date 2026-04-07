@@ -16,6 +16,12 @@ Tecnologías utilizadas:
 ### Objetivo del entregable
 Esta primera entrega incluye la estructura de página con listado de películas, vista de detalle de película con información básica y horarios de funciones, interfaz web diseñada para visualización en escritorio, y documentación del proyecto en README.md y plan.md.
 
+### Funcionalidades Planeadas para Próximas Entregas
+- [ ] Implementar estilos CSS para mejorar la apariencia visual de la página.
+- [ ] Mejorar estilo de Mockupt 
+- [ ] Redactar archivos .md
+
+
 ## Documentación
 
 - Mockup: [Enlace al mockup](https://www.figma.com/design/NfChLFCsX27WSaDCEiaevS/Sin-t%C3%ADtulo?node-id=0-1&m=dev&t=h8AO4rUf5W6hzUwA-1)
