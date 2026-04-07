@@ -32,4 +32,4 @@
   PR: [#22](https://github.com/hmarc953/cineglobal/pull/22) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/correcciones-actividad-obligatoria-1] Correccion de release/actividad-obligatoria-1
-  PR: [#27] (https://github.com/hmarc953/cineglobal/pull/27#issue-4214600472) - @9919-Mili (Coodinador / DevOps)
+  PR: [#27](https://github.com/hmarc953/cineglobal/pull/27#issue-4214600472) - @9919-Mili (Coodinador / DevOps)
