@@ -1,4 +1,4 @@
-# Registro de Prompt #3
+# Registro de Prompt #2
 
 ## Datos Generales
 
