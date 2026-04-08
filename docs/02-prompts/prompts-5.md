@@ -1,4 +1,4 @@
-# Registro de Prompt #6
+# Registro de Prompt #5
 
 ## Datos Generales
 - **Integrante:** Milagros Araujo
@@ -8,7 +8,7 @@
 
 ## Configuración de IA (Rol Especialista)
 - **Modelo IA utilizado:** GitHub Copilot (usando MCP)
-- **Método de Prompting:** Zero-shot
+- **Método de Prompting:** 
 
 ## Ejecución
 

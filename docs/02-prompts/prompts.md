@@ -8,6 +8,8 @@ Este documento centraliza las interacciones con IA que permitieron el desarrollo
 3. [Prompt 3 — Code review PR #16 con GPT-4o (Zero-shot)](./prompts-3.md)
 4. [Prompt 4 — Estructura HTML5 con GitHub Copilot (Few-shot)](./prompts-4.md)
 5. [Prompt 5 — MCP de Figma con GitHub Copilot](./prompts-5.md)
+
+
 ## Comparativa de modelos
 
 - [Comparativa GPT-4o vs Gemini 1.5 Pro vs Claude 3.5](./comparativa-modelos.md)

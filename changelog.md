@@ -33,6 +33,10 @@
 
 - [fix/correcciones-actividad-obligatoria-1] Correccion de release/actividad-obligatoria-1
   PR: [#27] (https://github.com/hmarc953/cineglobal/pull/27#issue-4214600472) - @9919-Mili (Coodinador / DevOps)
+  PR: [#27](https://github.com/hmarc953/cineglobal/pull/27#issue-4214600472) - @9919-Mili (Coodinador / DevOps)
+
+- [fix/correcciones-parte-dos-actividad-obligatoria-1] Correccion de release/actividad-obligatoria-1
+  PR: [#28](https://github.com/hmarc953/cineglobal/pull/28#issue-4219373939) - @9919-Mili (Coodinador / DevOps)
 
 - [release/actividad-obligatoria-1] Corrección de `<form>` duplicado en `index.html`  
   Commit: [e1169e8](https://github.com/hmarc953/cineglobal/commit/e1169e8e04b0e04e0e85571663fa368e1d468d7f) — @9919-Mili (Coordinador / DevOps)
@@ -51,3 +55,5 @@
 
 - [release/actividad-obligatoria-1] Actualización de `prompts-5.md`  
   Commit: [8798ab5](https://github.com/hmarc953/cineglobal/commit/8798ab5) — @9919-Mili (Coordinador / DevOps)
+  
+
