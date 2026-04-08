@@ -55,5 +55,10 @@
 
 - [release/actividad-obligatoria-1] Actualización de `prompts-5.md`  
   Commit: [8798ab5](https://github.com/hmarc953/cineglobal/commit/8798ab5) — @9919-Mili (Coordinador / DevOps)
+
+- [fix/changelog-retroactivo-actividad-obligatoria-1] Actualización de changelog.md y prompts.md
+  PR: [#29](https://github.com/hmarc953/cineglobal/pull/29/#issue-4226178866) — @9919-Mili (Coordinador / DevOps)
+
+
   
 
