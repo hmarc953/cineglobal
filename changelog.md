@@ -58,6 +58,8 @@
 - [fix/changelog-retroactivo-actividad-obligatoria-1] Actualización de changelog.md y prompts.md
   PR: [#29](https://github.com/hmarc953/cineglobal/pull/29/#issue-4226178866) — @9919-Mili (Coordinador / DevOps)
 
+- [fix/changelog-retroactivo-actividad-obligatoria-1] Correcion PR #27 en archivo changelog.md 
+  PR: [#30](https://github.com/hmarc953/cineglobal/pull/30#issue-4228530659) — @9919-Mili (Coordinador / DevOps)
 
   
 
