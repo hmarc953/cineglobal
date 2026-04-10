@@ -2,91 +2,80 @@
 
 ## Datos Generales
 
-- **Integrante:** Marc Holste
-- **Rol:** Coordinador / DevOps
-- **Archivo aplicado:** Pull Request #16 — revisión del código HTML del Frontend
-- **Relación con Plan Maestro:** RF-DEV-03 — Administración de Pull Requests con code review asistido por IA
+- **Integrante:** Milagros Magali Araujo
+- **Rol:** Desarrollador Frontend
+- **Archivo aplicado:** `index.html`
+- **Relación con Plan Maestro:** RF-FE-01 — Estructura HTML5 de la página principal con imágenes, tablas y elementos semánticos
 
 ## Configuración de IA
 
-- **Modelo IA utilizado:** GPT-4o (OpenAI)
-- **Método de Prompting:** Zero-shot prompting (instrucciones directas sin ejemplos previos, con estructura de output definida)
+- **Modelo IA utilizado:** GitHub Copilot — Claude Haiku 4.5 (Anthropic)
+- **Método de Prompting:** Few-shot prompting (se proporcionó el archivo `index.html` como contexto en cada consulta, y se fue refinando el resultado con preguntas sucesivas)
 
 ## Ejecución
 
 ### Prompt exacto:
 
-````
-Actúa como un Senior Software Engineer realizando code review profesional.
-Estás analizando los cambios de una Pull Request activa.
-
-INSTRUCCIONES IMPORTANTES:
-- Identifica problemas reales del código
-- Enumera los hallazgos (1, 2, 3, ...)
-- Cada hallazgo debe ser independiente
-- Sé claro, técnico y concreto
-- No inventes problemas hipotéticos sin evidencia en el código
-- No incluyas sugerencias de tests
-
-Para cada hallazgo usa EXACTAMENTE esta estructura:
-
-==========================================================================
-HALLAZGO #<numero>
-Archivo:
-Linea:
-Tipo de problema:
-(bug | performance | seguridad | legibilidad | diseño | otro)
-Severidad:
-(baja | media | alta | critica)
-Explicación técnica:
-Por qué esto es un problema real.
-Sugerencia de mejora:
-Cambio concreto recomendado.
-Ejemplo de código corregido (si aplica):
-```codigo
-ejemplo
 ```
-DECISION DEL REVISOR HUMANO:
-[ ] Aceptar sugerencia
-[ ] Rechazar sugerencia
-Justificación del revisor humano:
-(Completar manualmente si se rechaza)
+como separo la imagen de categoria, que quede una linea mas abajo
+```
 
-Al final agrega:
-RESUMEN GENERAL DE LA PR
-Evaluación global de calidad y riesgos técnicos
+Seguido de refinamientos iterativos en la misma sesión:
 
-DECISIÓN FINAL SUGERIDA POR IA:
-APPROVE / REQUEST CHANGES / COMMENT ONLY
+```
+y como hago para que se visualice la imagen
+```
+```
+por que no se visualiza la imagen?
+```
+```
+necesito que la imagen se vea completa, en grande
+```
+```
+como modificar el tamaño de la imagen, que se vea mas chica
+```
 
-No completes la sección "DECISION DEL REVISOR HUMANO".
-Debe quedar vacía para edición manual.
-Publica comentarios directamente en la Pull Request en las líneas correspondientes.
-No respondas en el chat salvo para el resumen final.
-````
+Y en una segunda sesión sobre estructura tabular:
+
+```
+que tablas puedo utilizar en diseño
+```
+```
+que tablas puedo agregar al proyecto?
+```
+```
+como agregar un boton
+```
+```
+como agrego descripcion bajo la imagen
+```
 
 ### Resultado esperado:
 
-Obtener un análisis estructurado y profesional del código HTML del Frontend (PR #16), con hallazgos concretos enumerados, severidad clasificada, sugerencias de mejora con código de ejemplo, y una decisión final sugerida por la IA para que el revisor humano complete manualmente.
+Corregir la visualización de imágenes en el `index.html` (rutas, tamaños, separación visual) y enriquecer la estructura HTML con tablas de cartelera, botones y descripciones bajo las imágenes, todo integrado al contexto real del proyecto CineGlobal.
 
 ### Resultado obtenido:
 
-GPT-4o generó el análisis de la PR con hallazgos sobre `meta viewport`, asociación incorrecta entre `label` e `id`, estructura DOM inválida, rutas de imágenes rotas, formato inválido en `time` y enlaces externos con `target="_blank"` sin `rel="noopener noreferrer"`.
+**Sesión 1 — Imágenes:**
+Claude Haiku detectó dos problemas concretos en el `index.html`: la ruta de la imagen usaba barras invertidas de Windows (`C:\Users\Usuario\Desktop\...`) que no funcionan en HTML, y faltaba un espacio entre los atributos `src` y `alt`. Corrigió la ruta a una relativa (`../image_eec56fad.jpeg`) y ajustó el tamaño de `600x700` a `300x350` cuando se pidió que se vea más pequeña.
+
+**Sesión 2 — Tablas y botones:**
+Copilot leyó el `spec-fronted.md` como contexto y sugirió una tabla de cartelera con columnas Película, Género, Horario, Cine y Precio. También explicó la sintaxis de `<button>` y cómo agregar descripción debajo de una imagen usando `<p>` o `<h4>` inmediatamente después de la etiqueta `<img>`.
 
 ### Evidencia:
 
-> Los comentarios del code review están publicados directamente en la PR #16 del repositorio:
-> https://github.com/hmarc953/cineglobal/pull/16
+> Capturas de las sesiones en GitHub Copilot dentro de VS Code (ver imágenes adjuntas).
+![Evidencia Prompt #5](./imagenes_evidencias/img_evidencia_prompt5.jpg)
 
 ## Refinamiento Humano
 
-- El Coordinador revisó cada hallazgo marcando "Aceptar" o "Rechazar" manualmente.
-- Se descartó el hallazgo sobre performance por estar fuera del alcance de esta entrega (HTML estático sin JS).
-- Se aceptaron las sugerencias sobre semántica y atributos `alt`.
-- Los comentarios fueron publicados en las líneas exactas del diff de la PR.
+- Se corrigió manualmente la ruta de la imagen luego de que Copilot la ajustara, ya que el archivo estaba en una ubicación diferente a la asumida por el modelo.
+- Se eligió el tamaño final de la imagen (`300x350`) entre las opciones sugeridas por Copilot.
+- Se seleccionó qué tablas incorporar al proyecto de las varias opciones sugeridas (se eligió la tabla de cartelera como la más relevante para CineGlobal).
+- Se adaptó el código de ejemplo del botón al contexto del formulario existente en `index.html`.
 
 ---
 
-**Archivo o sección del proyecto donde se aplicó:** PR #16 — `index.html` (code review asistido)
+**Archivo o sección del proyecto donde se aplicó:** `index.html` — sección de cartelera, imágenes y formulario
 
 *Validado por el Especialista en IA: Alejandro Bartomioli*
