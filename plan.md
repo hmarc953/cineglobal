@@ -13,6 +13,15 @@ Esta primera entrega incluye:
 - Interfaz web diseñada para visualización en escritorio.
 - Documentación del proyecto en `README.md` y `plan.md`.
 
+## 3. Alcance de segunda entrega
+
+Esta entrega incluye:
+
+- Actualizacion de mockup 
+-
+-
+- Documentación del proyecto en `README.md` y `plan.md`.
+
 ## 3. Actores o usuarios del sistema
 
 - **Usuario final**: persona que consulta películas y horarios.
