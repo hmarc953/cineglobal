@@ -27,6 +27,9 @@ Para cumplir con los estándares de la cátedra, la implementación seguirá est
 ## 6. Registro de Ejecución (Evidencia del Rol 3.1.2)
 *Esta sección se completará tras la generación del código con el Agente.*
 
-- **Prompt utilizado:** > [Pendiente de completar]
-- **Resultado obtenido:** > [Pendiente de completar]
-- **Ajustes manuales realizados:** > [Describir al menos 2 correcciones post-generación]
+> "Genera los archivos styles.css y components.css para el proyecto CineGlobal a partir del mockup actualizado en Figma (https://www.figma.com/design/NfChLFCsX27WSaDCEiaevS/Sin-t%C3%ADtulo?node-id=0-1).
+> styles.css debe incluir: variables CSS en :root, reset, tipografías, colores y layout base.
+> components.css debe contener: estilos de botones, cards, navegación, formularios y estados hover/focus.
+> Aplica buenas prácticas de selectores, herencia, box model y agrega comentarios explicativos sobre decisiones de estilo.
+> El resultado debe ser fiel al diseño visual del mockup."
+**Ajustes manuales realizados:**
