@@ -89,7 +89,13 @@ main section {
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.16);
 }
 
-.GALERIA-IMAGENES,
+.GALERIA-IMAGENES {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  width: 100%;
+}
+
 .movies-list {
   display: grid;
   grid-template-columns: 1fr;
@@ -179,7 +185,16 @@ footer {
     flex: 0 0 120px;
   }
 
-  .GALERIA-IMAGENES,
+  .GALERIA-IMAGENES {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .GALERIA-IMAGENES > * {
+    flex: 0 1 calc(50% - 8px);
+  }
+
   .movies-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -237,7 +252,13 @@ footer {
   }
 
   .GALERIA-IMAGENES {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .GALERIA-IMAGENES > * {
+    flex: 0 1 calc(25% - 12px);
   }
 
   .movies-list {
