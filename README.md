@@ -20,6 +20,7 @@ Esta primera entrega incluye la estructura de página con listado de películas,
 - [ ] Implementar estilos CSS para mejorar la apariencia visual de la página.
 - [ ] Mejorar estilo de Mockupt 
 - [ ] Redactar archivos .md
+- [ ] Code reviews
 
 
 ## Documentación
@@ -32,7 +33,7 @@ Esta primera entrega incluye la estructura de página con listado de películas,
 
 | Nombre completo          | N° de Matrícula | Usuario GitHub | Rol en esta entrega                  |
 |--------------------------|-----------------|----------------|-------------------------------------|
-| Marc Holste              | 160313          | @hmarc953      | Coordinador / DevOps                |
-| Milagros Magali Araujo   | 148197          | @9919-Mili     | Desarrollador Frontend              |
-| Santiago Ariel Samitier  | 148249          | @Santi22-7     | Documentador / Diseñador UX         |
-| Alejandro Bartomioli     | 153041          | @abartomioli   | Especialista en IA y Prompt Engineering |
+| Marc Holste              | 160313          | @hmarc953      | Documentador / QA Tester            |
+| Milagros Magali Araujo   | 148197          | @9919-Mili     | Coordinador / DevOps                |
+| Santiago Ariel Samitier  | 148249          | @Santi22-7     | Especialista en Responsive Design   |
+| Alejandro Bartomioli     | 153041          | @abartomioli   | Desarrollador Frontedd/CSS          |
