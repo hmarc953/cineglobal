@@ -70,9 +70,12 @@ nav button {
 
 nav button {
   cursor: pointer;
-  background: var(--color-accent);
   border: none;
   font-weight: 700;
+}
+
+nav .filter-button {
+  background: var(--color-accent);
 }
 
 main {
@@ -89,7 +92,7 @@ main section {
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.16);
 }
 
-.GALERIA-IMAGENES {
+.galeria-imagenes {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-lg);
@@ -104,38 +107,17 @@ main section {
   justify-items: center;
 }
 
-.GALERIA-IMAGENES img,
-.movie-card {
-  width: 100%;
-  max-width: 260px;
-  margin-inline: auto;
-}
-
-@media (min-width: 1024px) {
-  .movies-list {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .movie-card {
-    width: 260px;
-    max-width: none;
-    margin-inline: 0;
-  }
-}
-
-.GALERIA-IMAGENES img {
+.galeria-imagenes img {
   display: block;
   width: 100%;
   height: auto;
   border-radius: 12px;
 }
 
-.GALERIA-IMAGENES p,
-.GALERIA-IMAGENES data,
-.GALERIA-IMAGENES time,
-.GALERIA-IMAGENES a,
+.galeria-imagenes p,
+.galeria-imagenes data,
+.galeria-imagenes time,
+.galeria-imagenes a,
 .movie-title,
 .movie-description,
 .movie-date {
@@ -143,13 +125,13 @@ main section {
   margin-bottom: var(--spacing-xs);
 }
 
-.GALERIA-IMAGENES a,
+.galeria-imagenes a,
 .movie-card a:not(.buy-button) {
   color: var(--color-accent);
   text-decoration: none;
 }
 
-.GALERIA-IMAGENES a:hover,
+.galeria-imagenes a:hover,
 .movie-card a:not(.buy-button):hover {
   text-decoration: underline;
 }
@@ -202,13 +184,13 @@ footer {
     flex: 0 0 120px;
   }
 
-  .GALERIA-IMAGENES {
+  .galeria-imagenes {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
   }
 
-  .GALERIA-IMAGENES > * {
+  .galeria-imagenes > * {
     flex: 0 1 calc(50% - 8px);
   }
 
@@ -268,21 +250,30 @@ footer {
     padding: 0 var(--spacing-lg) var(--spacing-xl);
   }
 
-  .GALERIA-IMAGENES {
+  .galeria-imagenes {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
   }
 
-  .GALERIA-IMAGENES > * {
+  .galeria-imagenes > * {
     flex: 0 1 calc(25% - 12px);
   }
 
   .movies-list {
+    display: grid;
     grid-template-columns: repeat(4, minmax(220px, 1fr));
+    place-items: center;
   }
 
   .movie-card {
-    width: auto;
+    width: 260px;
+    max-width: none;
+    margin-inline: 0;
+  }
+
+  section table {
+    display: table;
+    overflow-x: visible;
   }
 }

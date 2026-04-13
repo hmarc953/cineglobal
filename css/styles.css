@@ -119,11 +119,11 @@ ul:not(.footer-links) {
   margin-left: 0;
 }
 
-li {
+.main-container li {
   margin-bottom: 0.5rem;
 }
 
-li::marker {
+.main-container li::marker {
   color: var(--color-text-secondary);
   font-weight: 600;
 }

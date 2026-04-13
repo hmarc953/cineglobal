@@ -18,7 +18,7 @@ Se utilizará una **combinación de Flexbox y CSS Grid** adaptada a la estructur
 
 - **Flexbox**: Ideal para el header (alinear título y párrafo horizontalmente en desktop, vertical en mobile), el nav con filtros (alinear selects y botón en fila), y las secciones de listas (géneros y cines participantes, que se apilan verticalmente).
 
-- **CSS Grid**: Se aplicará en la galería de imágenes (GALERIA-IMAGENES) para crear una cuadrícula responsiva de películas, cambiando de 1 columna en mobile a 2 en tablet y 3-4 en desktop. También en el main para organizar artículos de películas de manera bidimensional.
+- **CSS Grid**: Se aplicará en la galería de imágenes (galeria-imagenes) para crear una cuadrícula responsiva de películas, cambiando de 1 columna en mobile a 2 en tablet y 3-4 en desktop. También en el main para organizar artículos de películas de manera bidimensional.
 
 Esta combinación permite un layout flexible y eficiente, priorizando mobile-first como se ve en el código HTML actual, y facilitando la adaptación del mockup a diferentes pantallas sin overflow.
 
