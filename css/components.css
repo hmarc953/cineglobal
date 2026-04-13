@@ -1,15 +1,70 @@
+/* =========================
+   TABLA CARTELERA
+   ========================= */
+/*
+  Se utiliza una clase específica para la tabla de cartelera para aplicar bordes y estilos visuales desde CSS,
+  reemplazando el atributo obsoleto border="1" en HTML.
+*/
+.tabla-cartelera {
+  border-collapse: collapse;
+  width: 100%;
+  margin: var(--spacing-md) 0;
+}
+.tabla-cartelera th,
+.tabla-cartelera td {
+  border: 1px solid #888;
+  padding: 8px 12px;
+  text-align: center;
+}
+.tabla-cartelera thead {
+  background: var(--color-bg-content, #5a5a5a);
+  color: var(--color-text-main, #fff);
+}
+.tabla-cartelera tbody tr:nth-child(even) {
+  background: #444;
+}
 /*
   Archivo: components.css
-  Desarrollador: Frontend/CSS
-  Descripción: Estilos de componentes: botones, cards, navegación, formularios y estados.
-  Comentarios: Este archivo contiene los estilos reutilizables para los componentes principales.
+  Rol: Desarrollador Frontend/CSS
+  Descripción:
+  Este archivo contiene los estilos de los componentes reutilizables del sitio CineGlobal.
+  Se separa de styles.css para mantener una organización más clara del proyecto:
+  - styles.css: variables globales, reset, tipografía base y layout general
+  - components.css: componentes visuales específicos de la interfaz
+
+  Componentes incluidos:
+  - header principal
+  - filtros
+  - listado de películas
+  - tarjetas de película
+  - botón de compra
+  - estados interactivos hover/focus
+  - ajustes responsive por componente
 */
 
+/* =========================
+   HEADER / ENCABEZADO
+   ========================= */
+/*
+  El header agrupa el título principal y el subtítulo introductorio.
+
+  Decisiones:
+  - text-align center para respetar la composición visual centrada del mockup
+  - margin-bottom para separar claramente el encabezado del bloque de filtros
+*/
 .header {
   text-align: center;
   margin-bottom: var(--spacing-md);
 }
 
+/*
+  El título principal funciona como punto de entrada visual de la pantalla.
+
+  Decisiones:
+  - tamaño grande para reforzar jerarquía principal
+  - peso bold para mayor protagonismo
+  - leve letter-spacing para mejorar presencia visual
+*/
 .header-title {
   font-size: var(--font-size-title);
   font-weight: bold;
@@ -17,12 +72,31 @@
   margin-bottom: var(--spacing-xs);
 }
 
+/*
+  El subtítulo complementa al título con un tono visual más liviano.
+
+  Decisiones:
+  - color secundario para diferenciarlo del título principal
+  - margen inferior para generar aire antes del sector de filtros
+*/
 .header-subtitle {
   font-size: var(--font-size-subtitle);
   color: var(--color-text-secondary);
   margin-bottom: var(--spacing-md);
 }
 
+/* =========================
+   FILTROS
+   ========================= */
+/*
+  El contenedor de filtros organiza los controles de selección y acción.
+
+  Decisiones:
+  - display flex para alinear elementos horizontalmente
+  - justify-content center para mantenerlos centrados
+  - flex-wrap para permitir salto de línea en resoluciones menores
+  - gap para separar elementos sin depender de márgenes individuales
+*/
 .filters {
   display: flex;
   gap: var(--spacing-sm);
@@ -31,6 +105,18 @@
   flex-wrap: wrap;
 }
 
+/*
+  Los selectores y botones comparten una base visual para mantener
+  consistencia en todos los controles interactivos.
+
+  Decisiones:
+  - fondo uniforme para lenguaje visual coherente
+  - borde removido para apariencia más limpia
+  - border-radius para suavizar la interfaz
+  - padding para controlar correctamente el box model
+  - min-width para evitar controles demasiado pequeños
+  - transición suave para mejorar la percepción de interacción
+*/
 .filter-select,
 .filter-button {
   background: #888;
@@ -41,25 +127,50 @@
   font-size: 1rem;
   cursor: pointer;
   min-width: 120px;
-  transition: background 0.2s;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.filter-select:after {
-  content: "▼";
-  margin-left: 8px;
-  font-size: 0.8em;
-}
-
+/*
+  El botón reutiliza la misma base que el selector,
+  pero con un pequeño refuerzo tipográfico.
+*/
 .filter-button {
   background: #888;
   font-weight: 500;
 }
 
+/*
+  Hover para controles:
+  se oscurece el fondo para indicar claramente interacción.
+*/
 .filter-button:hover,
 .filter-select:hover {
   background: #666;
 }
 
+/*
+  Focus visible para accesibilidad:
+  permite identificar el elemento activo al navegar con teclado.
+*/
+.filter-select:focus-visible,
+.filter-button:focus-visible,
+.buy-button:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* =========================
+   LISTADO DE PELÍCULAS
+   ========================= */
+/*
+  .movies-list organiza las tarjetas de películas dentro del contenedor principal.
+
+  Decisiones:
+  - display flex para distribuir cards en fila
+  - flex-wrap para permitir varias líneas
+  - justify-content center para balancear la composición
+  - width 100% para aprovechar el ancho disponible del contenedor padre
+*/
 .movies-list {
   display: flex;
   gap: var(--spacing-lg);
@@ -69,6 +180,19 @@
   width: 100%;
 }
 
+/* =========================
+   TARJETA DE PELÍCULA
+   ========================= */
+/*
+  La card es el componente principal del listado.
+
+  Decisiones:
+  - ancho fijo en desktop para uniformidad entre tarjetas
+  - flex-direction column para apilar imagen, textos y botón
+  - align-items center para mantener alineación interna consistente
+  - box-shadow para separar visualmente la card del fondo
+  - padding interno para dar respiración al contenido
+*/
 .movie-card {
   background: var(--color-card);
   border-radius: 8px;
@@ -78,9 +202,28 @@
   align-items: center;
   padding: 18px 12px 24px 12px;
   box-sizing: border-box;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/*
+  Hover de la tarjeta:
+  se agrega una leve elevación para transmitir interactividad
+  sin romper la estética general.
+*/
+.movie-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+}
+
+/*
+  Área reservada para la imagen o poster de la película.
+
+  Decisiones:
+  - ocupa el ancho completo de la card
+  - altura fija para mantener consistencia entre ítems
+  - display flex para centrar un placeholder o contenido alternativo
+*/
 .movie-image {
   background: var(--color-card-img);
   width: 100%;
@@ -94,6 +237,14 @@
   font-size: 1.1rem;
 }
 
+/*
+  Título de la película.
+
+  Decisiones:
+  - jerarquía superior dentro de la card
+  - peso semibold para mayor claridad visual
+  - centrado para respetar la composición vertical del componente
+*/
 .movie-title {
   font-size: var(--font-size-card-title);
   font-weight: 600;
@@ -102,6 +253,13 @@
   text-align: center;
 }
 
+/*
+  Descripción breve o sinopsis.
+
+  Decisiones:
+  - color secundario para no competir con el título
+  - tamaño estándar para lectura cómoda
+*/
 .movie-description {
   font-size: var(--font-size-card-desc);
   color: var(--color-text-secondary);
@@ -109,6 +267,13 @@
   text-align: center;
 }
 
+/*
+  Fecha o dato complementario.
+
+  Decisiones:
+  - color muted para un nivel informativo terciario
+  - tamaño apenas menor para reforzar jerarquía visual
+*/
 .movie-date {
   font-size: 0.95rem;
   color: var(--color-text-muted);
@@ -116,6 +281,18 @@
   text-align: center;
 }
 
+/* =========================
+   BOTÓN DE COMPRA
+   ========================= */
+/*
+  El botón de compra es la llamada a la acción principal dentro de cada tarjeta.
+
+  Decisiones:
+  - color de acento para destacar la acción principal
+  - width 100% para facilitar clic o tap
+  - texto bold para reforzar protagonismo
+  - transición suave para feedback de interacción
+*/
 .buy-button {
   background: var(--color-accent);
   color: #fff;
@@ -126,29 +303,51 @@
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/*
+  Hover del botón:
+  se oscurece el color para señalar interacción
+  sin perder la identidad visual del CTA.
+*/
 .buy-button:hover {
   background: #c40000;
+  transform: translateY(-1px);
 }
 
-/* Responsive */
+/* =========================
+   RESPONSIVE
+   ========================= */
+/*
+  En pantallas medianas:
+  - se reduce el espacio entre tarjetas
+  - se disminuye el ancho de cada card
+  para conservar equilibrio visual sin saturar la fila.
+*/
 @media (max-width: 900px) {
   .movies-list {
     gap: var(--spacing-md);
   }
+
   .movie-card {
     width: 220px;
   }
 }
 
+/*
+  En pantallas pequeñas:
+  - el listado pasa a columna
+  - las tarjetas ocupan casi todo el ancho visible
+  - se define max-width para evitar tarjetas demasiado anchas
+*/
 @media (max-width: 700px) {
   .movies-list {
     flex-direction: column;
     align-items: center;
     gap: var(--spacing-md);
   }
+
   .movie-card {
     width: 90vw;
     max-width: 350px;

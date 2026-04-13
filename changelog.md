@@ -2,6 +2,44 @@
 
 ## [Unreleased]
 
+### Added
+- [feature/dev-frontend-css-add-styles] Implementación de la capa de estilos CSS del proyecto CineGlobal.
+  - Creación de `css/styles.css` con variables en `:root`, reset global, tipografías y layout base.
+  - Creación de `css/components.css` con estilos de componentes reutilizables: header, filtros, cards de películas y botones.
+  - Incorporación de estados interactivos `:hover` y `:focus-visible` para mejorar la experiencia de usuario y accesibilidad.
+  PR: [#XX](https://github.com/hmarc953/cineglobal/pull/XX) - @abartomioli (Desarrollador Frontend/CSS)
+
+- [feature/dev-frontend-css-add-styles] Documentación del proceso en `spec-frontend.md`.
+  - Uso de Figma MCP con Copilot Agent para generación inicial de estilos.
+  - Inclusión del prompt utilizado.
+  - Registro de resultados obtenidos y ajustes manuales posteriores.
+  Archivo: `docs/03-specs/actividad-obligatoria-2/spec-frontend.md`
+
+### Changed
+- Mejora de la estructura visual del sitio alineada al mockup de Figma.
+- Ajuste de espaciados, tipografías y jerarquía visual en componentes.
+- Optimización del layout base para facilitar integración futura con responsive design.
+
+
+### Fixed
+- Corrección de inconsistencias visuales entre componentes generados automáticamente.
+- Ajuste manual de estilos para lograr mayor coherencia con el diseño original.
+- Resolución de bugs de accesibilidad y semántica reportados por QA:
+  - [#34] Layout de cards en desktop: se alineó la estructura HTML con las clases del CSS (.movies-list, .movie-card, etc.) y se eliminó contenido duplicado.
+  - [#35] Footer sin links visibles: se agregaron enlaces reales y accesibles en el pie de página.
+  - [#36] Contenido fuera de landmarks: todo el contenido principal fue reubicado dentro de <main> y landmarks semánticos.
+  - [#37] Articles sin heading: cada <article> de película ahora incluye un <h3> semántico.
+  - [#38] Section sin heading: todas las secciones principales tienen su heading correspondiente.
+  - [#39] Uso de table border obsoleto: se eliminó el atributo border en la tabla y se aplicó el borde desde CSS.
+  - [#40] Tabla de horarios sin caption: se agregó un <caption> descriptivo a la tabla de funciones.
+  Realizado por @abartomioli  
+
+### Notes
+- Se deja la base preparada para integración con el Especialista en Responsive Design.
+- Se recomienda validación visual en distintos dispositivos y navegadores.
+
+---
+
 ## [Release Actividad Obligatoria N°1] - 2026-03-25
 
 ### Added
