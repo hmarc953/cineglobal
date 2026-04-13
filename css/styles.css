@@ -47,6 +47,9 @@
 
   /* Color de acento (acciones principales / botones) */
   --color-accent: #ff0000;
+  /* Botones y selects */
+  --color-button-bg: #888;
+  --color-button-hover: #666;
 
   /* Footer */
   --color-footer-bg: #bdbdbd;

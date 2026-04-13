@@ -1,128 +1,164 @@
 
 
-   <main>
-    <section>
-        <h2>Géneros disponibles</h2>
-        <ul>
-            <li>Acción</li>
-            <li>Comedia</li>
-            <li>Drama</li>
-            <li>Terror</li>
-        </ul>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineGlobal - Compra boletos online</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+<div class="main-container">
+    <header class="header">
+        <h1 class="header-title">CINEGLOBAL</h1>
+        <p class="header-subtitle">Hace de tus fines de semana más divertidos</p>
+    </header>
+    <section class="filters">
+        <form action="#" method="get">
+            <select class="filter-select" id="cine">
+                <option value="">Por Cine</option>
+                <option value="cine1">Palermo</option>
+                <option value="cine2">Abasto</option>
+                <option value="cine3">Lavalle</option>
+                <option value="cine4">Puerto Madero</option>
+            </select>
+            <select class="filter-select" id="cat">
+                <option value="">Categoría</option>
+                <option value="cat1">Acción</option>
+                <option value="cat2">Comedia</option>
+                <option value="cat3">Drama</option>
+                <option value="cat4">Terror</option>
+            </select>
+            <select class="filter-select" id="clasificacion">
+                <option value="todas">Todas</option>
+                <option value="atp">ATP</option>
+                <option value="13">+13</option>
+                <option value="16">+16</option>
+                <option value="18">+18</option>
+            </select>
+            <button type="button" class="filter-button">Aplicar filtro</button>
+        </form>
     </section>
-
-    <section>
-        <h2>Cines participantes</h2>
-        <ul>
-            <li>Cine Palermo</li>
-            <li>Cine Abasto</li>
-            <li>Cine Lavalle</li>
-            <li>Cine Puerto Madero</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>Películas en cartelera</h2>
-        <div class="movies-list">
-            <article class="movie-card">
-                <img class="movie-image" src="assets/images/hoppers.jpeg" alt="Hoppers Operacion Castor" width="300" height="350">
-                <h3 class="movie-title">Hoppers Operación Castor</h3>
-                <data class="movie-date" value="2024-03-06">Fecha de estreno: 03 de Marzo de 2024</data>
-                <time datetime="21:00">21:00HS</time>
-                <a class="buy-button" href="https://www.cinemark.com.ar/pelicula/hoppers-operacion-castor" target="_blank" rel="noopener noreferrer">Compra boleto aquí</a>
-            </article>
-            <article class="movie-card">
-                <img class="movie-image" src="assets/images/scream-7.jpg" alt="Scream" width="300" height="350">
-                <h3 class="movie-title">Scream 7</h3>
-                <data class="movie-date" value="PROXIMAMENTE">Fecha de estreno: PROXIMAMENTE</data>
-                <a class="buy-button" href="https://www.cinemark.com.ar/pelicula/scream-7" target="_blank" rel="noopener noreferrer">Compra boleto aquí</a>
-            </article>
-            <article class="movie-card">
-                <img class="movie-image" src="assets/images/el-agente-secreto.jpg" alt="El Agente Secreto" width="300" height="350">
-                <h3 class="movie-title">El Agente Secreto</h3>
-                <data class="movie-date" value="2024-02-26">Fecha de estreno: 26 de febrero de 2026</data>
-                <time datetime="21:00">21:00HS</time>
-                <a class="buy-button" href="https://multiplex.com.ar/peliculas/el-agente-secreto/" target="_blank" rel="noopener noreferrer">Compra boleto aquí</a>
-            </article>
-        </div>
-    </section>
-
-
-
-    <section>
-        <h2>Horarios de Funciones</h2>
-        <table class="tabla-cartelera">
-            <caption>Horarios de funciones por película y cine</caption>
-            <thead>
-                <tr>
-                    <th>Película</th>
-                    <th>Cine</th>
-                    <th>Horarios</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>HOPPERS OPERACION CASTOR</td>
-                    <td>Palermo</td>
-                    <td>21:00</td>
-                </tr>
-                <tr>
-                    <td>HOPPERS OPERACION CASTOR</td>
-                    <td>Abasto</td>
-                    <td>19:00, 21:30</td>
-                </tr>
-                <tr>
-                    <td>HOPPERS OPERACION CASTOR</td>
-                    <td>Lavalle</td>
-                    <td>20:00</td>
-                </tr>
-                <tr>
-                    <td>HOPPERS OPERACION CASTOR</td>
-                    <td>Puerto Madero</td>
-                    <td>18:00, 22:00</td>
-                </tr>
-                <tr>
-                    <td>SCREAM 7</td>
-                    <td>Todos</td>
-                    <td>Próximamente</td>
-                </tr>
-                <tr>
-                    <td>EL AGENTE SECRETO</td>
-                    <td>Palermo</td>
-                    <td>21:00</td>
-                </tr>
-                <tr>
-                    <td>EL AGENTE SECRETO</td>
-                    <td>Abasto</td>
-                    <td>19:30, 22:00</td>
-                </tr>
-                <tr>
-                    <td>EL AGENTE SECRETO</td>
-                    <td>Lavalle</td>
-                    <td>20:30</td>
-                </tr>
-                <tr>
-                    <td>EL AGENTE SECRETO</td>
-                    <td>Puerto Madero</td>
-                    <td>18:30, 21:30</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-
-   </main>
-<footer>
-    <nav aria-label="Enlaces de pie de página">
-        <ul style="list-style:none;display:flex;gap:1.5em;justify-content:center;padding:0;margin:0;">
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#cartelera">Cartelera</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-            <li><a href="#terminos">Términos</a></li>
-        </ul>
-    </nav>
-    <p>© 2026 CineGlobal</p>
-</footer>
-
+    <main>
+        <section>
+            <h2>Géneros disponibles</h2>
+            <ul>
+                <li>Acción</li>
+                <li>Comedia</li>
+                <li>Drama</li>
+                <li>Terror</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Cines participantes</h2>
+            <ul>
+                <li>Cine Palermo</li>
+                <li>Cine Abasto</li>
+                <li>Cine Lavalle</li>
+                <li>Cine Puerto Madero</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Películas en cartelera</h2>
+            <div class="movies-list">
+                <article class="movie-card">
+                    <img class="movie-image" src="assets/images/hoppers.jpeg" alt="Hoppers Operacion Castor" width="300" height="350">
+                    <h3 class="movie-title">Hoppers Operación Castor</h3>
+                    <data class="movie-date" value="2024-03-06">Fecha de estreno: 03 de Marzo de 2024</data>
+                    <time datetime="21:00">21:00HS</time>
+                    <a class="buy-button" href="https://www.cinemark.com.ar/pelicula/hoppers-operacion-castor" target="_blank" rel="noopener noreferrer">Compra boleto aquí</a>
+                </article>
+                <article class="movie-card">
+                    <img class="movie-image" src="assets/images/scream-7.jpg" alt="Scream" width="300" height="350">
+                    <h3 class="movie-title">Scream 7</h3>
+                    <data class="movie-date" value="PROXIMAMENTE">Fecha de estreno: PROXIMAMENTE</data>
+                    <a class="buy-button" href="https://www.cinemark.com.ar/pelicula/scream-7" target="_blank" rel="noopener noreferrer">Compra boleto aquí</a>
+                </article>
+                <article class="movie-card">
+                    <img class="movie-image" src="assets/images/el-agente-secreto.jpg" alt="El Agente Secreto" width="300" height="350">
+                    <h3 class="movie-title">El Agente Secreto</h3>
+                    <data class="movie-date" value="2024-02-26">Fecha de estreno: 26 de febrero de 2026</data>
+                    <time datetime="21:00">21:00HS</time>
+                    <a class="buy-button" href="https://multiplex.com.ar/peliculas/el-agente-secreto/" target="_blank" rel="noopener noreferrer">Compra boleto aquí</a>
+                </article>
+            </div>
+        </section>
+        <section>
+            <h2>Horarios de Funciones</h2>
+            <table class="tabla-cartelera">
+                <caption>Horarios de funciones por película y cine</caption>
+                <thead>
+                    <tr>
+                        <th>Película</th>
+                        <th>Cine</th>
+                        <th>Horarios</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>HOPPERS OPERACION CASTOR</td>
+                        <td>Palermo</td>
+                        <td>21:00</td>
+                    </tr>
+                    <tr>
+                        <td>HOPPERS OPERACION CASTOR</td>
+                        <td>Abasto</td>
+                        <td>19:00, 21:30</td>
+                    </tr>
+                    <tr>
+                        <td>HOPPERS OPERACION CASTOR</td>
+                        <td>Lavalle</td>
+                        <td>20:00</td>
+                    </tr>
+                    <tr>
+                        <td>HOPPERS OPERACION CASTOR</td>
+                        <td>Puerto Madero</td>
+                        <td>18:00, 22:00</td>
+                    </tr>
+                    <tr>
+                        <td>SCREAM 7</td>
+                        <td>Todos</td>
+                        <td>Próximamente</td>
+                    </tr>
+                    <tr>
+                        <td>EL AGENTE SECRETO</td>
+                        <td>Palermo</td>
+                        <td>21:00</td>
+                    </tr>
+                    <tr>
+                        <td>EL AGENTE SECRETO</td>
+                        <td>Abasto</td>
+                        <td>19:30, 22:00</td>
+                    </tr>
+                    <tr>
+                        <td>EL AGENTE SECRETO</td>
+                        <td>Lavalle</td>
+                        <td>20:30</td>
+                    </tr>
+                    <tr>
+                        <td>EL AGENTE SECRETO</td>
+                        <td>Puerto Madero</td>
+                        <td>18:30, 21:30</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <nav aria-label="Enlaces de pie de página">
+            <ul class="footer-links">
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#cartelera">Cartelera</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#terminos">Términos</a></li>
+            </ul>
+        </nav>
+        <p>© 2026 CineGlobal</p>
+    </footer>
+</div>
 </body>
 </html>
 
