@@ -7,7 +7,7 @@
   - Creación de `css/styles.css` con variables en `:root`, reset global, tipografías y layout base.
   - Creación de `css/components.css` con estilos de componentes reutilizables: header, filtros, cards de películas y botones.
   - Incorporación de estados interactivos `:hover` y `:focus-visible` para mejorar la experiencia de usuario y accesibilidad.
-  PR: [#XX](https://github.com/hmarc953/cineglobal/pull/XX) - @abartomioli (Desarrollador Frontend/CSS)
+  PR: [#44](https://github.com/hmarc953/cineglobal/pull/44) - @abartomioli (Desarrollador Frontend/CSS)
 
 - [feature/dev-frontend-css-add-styles] Documentación del proceso en `spec-frontend.md`.
   - Uso de Figma MCP con Copilot Agent para generación inicial de estilos.
