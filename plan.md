@@ -18,9 +18,10 @@ Esta primera entrega incluye:
 Esta entrega incluye:
 
 - Actualizacion de mockup 
--
--
+- Code Reviews en PR de cada rama feature
+- Testeo de las ramas
 - Documentación del proyecto en `README.md` y `plan.md`.
+
 
 ## 3. Actores o usuarios del sistema
 
