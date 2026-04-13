@@ -114,6 +114,20 @@ body {
   min-height: 100vh;
 }
 
+ul:not(.footer-links) {
+  padding-left: 1.5rem;
+  margin-left: 0;
+}
+
+.main-container li {
+  margin-bottom: 0.5rem;
+}
+
+.main-container li::marker {
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
 /* =========================
    CONTENEDOR PRINCIPAL
    ========================= */
@@ -132,7 +146,7 @@ body {
   background: var(--color-bg-content);
   max-width: 1100px;
   margin: var(--spacing-xl) auto 0 auto;
-  padding: var(--spacing-lg) var(--spacing-md) 0 var(--spacing-md);
+  padding: var(--spacing-lg) var(--spacing-lg) 0 var(--spacing-lg);
   border-radius: 8px;
 
   /* Control del modelo de caja */

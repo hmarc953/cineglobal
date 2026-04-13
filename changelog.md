@@ -2,7 +2,12 @@
 
 ## [Unreleased]
 
+## [Release Actividad Obligatoria N°2] - 2026-04-12
+
 ### Added
+- [feature/responsive-design-add-responsive-styles] Creación del responsive.css y spec-responsive.md.
+  PR: [#32](https://github.com/hmarc953/cineglobal/pull/32) - @Santi22-7 (Especialista en Responsive Design)
+
 - [feature/dev-frontend-css-add-styles] Implementación de la capa de estilos CSS del proyecto CineGlobal.
   - Creación de `css/styles.css` con variables en `:root`, reset global, tipografías y layout base.
   - Creación de `css/components.css` con estilos de componentes reutilizables: header, filtros, cards de películas y botones.
