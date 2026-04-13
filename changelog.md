@@ -61,5 +61,8 @@
 - [fix/changelog-retroactivo-actividad-obligatoria-1] Correcion PR #27 en archivo changelog.md 
   PR: [#30](https://github.com/hmarc953/cineglobal/pull/30#issue-4228530659) — @9919-Mili (Coordinador / DevOps)
 
+- [Backport/release-actividad-obligatoria 1] Fusion a rama Develop
+  PR: [#31](https://github.com/hmarc953/cineglobal/pull/31#issue-4228630292) - @9919-Mili (Coordinador / DevOps)
+
   
 
