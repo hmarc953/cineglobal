@@ -20,6 +20,9 @@
   - Registro de resultados obtenidos y ajustes manuales posteriores.
   Archivo: `docs/03-specs/actividad-obligatoria-2/spec-frontend.md`
 
+- [feature/doc-qa-tester-add-test-cases] Ejecucion y documentacion de testing.  
+  PR: [#54](https://github.com/hmarc953/cineglobal/pull/54) - @hmarc953 (Documentador / QA Tester)
+
 ### Changed
 - Mejora de la estructura visual del sitio alineada al mockup de Figma.
 - Ajuste de espaciados, tipografías y jerarquía visual en componentes.
