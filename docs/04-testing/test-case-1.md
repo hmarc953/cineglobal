@@ -6,7 +6,7 @@
 | Responsable | Marc Holste |
 | Fecha Momento 1 (rama dev-frontend-css) | 12/04/2026 |
 | Fecha Momento 1 (rama responsive-design) | 12/04/2026 |
-| Fecha Momento 2 | |
+| Fecha Momento 2 | 13/04/2026 |
 | Rama Momento 1.1 | `feature/dev-frontend-css-add-styles` |
 | Rama Momento 1.2 | `feature/responsive-design-add-responsive-styles` |
 | Rama Momento 2 | `develop` |
@@ -85,9 +85,6 @@ Guardá las capturas en docs/04-testing/capturas/tc-1/momento-X/
 
 ## MOMENTO 1 — Pre-merge (rama `feature/responsive-design-add-responsive-styles`)
 
-### Fecha de ejecución
-**13 de Abril de 2026**
-
 ### Viewports testeados
 | Viewport | Navegador simulado | Navegación | Layout | Tabla | Footer | Estado |
 |----------|--------------------|------------|--------|-------|--------|--------|
@@ -121,26 +118,26 @@ Guardá las capturas en docs/04-testing/capturas/tc-1/momento-X/
 ### Viewports testeados
 | Viewport | Navegador simulado | Navegación | Layout | Tabla | Footer | Estado |
 |----------|--------------------|------------|--------|-------|--------|--------|
-| 1920×1080 | Chrome | | | | | |
-| 1440×900 | Chrome | | | | | |
-| 1280×800 | Firefox / Safari | | | | | |
-| 1280×800 | Edge | | | | | |
+| 1920×1080 | Chrome | ✅ OK | ✅ OK (flex row, 3 cards) | ✅ OK (legible, sin scroll H) | ✅ OK (links + copyright) | ✅ OK |
+| 1440×900 | Chrome | ✅ OK | ✅ OK (flex row, 3 cards) | ✅ OK (legible, sin scroll H) | ✅ OK (links + copyright) | ✅ OK |
+| 1280×800 | Firefox / Safari | ✅ OK | ✅ OK (flex row, 3 cards) | ✅ OK (legible, sin scroll H) | ✅ OK (links + copyright) | ✅ OK |
+| 1280×800 | Edge | ✅ OK | ✅ OK (flex row, 3 cards) | ✅ OK (legible, sin scroll H) | ✅ OK (links + copyright) | ✅ OK |
 
 ### Capturas de pantalla
 | Viewport | Captura | Estado |
 |----------|---------|--------|
-| 1920×1080 | ![](capturas/tc-1/momento-2/desktop-1920x1080.png) | |
-| 1440×900 | ![](capturas/tc-1/momento-2/desktop-1440x900.png) | |
-| 1280×800 Firefox/Safari | ![](capturas/tc-1/momento-2/desktop-1280x800-firefox.png) | |
-| 1280×800 Edge | ![](capturas/tc-1/momento-2/desktop-1280x800-edge.png) | |
+| 1920×1080 | ![](capturas/tc-1/momento-2/desktop-1920x1080.png) | ✅ OK |
+| 1440×900 | ![](capturas/tc-1/momento-2/desktop-1440x900.png) | ✅ OK |
+| 1280×800 Firefox/Safari | ![](capturas/tc-1/momento-2/desktop-1280x800-firefox.png) | ✅ OK |
+| 1280×800 Edge | ![](capturas/tc-1/momento-2/desktop-1280x800-edge.png) | ✅ OK |
 
 ### Hallazgos
 | # | Elemento | Viewport afectado | Descripción | Severidad |
 |---|----------|-------------------|-------------|-----------|
-| | | | | |
+| — | Sin hallazgos | — | Todos los viewports renderizan correctamente sin cortes, desbordes ni ilegibilidad. | — |
 
 ### Resultado Momento 2
-- [ ] ✅ PASS — Sin hallazgos
+- [x] ✅ PASS — Sin hallazgos
 - [ ] ⚠️ FAIL CON OBSERVACIONES
 - [ ] ❌ FAIL
 
@@ -156,6 +153,6 @@ Guardá las capturas en docs/04-testing/capturas/tc-1/momento-X/
 Se consolidan los resultados de ambas ramas en Momento 1: en `feature/dev-frontend-css-add-styles` se detectaron dos problemas (layout de cards en desktop y footer sin links), mientras que en `feature/responsive-design-add-responsive-styles` se mantiene solo la observacion del footer sin links. Se conserva abierto el issue de layout (#34) por trazabilidad historica y se prioriza como deuda vigente compartida el footer sin enlaces (#35).
 
 ## Conclusión general
-**Resultado final:** FAIL CON OBSERVACIONES
+**Resultado final:** PASS
 
-En la comparacion entre ramas, `feature/dev-frontend-css-add-styles` presenta fail con observaciones por layout de cards en columna y footer sin links, mientras que `feature/responsive-design-add-responsive-styles` mejora el layout desktop y mantiene estabilidad visual sin cortes ni desbordes, pero conserva la deuda del footer sin enlaces verificables. Por este motivo, el cierre global del caso queda en FAIL CON OBSERVACIONES hasta resolver el issue compartido del footer.
+En Momento 2 (rama `develop`), todos los viewports desktop superan la verificación visual sin hallazgos. El layout de cards se muestra en fila horizontal, las tablas son legibles sin scroll horizontal, el header no se corta y el footer presenta correctamente los enlaces de navegación y el copyright. Los issues previos de Momento 1 (#34 layout de cards, #35 footer sin links) quedan verificados como resueltos.

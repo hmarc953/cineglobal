@@ -6,7 +6,7 @@
 | Responsable | Marc Holste |
 | Fecha Momento 1 (rama dev-frontend-css) | 12/04/2026 |
 | Fecha Momento 1 (rama responsive-design) | 12/04/2026 |
-| Fecha Momento 2 | |
+| Fecha Momento 2 | 13/04/2026 |
 | Rama Momento 1.1 | `feature/dev-frontend-css-add-styles` |
 | Rama Momento 1.2 | `feature/responsive-design-add-responsive-styles` |
 | Rama Momento 2 | `develop` |
@@ -126,16 +126,16 @@ Guardá las capturas en docs/04-testing/capturas/tc-4/momento-X/
 ## MOMENTO 2 — Post-merge (`develop`)
 
 ### Violaciones encontradas
-| # | Regla axe | Impacto | Elemento afectado | Descripción |
-|---|-----------|---------|-------------------|-------------|
-| | | | | |
-| | | | | |
-| | | | | |
+| # | Regla axe | Impacto | Elemento afectado | Descripción | Sugerencia |
+|---|-----------|---------|-------------------|--------------|-----------|
+| 1 | `select-name` | 🔴 critical | `#cine`, `#cat`, `#clasificacion` | Los elementos `<select>` no tienen nombre accesible. Los lectores de pantalla no pueden identificar su propósito. | Agregar `<label>` asociado vía `for`/`id` o atributo `aria-label` a cada `<select>`. |
+| 2 | `color-contrast` | 🟠 serious | `#cine`, `#cat`, `#clasificacion`, `button`, `.buy-button` (x3) | El contraste entre el color de texto y el fondo no alcanza el mínimo WCAG 2 AA (4.5:1 para texto normal). | Aumentar el contraste del texto en los selects, botón de filtro y botones de compra. |
+| 3 | `region` | 🟡 moderate | `#cine`, `#cat`, `#clasificacion` | Contenido de los `<select>` no está contenido dentro de un landmark semántico. | Mover la barra de filtros dentro de un elemento `<nav>`, `<main>` u otro landmark válido. |
 
 ### Needs Review (incomplete)
 | # | Regla axe | Elemento | Descripción |
 |---|-----------|----------|-------------|
-| | | | |
+| No aplica | - | - | axe-core no reportó hallazgos en `incomplete`. |
 
 ### Capturas de pantalla
 | Descripción | Captura |
@@ -145,16 +145,16 @@ Guardá las capturas en docs/04-testing/capturas/tc-4/momento-X/
 ### Resumen por nivel de impacto
 | Nivel | Cantidad | Reglas |
 |-------|----------|--------|
-| 🔴 critical | | |
-| 🟠 serious | | |
-| 🟡 moderate | | |
-| 🔵 minor | | |
-| **Total** | | |
+| 🔴 critical | 1 | select-name |
+| 🟠 serious | 1 | color-contrast |
+| 🟡 moderate | 1 | region |
+| 🔵 minor | 0 | - |
+| **Total** | **3** | select-name, color-contrast, region |
 
 ### Resultado Momento 2
 - [ ] ✅ PASS — Sin violaciones
 - [ ] ⚠️ FAIL CON OBSERVACIONES — Solo violaciones moderate/minor
-- [ ] ❌ FAIL — Violaciones critical o serious presentes
+- [x] ❌ FAIL — Violaciones critical o serious presentes
 
 ---
 
@@ -162,11 +162,14 @@ Guardá las capturas en docs/04-testing/capturas/tc-4/momento-X/
 | Issue | Momento | Regla axe | Elemento | Impacto | Estado |
 |-------|---------|-----------|----------|---------|--------|
 | [#36](https://github.com/hmarc953/cineglobal/issues/36) | Momento 1 | region | `body > section:nth-child(2)`, `section:nth-child(3)` | moderate | Abierto |
+| [#48](https://github.com/hmarc953/cineglobal/issues/48) | Momento 2 | select-name | `#cine`, `#cat`, `#clasificacion` | critical | Abierto |
+| [#49](https://github.com/hmarc953/cineglobal/issues/49) | Momento 2 | color-contrast | `.filter-select`, `.filter-button`, `.buy-button` | serious | Abierto |
+| [#50](https://github.com/hmarc953/cineglobal/issues/50) | Momento 2 | region | `<section class="filters">` | moderate | Abierto |
 
 ## Decisiones tomadas
 Se consolidan los resultados de ambas ramas (`feature/dev-frontend-css-add-styles` y `feature/responsive-design-add-responsive-styles`) porque en ambas se repite la misma violacion `region` de impacto `moderate`, asociada a contenido fuera de landmarks semanticos. Se mantiene abierto el issue #36 como defecto comun hasta que las secciones afectadas queden dentro de `main` u otra landmark valida. No hubo hallazgos `incomplete` en ninguna ejecucion.
 
 ## Conclusión general
-**Resultado final:** FAIL CON OBSERVACIONES
+**Resultado final:** FAIL
 
-La comparativa entre `feature/dev-frontend-css-add-styles` y `feature/responsive-design-add-responsive-styles` no muestra mejoras en accesibilidad para este caso: ambas ramas presentan la misma violacion `region` (moderate) sobre secciones fuera de landmarks. Aunque no hay violaciones `critical` ni `serious`, el defecto impacta navegacion asistiva y mantiene el estado consolidado en FAIL CON OBSERVACIONES hasta su correccion.
+En Momento 2 (rama `develop`), axe-core detectó 3 violaciones nuevas respecto a Momento 1: se agregó una violación `critical` (`select-name`) y una `serious` (`color-contrast`) que afectan los tres elementos `<select>` del filtro y los botones de compra, además de la violación `moderate` (`region`) ya conocida. La incorporación de los archivos CSS en `develop` introdujo problemas de contraste en los controles del filtro y los botones. Se requiere correción antes de considerar el merge a producción.

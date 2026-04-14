@@ -6,7 +6,7 @@
 | Responsable | Marc Holste |
 | Fecha Momento 1 (rama dev-frontend-css) | 12/04/2026 |
 | Fecha Momento 1 (rama responsive-design) | 12/04/2026 |
-| Fecha Momento 2 | |
+| Fecha Momento 2 | 13/04/2026 |
 | Rama Momento 1.1 | `feature/dev-frontend-css-add-styles` |
 | Rama Momento 1.2 | `feature/responsive-design-add-responsive-styles` |
 | Rama Momento 2 | `develop` |
@@ -230,42 +230,55 @@ Guardá las capturas en docs/04-testing/capturas/tc-5/momento-X/
 ### Estructura de headings
 | Nivel | Texto | ¿Correcto? | Observación |
 |-------|-------|-----------|-------------|
-| | | | |
-| | | | |
+| H1 | CINEGLOBAL | Sí | Único H1 en la página. |
+| H2 | Géneros disponibles | Sí | Jerarquía correcta. |
+| H2 | Cines participantes | Sí | Jerarquía correcta. |
+| H2 | Películas en cartelera | Sí | Jerarquía correcta. |
+| H3 | Hoppers Operación Castor | Sí | Subnivel correcto dentro de `<article>`. |
+| H3 | Scream 7 | Sí | Subnivel correcto dentro de `<article>`. |
+| H3 | El Agente Secreto | Sí | Subnivel correcto dentro de `<article>`. |
+| H2 | Horarios de Funciones | Sí | Jerarquía correcta. |
+| H2 | Contacto | Sí | Jerarquía correcta. |
+| H2 | Términos y condiciones | Sí | Jerarquía correcta. |
 
 ### Landmarks detectados
 | Landmark | Elemento HTML | ¿Correcto? | Observación |
 |----------|---------------|-----------|-------------|
-| | | | |
-| | | | |
+| Header | `<header>` (1) | Sí | Presente y correctamente identificado. |
+| Nav | `<nav>` (1) | Sí | Presente para el footer (enlaces de navegación). |
+| Main | `<main>` (1) | Sí | Contiene el contenido principal. |
+| Footer | `<footer>` (1) | Sí | Presente con links y copyright. |
+| Section | `<section>` (7) | Parcial | Una sección sin heading en L20 (warning W3C). |
+| Article | `<article>` (3) | Sí | Cada artículo tiene H3 en `develop` — mejora vs. Momento 1. |
+| Div | `<div>` (2) | Sí | Solo 2 divs, uso apropiado como contenedores de layout. |
 
 ### Verificaciones semánticas
 | Verificación | Estado | Detalle |
 |--------------|--------|---------|
-| Un solo H1 | | |
-| Jerarquía de headings sin saltos | | |
-| Secciones con elementos semánticos | | |
-| Campos de formulario con label | | |
-| Tabla/s con caption | | |
+| Un solo H1 | ✅ OK | Se detectó exactamente 1 H1: "CINEGLOBAL". |
+| Jerarquía de headings sin saltos | ✅ OK | Secuencia: H1 → H2 → H2 → H2 → H3 → H3 → H3 → H2 → H2 → H2. Sin saltos. |
+| Secciones con elementos semánticos | ⚠️ Observación | 1 sección sin heading (barra de filtros en L20). |
+| Campos de formulario con label | ❌ No cumple | Los 3 `<select>` (`#cine`, `#cat`, `#clasificacion`) no tienen `<label>` ni `aria-label`. |
+| Tabla/s con caption | ✅ OK | La tabla tiene `<caption>`: "Horarios de funciones por película y cine". |
 
 ### Validación W3C HTML
 | Tipo | Cantidad | Detalle |
 |------|----------|---------|
-| Errores | | |
-| Warnings | | |
+| Errores | 0 | El documento valida sin errores. |
+| Warnings | 1 | L20: `<section>` sin heading (barra de filtros). |
 
 ### Validación W3C CSS
 | Archivo | Errores | Warnings |
 |---------|---------|----------|
-| styles.css | | |
-| components.css | | |
-| responsive.css | | |
+| styles.css | 0 | 12 |
+| components.css | 0 | 33 |
+| responsive.css | 0 | 33 |
 
 ### Capturas de pantalla
 | Descripción | Captura |
 |-------------|---------|
 | Snapshot accesibilidad | ![](capturas/tc-5/momento-2/semantic-snapshot.png) |
-| W3C HTML Validator | ![](capturas/tc-5/momento-2/w3c-html.png) |
+| W3C HTML Validator | ![](capturas/tc-5/momento-2/w3c-html-validator.png) |
 | W3C CSS — styles.css | ![](capturas/tc-5/momento-2/w3c-css-styles.png) |
 | W3C CSS — components.css | ![](capturas/tc-5/momento-2/w3c-css-components.png) |
 | W3C CSS — responsive.css | ![](capturas/tc-5/momento-2/w3c-css-responsive.png) |
@@ -273,11 +286,13 @@ Guardá las capturas en docs/04-testing/capturas/tc-5/momento-X/
 ### Hallazgos
 | # | Tipo | Elemento / Archivo | Descripción | Severidad |
 |---|------|--------------------|-------------|-----------|
-| | | | | |
+| 1 | Semántica / Accesibilidad | `#cine`, `#cat`, `#clasificacion` | Los 3 `<select>` no tienen `<label>` asociado ni `aria-label`. Corroborado por axe-core (regla `select-name`, critical). | Alta |
+| 2 | HTML warning | `<section>` L20 (barra de filtros) | Sección sin heading. Agregar heading oculto o reemplazar por `<div>` si no es una sección temática. | Baja |
+| 3 | CSS warnings | styles.css (12), components.css (33), responsive.css (33) | Todos los warnings son de tipo `css-variable` (— limitación conocida del validador W3C con variables CSS dinámicas). Sin errores reales. | Informativa |
 
 ### Resultado Momento 2
 - [ ] ✅ PASS — Sin hallazgos
-- [ ] ⚠️ FAIL CON OBSERVACIONES
+- [x] ⚠️ FAIL CON OBSERVACIONES
 - [ ] ❌ FAIL
 
 ---
@@ -292,6 +307,8 @@ Guardá las capturas en docs/04-testing/capturas/tc-5/momento-X/
 | [#41](https://github.com/hmarc953/cineglobal/issues/41) | Momento 1 | Estructura CSS | Falta `responsive.css` para validar | Baja | Abierto |
 | [#42](https://github.com/hmarc953/cineglobal/issues/42) | Momento 1 | Estructura CSS | Falta `components.css` para validar | Baja | Abierto |
 | [#43](https://github.com/hmarc953/cineglobal/issues/43) | Momento 1 | Estructura CSS | Falta `styles.css` para validar | Baja | Abierto |
+| [#48](https://github.com/hmarc953/cineglobal/issues/48) | Momento 2 | Semántica / Accesibilidad | `#cine`, `#cat`, `#clasificacion` sin `<label>` | Alta | Abierto |
+| [#51](https://github.com/hmarc953/cineglobal/issues/51) | Momento 2 | HTML semántico | `<section class="filters">` sin heading (línea 20) | Baja | Abierto |
 
 ## Decisiones tomadas
 Se consolidan los hallazgos de ambas ramas: en `feature/dev-frontend-css-add-styles` y en `feature/responsive-design-add-responsive-styles` persisten los warnings semanticos HTML (articles/section sin heading, atributo `table border` obsoleto y tabla sin `caption`), por lo que se mantienen como bugs de accesibilidad y estructura. En CSS hay diferencias de estructura entre ramas (`css/responsive.css` faltante en una rama, y `styles.css`/`components.css` faltantes en la otra), por lo que esos puntos se documentan como issues de alcance/organizacion y no como errores de renderizado; ademas, los warnings de `css-variable` se consideran limitacion conocida del validador.
@@ -300,3 +317,5 @@ Se consolidan los hallazgos de ambas ramas: en `feature/dev-frontend-css-add-sty
 **Resultado final:** FAIL CON OBSERVACIONES
 
 La comparativa entre `feature/dev-frontend-css-add-styles` y `feature/responsive-design-add-responsive-styles` confirma que la base semantica general es utilizable, pero ambas ramas comparten observaciones relevantes de HTML/accesibilidad: articles y section sin heading, uso de atributo obsoleto en table y falta de `caption`. En CSS no se observan errores fatales en archivos existentes, aunque la cobertura de validacion difiere por estructura de archivos entre ramas (faltantes distintos en cada una). Por la persistencia de hallazgos semanticos en ambas variantes, el cierre consolidado del caso permanece en FAIL CON OBSERVACIONES.
+
+En Momento 2 (rama `develop`), la estructura semántica mejoró respecto a Momento 1: los `<article>` ahora tienen H3, la tabla tiene `<caption>`, y la jerarquía de headings es correcta sin saltos. Sin embargo, persiste el hallazgo crítico de los 3 `<select>` sin `<label>` (confirmado también por axe-core como `select-name` critical), y una sección sin heading en la barra de filtros. HTML y CSS validan sin errores formales; los warnings CSS son limitaciones del validador con variables CSS. Se requiere correción de los `<label>` antes del merge a producción.

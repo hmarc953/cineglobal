@@ -6,7 +6,7 @@
 | Responsable | Marc Holste |
 | Fecha Momento 1 (rama dev-frontend-css) | 12/04/2026 |
 | Fecha Momento 1 (rama responsive-design) | 12/04/2026 |
-| Fecha Momento 2 | |
+| Fecha Momento 2 | 13/04/2026 |
 | Rama Momento 1.1 | `feature/dev-frontend-css-add-styles` |
 | Rama Momento 1.2 | `feature/responsive-design-add-responsive-styles` |
 | Rama Momento 2 | `develop` |
@@ -116,26 +116,27 @@ Guardá las capturas en docs/04-testing/capturas/tc-2/momento-X/
 
 ### Dispositivos testeados
 | Dispositivo | Viewport | Navegación | Layout móvil | Tabla | Formulario | Scroll horizontal | Estado |
-|-------------|----------|------------|--------------|-------|------------|-------------------|--------|
-| iPhone 14 Pro | 390×844 | | | | | | |
-| Samsung Galaxy S23 | 412×915 | | | | | | |
-| iPad Air | 820×1180 | | | | | | |
+|-------------|----------|------------|--------------|-------|------------|-------------------|---------|
+| iPhone 14 Pro | 390×844 | ✅ OK | ✅ OK (vertical stacking) | ⚠️ Overflow interno (322>279) | ✅ OK (ancho completo) | ❌ No | ⚠️ Con observaciones |
+| Samsung Galaxy S23 | 412×915 | ✅ OK | ✅ OK (vertical stacking) | ⚠️ Overflow interno (322>300) | ✅ OK (ancho completo) | ❌ No | ⚠️ Con observaciones |
+| iPad Air | 820×1180 | ✅ OK | ✅ OK (grid 2+1 columnas) | ✅ OK (sin overflow) | ✅ OK (en fila horizontal) | ❌ No | ✅ OK |
 
 ### Capturas de pantalla
 | Dispositivo | Captura | Estado |
 |-------------|---------|--------|
-| iPhone 14 Pro | ![](capturas/tc-2/momento-2/iphone-14-pro-390x844.png) | |
-| Samsung Galaxy S23 | ![](capturas/tc-2/momento-2/samsung-galaxy-s23-412x915.png) | |
-| iPad Air | ![](capturas/tc-2/momento-2/ipad-air-820x1180.png) | |
+| iPhone 14 Pro | ![](capturas/tc-2/momento-2/iphone-14-pro-390x844.png) | ⚠️ Con observaciones |
+| Samsung Galaxy S23 | ![](capturas/tc-2/momento-2/samsung-galaxy-s23-412x915.png) | ⚠️ Con observaciones |
+| iPad Air | ![](capturas/tc-2/momento-2/ipad-air-820x1180.png) | ✅ OK |
 
 ### Hallazgos
 | # | Elemento | Dispositivo afectado | Descripción | Desbordamiento | Severidad |
 |---|----------|----------------------|-------------|----------------|-----------|
-| | | | | | |
+| 1 | Tabla "Horarios de Funciones" | iPhone 14 Pro, Samsung Galaxy S23 | La tabla tiene `scrollWidth` mayor a `clientWidth` (322 > 279 en iPhone; 322 > 300 en Samsung). El contenido de la tabla desborda su contenedor pero queda recortado sin scroll visible, lo que puede generar información no accesible en móviles pequeños. | Sí (interno, recortado) | Media |
+| 2 | Grid de cards en iPad Air | iPad Air (820×1180) | Las 3 películas se muestran en layout 2+1: las primeras 2 en fila y la tercera sola. Sin hallazgo bloqueante; comportamiento esperado para tablet si el diseño no especifica 3 columnas. | No | Baja |
 
 ### Resultado Momento 2
 - [ ] ✅ PASS — Sin hallazgos
-- [ ] ⚠️ FAIL CON OBSERVACIONES
+- [x] ⚠️ FAIL CON OBSERVACIONES
 - [ ] ❌ FAIL
 
 ---
@@ -144,11 +145,12 @@ Guardá las capturas en docs/04-testing/capturas/tc-2/momento-X/
 | Issue | Momento | Elemento | Dispositivo | Severidad | Estado |
 |-------|---------|----------|-------------|-----------|--------|
 | No aplica | Momento 1 | Sin issues creados | Todos | - | Cerrado |
+| [#46](https://github.com/hmarc953/cineglobal/issues/46) | Momento 2 | `.tabla-cartelera` overflow horizontal | iPhone 14 Pro, Samsung S23 | Alta | Abierto |
 
 ## Decisiones tomadas
 Se unifican los resultados de ambas ramas en Momento 1 (`feature/dev-frontend-css-add-styles` y `feature/responsive-design-add-responsive-styles`) porque en los tres dispositivos evaluados no se observaron diferencias funcionales ni visuales relevantes. No se crean issues para este caso por ausencia de defectos reproducibles.
 
 ## Conclusión general
-**Resultado final:** PASS
+**Resultado final:** FAIL CON OBSERVACIONES
 
-La comparativa entre `feature/dev-frontend-css-add-styles` y `feature/responsive-design-add-responsive-styles` confirma comportamiento responsive consistente y correcto en iPhone 14 Pro, Samsung Galaxy S23 e iPad Air: navegacion adaptada, apilado vertical esperado, tabla legible sin scroll horizontal y formulario ocupando el ancho disponible. Ninguna de las dos ramas presento hallazgos, por lo que el resultado consolidado del test es PASS.
+En Momento 2 (rama `develop`), la navegación y el apilado vertical funcionan correctamente en los tres dispositivos y no se detecta scroll horizontal en la página. Sin embargo, la tabla "Horarios de Funciones" presenta overflow interno recortado en iPhone 14 Pro y Samsung Galaxy S23, lo que puede impedir que el usuario acceda a parte del contenido sin scroll. iPad Air muestra la tabla correctamente. Se recomienda añadir `overflow-x: auto` al contenedor de la tabla para móviles.

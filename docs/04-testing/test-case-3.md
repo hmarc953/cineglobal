@@ -6,7 +6,7 @@
 | Responsable | Marc Holste |
 | Fecha Momento 1 (rama dev-frontend-css) | 12/04/2026 |
 | Fecha Momento 1 (rama responsive-design) | 12/04/2026 |
-| Fecha Momento 2 | |
+| Fecha Momento 2 | 13/04/2026 |
 | Rama Momento 1.1 | `feature/dev-frontend-css-add-styles` |
 | Rama Momento 1.2 | `feature/responsive-design-add-responsive-styles` |
 | Rama Momento 2 | `develop` |
@@ -136,19 +136,24 @@ Guardá las capturas en docs/04-testing/capturas/tc-3/momento-X/
 
 ### Métricas de performance
 | Métrica | Valor medido | Umbral recomendado | Estado |
-|---------|-------------|-------------------|--------|
-| DOMContentLoaded | ms | < 800 ms | |
-| DOM Interactive | ms | < 600 ms | |
-| Load completo | ms | < 2000 ms | |
-| Total de recursos | | — | |
-| Tamaño total | KB | < 1 MB | |
+|---------|-------------|-------------------|---------|
+| DOMContentLoaded | 359.70 ms | < 800 ms | ✅ OK |
+| DOM Interactive | 358.60 ms | < 600 ms | ✅ OK |
+| Load completo | 361.40 ms | < 2000 ms | ✅ OK |
+| Total de recursos | 8 | — | ✅ OK |
+| Tamaño total | 528.29 KB | < 1 MB | ✅ OK |
 
 ### Recursos analizados
 | Recurso | Tipo | Tamaño (KB) | Tiempo descarga (ms) | Estado |
 |---------|------|-------------|----------------------|--------|
-| | | | | |
-| | | | | |
-| | | | | |
+| /___vscode_livepreview_injected_script | script | 9.35 | 9.90 | ✅ OK |
+| /css/styles.css | css | 5.27 | 6.50 | ✅ OK |
+| /css/components.css | css | 9.63 | 6.90 | ✅ OK |
+| /css/responsive.css | css | 5.04 | 8.80 | ✅ OK |
+| /assets/images/hoppers.jpeg | img | 167.26 | 13.90 | ✅ OK |
+| /assets/images/scream-7.jpg | img | 14.09 | 13.50 | ✅ OK |
+| /assets/images/el-agente-secreto.jpg | img | 316.96 | 18.40 | ✅ OK |
+| /favicon.ico | img | 0.69 | 4.10 | ✅ OK |
 
 ### Capturas de pantalla
 | Descripción | Captura |
@@ -158,10 +163,15 @@ Guardá las capturas en docs/04-testing/capturas/tc-3/momento-X/
 ### Hallazgos
 | # | Métrica / Recurso | Valor | Descripción | Severidad |
 |---|-------------------|-------|-------------|-----------|
-| | | | | |
+| 1 | DOMContentLoaded | 359.70 ms | Dentro del umbral recomendado (< 800 ms). | Baja |
+| 2 | DOM Interactive | 358.60 ms | Interactividad alcanzada rápidamente. | Baja |
+| 3 | Load completo | 361.40 ms | Carga completa muy por debajo del límite de 2s. | Baja |
+| 4 | Tamaño total | 528.29 KB | Dentro del límite de 1 MB. Ningún recurso individual supera 500 KB. | Baja |
+| 5 | Recursos lentos | 0 recursos > 500 ms | El más lento fue el-agente-secreto.jpg con 18.40 ms. | Baja |
+| 6 | CSS adicionales | 3 archivos CSS (20.94 KB total) | Rama `develop` incluye styles.css, components.css y responsive.css vs. Momento 1 que no registraba archivos CSS. Incremento leve y sin impacto negativo. | Informativa |
 
 ### Resultado Momento 2
-- [ ] ✅ PASS — Sin hallazgos
+- [x] ✅ PASS — Sin hallazgos
 - [ ] ⚠️ FAIL CON OBSERVACIONES
 - [ ] ❌ FAIL
 
@@ -178,4 +188,4 @@ Se consolidan los resultados de ambas ramas en Momento 1 (`feature/dev-frontend-
 ## Conclusión general
 **Resultado final:** PASS
 
-La comparacion entre `feature/dev-frontend-css-add-styles` y `feature/responsive-design-add-responsive-styles` muestra comportamiento de carga saludable en ambos casos: tiempos de DOMContentLoaded, DOM Interactive y Load completo por debajo de umbrales, sin recursos mayores a 500 KB ni descargas superiores a 500 ms. Por consistencia de resultados y ausencia de degradaciones entre ramas, el cierre consolidado del caso es PASS.
+En Momento 2 (rama `develop`), la página carga en 361 ms con 8 recursos totalizando 528 KB. Se suman 3 archivos CSS (styles.css, components.css, responsive.css) que no estaban presentes en Momento 1, con un incremento de ~20 KB que no impacta la performance. Ningún recurso supera 500 KB ni tarda más de 500 ms. Todas las métricas están dentro de umbrales aceptables.

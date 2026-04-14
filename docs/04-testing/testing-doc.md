@@ -27,4 +27,11 @@
     - [#43 - [TC5][Estructura] Falta styles.css requerido por alcance de validación](https://github.com/hmarc953/cineglobal/issues/43)
 
 ### Momento 2 (Develop)
-- Estado: Sin issues creados en GitHub por el momento.
+- Rama evaluada: `develop`
+- Estado: 5 issues creados en GitHub.
+- Issues creados:
+	- [#46 - TC2 - Tabla de horarios genera overflow horizontal en dispositivos moviles](https://github.com/hmarc953/cineglobal/issues/46)
+	- [#48 - TC4 - Los select del filtro no tienen nombre accesible (axe-core: critical)](https://github.com/hmarc953/cineglobal/issues/48)
+	- [#49 - TC4 - Contraste de color insuficiente en selects, boton de filtro y botones de compra](https://github.com/hmarc953/cineglobal/issues/49)
+	- [#50 - TC4 - El formulario de filtros no esta contenido en un landmark semantico](https://github.com/hmarc953/cineglobal/issues/50)
+	- [#51 - TC5 - Section de filtros sin heading semantico - warning W3C HTML linea 20](https://github.com/hmarc953/cineglobal/issues/51)
