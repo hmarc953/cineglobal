@@ -143,6 +143,12 @@ section table {
   display: block;
 }
 
+.tabla-cartelera {
+  display: block;
+  overflow-x: auto;
+  width: 100%;
+}
+
 section th,
 section td {
   padding: 0.85rem;
@@ -203,6 +209,10 @@ footer {
   }
 
   section table {
+    display: table;
+  }
+
+  .tabla-cartelera {
     display: table;
   }
 }
@@ -273,6 +283,11 @@ footer {
   }
 
   section table {
+    display: table;
+    overflow-x: visible;
+  }
+
+  .tabla-cartelera {
     display: table;
     overflow-x: visible;
   }

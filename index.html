@@ -17,8 +17,10 @@
         <h1 class="header-title">CINEGLOBAL</h1>
         <p class="header-subtitle">Hace de tus fines de semana más divertidos</p>
     </header>
-    <section class="filters">
+    <section class="filters" role="search" aria-label="Filtrar películas">
+        <h2 class="sr-only">Filtrar películas</h2>
         <form action="#" method="get">
+            <label for="cine">Seleccionar cine</label>
             <select class="filter-select" id="cine">
                 <option value="">Por Cine</option>
                 <option value="cine1">Palermo</option>
@@ -26,6 +28,7 @@
                 <option value="cine3">Lavalle</option>
                 <option value="cine4">Puerto Madero</option>
             </select>
+            <label for="cat">Seleccionar categoría</label>
             <select class="filter-select" id="cat">
                 <option value="">Categoría</option>
                 <option value="cat1">Acción</option>
@@ -33,6 +36,7 @@
                 <option value="cat3">Drama</option>
                 <option value="cat4">Terror</option>
             </select>
+            <label for="clasificacion">Seleccionar clasificación</label>
             <select class="filter-select" id="clasificacion">
                 <option value="todas">Todas</option>
                 <option value="atp">ATP</option>
