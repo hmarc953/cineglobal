@@ -20,11 +20,12 @@ Esta primera entrega incluye la estructura de página con listado de películas,
 - [ ] Implementar estilos CSS para mejorar la apariencia visual de la página.
 - [ ] Mejorar estilo de Mockupt 
 - [ ] Redactar archivos .md
+- [ ] Code reviews
 
 
 ## Documentación
 
-- Mockup: [Enlace al mockup](https://www.figma.com/design/NfChLFCsX27WSaDCEiaevS/Sin-t%C3%ADtulo?node-id=0-1&m=dev&t=h8AO4rUf5W6hzUwA-1)
+- Mockup: [Enlace al mockup](https://www.figma.com/design/NfChLFCsX27WSaDCEiaevS/Sin-t%C3%ADtulo?node-id=69-81&m=dev&t=UOqRl9HcyQYB4uCQ-1)
 - Índice de Prompts: [Enlace al índice de prompts](docs/02-prompts/prompts.md)
 - Changelog: [Enlace al changelog](changelog.md)
 
@@ -32,7 +33,7 @@ Esta primera entrega incluye la estructura de página con listado de películas,
 
 | Nombre completo          | N° de Matrícula | Usuario GitHub | Rol en esta entrega                  |
 |--------------------------|-----------------|----------------|-------------------------------------|
-| Marc Holste              | 160313          | @hmarc953      | Coordinador / DevOps                |
-| Milagros Magali Araujo   | 148197          | @9919-Mili     | Desarrollador Frontend              |
-| Santiago Ariel Samitier  | 148249          | @Santi22-7     | Documentador / Diseñador UX         |
-| Alejandro Bartomioli     | 153041          | @abartomioli   | Especialista en IA y Prompt Engineering |
+| Marc Holste              | 160313          | @hmarc953      | Documentador / QA Tester            |
+| Milagros Magali Araujo   | 148197          | @9919-Mili     | Coordinador / DevOps                |
+| Santiago Ariel Samitier  | 148249          | @Santi22-7     | Especialista en Responsive Design   |
+| Alejandro Bartomioli     | 153041          | @abartomioli   | Desarrollador Frontedd/CSS          |

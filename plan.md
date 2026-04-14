@@ -13,23 +13,34 @@ Esta primera entrega incluye:
 - Interfaz web diseñada para visualización en escritorio.
 - Documentación del proyecto en `README.md` y `plan.md`.
 
-## 3. Actores o usuarios del sistema
+## 3. Alcance de segunda entrega
+
+Esta entrega incluye:
+
+- Actualizacion de mockup 
+- Code Reviews en PR de cada rama feature
+- Testeo de las ramas
+- Adaptación del diseño CSS para responsividad completa en múltiples resoluciones de pantalla
+- Documentación del proyecto en `README.md` y `plan.md`.
+
+
+## 4. Actores o usuarios del sistema
 
 - **Usuario final**: persona que consulta películas y horarios.
 - **Desarrollador**: persona que construye y prueba la página.
 
-## 4. Requerimientos funcionales del sistema
+## 5. Requerimientos funcionales del sistema
 
 - **RF-01**: Mostrar lista de películas con su título, género y sinopsis breve.
 - **RF-02**: El usuario puede navegar entre la lista de películas y la vista de detalle mediante enlaces o botones.
 
-## 5. Reglas o supuestos del sistema
+## 6. Reglas o supuestos del sistema
 
 - No se implementa backend ni base de datos.
 - Los horarios y datos de películas serán estáticos (mock) definidos en el front-end.
 - El foco es aprender HTML
 
-## 6. Funcionalidades previstas para futuras iteraciones
+## 7. Funcionalidades previstas para futuras iteraciones
 
 - Cargar datos desde un archivo JSON local.
 - Mejora de la vista de detalle con carteles y valoraciones.
