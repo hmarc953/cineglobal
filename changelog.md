@@ -7,7 +7,7 @@
 ### Added
 
 - [feature/coord-dev-ops-repo-update-readme-md] Creacion de code review en PR, actualizacion de Plan.md y Readme.md
-  PR: [#36](https://github.com/hmarc953/cineglobal/pull/56#issue-4258986348) - @9919-Mili (Cordinador / DevOps)
+  PR: [#56](https://github.com/hmarc953/cineglobal/pull/56#issue-4258986348) - @9919-Mili (Cordinador / DevOps)
 
 - [feature/responsive-design-add-responsive-styles] Creación del responsive.css y spec-responsive.md.
   PR: [#32](https://github.com/hmarc953/cineglobal/pull/32) - @Santi22-7 (Especialista en Responsive Design)
