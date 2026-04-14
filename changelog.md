@@ -38,7 +38,8 @@
   - [#39] Uso de table border obsoleto: se eliminó el atributo border en la tabla y se aplicó el borde desde CSS.
   - [#40] Tabla de horarios sin caption: se agregó un <caption> descriptivo a la tabla de funciones.
   Realizado por @abartomioli  
-
+- [feature/Correcciones-pedidas-tester] Hacer correciones pedidas por el tester.
+  PR: [#55](https://github.com/hmarc953/cineglobal/pull/55) - @Santi22-7 (Especialista en Responsive Design)
 ### Notes
 - Se deja la base preparada para integración con el Especialista en Responsive Design.
 - Se recomienda validación visual en distintos dispositivos y navegadores.
