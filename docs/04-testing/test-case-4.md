@@ -78,9 +78,9 @@ Guardá las capturas en docs/04-testing/capturas/tc-4/momento-X/
 |-------|----------|--------|
 | 🔴 critical | 0 | - |
 | 🟠 serious | 0 | - |
-| 🟡 moderate | 1 | region |
+| 🟡 moderate | 2 | region |
 | 🔵 minor | 0 | - |
-| **Total** | 1 | region |
+| **Total** | 2 | region |
 
 ### Resultado Momento 1
 - [ ] ✅ PASS — Sin violaciones
@@ -112,9 +112,9 @@ Guardá las capturas en docs/04-testing/capturas/tc-4/momento-X/
 |-------|----------|--------|
 | 🔴 critical | 0 | - |
 | 🟠 serious | 0 | - |
-| 🟡 moderate | 1 | region |
+| 🟡 moderate | 2 | region |
 | 🔵 minor | 0 | - |
-| **Total** | 1 | region |
+| **Total** | 2 | region |
 
 ### Resultado Momento 1
 - [ ] ✅ PASS — Sin violaciones
@@ -161,10 +161,10 @@ Guardá las capturas en docs/04-testing/capturas/tc-4/momento-X/
 ## Issues creados
 | Issue | Momento | Regla axe | Elemento | Impacto | Estado |
 |-------|---------|-----------|----------|---------|--------|
-| [#36](https://github.com/hmarc953/cineglobal/issues/36) | Momento 1 | region | `body > section:nth-child(2)`, `section:nth-child(3)` | moderate | Abierto |
-| [#48](https://github.com/hmarc953/cineglobal/issues/48) | Momento 2 | select-name | `#cine`, `#cat`, `#clasificacion` | critical | Abierto |
-| [#49](https://github.com/hmarc953/cineglobal/issues/49) | Momento 2 | color-contrast | `.filter-select`, `.filter-button`, `.buy-button` | serious | Abierto |
-| [#50](https://github.com/hmarc953/cineglobal/issues/50) | Momento 2 | region | `<section class="filters">` | moderate | Abierto |
+| [#36](https://github.com/hmarc953/cineglobal/issues/36) | Momento 1 | region | `body > section:nth-child(2)`, `section:nth-child(3)` | moderate | Cerrado |
+| [#48](https://github.com/hmarc953/cineglobal/issues/48) | Momento 2 | select-name | `#cine`, `#cat`, `#clasificacion` | critical | Cerrado |
+| [#49](https://github.com/hmarc953/cineglobal/issues/49) | Momento 2 | color-contrast | `.filter-select`, `.filter-button`, `.buy-button` | serious | Cerrado |
+| [#50](https://github.com/hmarc953/cineglobal/issues/50) | Momento 2 | region | `<section class="filters">` | moderate | Cerrado |
 
 ## Decisiones tomadas
 Se consolidan los resultados de ambas ramas (`feature/dev-frontend-css-add-styles` y `feature/responsive-design-add-responsive-styles`) porque en ambas se repite la misma violacion `region` de impacto `moderate`, asociada a contenido fuera de landmarks semanticos. Se mantiene abierto el issue #36 como defecto comun hasta que las secciones afectadas queden dentro de `main` u otra landmark valida. No hubo hallazgos `incomplete` en ninguna ejecucion.

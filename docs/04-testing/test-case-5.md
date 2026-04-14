@@ -300,15 +300,15 @@ Guardá las capturas en docs/04-testing/capturas/tc-5/momento-X/
 ## Issues creados
 | Issue | Momento | Tipo | Elemento / Archivo | Severidad | Estado |
 |-------|---------|------|--------------------|-----------|--------|
-| [#37](https://github.com/hmarc953/cineglobal/issues/37) | Momento 1 | HTML semántico | `article` sin heading (líneas 79, 94, 104) | Media | Abierto |
-| [#38](https://github.com/hmarc953/cineglobal/issues/38) | Momento 1 | HTML semántico | `section` sin heading (línea 77) | Media | Abierto |
-| [#39](https://github.com/hmarc953/cineglobal/issues/39) | Momento 1 | Estándar HTML | `table border="1"` obsoleto (línea 118) | Baja | Abierto |
-| [#40](https://github.com/hmarc953/cineglobal/issues/40) | Momento 1 | Accesibilidad semántica | Tabla sin `caption` | Media | Abierto |
-| [#41](https://github.com/hmarc953/cineglobal/issues/41) | Momento 1 | Estructura CSS | Falta `responsive.css` para validar | Baja | Abierto |
-| [#42](https://github.com/hmarc953/cineglobal/issues/42) | Momento 1 | Estructura CSS | Falta `components.css` para validar | Baja | Abierto |
-| [#43](https://github.com/hmarc953/cineglobal/issues/43) | Momento 1 | Estructura CSS | Falta `styles.css` para validar | Baja | Abierto |
-| [#48](https://github.com/hmarc953/cineglobal/issues/48) | Momento 2 | Semántica / Accesibilidad | `#cine`, `#cat`, `#clasificacion` sin `<label>` | Alta | Abierto |
-| [#51](https://github.com/hmarc953/cineglobal/issues/51) | Momento 2 | HTML semántico | `<section class="filters">` sin heading (línea 20) | Baja | Abierto |
+| [#37](https://github.com/hmarc953/cineglobal/issues/37) | Momento 1 | HTML semántico | `article` sin heading (líneas 79, 94, 104) | Media | Cerrado |
+| [#38](https://github.com/hmarc953/cineglobal/issues/38) | Momento 1 | HTML semántico | `section` sin heading (línea 77) | Media | Cerrado |
+| [#39](https://github.com/hmarc953/cineglobal/issues/39) | Momento 1 | Estándar HTML | `table border="1"` obsoleto (línea 118) | Baja | Cerrado |
+| [#40](https://github.com/hmarc953/cineglobal/issues/40) | Momento 1 | Accesibilidad semántica | Tabla sin `caption` | Media | Cerrado |
+| [#41](https://github.com/hmarc953/cineglobal/issues/41) | Momento 1 | Estructura CSS | Falta `responsive.css` para validar | Baja | Cerrado |
+| [#42](https://github.com/hmarc953/cineglobal/issues/42) | Momento 1 | Estructura CSS | Falta `components.css` para validar | Baja | Cerrado |
+| [#43](https://github.com/hmarc953/cineglobal/issues/43) | Momento 1 | Estructura CSS | Falta `styles.css` para validar | Baja | Cerrado |
+| [#48](https://github.com/hmarc953/cineglobal/issues/48) | Momento 2 | Semántica / Accesibilidad | `#cine`, `#cat`, `#clasificacion` sin `<label>` | Alta | Cerrado |
+| [#51](https://github.com/hmarc953/cineglobal/issues/51) | Momento 2 | HTML semántico | `<section class="filters">` sin heading (línea 20) | Baja | Cerrado |
 
 ## Decisiones tomadas
 Se consolidan los hallazgos de ambas ramas: en `feature/dev-frontend-css-add-styles` y en `feature/responsive-design-add-responsive-styles` persisten los warnings semanticos HTML (articles/section sin heading, atributo `table border` obsoleto y tabla sin `caption`), por lo que se mantienen como bugs de accesibilidad y estructura. En CSS hay diferencias de estructura entre ramas (`css/responsive.css` faltante en una rama, y `styles.css`/`components.css` faltantes en la otra), por lo que esos puntos se documentan como issues de alcance/organizacion y no como errores de renderizado; ademas, los warnings de `css-variable` se consideran limitacion conocida del validador.

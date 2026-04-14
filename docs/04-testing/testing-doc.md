@@ -13,7 +13,6 @@
 - Rama evaluada: `feature/dev-frontend-css-add-styles`
 - Rama evaluada: `feature/responsive-design-add-responsive-styles`
 - Estado: 10 issues creados en GitHub.
-- Listado de issues: [Issues](https://github.com/hmarc953/cineglobal/issues)
 - Issues creados:
 	- [#34 - TC1 - Layout de cards en desktop se muestra en columna](https://github.com/hmarc953/cineglobal/issues/34)
 	- [#35 - TC1 - Footer sin links visibles para validar navegacion](https://github.com/hmarc953/cineglobal/issues/35)

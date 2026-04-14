@@ -146,8 +146,8 @@ Guardá las capturas en docs/04-testing/capturas/tc-1/momento-X/
 ## Issues creados
 | Issue | Momento | Elemento | Severidad | Estado |
 |-------|---------|----------|-----------|--------|
-| [#34](https://github.com/hmarc953/cineglobal/issues/34) | Momento 1 | Layout de cards en desktop | Media | Abierto |
-| [#35](https://github.com/hmarc953/cineglobal/issues/35) | Momento 1 | Footer sin links verificables | Baja | Abierto |
+| [#34](https://github.com/hmarc953/cineglobal/issues/34) | Momento 1 | Layout de cards en desktop | Media | Cerrado |
+| [#35](https://github.com/hmarc953/cineglobal/issues/35) | Momento 1 | Footer sin links verificables | Baja | Cerrado |
 
 ## Decisiones tomadas
 Se consolidan los resultados de ambas ramas en Momento 1: en `feature/dev-frontend-css-add-styles` se detectaron dos problemas (layout de cards en desktop y footer sin links), mientras que en `feature/responsive-design-add-responsive-styles` se mantiene solo la observacion del footer sin links. Se conserva abierto el issue de layout (#34) por trazabilidad historica y se prioriza como deuda vigente compartida el footer sin enlaces (#35).

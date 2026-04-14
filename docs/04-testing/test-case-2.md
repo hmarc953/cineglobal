@@ -145,7 +145,7 @@ Guardá las capturas en docs/04-testing/capturas/tc-2/momento-X/
 | Issue | Momento | Elemento | Dispositivo | Severidad | Estado |
 |-------|---------|----------|-------------|-----------|--------|
 | No aplica | Momento 1 | Sin issues creados | Todos | - | Cerrado |
-| [#46](https://github.com/hmarc953/cineglobal/issues/46) | Momento 2 | `.tabla-cartelera` overflow horizontal | iPhone 14 Pro, Samsung S23 | Alta | Abierto |
+| [#46](https://github.com/hmarc953/cineglobal/issues/46) | Momento 2 | `.tabla-cartelera` overflow horizontal | iPhone 14 Pro, Samsung S23 | Media | Cerrado |
 
 ## Decisiones tomadas
 Se unifican los resultados de ambas ramas en Momento 1 (`feature/dev-frontend-css-add-styles` y `feature/responsive-design-add-responsive-styles`) porque en los tres dispositivos evaluados no se observaron diferencias funcionales ni visuales relevantes. No se crean issues para este caso por ausencia de defectos reproducibles.
