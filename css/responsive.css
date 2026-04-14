@@ -143,6 +143,12 @@ section table {
   display: block;
 }
 
+.tabla-cartelera {
+  display: block;
+  overflow-x: auto;
+  width: 100%;
+}
+
 section th,
 section td {
   padding: 0.85rem;

@@ -46,10 +46,12 @@
   --color-text-muted: #bdbdbd;
 
   /* Color de acento (acciones principales / botones) */
-  --color-accent: #ff0000;
+  /* Ajustado para contraste WCAG 2.1 AA con texto blanco */
+  --color-accent: #c20000;
+  --color-accent-hover: #9a0000;
   /* Botones y selects */
-  --color-button-bg: #888;
-  --color-button-hover: #666;
+  --color-button-bg: #5a5a5a;
+  --color-button-hover: #444;
 
   /* Footer */
   --color-footer-bg: #bdbdbd;
