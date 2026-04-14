@@ -211,6 +211,10 @@ footer {
   section table {
     display: table;
   }
+
+  .tabla-cartelera {
+    display: table;
+  }
 }
 
 /* Desktop: 1024px en adelante */
@@ -279,6 +283,11 @@ footer {
   }
 
   section table {
+    display: table;
+    overflow-x: visible;
+  }
+
+  .tabla-cartelera {
     display: table;
     overflow-x: visible;
   }
