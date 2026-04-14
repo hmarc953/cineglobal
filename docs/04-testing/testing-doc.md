@@ -1,11 +1,11 @@
 # Testing Doc - CineGlobal
 
 ## Indice de Test Cases
-- [Test Case 1 - Compatibilidad visual desktop](test-case-1.md)
-- [Test Case 2 - Responsive mobile](test-case-2.md)
-- [Test Case 3 - Performance](test-case-3.md)
-- [Test Case 4 - Accesibilidad](test-case-4.md)
-- [Test Case 5 - Estructura HTML semantica y validacion](test-case-5.md)
+- [Test Case 1 - Compatibilidad visual desktop](test-case-1.md)[← Volver al índice de testing](testing-doc.md)
+- [Test Case 2 - Responsive mobile](test-case-2.md)[← Volver al índice de testing](testing-doc.md)
+- [Test Case 3 - Performance](test-case-3.md)[← Volver al índice de testing](testing-doc.md)
+- [Test Case 4 - Accesibilidad](test-case-4.md)[← Volver al índice de testing](testing-doc.md)
+- [Test Case 5 - Estructura HTML semantica y validacion](test-case-5.md)[← Volver al índice de testing](testing-doc.md)
 
 ## Resumen de Issues por Momento
 
