@@ -20,6 +20,7 @@ Esta entrega incluye:
 - Actualizacion de mockup 
 - Code Reviews en PR de cada rama feature
 - Testeo de las ramas
+- Adaptación del diseño CSS para responsividad completa en múltiples resoluciones de pantalla
 - Documentación del proyecto en `README.md` y `plan.md`.
 
 
