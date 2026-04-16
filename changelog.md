@@ -50,6 +50,10 @@
 
 - [fix/RC1-imagen-A2-ruta-incorrecta] Fix - RC1: ruta de la imagen A2 corregida + links en readme agregados
   PR: [#58](https://github.com/hmarc953/cineglobal/pull/58) - @hmarc953 (Coodinador / DevOps)
+
+- [fix/RC2-README-desactualizado] Fix - RC2: README.md actualizado
+  PR: [#59](https://github.com/hmarc953/cineglobal/pull/59) - @hmarc953 (Coodinador / DevOps)
+  
   
 ### Notes
 - Se deja la base preparada para integración con el Especialista en Responsive Design.
