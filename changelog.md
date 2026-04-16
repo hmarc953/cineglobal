@@ -47,6 +47,10 @@
   Realizado por @abartomioli  
 - [feature/Correcciones-pedidas-tester] Hacer correciones pedidas por el tester.
   PR: [#55](https://github.com/hmarc953/cineglobal/pull/55) - @Santi22-7 (Especialista en Responsive Design)
+
+- [fix/RC1-imagen-A2-ruta-incorrecta] Fix - RC1: ruta de la imagen A2 corregida + links en readme agregados
+  PR: [#58](https://github.com/hmarc953/cineglobal/pull/58) - @hmarc953 (Coodinador / DevOps)
+  
 ### Notes
 - Se deja la base preparada para integración con el Especialista en Responsive Design.
 - Se recomienda validación visual en distintos dispositivos y navegadores.
