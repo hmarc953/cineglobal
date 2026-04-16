@@ -12,24 +12,31 @@ CineGlobal es una aplicación web front-end que permite visualizar películas y 
 
 Tecnologías utilizadas:
 - HTML
+- CSS
 
 ### Objetivo del entregable
-Esta primera entrega incluye la estructura de página con listado de películas, vista de detalle de película con información básica y horarios de funciones, interfaz web diseñada para visualización en escritorio, y documentación del proyecto en README.md y plan.md.
+Esta entrega actualiza el proyecto a la segunda actividad obligatoria, incorporando estilos CSS, diseño responsive y documentación complementaria. Incluye la estructura de página con listado de películas, vista de detalle con información y horarios, y entrega de los documentos del proyecto.
 
-### Funcionalidades Planeadas para Próximas Entregas
-- [ ] Implementar estilos CSS para mejorar la apariencia visual de la página.
-- [ ] Mejorar estilo de Mockupt 
-- [ ] Redactar archivos .md
-- [ ] Code reviews
+### Funcionalidades implementadas
+- [x] Estructura de página con listado de películas
+- [x] Vista de detalle de película con información básica y horarios de funciones
+- [x] Estilos CSS aplicados para mejorar la apariencia visual y soporte responsive
+- [x] Mockup A2 con diseño de la interfaz y documentación de proyecto en README.md, plan.md y test cases
 
+### Funcionalidades planeadas
+- [ ] Integrar Bootstrap 5 en el proyecto usando CDN, manteniendo la identidad visual actual y asegurando compatibilidad con los estilos existentes.
+- [ ] Implementar el sistema de columnas de Bootstrap para mejorar la respuesta del diseño en dispositivos móviles y tablet.
+- [ ] Crear `css/bootstrap-overrides.css` con ajustes personalizados para mantener la identidad visual del proyecto sobre la base de Bootstrap.
+- [ ] Incorporar componentes Bootstrap avanzados como navbar, modal, carousel o accordion, y asegurar que funcionen de forma coherente con el diseño.
+- [ ] Personalizar componentes HTML avanzados y de Bootstrap para que se vean correctamente en los tres dispositivos obligatorios.
 
 ## Documentación
 
-- Mockup: [Ver diseño inicial](docs/01-mockup/actividad-obligatoria-1/diseño-inicial.png)   
+- Mockup A1: [Ver diseño inicial](docs/01-mockup/actividad-obligatoria-1/diseño-inicial.png)   
 - Mockup A2: [Ver diseño con estilos](docs/01-mockup/actividad-obligatoria-2/diseño-con-estilos.png) · [Abrir en Figma]((https://www.figma.com/design/NfChLFCsX27WSaDCEiaevS/Sin-t%C3%ADtulo?node-id=69-81&m=dev&t=UOqRl9HcyQYB4uCQ-1))
 - Testing: [Índice de test cases](docs/04-testing/testing-doc.md)
-- Índice de Prompts: [Enlace al índice de prompts](docs/02-prompts/prompts.md)
-- Changelog: [Enlace al changelog](changelog.md)
+- Índice de Prompts: [Índice de prompts](docs/02-prompts/prompts.md)
+- Changelog: [Ver changelog](changelog.md)
 
 ## Integrantes del Grupo
 
@@ -38,4 +45,4 @@ Esta primera entrega incluye la estructura de página con listado de películas,
 | Marc Holste              | 160313          | @hmarc953      | Documentador / QA Tester            |
 | Milagros Magali Araujo   | 148197          | @9919-Mili     | Coordinador / DevOps                |
 | Santiago Ariel Samitier  | 148249          | @Santi22-7     | Especialista en Responsive Design   |
-| Alejandro Bartomioli     | 153041          | @abartomioli   | Desarrollador Frontedd/CSS          |
+| Alejandro Bartomioli     | 153041          | @abartomioli   | Desarrollador Frontend/CSS          |
