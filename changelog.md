@@ -43,6 +43,9 @@
 - [fix/RC8-trazabilidad-mal-asignado] Fix - RC8: Correccion de la trazabilidad
   PR: [#63](https://github.com/hmarc953/cineglobal/pull/63) - @hmarc953 (Coodinador / DevOps)
 
+- [fix/RC9-checkboxes-sin-marcar] Fix - RC9: Checkboxes marcados
+  PR: [#64](https://github.com/hmarc953/cineglobal/pull/64) - @hmarc953 (Coodinador / DevOps)
+
 ---
 
 ## [Release Actividad Obligatoria N°1] - 2026-03-25
