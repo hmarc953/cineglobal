@@ -6,9 +6,6 @@
 
 ### Added
 
-- [feature/coord-dev-ops-repo-update-readme-md] Creacion de code review en PR, actualizacion de Plan.md y Readme.md
-  PR: [#56](https://github.com/hmarc953/cineglobal/pull/56#issue-4258986348) - @9919-Mili (Cordinador / DevOps)
-
 - [feature/responsive-design-add-responsive-styles] Creación del responsive.css y spec-responsive.md.
   PR: [#32](https://github.com/hmarc953/cineglobal/pull/32) - @Santi22-7 (Especialista en Responsive Design)
 
@@ -18,12 +15,15 @@
 - [feature/doc-qa-tester-add-test-cases] Ejecucion y documentacion de testing.  
   PR: [#54](https://github.com/hmarc953/cineglobal/pull/54) - @hmarc953 (Documentador / QA Tester)
 
+- [feature/coord-dev-ops-repo-update-readme-md] Creacion de code review en PR, actualizacion de Plan.md y Readme.md
+  PR: [#56](https://github.com/hmarc953/cineglobal/pull/56) - @9919-Mili (Cordinador / DevOps)
+
 ### Changed
 
-- [feature/Correcciones-pedidas-tester] Hacer correciones pedidas por el tester.
-  PR: [#55](https://github.com/hmarc953/cineglobal/pull/55) - @Santi22-7 (Especialista en Responsive Design)
-
 ### Fixed
+
+- [feature/Correcciones-pedidas-tester] Correciones pedidas por el QA tester.
+  PR: [#55](https://github.com/hmarc953/cineglobal/pull/55) - @Santi22-7 (Especialista en Responsive Design)
 
 - [fix/RC1-imagen-A2-ruta-incorrecta] Fix - RC1: ruta de la imagen A2 corregida + links en readme agregados
   PR: [#58](https://github.com/hmarc953/cineglobal/pull/58) - @hmarc953 (Coodinador / DevOps)
@@ -33,6 +33,9 @@
 
 - [fix/RC3-spec-devops-ausente] Fix - RC3: spec devops ausente
   PR: [#60](https://github.com/hmarc953/cineglobal/pull/60) - @hmarc953 (Coodinador / DevOps)
+
+- [fix/RC4-changelog-entradas-faltantes] Fix - RC4: Correccion del changelog
+  PR: [#61](https://github.com/hmarc953/cineglobal/pull/61) - @hmarc953 (Coodinador / DevOps)
 
 ---
 
@@ -53,7 +56,7 @@
 
 ### Changed
 - [feature/frontend-add-html-structure] Estructura HTML5 básica.  
-  PR: [#16](https://github.com/hmarc953/cineglobal/pull/16#issue-4117167796) - @9919-Mili (Especialista en Desarrollador Frontend)
+  PR: [#16](https://github.com/hmarc953/cineglobal/pull/16) - @9919-Mili (Especialista en Desarrollador Frontend)
 
 - [feature/Especialista-en-IA-y-Prompt-Engineering] Se actualizaron los 5 prompts, más el comparativa-modelos.md y el index de prompts.md.
   PR: [#19](https://github.com/hmarc953/cineglobal/pull/19) - @abartomioli (Especialista en IA / Prompt Engineering)
@@ -66,10 +69,10 @@
   PR: [#22](https://github.com/hmarc953/cineglobal/pull/22) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/correcciones-actividad-obligatoria-1] Correccion de release/actividad-obligatoria-1
-  PR: [#27](https://github.com/hmarc953/cineglobal/pull/27#issue-4214600472) - @9919-Mili (Coodinador / DevOps)
+  PR: [#27](https://github.com/hmarc953/cineglobal/pull/27) - @9919-Mili (Coodinador / DevOps)
 
 - [fix/correcciones-parte-dos-actividad-obligatoria-1] Correccion de release/actividad-obligatoria-1
-  PR: [#28](https://github.com/hmarc953/cineglobal/pull/28#issue-4219373939) - @9919-Mili (Coodinador / DevOps)
+  PR: [#28](https://github.com/hmarc953/cineglobal/pull/28) - @9919-Mili (Coodinador / DevOps)
 
 - [release/actividad-obligatoria-1] Corrección de `<form>` duplicado en `index.html`  
   Commit: [e1169e8](https://github.com/hmarc953/cineglobal/commit/e1169e8e04b0e04e0e85571663fa368e1d468d7f) — @9919-Mili (Coordinador / DevOps)
@@ -90,13 +93,13 @@
   Commit: [8798ab5](https://github.com/hmarc953/cineglobal/commit/8798ab5) — @9919-Mili (Coordinador / DevOps)
 
 - [fix/changelog-retroactivo-actividad-obligatoria-1] Actualización de changelog.md y prompts.md
-  PR: [#29](https://github.com/hmarc953/cineglobal/pull/29/#issue-4226178866) — @9919-Mili (Coordinador / DevOps)
+  PR: [#29](https://github.com/hmarc953/cineglobal/pull/29) — @9919-Mili (Coordinador / DevOps)
 
 - [fix/changelog-retroactivo-actividad-obligatoria-1] Correcion PR #27 en archivo changelog.md 
-  PR: [#30](https://github.com/hmarc953/cineglobal/pull/30#issue-4228530659) — @9919-Mili (Coordinador / DevOps)
+  PR: [#30](https://github.com/hmarc953/cineglobal/pull/30) — @9919-Mili (Coordinador / DevOps)
 
 - [Backport/release-actividad-obligatoria 1] Fusion a rama Develop
-  PR: [#31](https://github.com/hmarc953/cineglobal/pull/31#issue-4228630292) - @9919-Mili (Coordinador / DevOps)
+  PR: [#31](https://github.com/hmarc953/cineglobal/pull/31) - @9919-Mili (Coordinador / DevOps)
 
   
 
