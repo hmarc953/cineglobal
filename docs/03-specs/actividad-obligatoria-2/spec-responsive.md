@@ -24,11 +24,11 @@ Esta combinación permite un layout flexible y eficiente, priorizando mobile-fir
 
 ## Criterios de Aceptación
 
-- [ ] Breakpoints definidos y documentados (mobile, tablet, desktop).
-- [ ] Layout mobile-first implementado.
-- [ ] Todas las secciones del mockup se adaptan correctamente en los tres breakpoints.
-- [ ] No hay overflow horizontal en ningún dispositivo.
-- [ ] Pruebas de integración realizadas con el Desarrollador Frontend en GitHub Pages y localhost.
+- [X] Breakpoints definidos y documentados (mobile, tablet, desktop).
+- [X] Layout mobile-first implementado.
+- [X] Todas las secciones del mockup se adaptan correctamente en los tres breakpoints.
+- [X] No hay overflow horizontal en ningún dispositivo.
+- [X] Pruebas de integración realizadas con el Desarrollador Frontend en GitHub Pages y localhost.
 
 ## Promt utilizado para crear resposive.css
 
