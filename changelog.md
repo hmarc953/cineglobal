@@ -37,6 +37,9 @@
 - [fix/RC4-changelog-entradas-faltantes] Fix - RC4: Correccion del changelog
   PR: [#61](https://github.com/hmarc953/cineglobal/pull/61) - @hmarc953 (Coodinador / DevOps)
 
+- [fix/RC7-Playwright-GitHub-MCP-no-configurados] Fix - RC7: .vscode/mcp.json agregado
+  PR: [#62](https://github.com/hmarc953/cineglobal/pull/62) - @hmarc953 (Coodinador / DevOps)
+
 ---
 
 ## [Release Actividad Obligatoria N°1] - 2026-03-25
