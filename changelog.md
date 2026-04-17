@@ -40,6 +40,9 @@
 - [fix/RC7-Playwright-GitHub-MCP-no-configurados] Fix - RC7: .vscode/mcp.json agregado
   PR: [#62](https://github.com/hmarc953/cineglobal/pull/62) - @hmarc953 (Coodinador / DevOps)
 
+- [fix/RC8-trazabilidad-mal-asignado] Fix - RC8: Correccion de la trazabilidad
+  PR: [#63](https://github.com/hmarc953/cineglobal/pull/63) - @hmarc953 (Coodinador / DevOps)
+
 ---
 
 ## [Release Actividad Obligatoria N°1] - 2026-03-25
