@@ -54,7 +54,7 @@
 - [fix/RC2-README-desactualizado] Fix - RC2: README.md actualizado
   PR: [#59](https://github.com/hmarc953/cineglobal/pull/59) - @hmarc953 (Coodinador / DevOps)
 
-- [fix/RC2-README-desactualizado] Fix - RC3: Fix - RC3: spec devops ausente
+- [fix/RC2-README-desactualizado] Fix - RC3: spec devops ausente
   PR: [#60](https://github.com/hmarc953/cineglobal/pull/60) - @hmarc953 (Coodinador / DevOps)
   
   
