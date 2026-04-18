@@ -55,6 +55,9 @@
 - [fix/RC11-boton-compra-boleto] Fix - RC11: boton compra boleto actualizado
   PR: [#67](https://github.com/hmarc953/cineglobal/pull/67) - @hmarc953 (Coodinador / DevOps)
 
+- [fix/RC12-cards-desbordan] Fix - RC12: Cards arreglados 
+  PR: [#68](https://github.com/hmarc953/cineglobal/pull/68) - @hmarc953 (Coodinador / DevOps)
+
 ---
 
 ## [Release Actividad Obligatoria N°1] - 2026-03-25
