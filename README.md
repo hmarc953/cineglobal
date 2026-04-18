@@ -33,7 +33,7 @@ Esta entrega actualiza el proyecto a la segunda actividad obligatoria, incorpora
 ## Documentación
 
 - Mockup A1: [Ver diseño inicial](docs/01-mockup/actividad-obligatoria-1/diseño-inicial.png)   
-- Mockup A2: [Ver diseño con estilos](docs/01-mockup/actividad-obligatoria-2/diseño-con-estilos.png) · [Abrir en Figma]((https://www.figma.com/design/NfChLFCsX27WSaDCEiaevS/Sin-t%C3%ADtulo?node-id=69-81&m=dev&t=UOqRl9HcyQYB4uCQ-1))
+- Mockup A2: [Ver diseño con estilos](docs/01-mockup/actividad-obligatoria-2/diseño-con-estilos.png) · [Abrir en Figma](https://www.figma.com/design/NfChLFCsX27WSaDCEiaevS/Sin-t%C3%ADtulo?node-id=69-81&m=dev&t=UOqRl9HcyQYB4uCQ-1)
 - Testing: [Índice de test cases](docs/04-testing/testing-doc.md)
 - Índice de Prompts: [Índice de prompts](docs/02-prompts/prompts.md)
 - Changelog: [Ver changelog](changelog.md)
