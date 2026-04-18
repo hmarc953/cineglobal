@@ -333,6 +333,12 @@
   transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+.buy-button {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+}
+
 /*
   Hover del botón:
   se oscurece el color para señalar interacción

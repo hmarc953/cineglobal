@@ -52,6 +52,9 @@
 - [fix/RC10-responsive-mobile-filtros] Fix - RC10: Filtros mobile (≤767px) agregados
   PR: [#66](https://github.com/hmarc953/cineglobal/pull/66) - @hmarc953 (Coodinador / DevOps)
 
+- [fix/RC11-boton-compra-boleto] Fix - RC11: boton compra boleto actualizado
+  PR: [#67](https://github.com/hmarc953/cineglobal/pull/67) - @hmarc953 (Coodinador / DevOps)
+
 ---
 
 ## [Release Actividad Obligatoria N°1] - 2026-03-25
