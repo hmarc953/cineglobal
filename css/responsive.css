@@ -167,6 +167,7 @@ footer {
   padding: var(--spacing-lg) var(--spacing-md);
 }
 
+/* Mobile (≤767px) */
 @media (max-width: 767px) {
   .filters {
     flex-direction: column;
@@ -176,6 +177,20 @@ footer {
   .filter-select,
   .filter-button {
     width: 100%;
+  }
+  
+  table, thead, tbody, th, td, tr { display: block; }
+  thead tr { display: none; }
+  td {
+    position: relative;
+    padding-left: 45%;
+    text-align: left;
+  }
+  td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 8px;
+    font-weight: bold;
   }
 }
 
