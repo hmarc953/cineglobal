@@ -58,6 +58,9 @@
 - [fix/RC12-cards-desbordan] Fix - RC12: Cards arreglados 
   PR: [#68](https://github.com/hmarc953/cineglobal/pull/68) - @hmarc953 (Coodinador / DevOps)
 
+- [fix/RC13-cards-con-alturas-distintas] Fix - RC13: cards con mismas alturas 
+  PR: [#69](https://github.com/hmarc953/cineglobal/pull/69) - @hmarc953 (Coodinador / DevOps)
+
 ---
 
 ## [Release Actividad Obligatoria N°1] - 2026-03-25
