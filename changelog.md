@@ -49,6 +49,9 @@
 - [fix/RC2-parentesis-doble] Fix - RC2: Parentesis doble corregido
   PR: [#65](https://github.com/hmarc953/cineglobal/pull/65) - @hmarc953 (Coodinador / DevOps)
 
+- [fix/RC10-responsive-mobile-filtros] Fix - RC10: Filtros mobile (≤767px) agregados
+  PR: [#66](https://github.com/hmarc953/cineglobal/pull/66) - @hmarc953 (Coodinador / DevOps)
+
 ---
 
 ## [Release Actividad Obligatoria N°1] - 2026-03-25
