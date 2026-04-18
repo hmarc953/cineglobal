@@ -61,6 +61,9 @@
 - [fix/RC13-cards-con-alturas-distintas] Fix - RC13: cards con mismas alturas 
   PR: [#69](https://github.com/hmarc953/cineglobal/pull/69) - @hmarc953 (Coodinador / DevOps)
 
+- [fix/RC14-optimizacion-horarios-de-funcion] Fix - RC14: Horarios de funcion optimizadas
+  PR: [#70](https://github.com/hmarc953/cineglobal/pull/70) - @hmarc953 (Coodinador / DevOps)
+
 ---
 
 ## [Release Actividad Obligatoria N°1] - 2026-03-25
