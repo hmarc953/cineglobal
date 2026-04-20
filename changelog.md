@@ -73,6 +73,9 @@
 - [fix/Horario-de-funciones-se-ve-mal-en-mobile] Fix - Horario de funciones se ve mal en mobile
   PR: [#73](https://github.com/hmarc953/cineglobal/pull/73) - @hmarc953 (Coodinador / DevOps)
 
+- [backport/release-actividad-obligatoria-2] Fusion a rama Develop
+  PR: [#74](https://github.com/hmarc953/cineglobal/pull/74) - @9919-Mili (Coordinador / DevOps)
+
 ---
 
 ## [Release Actividad Obligatoria N°1] - 2026-03-25
