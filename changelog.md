@@ -64,6 +64,9 @@
 - [fix/RC14-optimizacion-horarios-de-funcion] Fix - RC14: Horarios de funcion optimizadas
   PR: [#70](https://github.com/hmarc953/cineglobal/pull/70) - @hmarc953 (Coodinador / DevOps)
 
+- [fix/RC15-cards-con-alturas-distintas] Fix - RC15: Imagenes enteras + Card no desborda
+  PR: [#71](https://github.com/hmarc953/cineglobal/pull/71) - @hmarc953 (Coodinador / DevOps)
+
 ---
 
 ## [Release Actividad Obligatoria N°1] - 2026-03-25
