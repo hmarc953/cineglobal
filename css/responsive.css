@@ -189,18 +189,56 @@ footer {
     max-width: 100%;
   }
 
-  table, thead, tbody, th, td, tr { display: block; }
-  thead tr { display: none; }
-  td {
-    position: relative;
-    padding-left: 45%;
-    text-align: left;
+  .tabla-cartelera {
+    display: block;
+    width: 100%;
+    overflow-x: hidden;
   }
-  td::before {
+
+  .tabla-cartelera caption {
+    display: block;
+    text-align: center;
+    margin-bottom: var(--spacing-sm);
+    white-space: normal;
+  }
+
+  .tabla-cartelera thead {
+    display: none;
+  }
+
+  .tabla-cartelera tbody,
+  .tabla-cartelera tr,
+  .tabla-cartelera td {
+    display: block;
+    width: 100%;
+  }
+
+  .tabla-cartelera tr {
+    margin-bottom: var(--spacing-md);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .tabla-cartelera td {
+    position: relative;
+    padding: 12px 12px 12px 42%;
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .tabla-cartelera td:last-child {
+    border-bottom: none;
+  }
+
+  .tabla-cartelera td::before {
     content: attr(data-label);
     position: absolute;
-    left: 8px;
+    left: 12px;
+    top: 12px;
     font-weight: bold;
+    white-space: nowrap;
   }
 }
 
