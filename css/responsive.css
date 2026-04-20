@@ -178,7 +178,17 @@ footer {
   .filter-button {
     width: 100%;
   }
-  
+
+  .movies-list {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .movie-card {
+    width: 100%;
+    max-width: 100%;
+  }
+
   table, thead, tbody, th, td, tr { display: block; }
   thead tr { display: none; }
   td {
@@ -298,15 +308,12 @@ footer {
   }
 
   .movies-list {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(220px, 1fr));
-    place-items: center;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
   }
 
   .movie-card {
-    width: 260px;
-    max-width: none;
-    margin-inline: 0;
+    max-width: 100%;
   }
 
   section table {
