@@ -1,0 +1,208 @@
+/*
+  Archivo: styles.css
+  Rol: Desarrollador Frontend/CSS
+  Descripción:
+  Este archivo define la base visual global del sitio CineGlobal.
+  Incluye:
+  - Variables CSS centralizadas (:root)
+  - Reset para normalizar estilos entre navegadores
+  - Tipografía base
+  - Layout principal
+  - Footer
+  - Reglas básicas de responsive
+
+  Decisión de arquitectura:
+  Se separa este archivo de components.css para mantener:
+  - estilos globales → aquí
+  - componentes → en components.css
+*/
+
+/* =========================
+   VARIABLES GLOBALES (:root)
+   ========================= */
+/*
+  Se utilizan variables CSS para:
+  - mantener consistencia visual
+  - facilitar cambios futuros (colores, spacing, tipografía)
+  - permitir escalabilidad del diseño
+
+  Todas las decisiones de color y spacing parten desde aquí
+*/
+:root {
+  /* === Paleta de colores === */
+  /* Fondo principal del sitio */
+  --color-bg-main: #1f1c1c;
+
+  /* Contenedor central (diferenciación visual del body) */
+  --color-bg-content: #5a5a5a;
+
+  /* Cards de contenido */
+  --color-card: #333;
+  --color-card-img: #222;
+
+  /* Tipografía */
+  --color-text-main: #fff;
+  --color-text-secondary: #e0e0e0;
+  --color-text-muted: #bdbdbd;
+
+  /* Color de acento (acciones principales / botones) */
+  /* Ajustado para contraste WCAG 2.1 AA con texto blanco */
+  --color-accent: #c20000;
+  --color-accent-hover: #9a0000;
+  /* Botones y selects */
+  --color-button-bg: #5a5a5a;
+  --color-button-hover: #444;
+
+  /* Footer */
+  --color-footer-bg: #bdbdbd;
+  --color-footer-text: #333;
+
+  /* === Sistema de espaciado === */
+  /*
+    Se define un sistema consistente de spacing
+    para evitar valores arbitrarios en el CSS
+  */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 32px;
+  --spacing-xl: 40px;
+
+  /* === Tipografía === */
+  /*
+    Se define una fuente principal con fallback
+    para asegurar compatibilidad entre dispositivos
+  */
+  --font-main: 'Segoe UI', Arial, sans-serif;
+
+  /* Escala tipográfica */
+  --font-size-title: 2.2rem;
+  --font-size-subtitle: 1.1rem;
+  --font-size-card-title: 1.1rem;
+  --font-size-card-desc: 1rem;
+  --font-size-footer: 1rem;
+}
+
+/* =========================
+   RESET GLOBAL
+   ========================= */
+/*
+  Se aplica un reset básico para:
+  - eliminar márgenes y paddings por defecto
+  - evitar inconsistencias entre navegadores
+  - usar box-sizing border-box para controlar mejor el layout
+*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =========================
+   BODY (BASE DEL SITIO)
+   ========================= */
+/*
+  Define el contexto visual general:
+  - color de fondo oscuro
+  - color de texto principal
+  - tipografía global
+
+  min-height: 100vh asegura que el body ocupe toda la pantalla
+*/
+body {
+  background: var(--color-bg-main);
+  color: var(--color-text-main);
+  font-family: var(--font-main);
+  min-height: 100vh;
+}
+
+ul:not(.footer-links) {
+  padding-left: 1.5rem;
+  margin-left: 0;
+}
+
+.main-container li {
+  margin-bottom: 0.5rem;
+}
+
+.main-container li::marker {
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
+/* =========================
+   CONTENEDOR PRINCIPAL
+   ========================= */
+/*
+  .main-container actúa como wrapper central del sitio.
+
+  Decisiones:
+  - max-width: limita el ancho para mejorar legibilidad
+  - margin auto: centra horizontalmente
+  - padding: define el espacio interno
+  - border-radius: mejora estética (UI moderna)
+  - flex column: permite apilar contenido verticalmente
+  - align-items center: centra contenido interno
+*/
+.main-container {
+  background: var(--color-bg-content);
+  max-width: 1100px;
+  margin: var(--spacing-xl) auto 0 auto;
+  padding: var(--spacing-lg) var(--spacing-lg) 0 var(--spacing-lg);
+  border-radius: 8px;
+  overflow: hidden;
+
+  /* Control del modelo de caja */
+  box-sizing: border-box;
+
+  /* Altura mínima para mantener estructura visual */
+  min-height: 80vh;
+
+  /* Layout flexible */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+/*
+  El footer se ubica al final del contenedor principal.
+
+  Decisiones:
+  - color claro para diferenciar del contenido
+  - text-align center para uniformidad
+  - border-radius inferior para mantener coherencia visual con el container
+*/
+.footer {
+  background: var(--color-footer-bg);
+  color: var(--color-footer-text);
+  text-align: center;
+  padding: 12px 0;
+  font-size: var(--font-size-footer);
+
+  /* separación respecto al contenido */
+  margin-top: var(--spacing-lg);
+
+  /* mantiene coherencia visual con el contenedor */
+  border-radius: 0 0 8px 8px;
+
+  width: 100%;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+/*
+  Breakpoint básico para tablets y pantallas medianas.
+
+  Decisión:
+  - se reduce padding lateral
+  - se usa unidad relativa (vw) para mayor adaptabilidad
+*/
+@media (max-width: 900px) {
+  .main-container {
+    padding: var(--spacing-md) 2vw 0 2vw;
+  }
+}
