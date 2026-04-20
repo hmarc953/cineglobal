@@ -167,6 +167,81 @@ footer {
   padding: var(--spacing-lg) var(--spacing-md);
 }
 
+/* Mobile (≤767px) */
+@media (max-width: 767px) {
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-select,
+  .filter-button {
+    width: 100%;
+  }
+
+  .movies-list {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .movie-card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .tabla-cartelera {
+    display: block;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .tabla-cartelera caption {
+    display: block;
+    text-align: center;
+    margin-bottom: var(--spacing-sm);
+    white-space: normal;
+  }
+
+  .tabla-cartelera thead {
+    display: none;
+  }
+
+  .tabla-cartelera tbody,
+  .tabla-cartelera tr,
+  .tabla-cartelera td {
+    display: block;
+    width: 100%;
+  }
+
+  .tabla-cartelera tr {
+    margin-bottom: var(--spacing-md);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .tabla-cartelera td {
+    position: relative;
+    padding: 12px 12px 12px 42%;
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .tabla-cartelera td:last-child {
+    border-bottom: none;
+  }
+
+  .tabla-cartelera td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+}
+
 /* Tablet: 768px a 1023px */
 @media (min-width: 768px) and (max-width: 1023px) {
   header {
@@ -271,15 +346,12 @@ footer {
   }
 
   .movies-list {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(220px, 1fr));
-    place-items: center;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
   }
 
   .movie-card {
-    width: 260px;
-    max-width: none;
-    margin-inline: 0;
+    max-width: 100%;
   }
 
   section table {

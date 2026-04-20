@@ -157,5 +157,5 @@ El trabajo quedó preparado para:
 ## 8. Trazabilidad
 
 - **Rama:** `feature/dev-frontend-css-add-styles`
-- **PR:** #XX
-- **Issue:** #XX
+- **PR:** [#44](https://github.com/hmarc953/cineglobal/pull/44)
+- **Issue:** [#33](https://github.com/hmarc953/cineglobal/issues/33)
