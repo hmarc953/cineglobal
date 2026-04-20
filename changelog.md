@@ -67,6 +67,9 @@
 - [fix/RC15-cards-con-alturas-distintas] Fix - RC15: Imagenes enteras + Card no desborda
   PR: [#71](https://github.com/hmarc953/cineglobal/pull/71) - @hmarc953 (Coodinador / DevOps)
 
+- [fix/Horarios-no-centrados] Fix - Horarios centrados
+  PR: [#72](https://github.com/hmarc953/cineglobal/pull/72) - @hmarc953 (Coodinador / DevOps)
+
 ---
 
 ## [Release Actividad Obligatoria N°1] - 2026-03-25
