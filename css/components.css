@@ -198,12 +198,11 @@
   - width 100% para aprovechar el ancho disponible del contenedor padre
 */
 .movies-list {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: var(--spacing-lg);
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: var(--spacing-lg);
   width: 100%;
+  margin-bottom: var(--spacing-lg);
 }
 
 /* =========================
@@ -222,14 +221,17 @@
 .movie-card {
   background: var(--color-card);
   border-radius: 8px;
-  width: 260px;
+  width: 100%;
+  max-width: 320px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   padding: 18px 12px 24px 12px;
   box-sizing: border-box;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin: 0 auto;
+  height: 100%;
 }
 
 /*
@@ -243,40 +245,18 @@
 }
 
 .movie-image {
-  overflow: hidden;
-}
-
-.movie-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
   display: block;
-}
-
-.buy-button {
-  margin-top: auto;
-}
-
-/*
-  Área reservada para la imagen o poster de la película.
-
-  Decisiones:
-  - ocupa el ancho completo de la card
-  - altura fija para mantener consistencia entre ítems
-  - display flex para centrar un placeholder o contenido alternativo
-*/
-.movie-image {
-  background: var(--color-card-img);
   width: 100%;
-  height: 180px;
-  object-fit: cover;
+  height: auto;
+  aspect-ratio: 300 / 350;
+  object-fit: contain;
   border-radius: 4px;
   margin-bottom: var(--spacing-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #aaa;
-  font-size: 1.1rem;
+  background: var(--color-card-img);
+}
+
+.movie-card .buy-button {
+  margin-top: auto;
 }
 
 /*
@@ -362,42 +342,4 @@
 .buy-button:hover {
   background: var(--color-accent-hover);
   transform: translateY(-1px);
-}
-
-/* =========================
-   RESPONSIVE
-   ========================= */
-/*
-  En pantallas medianas:
-  - se reduce el espacio entre tarjetas
-  - se disminuye el ancho de cada card
-  para conservar equilibrio visual sin saturar la fila.
-*/
-@media (max-width: 900px) {
-  .movies-list {
-    gap: var(--spacing-md);
-  }
-
-  .movie-card {
-    width: 220px;
-  }
-}
-
-/*
-  En pantallas pequeñas:
-  - el listado pasa a columna
-  - las tarjetas ocupan casi todo el ancho visible
-  - se define max-width para evitar tarjetas demasiado anchas
-*/
-@media (max-width: 700px) {
-  .movies-list {
-    flex-direction: column;
-    align-items: center;
-    gap: var(--spacing-md);
-  }
-
-  .movie-card {
-    width: 90vw;
-    max-width: 350px;
-  }
 }
