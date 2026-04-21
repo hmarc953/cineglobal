@@ -41,9 +41,9 @@ Esta entrega actualiza el proyecto a la segunda actividad obligatoria, incorpora
 
 ## Integrantes del Grupo
 
-| Nombre completo          | N° de Matrícula | Usuario GitHub | Rol en esta entrega                  |
-|--------------------------|-----------------|----------------|-------------------------------------|
-| Marc Holste              | 160313          | @hmarc953      | Documentador / QA Tester            |
-| Milagros Magali Araujo   | 148197          | @9919-Mili     | Coordinador / DevOps                |
-| Santiago Ariel Samitier  | 148249          | @Santi22-7     | Especialista en Responsive Design   |
-| Alejandro Bartomioli     | 153041          | @abartomioli   | Desarrollador Frontend/CSS          |
+| Nombre completo          | N° de Matrícula | Usuario GitHub | Rol en esta entrega                           |
+|--------------------------|-----------------|----------------|-----------------------------------------------|
+| Marc Holste              | 160313          | @hmarc953      | Coordinador / DevOps                          |
+| Milagros Magali Araujo   | 148197          | @9919-Mili     | Especialista en Componentes Bootstrap         |
+| Santiago Ariel Samitier  | 148249          | @Santi22-7     | Desarrollador de Componentes HTML Avanzados   |
+| Alejandro Bartomioli     | 153041          | @abartomioli   | Desarrollador Frontend/Bootstrap              |
