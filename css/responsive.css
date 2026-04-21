@@ -18,7 +18,7 @@ section {
 }
 
 header {
-  display: flex;
+  /* display: flex; */ /* Migrado a Bootstrap Grid. */
   flex-direction: column;
   align-items: center;
   text-align: center;
@@ -99,8 +99,9 @@ main section {
   width: 100%;
 }
 
-.movies-list {
-  display: grid;
+/* .movies-list {
+  display: grid; */
+/* Migrado a Bootstrap Grid. Esta regla se comenta para evitar conflicto con row/col de Bootstrap. */
   grid-template-columns: 1fr;
   gap: var(--spacing-lg);
   width: 100%;
