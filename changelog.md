@@ -2,6 +2,15 @@
 
 ## [Unreleased]
 
+## [Release Primer Parcial]
+
+### Added
+
+- [feature/devops-planificacion-y-mockup] Feature/devops planificacion y mockup  
+  PR: [#78](https://github.com/hmarc953/cineglobal/pull/78) - @hmarc953 (Coodinador / DevOps)
+
+---
+
 ## [Release Actividad Obligatoria N°2] - 2026-04-12
 
 ### Added
