@@ -1,4 +1,81 @@
 /* =========================
+   DETAILS / SUMMARY
+   ========================= */
+/*
+  Se utiliza una clase dedicada (.details-summary) para estilizar el <summary>
+  y evitar depender directamente de clases de Bootstrap en el contenedor principal.
+
+  CORRECCIÓN IMPORTANTE:
+  - Se removieron clases de Bootstrap aplicadas directamente al <summary> (por ejemplo .btn, .btn-link)
+  - Estas clases pueden interferir con el comportamiento nativo de expand/collapse
+
+  Sin embargo:
+  - Se permite el uso de clases de Bootstrap (por ejemplo .h4, .mb-0)
+    dentro del contenido del <summary> para mantener consistencia visual
+
+  Además:
+  - Se eliminan los estilos por defecto del navegador
+  - Se ajusta el contenido interno para que herede tipografía y tamaños correctamente
+
+  Decisiones de diseño:
+  - cursor: pointer → indica interactividad
+  - width: 100% → ocupa todo el ancho disponible
+  - padding/background → consistente con el sistema visual del proyecto
+  - transition → mejora la experiencia de usuario
+  - display: block → asegura comportamiento correcto del summary
+*/
+details {
+  width: 100%;
+}
+
+/* Clase dedicada para el summary, respetando Bootstrap */
+.details-summary {
+  cursor: pointer;
+  user-select: none;
+  display: block;
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+
+  background: #c20000; /* color-button-bg */
+  border: none;
+  border-radius: 4px;
+
+  color: var(--color-text-main);
+  font-family: var(--font-main);
+  font-size: 1rem;
+  text-align: left;
+
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.details-summary:hover {
+  background: #a30000; /* color-button-hover */
+}
+
+.details-summary:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+/* Eliminar estilos por defecto del navegador */
+.details-summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Respetar estilos de Bootstrap dentro del summary */
+.details-summary h2,
+.details-summary .h4 {
+  display: inline;
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/* Contenido expandido de details */
+details > *:not(.details-summary) {
+  margin-top: var(--spacing-md);
+}
+
+/* =========================
    TABLA CARTELERA
    ========================= */
 /*
@@ -20,6 +97,7 @@
   background: var(--color-bg-content, #5a5a5a);
   color: var(--color-text-main, #fff);
 }
+
 .tabla-cartelera tbody tr:nth-child(even) {
   background: #444;
 }

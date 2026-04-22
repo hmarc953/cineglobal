@@ -12,7 +12,15 @@
 - [feature/dev-frontend-bootstrap-migration] Migración a Bootstrap 5 con grid responsive, overrides y mejoras visuales.
   PR: [#81](https://github.com/hmarc953/cineglobal/pull/81) - @abartomioli (Desarrollador Frontend/Bootstrap)
 
+- [feature/dev-comp-html-avanzados-add-component] Conecto dos componetes avanzados de html
+  PR: [#87](https://github.com/hmarc953/cineglobal/pull/87) - @Santi22-7 (Desarrollador de Componentes HTML Avanzados)
+
 ---
+### Changed
+
+### Fixed
+- [fix/correción-de-bug-de-elementos-html-avanzados] Correcion de bug dectectado en los test
+  PR: [#85](https://github.com/hmarc953/cineglobal/pull/85) - @Santi22-7 (Desarrollador de Componentes HTML Avanzados)
 
 ## [Release Actividad Obligatoria N°2] - 2026-04-12
 
