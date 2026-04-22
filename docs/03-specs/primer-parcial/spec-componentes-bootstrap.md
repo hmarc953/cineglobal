@@ -56,14 +56,12 @@ Casos a verificar:
 *[Completar al cerrar la tarea]*
 
 ### Resumen de hallazgos con Playwright MCP
-*[Completar al cerrar la tarea]*
+Issues #82 
+Issues #83
 
 ## Coordinación con Desarrollador Frontend/Bootstrap
 - [x] Confirmé con Alejadro que Bootstrap CDN está instalado correctamente
 - [x] Verifiqué que bootstrap-overrides.css está vinculado después de los demás CSS en index.html
 - [x] Revisamos juntos que Navbar y Modal no generan conflictos con el sistema de columnas implementado
-<<<<<<< fix/resolucion-issues-82
 - [x] No se encontraron conflictos visuales al integrar ambas ramas
-=======
 - [x] No se encontraron conflictos visuales al integrar ambas ramas
->>>>>>> feature/esp-com-bootstrap-add-component
