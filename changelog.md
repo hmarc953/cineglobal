@@ -37,6 +37,9 @@
 - [fix/trailer-equivocado] Fix - Trailer Scream 7 corregido
   PR: [#94](https://github.com/hmarc953/cineglobal/pull/94) - @hmarc953 (Coordinador / DevOps)
 
+- [fix/entrada-changelog-mal-ubicada] Fix - Changelog corregido
+  PR: [#96](https://github.com/hmarc953/cineglobal/pull/96) - @hmarc953 (Coordinador / DevOps)
+
 ## [Release Actividad Obligatoria N°2] - 2026-04-12
 
 ### Added
