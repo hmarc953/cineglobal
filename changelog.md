@@ -2,16 +2,6 @@
 
 ## [Unreleased]
 
-### Fixed
-
-- [fix/resolucion-issues-82] Fix - #82: servidor local sin caché para evitar desincronización entre `/` e `/index.html` en tests.
-   PR:[#90](https://github.com/hmarc953/cineglobal/pull/90#issue-4310813662) - @9919-Mili (Especialista en componentes Bootstrap)
-
-- [fix/resolucion-issues-83] Fix - #83: caracteres acentuados se renderizan corruptos (mojibake) en la vista local.
-   PR:[#89](https://github.com/hmarc953/cineglobal/pull/89#issue-4310599849) - @9919-Mili (Especialista en componentes Bootstrap)
-
-
-
 ## [Release Primer Parcial] - 2026-04-22
 
 ### Added
@@ -38,8 +28,17 @@
 - [fix/correción-de-bug-de-elementos-html-avanzados] Correcion de bug dectectado en los test
   PR: [#85](https://github.com/hmarc953/cineglobal/pull/85) - @Santi22-7 (Desarrollador de Componentes HTML Avanzados)
 
+- [fix/resolucion-issues-82] Fix - #82: servidor local sin caché para evitar desincronización entre `/` e `/index.html` en tests.
+   PR:[#90](https://github.com/hmarc953/cineglobal/pull/90#issue-4310813662) - @9919-Mili (Especialista en componentes Bootstrap)
+
+- [fix/resolucion-issues-83] Fix - #83: caracteres acentuados se renderizan corruptos (mojibake) en la vista local.
+   PR:[#89](https://github.com/hmarc953/cineglobal/pull/89#issue-4310599849) - @9919-Mili (Especialista en componentes Bootstrap)
+
 - [fix/trailer-equivocado] Fix - Trailer Scream 7 corregido
   PR: [#94](https://github.com/hmarc953/cineglobal/pull/94) - @hmarc953 (Coordinador / DevOps)
+
+- [fix/entrada-changelog-mal-ubicada] Fix - Changelog corregido
+  PR: [#96](https://github.com/hmarc953/cineglobal/pull/96) - @hmarc953 (Coordinador / DevOps)
 
 ## [Release Actividad Obligatoria N°2] - 2026-04-12
 
