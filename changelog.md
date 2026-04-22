@@ -17,7 +17,7 @@
 ### Added
 
 - [feature/devops-planificacion-y-mockup] Feature/devops planificacion y mockup  
-  PR: [#91]([https://github.com/hmarc953/cineglobal/pull/78](https://github.com/hmarc953/cineglobal/pull/91#issue-4310956446)) - @9919-Mili (Especialista en componentes Bootstrap)
+  PR: [#91](https://github.com/hmarc953/cineglobal/pull/91#issue-4310956446) - @9919-Mili (Especialista en componentes Bootstrap)
   
 - [feature/devops-planificacion-y-mockup] Feature/devops planificacion y mockup  
   PR: [#78](https://github.com/hmarc953/cineglobal/pull/78) - @hmarc953 (Coordinador / DevOps)
