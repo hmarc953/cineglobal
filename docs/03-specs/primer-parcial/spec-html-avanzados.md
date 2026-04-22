@@ -2,9 +2,9 @@
 
 ## Componentes HTML Avanzados Implementados
 
-Se implementarón los siguientes dos componentes HTML avanzados:
+Se implementaron los siguientes dos componentes HTML avanzados:
 
-1. **<details> + <summary>**: Para crear secciones colapsables con trailers de películas, mejorando la experiencia del usuario al permitir expandir o colapsar el contenido multimedia sin sobrecargar la página inicialmente.
+1. **<details> + <summary>**: Para crear secciones colapsables en "Cines participantes", mejorando la experiencia del usuario al permitir expandir o colapsar la información sin sobrecargar la página inicialmente.
 
 2. **<iframe>**: Para integrar contenido externo, como mapas interactivos de ubicaciones de cines o embeds de videos de plataformas como YouTube, permitiendo una experiencia multimedia rica sin necesidad de alojar todo el contenido localmente.
 
@@ -25,10 +25,11 @@ Utilizaremos Playwright para automatizar las pruebas de los componentes. El plan
 - Compatibilidad con fuentes externas seguras para iframes.
 
 ## Prompt utilizado (Varia por componete)
-Usando Playwright MCP, necesito testear la compatibilidad visual de mi página
-en distintos viewports desktop. La URL es http://localhost:3000
+Usando Playwright MCP, necesito testear la compatibilidad visual de mi página 
+en distintos viewports. La URL es http://localhost:3000
 
 Ejecutá estos pasos en orden:
+
 1. Configurá el viewport en 390x844 (iPhone 14 Pro) y tomá una captura de pantalla completa
    - Pruebas de carga: verificar que los elementos se carguen correctamente
    - Pruebas de funcionalidad: <details> + <summary> deben expandir/colapsar correctamente
@@ -41,12 +42,12 @@ Ejecutá estos pasos en orden:
 4. Configurá el viewport en 1280x800 (Firefox desktop) y repetí los mismos pasos
 
 5. Reportar en cada viewport:
-   - carga de componentes
-   - comportamiento de <details>
-   - integración del iframe
+   - Carga de componentes
+   - Comportamiento de <details>
+   - Integración del iframe
 
 Guardar capturas en:
-docs/04-testing/capturas/tc-10/momento-2/
+docs/04-testing/capturas/tc-9/momento-2/
 
 ## 📊 Resultado obtenido (Playwright MCP)
 

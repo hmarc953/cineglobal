@@ -1,9 +1,9 @@
-# Test Case 1 — Compatibilidad Visual en Navegadores Desktop
+# Test Case 9 — Compatibilidad Visual en Navegadores Desktop
 
 ## Metadata
 | Campo | Valor |
 |-------|-------|
-| Responsable | Santiago ARiel Samitier |
+| Responsable | Santiago Ariel Samitier |
 | Fecha Momento 1 (feature/dev-comp-html-avanzados-add-component) | 22/04/2026 |
 | Fecha Momento 2 | 22/04/2026 |
 | Rama Momento 1.1 | `feature/dev-comp-html-avanzados-add-component` |
@@ -11,7 +11,7 @@
 | URL testeada | `http://localhost:3000` |
 
 ## Objetivo
-Verificar que los componetes se hallan incertado bien en la pagina
+Verificar que los componentes se hayan insertado correctamente en la página.
 
 ## Herramientas utilizadas
 - Playwright MCP (`@playwright/mcp`) con viewport emulation
