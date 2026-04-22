@@ -9,6 +9,9 @@
 - [feature/devops-planificacion-y-mockup] Feature/devops planificacion y mockup  
   PR: [#78](https://github.com/hmarc953/cineglobal/pull/78) - @hmarc953 (Coordinador / DevOps)
 
+- [feature/dev-frontend-bootstrap-migration] Migración a Bootstrap 5 con grid responsive, overrides y mejoras visuales.
+  PR: [#XX](link) - @abartomioli (Desarrollador Frontend/Bootstrap)
+
 ---
 
 ## [Release Actividad Obligatoria N°2] - 2026-04-12

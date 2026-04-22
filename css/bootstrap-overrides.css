@@ -1,25 +1,29 @@
-
 /*
  * Bootstrap Overrides para CineGlobal
- * Este archivo redefine variables y componentes Bootstrap para mantener la identidad visual del proyecto.
- * Última actualización: 21/04/2026
+ * Este archivo redefine variables y componentes Bootstrap
+ * para mantener la identidad visual del proyecto.
  *
- * NOTA: Este archivo debe cargarse después de Bootstrap y de los estilos propios del proyecto.
+ * Debe cargarse después de:
+ * 1. Bootstrap
+ * 2. styles.css
+ * 3. components.css
+ * 4. responsive.css
  */
 
-/*
-==================================================
- 1. Variables globales Bootstrap
-    Se redefinen variables --bs-* para adaptar Bootstrap al esquema oscuro y colores del proyecto.
-==================================================
-*/
+/* ==================================================
+   1. Variables globales Bootstrap
+   Se redefinen variables --bs-* para adaptar Bootstrap
+   al esquema oscuro y colores del proyecto.
+================================================== */
 :root {
   /* Paleta CineGlobal */
   --color-bg-main: #1f1c1c;
   --color-accent: #c20000;
+  --color-accent-hover: #a30000;
   --color-card: #333;
-  --font-main: 'Segoe UI', Arial, sans-serif;
   --color-text-main: #f5f5f5;
+  --color-text-secondary: #e0e0e0;
+  --font-main: 'Segoe UI', Arial, sans-serif;
 
   /* Bootstrap variables */
   --bs-body-bg: var(--color-bg-main);
@@ -36,107 +40,113 @@
   --bs-border-radius: 0.5rem;
   --bs-font-sans-serif: var(--font-main);
   --bs-link-color: var(--color-accent);
-  --bs-link-hover-color: #a30000;
+  --bs-link-hover-color: var(--color-accent-hover);
 }
 
-/*
-==================================================
- 2. Botón principal (.btn-primary)
-    Se adapta el botón principal a la identidad CineGlobal.
-==================================================
-*/
+/* ==================================================
+   2. Base general
+================================================== */
+body {
+  background-color: var(--color-bg-main);
+  color: var(--color-text-main);
+  font-family: var(--font-main);
+}
+
+/* ==================================================
+   3. Botón principal (.btn-primary)
+   Se adapta el botón principal a la identidad CineGlobal.
+================================================== */
 .btn-primary {
   background-color: var(--color-accent) !important;
   border-color: var(--color-accent) !important;
   color: #fff !important;
   font-family: var(--font-main);
   box-shadow: none;
-  transition: background 0.2s, border 0.2s;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
-.btn-primary:hover, .btn-primary:focus {
-  background-color: #a30000 !important;
-  border-color: #a30000 !important;
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--color-accent-hover) !important;
+  border-color: var(--color-accent-hover) !important;
   color: #fff !important;
 }
 
-/*
-==================================================
- 3. Selectores de formulario (.form-select)
-    Se adapta el fondo y borde para coincidir con el modo oscuro.
-==================================================
-*/
-.form-select {
-  background-color: var(--color-card);
-  color: #f5f5f5;
-  border-color: var(--bs-border-color);
-  font-family: var(--font-main);
-}
-.form-select:focus {
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 0.2rem rgba(194,0,0,0.25);
+.btn-primary:focus {
+  box-shadow: 0 0 0 0.2rem rgba(194, 0, 0, 0.25) !important;
 }
 
-/*
-==================================================
- 4. Tablas (.table)
-    Se adapta el fondo, borde y color de texto para modo oscuro.
-==================================================
-*/
+/* ==================================================
+   4. Selectores de formulario (.form-select)
+   Se adapta el fondo y borde para coincidir con el modo oscuro.
+================================================== */
+.form-select {
+  background-color: var(--color-card) !important;
+  color: var(--color-text-main) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  font-family: var(--font-main);
+}
+
+.form-select:focus {
+  border-color: var(--color-accent) !important;
+  box-shadow: 0 0 0 0.2rem rgba(194, 0, 0, 0.25) !important;
+}
+
+/* ==================================================
+   5. Tablas (.table)
+   Se adapta el fondo, borde y color de texto para modo oscuro.
+================================================== */
 .table {
   --bs-table-bg: var(--color-card);
-  --bs-table-color: #f5f5f5;
+  --bs-table-color: var(--color-text-main);
   --bs-table-border-color: var(--bs-border-color);
+
   background-color: var(--color-card) !important;
-  color: #f5f5f5 !important;
-  border-color: var(--bs-border-color) !important;
+  color: var(--color-text-main) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
 }
+
 .table thead th {
   background-color: #232323 !important;
   color: #fff !important;
 }
+
 .table tbody tr {
   border-bottom: 1px solid var(--bs-border-color);
 }
+
 .table-striped > tbody > tr:nth-of-type(odd) {
   --bs-table-accent-bg: #282828;
   background-color: #282828 !important;
 }
 
-/*
-==================================================
- 5. Otros ajustes
-    Links, cards, etc.
-==================================================
-*/
+/* ==================================================
+   6. Links
+================================================== */
 a {
   color: var(--color-accent);
 }
-a:hover, a:focus {
-  color: #a30000;
+
+a:hover,
+a:focus {
+  color: var(--color-accent-hover);
 }
 
-.card, .movie-card {
+/* ==================================================
+   7. Cards y compatibilidad visual con componentes propios
+================================================== */
+.card,
+.movie-card {
   background-color: var(--color-card);
-  color: #f5f5f5;
+  color: var(--color-text-main);
   border-radius: 0.75rem;
   border: 1px solid var(--bs-border-color);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
-/* Selects de formulario: adaptar al estilo oscuro del proyecto */
-.form-select {
-  background-color: var(--color-card) !important;
-  color: var(--color-text-main) !important;
-  border-color: rgba(255,255,255,0.08) !important;
-}
-
-/* Tablas: mantener el estilo de 'tabla-cartelera' y adaptar el tema */
-.table {
-  color: var(--color-text-main);
-  border-color: rgba(255,255,255,0.08);
-}
-
-/* Footer links spacing (migrado desde inline) */
+/* ==================================================
+   8. Footer links
+================================================== */
 .footer-links {
   list-style: none;
   display: flex;
@@ -146,30 +156,11 @@ a:hover, a:focus {
   margin: 0;
 }
 
-/* Grid helpers: adaptar las clases .movies-list/.movie-card a Bootstrap */
-/* Se aplican reglas ligeras para compatibilidad con el sistema de columnas */
+/* ==================================================
+   9. Compatibilidad ligera con el grid Bootstrap
+   Solo ajustes menores para convivir con clases previas.
+================================================== */
 .movies-list.row {
-  margin: 0 -0.5rem;
-}
-.movie-card.col {
-  padding: 0 0.5rem;
-}
-
-
-/* Footer links spacing (migrado desde inline) */
-.footer-links {
-  list-style: none;
-  display: flex;
-  gap: 1.5em;
-  justify-content: center;
-  padding: 0;
-  margin: 0;
-}
-
-/* Ajustes menores de compatibilidad con el grid */
-.movies-list.row {
-  margin: 0 -0.5rem;
-}
-.movie-card.col {
-  padding: 0 0.5rem;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
 }
