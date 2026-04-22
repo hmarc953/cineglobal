@@ -1,3 +1,308 @@
+<<<<<<< fix/resolucion-issues-82
+/*
+ * Bootstrap Overrides para CineGlobal
+ * Este archivo redefine variables y componentes Bootstrap
+ * para mantener la identidad visual del proyecto.
+ *
+ * Debe cargarse después de:
+ * 1. Bootstrap
+ * 2. styles.css
+ * 3. components.css
+ * 4. responsive.css
+ */
+
+/* ==================================================
+   1. Variables globales Bootstrap
+   Se redefinen variables --bs-* para adaptar Bootstrap
+   al esquema oscuro y colores del proyecto.
+================================================== */
+:root {
+  /* Paleta CineGlobal */
+  --color-bg-main: #1f1c1c;
+  --color-accent: #c20000;
+  --color-accent-hover: #a30000;
+  --color-card: #333;
+  --color-text-main: #f5f5f5;
+  --color-text-secondary: #e0e0e0;
+  --font-main: 'Segoe UI', Arial, sans-serif;
+
+  /* Bootstrap variables */
+  --bs-body-bg: var(--color-bg-main);
+  --bs-body-color: var(--color-text-main);
+  --bs-primary: var(--color-accent);
+  --bs-secondary: #444;
+  --bs-success: #198754;
+  --bs-danger: #dc3545;
+  --bs-warning: #ffc107;
+  --bs-info: #0dcaf0;
+  --bs-light: #f8f9fa;
+  --bs-dark: #181818;
+  --bs-border-color: #444;
+  --bs-border-radius: 0.5rem;
+  --bs-font-sans-serif: var(--font-main);
+  --bs-link-color: var(--color-accent);
+  --bs-link-hover-color: var(--color-accent-hover);
+}
+
+/* ==================================================
+   2. Base general
+================================================== */
+body {
+  background-color: var(--color-bg-main);
+  color: var(--color-text-main);
+  font-family: var(--font-main);
+}
+
+/* ==================================================
+   3. Botón principal (.btn-primary)
+   Se adapta el botón principal a la identidad CineGlobal.
+================================================== */
+.btn-primary {
+  background-color: var(--color-accent) !important;
+  border-color: var(--color-accent) !important;
+  color: #fff !important;
+  font-family: var(--font-main);
+  box-shadow: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--color-accent-hover) !important;
+  border-color: var(--color-accent-hover) !important;
+  color: #fff !important;
+}
+
+.btn-primary:focus {
+  box-shadow: 0 0 0 0.2rem rgba(194, 0, 0, 0.25) !important;
+}
+
+/* ==================================================
+   4. Selectores de formulario (.form-select)
+   Se adapta el fondo y borde para coincidir con el modo oscuro.
+================================================== */
+.form-select {
+  background-color: var(--color-card) !important;
+  color: var(--color-text-main) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  font-family: var(--font-main);
+}
+
+.form-select:focus {
+  border-color: var(--color-accent) !important;
+  box-shadow: 0 0 0 0.2rem rgba(194, 0, 0, 0.25) !important;
+}
+
+/* ==================================================
+   5. Tablas (.table)
+   Se adapta el fondo, borde y color de texto para modo oscuro.
+================================================== */
+.table {
+  --bs-table-bg: var(--color-card);
+  --bs-table-color: var(--color-text-main);
+  --bs-table-border-color: var(--bs-border-color);
+
+  background-color: var(--color-card) !important;
+  color: var(--color-text-main) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.table thead th {
+  background-color: #232323 !important;
+  color: #fff !important;
+}
+
+.table tbody tr {
+  border-bottom: 1px solid var(--bs-border-color);
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  --bs-table-accent-bg: #282828;
+  background-color: #282828 !important;
+}
+
+/* ==================================================
+   6. Links
+================================================== */
+a {
+  color: var(--color-accent);
+}
+
+a:hover,
+a:focus {
+  color: var(--color-accent-hover);
+}
+
+/* ==================================================
+   7. Cards y compatibilidad visual con componentes propios
+================================================== */
+.card,
+.movie-card {
+  background-color: var(--color-card);
+  color: var(--color-text-main);
+  border-radius: 0.75rem;
+  border: 1px solid var(--bs-border-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* ==================================================
+   8. Footer links
+================================================== */
+.footer-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5em;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+/* ==================================================
+   9. Compatibilidad ligera con el grid Bootstrap
+   Solo ajustes menores para convivir con clases previas.
+================================================== */
+.movies-list.row {
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+}
+
+/* =============================================
+   NAVBAR (scoped para no afectar otros nav)
+   ============================================= */
+.navbar.navbar-cineglobal {
+  background: linear-gradient(90deg, #111 0%, #2f2f2f 45%, #5a0000 100%);
+  border-bottom: 2px solid var(--color-accent, #c20000);
+  padding: 0.5rem 1rem;
+}
+
+@supports ((-webkit-backdrop-filter: blur(4px)) or (backdrop-filter: blur(4px))) {
+  .navbar.navbar-cineglobal {
+    background: rgba(24, 24, 24, 0.88);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+}
+
+.navbar.navbar-cineglobal .navbar-brand {
+  color: #fff;
+  font-weight: 700;
+  font-size: clamp(1.15rem, 1rem + 0.6vw, 1.45rem);
+  letter-spacing: 0.08em;
+}
+
+.navbar.navbar-cineglobal .nav-link {
+  color: rgba(255, 255, 255, 0.9);
+  transition: color 0.2s ease;
+}
+
+.navbar.navbar-cineglobal .nav-link:hover,
+.navbar.navbar-cineglobal .nav-link:focus-visible,
+.navbar.navbar-cineglobal .nav-link.active {
+  color: #fff;
+}
+
+.navbar.navbar-cineglobal .btn-outline-light {
+  border-color: var(--color-accent, #c20000);
+  color: #fff;
+}
+
+.navbar.navbar-cineglobal .btn-outline-light:hover,
+.navbar.navbar-cineglobal .btn-outline-light:focus-visible {
+  background: var(--color-accent, #c20000);
+  border-color: var(--color-accent, #c20000);
+  color: #fff;
+}
+
+.navbar.navbar-cineglobal .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.navbar.navbar-cineglobal .navbar-toggler:focus {
+  box-shadow: 0 0 0 0.2rem rgba(194, 0, 0, 0.4);
+}
+
+.navbar.navbar-cineglobal .navbar-toggler-icon {
+  filter: invert(1) contrast(115%);
+}
+
+/* =============================================
+   MODAL (scoped al modal de promo)
+   ============================================= */
+#promoModal .modal-content {
+  background-color: var(--color-bg-content, #5a5a5a);
+  color: var(--color-text-main, #fff);
+  border: 1px solid var(--color-accent, #c20000);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+#promoModal .modal-header,
+#promoModal .modal-footer {
+  border-color: var(--color-accent, #c20000);
+}
+
+#promoModal .modal-title {
+  color: #fff;
+  font-weight: 700;
+}
+
+#promoModal .modal-body {
+  background: var(--color-card, #333);
+  color: var(--color-text-secondary, #e0e0e0);
+}
+
+#promoModal .form-control,
+#promoModal .form-select {
+  background-color: #242424;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+#promoModal .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+#promoModal .form-control:focus,
+#promoModal .form-select:focus {
+  border-color: var(--color-accent, #c20000);
+  box-shadow: 0 0 0 0.2rem rgba(194, 0, 0, 0.25);
+}
+
+#promoModal .btn-danger {
+  background-color: var(--color-accent, #c20000);
+  border-color: var(--color-accent, #c20000);
+}
+
+#promoModal .btn-danger:hover,
+#promoModal .btn-danger:focus-visible {
+  background-color: var(--color-accent-hover, #9a0000);
+  border-color: var(--color-accent-hover, #9a0000);
+}
+
+#promoModal .btn-close {
+  filter: invert(1) grayscale(100%);
+}
+
+@media (max-width: 575.98px) {
+  #promoModal .modal-dialog {
+    margin: 0.75rem;
+  }
+
+  #promoModal .modal-content {
+    border-radius: 0.75rem;
+  }
+
+  #promoModal .modal-body,
+  #promoModal .modal-footer {
+    padding: 0.9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar.navbar-cineglobal .nav-link,
+  .navbar.navbar-cineglobal .btn-outline-light {
+    transition: none;
+  }
+=======
 /* =============================================
    BOOTSTRAP OVERRIDES - CINEGLOBAL
    Navbar + Modal alineados a identidad visual
@@ -137,4 +442,5 @@
   .navbar.navbar-cineglobal .btn-outline-light {
     transition: none;
   }
+>>>>>>> feature/esp-com-bootstrap-add-component
 }

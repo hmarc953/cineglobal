@@ -2,12 +2,19 @@
 
 ## [Unreleased]
 
+### Fixed
+
+- [fix/resolucion-issues-82] Fix - #82: servidor local sin caché para evitar desincronización entre `/` e `/index.html` en tests.
+
 ## [Release Primer Parcial] - 2026-04-22
 
 ### Added
 
 - [feature/devops-planificacion-y-mockup] Feature/devops planificacion y mockup  
   PR: [#78](https://github.com/hmarc953/cineglobal/pull/78) - @hmarc953 (Coordinador / DevOps)
+
+- [feature/dev-frontend-bootstrap-migration] Migración a Bootstrap 5 con grid responsive, overrides y mejoras visuales.
+  PR: [#81](https://github.com/hmarc953/cineglobal/pull/81) - @abartomioli (Desarrollador Frontend/Bootstrap)
 
 ---
 

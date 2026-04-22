@@ -97,8 +97,9 @@
   - flex-wrap para permitir salto de línea en resoluciones menores
   - gap para separar elementos sin depender de márgenes individuales
 */
-.filters {
-  display: flex;
+/* .filters {
+  display: flex; */
+/* Migrado a Bootstrap Grid. Esta regla se comenta para evitar conflicto con row/col de Bootstrap. */
   gap: var(--spacing-sm);
   justify-content: center;
   margin-bottom: var(--spacing-lg);
@@ -187,7 +188,7 @@
    ========================= */
 .footer-links {
   list-style: none;
-  display: flex;
+  /* display: flex; */ /* Migrado a Bootstrap Grid. */
   gap: 1.5em;
   justify-content: center;
   padding: 0;
@@ -217,8 +218,9 @@
   - justify-content center para balancear la composición
   - width 100% para aprovechar el ancho disponible del contenedor padre
 */
-.movies-list {
-  display: grid;
+/* .movies-list {
+  display: grid; */
+/* Migrado a Bootstrap Grid. Esta regla se comenta para evitar conflicto con row/col de Bootstrap. */
   grid-template-columns: 1fr;
   gap: var(--spacing-lg);
   width: 100%;

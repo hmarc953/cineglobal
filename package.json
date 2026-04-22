@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "serve:no-cache": "node scripts/serve-no-cache.mjs"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/server-github": "^2025.4.8",
+    "@playwright/mcp": "^0.0.70",
+    "@playwright/test": "^1.59.1"
+  }
+}
