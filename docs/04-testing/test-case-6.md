@@ -59,7 +59,7 @@ Antes de ejecutar la prueba debe cumplirse lo siguiente:
   5. `bootstrap-overrides.css`
 - Playwright instalado correctamente
 - navegadores de Playwright descargados con `npx playwright install`
-- archivo `.vscode/mcp.json` configurado con Playwright MCP
+- archivo `.vscode/mcp.json` presente en el repositorio y configurado con servidores MCP (Playwright y GitHub)
 
 ---
 
