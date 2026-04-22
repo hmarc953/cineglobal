@@ -1,3 +1,4 @@
+<<<<<<< fix/resolucion-issues-82
 /*
  * Bootstrap Overrides para CineGlobal
  * Este archivo redefine variables y componentes Bootstrap
@@ -301,4 +302,145 @@ a:focus {
   .navbar.navbar-cineglobal .btn-outline-light {
     transition: none;
   }
+=======
+/* =============================================
+   BOOTSTRAP OVERRIDES - CINEGLOBAL
+   Navbar + Modal alineados a identidad visual
+   y comportamiento consistente en mobile/desktop
+   ============================================= */
+
+/* --- NAVBAR (scoped para no afectar otros nav) --- */
+.navbar.navbar-cineglobal {
+  background: linear-gradient(90deg, #111 0%, #2f2f2f 45%, #5a0000 100%);
+  border-bottom: 2px solid var(--color-accent, #c20000);
+  padding: 0.5rem 1rem;
+}
+
+@supports ((-webkit-backdrop-filter: blur(4px)) or (backdrop-filter: blur(4px))) {
+  .navbar.navbar-cineglobal {
+    background: rgba(24, 24, 24, 0.88);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+}
+
+.navbar.navbar-cineglobal .navbar-brand {
+  color: #fff;
+  font-weight: 700;
+  font-size: clamp(1.15rem, 1rem + 0.6vw, 1.45rem);
+  letter-spacing: 0.08em;
+}
+
+.navbar.navbar-cineglobal .nav-link {
+  color: rgba(255, 255, 255, 0.9);
+  transition: color 0.2s ease;
+}
+
+.navbar.navbar-cineglobal .nav-link:hover,
+.navbar.navbar-cineglobal .nav-link:focus-visible,
+.navbar.navbar-cineglobal .nav-link.active {
+  color: #fff;
+}
+
+.navbar.navbar-cineglobal .btn-outline-light {
+  border-color: var(--color-accent, #c20000);
+  color: #fff;
+}
+
+.navbar.navbar-cineglobal .btn-outline-light:hover,
+.navbar.navbar-cineglobal .btn-outline-light:focus-visible {
+  background: var(--color-accent, #c20000);
+  border-color: var(--color-accent, #c20000);
+  color: #fff;
+}
+
+.navbar.navbar-cineglobal .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.navbar.navbar-cineglobal .navbar-toggler:focus {
+  box-shadow: 0 0 0 0.2rem rgba(194, 0, 0, 0.4);
+}
+
+.navbar.navbar-cineglobal .navbar-toggler-icon {
+  filter: invert(1) contrast(115%);
+}
+
+/* --- MODAL (scoped al modal de promo) --- */
+#promoModal .modal-content {
+  background-color: var(--color-bg-content, #5a5a5a);
+  color: var(--color-text-main, #fff);
+  border: 1px solid var(--color-accent, #c20000);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+#promoModal .modal-header,
+#promoModal .modal-footer {
+  border-color: var(--color-accent, #c20000);
+}
+
+#promoModal .modal-title {
+  color: #fff;
+  font-weight: 700;
+}
+
+#promoModal .modal-body {
+  background: var(--color-card, #333);
+  color: var(--color-text-secondary, #e0e0e0);
+}
+
+#promoModal .form-control,
+#promoModal .form-select {
+  background-color: #242424;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+#promoModal .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+#promoModal .form-control:focus,
+#promoModal .form-select:focus {
+  border-color: var(--color-accent, #c20000);
+  box-shadow: 0 0 0 0.2rem rgba(194, 0, 0, 0.25);
+}
+
+#promoModal .btn-danger {
+  background-color: var(--color-accent, #c20000);
+  border-color: var(--color-accent, #c20000);
+}
+
+#promoModal .btn-danger:hover,
+#promoModal .btn-danger:focus-visible {
+  background-color: var(--color-accent-hover, #9a0000);
+  border-color: var(--color-accent-hover, #9a0000);
+}
+
+#promoModal .btn-close {
+  filter: invert(1) grayscale(100%);
+}
+
+/* --- Responsive y accesibilidad --- */
+@media (max-width: 575.98px) {
+  #promoModal .modal-dialog {
+    margin: 0.75rem;
+  }
+
+  #promoModal .modal-content {
+    border-radius: 0.75rem;
+  }
+
+  #promoModal .modal-body,
+  #promoModal .modal-footer {
+    padding: 0.9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar.navbar-cineglobal .nav-link,
+  .navbar.navbar-cineglobal .btn-outline-light {
+    transition: none;
+  }
+>>>>>>> feature/esp-com-bootstrap-add-component
 }

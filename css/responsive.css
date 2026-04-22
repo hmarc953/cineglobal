@@ -10,7 +10,6 @@ body {
 
 header,
 main,
-nav,
 footer,
 section {
   width: 100%;
@@ -37,26 +36,26 @@ header p {
   max-width: 720px;
 }
 
-nav {
+.filters {
   padding: 0 var(--spacing-lg) var(--spacing-lg);
 }
 
-nav form {
+.filters form {
   display: flex;
   background: var(--color-card);
   padding: var(--spacing-md);
   border-radius: 12px;
 }
 
-nav label {
+.filters label {
   display: block;
   margin-bottom: 4px;
   font-weight: 600;
   color: var(--color-text-main);
 }
 
-nav select,
-nav button {
+.filters select,
+.filters button {
   width: 100%;
   max-width: 100%;
   padding: var(--spacing-sm);
@@ -66,13 +65,13 @@ nav button {
   color: var(--color-text-main);
 }
 
-nav button {
+.filters button {
   cursor: pointer;
   border: none;
   font-weight: 700;
 }
 
-nav .filter-button {
+.filters .filter-button {
   background: var(--color-accent);
 }
 
@@ -247,7 +246,7 @@ footer {
     padding: var(--spacing-xl) var(--spacing-lg);
   }
 
-  nav form {
+  .filters form {
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -255,12 +254,12 @@ footer {
     gap: var(--spacing-md);
   }
 
-  nav select {
+  .filters select {
     flex: 1;
     min-width: 120px;
   }
 
-  nav button {
+  .filters button {
     flex: 0 0 120px;
   }
 
@@ -309,21 +308,21 @@ footer {
     font-size: 2.6rem;
   }
 
-  nav {
+  .filters {
     padding: 0 var(--spacing-lg) var(--spacing-lg);
   }
 
-  nav form {
+  .filters form {
     flex-wrap: nowrap;
     gap: var(--spacing-md);
   }
 
-  nav select {
+  .filters select {
     width: auto;
     min-width: 180px;
   }
 
-  nav button {
+  .filters button {
     width: auto;
     min-width: 180px;
   }

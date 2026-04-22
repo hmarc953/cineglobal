@@ -62,4 +62,8 @@ Casos a verificar:
 - [x] Confirmé con Alejadro que Bootstrap CDN está instalado correctamente
 - [x] Verifiqué que bootstrap-overrides.css está vinculado después de los demás CSS en index.html
 - [x] Revisamos juntos que Navbar y Modal no generan conflictos con el sistema de columnas implementado
+<<<<<<< fix/resolucion-issues-82
 - [x] No se encontraron conflictos visuales al integrar ambas ramas
+=======
+- [x] No se encontraron conflictos visuales al integrar ambas ramas
+>>>>>>> feature/esp-com-bootstrap-add-component
