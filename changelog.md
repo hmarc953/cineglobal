@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Fixed
+
+- [fix/resolucion-issues-82] Fix - #82: servidor local sin caché para evitar desincronización entre `/` e `/index.html` en tests.
+
 ## [Release Primer Parcial] - 2026-04-22
 
 ### Added
