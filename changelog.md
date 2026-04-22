@@ -28,6 +28,9 @@
 - [feature/dev-comp-html-avanzados-add-component] Conecto dos componetes avanzados de html
   PR: [#87](https://github.com/hmarc953/cineglobal/pull/87) - @Santi22-7 (Desarrollador de Componentes HTML Avanzados)
 
+- [feature/cierre-specs] Feature - Cierre de specs
+  PR: [#93](https://github.com/hmarc953/cineglobal/pull/93) - @hmarc953 (Coordinador / DevOps)
+
 ---
 ### Changed
 
