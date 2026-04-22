@@ -19,7 +19,7 @@ Verificar que los componetes se hallan incertado bien en la pagina
 
 ---
 
-## Prompt para Copilot Agent Mode
+## Prompt para Copilot Agent Mode (Momento 1)
 
 Copiá este prompt en Copilot Agent Mode con Playwright MCP activo:
 
@@ -41,7 +41,7 @@ Ejecutá estos pasos en orden:
 
 5. En cada viewport reportá si encontrás algún problema en inframe y su integración
 
-Guardá las capturas en docs/04-testing/capturas/tc-9/momento-1/
+Guardá las capturas en docs/04-testing/capturas/tc-9/momento-2/
 
 ```
 
@@ -78,6 +78,44 @@ La página muestra compatibilidad visual adecuada en todos los viewports testead
 
 ---
 ### Resultado Momento 1
+- [x] ✅ PASS — Compatibilidad visual verificada
+- [ ] ⚠️ FAIL CON OBSERVACIONES
+- [ ] ❌ FAIL
+
+
+---
+
+## Resultados momento 2:
+
+### Viewport 390x844 (iPhone 14 Pro)
+- **Navegación**: Se adapta sin desbordarse. No hay scroll horizontal.
+- **Iframe**: Se ajusta correctamente al ancho (278.8px), no desborda. Mantiene proporciones 16:9 (ratio 1.78).
+- **Problemas**: Ninguno encontrado.
+- **Captura**: [iphone14pro.png](docs/04-testing/capturas/tc-9/momento-2/iphone14pro.png)
+
+### Viewport 412x915 (Samsung Galaxy S23)
+- **Navegación**: Se adapta sin desbordarse. No hay scroll horizontal.
+- **Iframe**: Se ajusta correctamente al ancho (299.5px), no desborda. Mantiene proporciones 16:9 (ratio 1.78).
+- **Problemas**: Ninguno encontrado.
+- **Captura**: [samsunggalaxys23.png](docs/04-testing/capturas/tc-9/momento-2/samsunggalaxys23.png)
+
+### Viewport 820x1180 (iPad Air)
+- **Navegación**: Se adapta sin desbordarse. No hay scroll horizontal.
+- **Iframe**: Se ajusta correctamente al ancho (691.2px), no desborda. Mantiene proporciones 16:9 (ratio 1.78).
+- **Problemas**: Ninguno encontrado.
+- **Captura**: [ipadair.png](docs/04-testing/capturas/tc-9/momento-2/ipadair.png)
+
+### Viewport 1280x800 (Firefox)
+- **Navegación**: Se adapta sin desbordarse. No hay scroll horizontal.
+- **Iframe**: Se ajusta correctamente al ancho (940px), no desborda. Mantiene proporciones 16:9 (ratio 1.78).
+- **Problemas**: Ninguno encontrado.
+- **Captura**: [firefox.png](docs/04-testing/capturas/tc-9/momento-2/firefox.png)
+
+## Conclusión Momento 2
+La página mantiene compatibilidad visual adecuada en el momento 2. El iframe se adapta responsivamente sin problemas.
+
+---
+### Resultado Momento 2
 - [x] ✅ PASS — Compatibilidad visual verificada
 - [ ] ⚠️ FAIL CON OBSERVACIONES
 - [ ] ❌ FAIL

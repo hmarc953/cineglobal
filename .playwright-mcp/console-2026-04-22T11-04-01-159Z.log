@@ -1,0 +1,3 @@
+[     387ms] [ERROR] Failed to find a valid digest in the 'integrity' attribute for resource 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js' with computed SHA-384 integrity 'YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz'. The resource has been blocked. @ http://localhost:3000/:0
+[     458ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:3001/793ae38270477464158e997f67a3c560e570b95d' failed: Error during WebSocket handshake: Unexpected response code: 400 @ http://localhost:3000/___vscode_livepreview_injected_script:35
+[    1388ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/favicon.ico:0

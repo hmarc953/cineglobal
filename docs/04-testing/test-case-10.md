@@ -50,23 +50,38 @@ Guardá las capturas en docs/04-testing/capturas/tc-10/momento-1/
 ## Resultados momento 1:
 
 ### Viewport 390x844 (iPhone 14 Pro)
-
+- Captura: iphone14pro.png
+- Pruebas de carga: Elementos se cargan correctamente en Chrome.
+- Pruebas de funcionalidad: <details> no expande/colapsa correctamente (atributo open no se setea).
+- Iframe: Proporciones correctas (263.6x148.27 ≈ 16:9). Sin problemas de integración.
 
 ### Viewport 412x915 (Samsung Galaxy S23)
+- Captura: samsunggalaxys23.png
+- Pruebas de carga: Elementos se cargan correctamente en Chrome.
+- Pruebas de funcionalidad: <details> no expande/colapsa correctamente.
+- Iframe: Proporciones correctas (299.5x168.5 ≈ 16:9). Sin problemas.
 
 ### Viewport 820x1180 (iPad Air)
-
+- Captura: ipadair.png
+- Pruebas de carga: Elementos se cargan correctamente en Chrome.
+- Pruebas de funcionalidad: <details> no expande/colapsa correctamente.
+- Iframe: Proporciones correctas (691.2x388.8 ≈ 16:9). Sin problemas.
 
 ### Viewport 1280x800 (Firefox)
+- Captura: firefox.png
+- Pruebas de carga: Elementos se cargan correctamente en Chrome
+- Pruebas de funcionalidad: <details> no expande/colapsa correctamente.
+- Iframe: Proporciones correctas (940x528.75 ≈ 16:9). Sin problemas.
 
 
 ## Conclusión
+Se encontraron problemas en la funcionalidad de <details> + <summary> en todos los viewports probados. El iframe mantiene proporciones correctas en todos los casos. Pruebas de carga realizadas solo en Chrome debido a limitaciones de herramientas.
 
 
 ---
 ### Resultado Momento 1
-- [] ✅ PASS — Compatibilidad visual verificada
-- [ ] ⚠️ FAIL CON OBSERVACIONES
+- [ ] ✅ PASS — Compatibilidad visual verificada
+- [x] ⚠️ FAIL CON OBSERVACIONES
 - [ ] ❌ FAIL
 
 
