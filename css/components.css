@@ -105,6 +105,26 @@
   flex-wrap: wrap;
 }
 
+.navbar-cineglobal {
+  background: linear-gradient(90deg, #111 0%, #2f2f2f 45%, #5a0000 100%);
+  border-bottom: 2px solid #8f0000;
+}
+
+.navbar-cineglobal .navbar-brand {
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.navbar-cineglobal .nav-link {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.navbar-cineglobal .nav-link:hover,
+.navbar-cineglobal .nav-link:focus-visible,
+.navbar-cineglobal .nav-link.active {
+  color: #fff;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
