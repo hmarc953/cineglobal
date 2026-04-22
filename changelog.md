@@ -38,6 +38,9 @@
 - [fix/correción-de-bug-de-elementos-html-avanzados] Correcion de bug dectectado en los test
   PR: [#85](https://github.com/hmarc953/cineglobal/pull/85) - @Santi22-7 (Desarrollador de Componentes HTML Avanzados)
 
+- [fix/trailer-equivocado] Fix - Trailer Scream 7 corregido
+  PR: [#94](https://github.com/hmarc953/cineglobal/pull/94) - @hmarc953 (Coordinador / DevOps)
+
 ## [Release Actividad Obligatoria N°2] - 2026-04-12
 
 ### Added
