@@ -210,7 +210,7 @@ Dispositivos:
 ## 15. Trazabilidad
 
 - Rama: `feature/dev-frontend-bootstrap-migration`  
-- PR: _(completar)_
+- PR: [#81](https://github.com/hmarc953/cineglobal/pull/81) - @abartomioli (Desarrollador Frontend/Bootstrap)
 
 Repositorio:
 https://github.com/hmarc953/cineglobal

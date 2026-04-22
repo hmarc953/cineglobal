@@ -10,7 +10,7 @@
   PR: [#78](https://github.com/hmarc953/cineglobal/pull/78) - @hmarc953 (Coordinador / DevOps)
 
 - [feature/dev-frontend-bootstrap-migration] Migración a Bootstrap 5 con grid responsive, overrides y mejoras visuales.
-  PR: [#XX](link) - @abartomioli (Desarrollador Frontend/Bootstrap)
+  PR: [#81](https://github.com/hmarc953/cineglobal/pull/81) - @abartomioli (Desarrollador Frontend/Bootstrap)
 
 ---
 
