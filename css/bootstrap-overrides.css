@@ -1,0 +1,67 @@
+/* =============================================
+   BOOTSTRAP OVERRIDES - CINEGLOBAL
+   Customizaciones para mantener identidad visual
+   ============================================= */
+
+   Se utilizan dos componentes de Bootstrap: Navbar y Modal. Se han personalizado para que se integren con la paleta de colores y el estilo general del sitio, manteniendo una apariencia coherente y profesional.
+
+/* --- NAVBAR --- */
+.navbar {
+  background-color: #1f1c1c !important;
+  border-bottom: 2px solid #c20000;
+}
+
+.navbar-brand {
+  color: #c20000 !important;
+  font-weight: bold;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+}
+
+.nav-link {
+  color: #fff !important;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #9a0000 !important;
+}
+
+.navbar-toggler {
+  border-color: #c20000;
+}
+
+.navbar-toggler-icon {
+  filter: invert(1);
+}
+
+/* --- MODAL --- */
+.modal-content {
+  background-color: #5a5a5a;
+  color: #fff;
+  border: 1px solid #c20000;
+}
+
+.modal-header {
+  border-bottom: 1px solid #c20000;
+  background-color: #1f1c1c;
+}
+
+.modal-title {
+  color: #c20000;
+  font-weight: bold;
+}
+
+.modal-footer {
+  border-top: 1px solid #c20000;
+  background-color: #1f1c1c;
+}
+
+.modal-body {
+  background-color: #333;
+  color: #e0e0e0;
+}
+
+.btn-close {
+  filter: invert(1);
+}
