@@ -57,3 +57,9 @@ Casos a verificar:
 
 ### Resumen de hallazgos con Playwright MCP
 *[Completar al cerrar la tarea]*
+
+## Coordinación con Desarrollador Frontend/Bootstrap
+- [x] Confirmé con Alejadro que Bootstrap CDN está instalado correctamente
+- [x] Verifiqué que bootstrap-overrides.css está vinculado después de los demás CSS en index.html
+- [x] Revisamos juntos que Navbar y Modal no generan conflictos con el sistema de columnas implementado
+- [x] No se encontraron conflictos visuales al integrar ambas ramas
