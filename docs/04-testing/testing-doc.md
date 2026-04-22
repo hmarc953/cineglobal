@@ -6,6 +6,8 @@
 - [Test Case 3 - Performance](test-case-3.md)[← Volver al índice de testing](testing-doc.md)
 - [Test Case 4 - Accesibilidad](test-case-4.md)[← Volver al índice de testing](testing-doc.md)
 - [Test Case 5 - Estructura HTML semantica y validacion](test-case-5.md)[← Volver al índice de testing](testing-doc.md)
+- [Test Case 7 - Navbar Bootstrap Mobile (Playwright MCP)](test-case-7.md)[← Volver al índice de testing](testing-doc.md)
+- [Test Case 8 - Modal Bootstrap Desktop + Mobile (Playwright MCP)](test-case-8.md)[← Volver al índice de testing](testing-doc.md)
 
 ## Resumen de Issues por Momento
 
