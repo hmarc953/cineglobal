@@ -23,3 +23,54 @@ Utilizaremos Playwright para automatizar las pruebas de los componentes. El plan
 - Los controles de expansión/colapso deben ser funcionales y accesibles.
 - El contenido del iframe debe cargarse sin errores y ser funcional.
 - Compatibilidad con fuentes externas seguras para iframes.
+
+## Prompt utilizado (Varia por componete)
+Usando Playwright MCP, necesito testear la compatibilidad visual de mi página
+en distintos viewports desktop. La URL es http://localhost:3000
+
+Ejecutá estos pasos en orden:
+1. Configurá el viewport en 390x844 (iPhone 14 Pro) y tomá una captura de pantalla completa
+   - Pruebas de carga: verificar que los elementos se carguen correctamente
+   - Pruebas de funcionalidad: <details> + <summary> deben expandir/colapsar correctamente
+   - Verificar que el iframe mantiene proporciones correctas
+
+2. Configurá el viewport en 412x915 (Samsung Galaxy S23) y repetí los mismos pasos
+
+3. Configurá el viewport en 820x1180 (iPad Air) y repetí los mismos pasos
+
+4. Configurá el viewport en 1280x800 (Firefox desktop) y repetí los mismos pasos
+
+5. Reportar en cada viewport:
+   - carga de componentes
+   - comportamiento de <details>
+   - integración del iframe
+
+Guardar capturas en:
+docs/04-testing/capturas/tc-10/momento-2/
+
+## 📊 Resultado obtenido (Playwright MCP)
+
+- ✔ Iframe responsive en todos los dispositivos
+- ❌ Problema inicial detectado: `<details>` no expandía/colapsaba correctamente
+- ✔ En ejecución posterior (Momento 2) el comportamiento fue corregido
+
+---
+
+## 🛠️ Ajustes manuales realizados
+
+- Corrección del comportamiento de `<details>` 
+- Validación de eventos `<summary>` para asegurar expansión/cierre correcto
+- Revalidación del layout responsive sin afectar el iframe
+
+
+---
+
+## 🔍 Resumen de hallazgos (Playwright MCP)
+
+-  Todos los viewports muestran layout responsive correcto
+-  El `<iframe>` mantiene proporción 16:9 sin desbordes
+-  `<details>` + `<summary>` presentó fallo inicial en Momento 1
+-  El problema fue corregido en Momento 2
+-  No se detectan scrolls horizontales ni overflow visual
+-  El comportamiento general del layout es consistente en todos los dispositivos
+-  La navegación se adapta correctamente sin romper estructura visual
