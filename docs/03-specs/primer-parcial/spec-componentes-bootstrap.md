@@ -44,16 +44,34 @@ Casos a verificar:
 
 
 ## Evidencia al cierre (completar al terminar)
+Las pruebas se ejecutarán en entorno local utilizando VS Code Live Preview, accediendo a la aplicación mediante:
 
+http://localhost:3000
 
 ### Prompts utilizados con Copilot Agent
-*[Completar al cerrar la tarea]*
 
-### Resultado obtenido
-*[Completar al cerrar la tarea]*
+PROMPTS 1- 
+Tengo que agregar de las bibliotecas de bootstrap los componentes avanzados navbar y Modal sin romper la estrucura del index.html. 
 
-### Ajustes manuales realizados
-*[Completar al cerrar la tarea]*
+
+PROMPTS 2-
+Tengo que personalizar componentes en css/bootstrap-overrides.css para
+mantener la identidad visual. Optimizar componentes para diferentes
+dispositivos y navegadores, de acuerdo a lo que ya tengo cargador, corregime en caso de ser necesario 
+
+PROMPTS 3- 
+Utilizando Playwright MCP, navegar a http://127.0.0.1:3000 y verificar que 
+la navbar es visible. Luego emular viewport de iPhone 14 Pro (390x844) 
+y verificar que el botón toggler aparece y el menú colapsa correctamente. 
+Tomar captura de pantalla y documentar resultados.
+
+
+PROMPTS 4- 
+Utilizando Playwright MCP, navegar a http://127.0.0.1:3000, hacer click en 
+el botón que abre el modal y verificar que aparece correctamente, sin errores. 
+Verificar que el botón de cierre funciona correctamente, Emular Samsung Galaxy S23 
+(360x780) y repetir la prueba. Tomar captura de pantalla del momento exacto y plasmarlo.
+
 
 ### Resumen de hallazgos con Playwright MCP
 Issues #82 
