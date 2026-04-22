@@ -36,6 +36,11 @@ header p {
   max-width: 720px;
 }
 
+/*
+  Se usa .filters (y no nav) para apuntar solo al formulario de filtros.
+  La barra de navegación principal ahora está migrada a Bootstrap (.navbar)
+  y no debe heredar estos estilos responsivos.
+*/
 .filters {
   padding: 0 var(--spacing-lg) var(--spacing-lg);
 }

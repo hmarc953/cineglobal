@@ -17,10 +17,10 @@
 ### Added
 
 - [feature/devops-planificacion-y-mockup] Feature/devops planificacion y mockup  
-  PR: [#91](https://github.com/hmarc953/cineglobal/pull/91#issue-4310956446) - @9919-Mili (Especialista en componentes Bootstrap)
-  
-- [feature/devops-planificacion-y-mockup] Feature/devops planificacion y mockup  
   PR: [#78](https://github.com/hmarc953/cineglobal/pull/78) - @hmarc953 (Coordinador / DevOps)
+
+- [feature/esp-com-bootstrap-add-component] Agregado de componentes Bootstrap (Navbar y Modal) con estilos y ajustes de integración.
+  PR: [#91](https://github.com/hmarc953/cineglobal/pull/91#issue-4310956446) - @9919-Mili (Especialista en componentes Bootstrap)
 
 - [feature/dev-frontend-bootstrap-migration] Migración a Bootstrap 5 con grid responsive, overrides y mejoras visuales.
   PR: [#81](https://github.com/hmarc953/cineglobal/pull/81) - @abartomioli (Desarrollador Frontend/Bootstrap)

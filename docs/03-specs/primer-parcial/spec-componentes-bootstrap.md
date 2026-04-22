@@ -82,4 +82,3 @@ Issues #83
 - [x] Verifiqué que bootstrap-overrides.css está vinculado después de los demás CSS en index.html
 - [x] Revisamos juntos que Navbar y Modal no generan conflictos con el sistema de columnas implementado
 - [x] No se encontraron conflictos visuales al integrar ambas ramas
-- [x] No se encontraron conflictos visuales al integrar ambas ramas

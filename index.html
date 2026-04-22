@@ -1,6 +1,4 @@
 
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,129 +9,53 @@
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CineGlobal - Compra boletos online</title>
-fix/resolucion-issues-82
-    <!-- 1. Bootstrap base -->
+
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
         crossorigin="anonymous"
-    />
-    <!-- 2. Estilos propios: styles.css -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
- feature/esp-com-bootstrap-add-component
+    >
     <link rel="stylesheet" href="css/styles.css">
-    <!-- 3. Estilos propios: components.css -->
     <link rel="stylesheet" href="css/components.css">
-    <!-- 4. Estilos propios: responsive.css -->
     <link rel="stylesheet" href="css/responsive.css">
-fix/resolucion-issues-82
-    <!-- 5. Overrides: sobreescriben Bootstrap manteniendo identidad visual -->
     <link rel="stylesheet" href="css/bootstrap-overrides.css">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark navbar-cineglobal" aria-label="Navegación principal">
-    <link rel="stylesheet" href="css/bootstrap-overrides.css">
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark navbar-cineglobal" aria-label="Navegaci&oacute;n principal">
-feature/esp-com-bootstrap-add-component
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">CineGlobal</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPrincipal" aria-controls="navbarPrincipal" aria-expanded="false" aria-label="Alternar navegación">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarPrincipal">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#cartelera">Cartelera</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#contacto">Contacto</a>
-                </li>
-                <li class="nav-item">
-ix/resolucion-issues-82
-                    <a class="nav-link" href="#terminos">Términos</a>
-                </li
-                    <a class="nav-link" href="#terminos">T&eacute;rminos</a>
-                </li>
-            </ul>
-            <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#promoModal">
-                Ver promoci&oacute;n
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-cineglobal" aria-label="Navegación principal">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">CineGlobal</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPrincipal" aria-controls="navbarPrincipal" aria-expanded="false" aria-label="Alternar navegación">
+                <span class="navbar-toggler-icon"></span>
             </button>
+            <div class="collapse navbar-collapse" id="navbarPrincipal">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#cartelera">Cartelera</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#terminos">Términos</a>
+                    </li>
+                </ul>
+                <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#promoModal">
+                    Ver promoción
+                </button>
+            </div>
         </div>
-    </div>
-</nav>
-<div class="main-container">
-    <header class="header">
-        <h1 class="header-title">CINEGLOBAL</h1>
-        <p class="header-subtitle">Hace de tus fines de semana m&aacute;s divertidos</p>
-    </header>
-    <section class="filters" role="search" aria-label="Filtrar pel&iacute;culas">
-        <h2 class="sr-only">Filtrar pel&iacute;culas</h2>
-        <form action="#" method="get">
-            <label for="cine">Seleccionar cine</label>
-            <select class="filter-select" id="cine">
-                <option value="">Por Cine</option>
-                <option value="cine1">Palermo</option>
-                <option value="cine2">Abasto</option>
-                <option value="cine3">Lavalle</option>
-                <option value="cine4">Puerto Madero</option>
-            </select>
-            <label for="cat">Seleccionar categor&iacute;a</label>
-            <select class="filter-select" id="cat">
-                <option value="">Categor&iacute;a</option>
-                <option value="cat1">Acci&oacute;n</option>
-                <option value="cat2">Comedia</option>
-                <option value="cat3">Drama</option>
-                <option value="cat4">Terror</option>
-            </select>
-            <label for="clasificacion">Seleccionar clasificaci&oacute;n</label>
-            <select class="filter-select" id="clasificacion">
-                <option value="todas">Todas</option>
-                <option value="atp">ATP</option>
-                <option value="13">+13</option>
-                <option value="16">+16</option>
-                <option value="18">+18</option>
-            </select>
-            <button type="button" class="filter-button">Aplicar filtro</button>
-        </form>
-    </section>
-    <main>
-        <section>
-            <h2>G&eacute;neros disponibles</h2>
-            <ul>
-                <li>Acci&oacute;n</li>
-                <li>Comedia</li>
-                <li>Drama</li>
-                <li>Terror</li>
-            </ul>
-        </section>
-        <section>
-            <h2>Cines participantes</h2>
-            <ul>
-                <li>Cine Palermo</li>
-                <li>Cine Abasto</li>
-                <li>Cine Lavalle</li>
-                <li>Cine Puerto Madero</li>
-feature/esp-com-bootstrap-add-component
-            </ul>
-            <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#promoModal">
-                Ver promoción
-            </button>
-        </div>
-    </div>
-</nav>
+    </nav>
+
     <div class="main-container container">
         <header class="header">
             <h1 class="header-title">CINEGLOBAL</h1>
             <p class="header-subtitle">Hace de tus fines de semana más divertidos</p>
         </header>
 
-        <!-- Filtros: migrados a grid de Bootstrap -->
         <section class="filters" role="search" aria-label="Filtrar películas">
             <h2 class="sr-only">Filtrar películas</h2>
             <form action="#" method="get" class="row g-2 justify-content-center align-items-end">
@@ -172,7 +94,6 @@ feature/esp-com-bootstrap-add-component
                 </div>
             </form>
         </section>
-fix/resolucion-issues-82
 
         <main>
             <section>
@@ -311,195 +232,49 @@ fix/resolucion-issues-82
         </footer>
     </div>
 
-<div class="modal fade" id="promoModal" tabindex="-1" aria-labelledby="promoModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title fs-5" id="promoModalLabel">Promoción CineGlobal</h2>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-            </div>
-            <div class="modal-body">
-                <p>Disfrutá un 20% de descuento en funciones seleccionadas comprando online durante esta semana.</p>
-                <p>Aplicá el código <strong>CINEGLOBAL20</strong> al momento de confirmar tu compra.</p>
-                <form action="#" method="post" class="row g-3 mt-1" aria-label="Suscripción a promociones">
-                    <div class="col-12">
-                        <label for="promo-email" class="form-label">Correo electrónico</label>
-                        <input type="email" class="form-control" id="promo-email" name="promo-email" placeholder="nombre@correo.com" required>
-                    </div>
-                    <div class="col-12">
-                        <label for="promo-cine" class="form-label">Cine preferido</label>
-                        <select class="form-select" id="promo-cine" name="promo-cine" required>
-                            <option value="" selected disabled>Seleccioná una opción</option>
-                            <option value="palermo">Palermo</option>
-                            <option value="abasto">Abasto</option>
-                            <option value="lavalle">Lavalle</option>
-                            <option value="puerto-madero">Puerto Madero</option>
-                        </select>
-                    </div>
-                    <div class="col-12 d-grid">
-                        <button type="submit" class="btn btn-danger">Quiero recibir promociones</button>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <a class="btn btn-danger" href="#cartelera" data-bs-dismiss="modal">Ver cartelera</a>
+    <div class="modal fade" id="promoModal" tabindex="-1" aria-labelledby="promoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5" id="promoModalLabel">Promoción CineGlobal</h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Disfrutá un 20% de descuento en funciones seleccionadas comprando online durante esta semana.</p>
+                    <p>Aplicá el código <strong>CINEGLOBAL20</strong> al momento de confirmar tu compra.</p>
+                    <form action="#" method="post" class="row g-3 mt-1" aria-label="Suscripción a promociones">
+                        <div class="col-12">
+                            <label for="promo-email" class="form-label">Correo electrónico</label>
+                            <input type="email" class="form-control" id="promo-email" name="promo-email" placeholder="nombre@correo.com" required>
+                        </div>
+                        <div class="col-12">
+                            <label for="promo-cine" class="form-label">Cine preferido</label>
+                            <select class="form-select" id="promo-cine" name="promo-cine" required>
+                                <option value="" selected disabled>Seleccioná una opción</option>
+                                <option value="palermo">Palermo</option>
+                                <option value="abasto">Abasto</option>
+                                <option value="lavalle">Lavalle</option>
+                                <option value="puerto-madero">Puerto Madero</option>
+                            </select>
+                        </div>
+                        <div class="col-12 d-grid">
+                            <button type="submit" class="btn btn-danger">Quiero recibir promociones</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <a class="btn btn-danger" href="#cartelera" data-bs-dismiss="modal">Ver cartelera</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
-    <!-- Bootstrap 5.3.3 JS Bundle — jsDelivr CDN -->
+
     <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc4s9bIOgUxi8T/jzmVD4WB0b1JxVvl4rSY/4yGiMIHm"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"
     ></script>
-        <section id="cartelera">
-            <h2>Pel&iacute;culas en cartelera</h2>
-            <div class="movies-list">
-                <article class="movie-card">
-                    <img class="movie-image" src="assets/images/hoppers.jpeg" alt="Hoppers Operacion Castor" width="300" height="350">
-                    <h3 class="movie-title">Hoppers Operaci&oacute;n Castor</h3>
-                    <data class="movie-date" value="2024-03-06">Fecha de estreno: 03 de Marzo de 2024</data>
-                    <time datetime="21:00">21:00HS</time>
-                    <a class="buy-button" href="https://www.cinemark.com.ar/pelicula/hoppers-operacion-castor" target="_blank" rel="noopener noreferrer">Compra boleto aquí</a>
-                </article>
-                <article class="movie-card">
-                    <img class="movie-image" src="assets/images/scream-7.jpg" alt="Scream" width="300" height="350">
-                    <h3 class="movie-title">Scream 7</h3>
-                    <data class="movie-date" value="PROXIMAMENTE">Fecha de estreno: PROXIMAMENTE</data>
-                    <a class="buy-button" href="https://www.cinemark.com.ar/pelicula/scream-7" target="_blank" rel="noopener noreferrer">Compra boleto aquí</a>
-                </article>
-                <article class="movie-card">
-                    <img class="movie-image" src="assets/images/el-agente-secreto.jpg" alt="El Agente Secreto" width="300" height="350">
-                    <h3 class="movie-title">El Agente Secreto</h3>
-                    <data class="movie-date" value="2024-02-26">Fecha de estreno: 26 de febrero de 2026</data>
-                    <time datetime="21:00">21:00HS</time>
-                    <a class="buy-button" href="https://multiplex.com.ar/peliculas/el-agente-secreto/" target="_blank" rel="noopener noreferrer">Compra boleto aquí</a>
-                </article>
-            </div>
-        </section>
-        <section>
-            <h2>Horarios de Funciones</h2>
-            <table class="tabla-cartelera">
-                <caption>Horarios de funciones por película y cine</caption>
-                <thead>
-                    <tr>
-                        <th>Pel&iacute;cula</th>
-                        <th>Cine</th>
-                        <th>Horarios</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td data-label="Pel&iacute;cula">HOPPERS OPERACION CASTOR</td>
-                        <td data-label="Cine">Palermo</td>
-                        <td data-label="Horario">21:00</td>
-                    </tr>
-                    <tr>
-                        <td data-label="Pel&iacute;cula">HOPPERS OPERACION CASTOR</td>
-                        <td data-label="Cine">Abasto</td>
-                        <td data-label="Horario">19:00, 21:30</td>
-                    </tr>
-                    <tr>
-                        <td data-label="Pel&iacute;cula">HOPPERS OPERACION CASTOR</td>
-                        <td data-label="Cine">Lavalle</td>
-                        <td data-label="Horario">20:00</td>
-                    </tr>
-                    <tr>
-                        <td data-label="Pel&iacute;cula">HOPPERS OPERACION CASTOR</td>
-                        <td data-label="Cine">Puerto Madero</td>
-                        <td data-label="Horario">18:00, 22:00</td>
-                    </tr>
-                    <tr>
-                        <td data-label="Pel&iacute;cula">SCREAM 7</td>
-                        <td data-label="Cine">Todos</td>
-                        <td data-label="Horario">Pr&oacute;ximamente</td>
-                    </tr>
-                    <tr>
-                        <td data-label="Pel&iacute;cula">EL AGENTE SECRETO</td>
-                        <td data-label="Cine">Palermo</td>
-                        <td data-label="Horario">21:00</td>
-                    </tr>
-                    <tr>
-                        <td data-label="Pel&iacute;cula">EL AGENTE SECRETO</td>
-                        <td data-label="Cine">Abasto</td>
-                        <td data-label="Horario">19:30, 22:00</td>
-                    </tr>
-                    <tr>
-                        <td data-label="Pel&iacute;cula">EL AGENTE SECRETO</td>
-                        <td data-label="Cine">Lavalle</td>
-                        <td data-label="Horario">20:30</td>
-                    </tr>
-                    <tr>
-                        <td data-label="Pel&iacute;cula">EL AGENTE SECRETO</td>
-                        <td data-label="Cine">Puerto Madero</td>
-                        <td data-label="Horario">18:30, 21:30</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-        <section id="contacto">
-            <h2>Contacto</h2>
-            <p>Consultas y soporte: contacto@cineglobal.com</p>
-            <p>Atenci&oacute;n telef&oacute;nica: +54 11 5555-0000</p>
-        </section>
-        <section id="terminos">
-            <h2>T&eacute;rminos y condiciones</h2>
-            <p>Las entradas están sujetas a disponibilidad, políticas de reprogramación y condiciones de cada complejo.</p>
-        </section>
-    </main>
-    <footer class="footer">
-        <nav aria-label="Enlaces de pie de página">
-            <ul class="footer-links">
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#cartelera">Cartelera</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-                <li><a href="#terminos">T&eacute;rminos</a></li>
-            </ul>
-        </nav>
-        <p>© 2026 CineGlobal</p>
-    </footer>
-</div>
-<div class="modal fade" id="promoModal" tabindex="-1" aria-labelledby="promoModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header bg-dark text-white">
-                <h2 class="modal-title fs-5" id="promoModalLabel">Promoci&oacute;n CineGlobal</h2>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-            </div>
-            <div class="modal-body">
-                <p>Disfrut&aacute; un 20% de descuento en funciones seleccionadas comprando online durante esta semana.</p>
-                <p>Aplic&aacute; el c&oacute;digo <strong>CINEGLOBAL20</strong> al momento de confirmar tu compra.</p>
-                <form action="#" method="post" class="row g-3 mt-1" aria-label="Suscripción a promociones">
-                    <div class="col-12">
-                        <label for="promo-email" class="form-label">Correo electr&oacute;nico</label>
-                        <input type="email" class="form-control" id="promo-email" name="promo-email" placeholder="nombre@correo.com" required>
-                    </div>
-                    <div class="col-12">
-                        <label for="promo-cine" class="form-label">Cine preferido</label>
-                        <select class="form-select" id="promo-cine" name="promo-cine" required>
-                            <option value="" selected disabled>Seleccion&aacute; una opci&oacute;n</option>
-                            <option value="palermo">Palermo</option>
-                            <option value="abasto">Abasto</option>
-                            <option value="lavalle">Lavalle</option>
-                            <option value="puerto-madero">Puerto Madero</option>
-                        </select>
-                    </div>
-                    <div class="col-12 d-grid">
-                        <button type="submit" class="btn btn-danger">Quiero recibir promociones</button>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <a class="btn btn-danger" href="#cartelera" data-bs-dismiss="modal">Ver cartelera</a>
-            </div>
-        </div>
-    </div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-feature/esp-com-bootstrap-add-component
 </body>
 </html>
 
