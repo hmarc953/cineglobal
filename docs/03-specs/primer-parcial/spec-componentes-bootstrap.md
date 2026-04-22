@@ -27,20 +27,20 @@ Dispositivos a probar (obligatorios):
 - iPad Air (iOS Safari)
 
 Casos a verificar:
-- [ ] La Navbar se colapsa correctamente en mobile (≤768px)
-- [ ] El botón hamburger abre y cierra el menú
-- [ ] El Modal se abre al hacer click en el trigger
-- [ ] El Modal se cierra con el botón X y con click fuera
-- [ ] Ambos componentes mantienen la identidad visual del proyecto
+- [x] La Navbar se colapsa correctamente en mobile (≤768px)
+- [x] El botón hamburger abre y cierra el menú
+- [x] El Modal se abre al hacer click en el trigger
+- [x] El Modal se cierra con el botón X y con click fuera
+- [x] Ambos componentes mantienen la identidad visual del proyecto
 
 ### Criterios de aceptación
 
-- [ ] Navbar implementada y funcional en desktop y mobile
-- [ ] Modal implementado y funcional
-- [ ] Componentes personalizados en `css/bootstrap-overrides.css`
-- [ ] Sin romper estilos existentes de `styles.css` y `components.css`
-- [ ] Tests documentados en `test-case-7.md` y `test-case-8.md`
-- [ ] Issues bugs creados con GitHub MCP por cada hallazgo
+- [x] Navbar implementada y funcional en desktop y mobile
+- [x] Modal implementado y funcional
+- [x] Componentes personalizados en `css/bootstrap-overrides.css`
+- [x] Sin romper estilos existentes de `styles.css` y `components.css`
+- [x] Tests documentados en `test-case-7.md` y `test-case-8.md`
+- [x] Issues bugs creados con GitHub MCP por cada hallazgo
 
 
 ## Evidencia al cierre (completar al terminar)

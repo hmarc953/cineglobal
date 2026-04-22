@@ -115,23 +115,23 @@ Se utilizará **GitHub Copilot en modo Agente junto con MCP de Figma** para asis
 ## 8. Criterios de aceptación
 
 ### Estructura
-- [ ] Uso correcto de `row`, `col-*`, `g-*`
-- [ ] Filtros migrados
-- [ ] Cartelera responsive
-- [ ] Tabla responsive
+- [x] Uso correcto de `row`, `col-*`, `g-*`
+- [x] Filtros migrados
+- [x] Cartelera responsive
+- [x] Tabla responsive
 
 ### Visual
-- [ ] Identidad CineGlobal intacta
-- [ ] Modo oscuro correcto
+- [x] Identidad CineGlobal intacta
+- [x] Modo oscuro correcto
 
 ### Responsive
-- [ ] Mobile OK
-- [ ] Tablet OK
-- [ ] Desktop OK
+- [x] Mobile OK
+- [x] Tablet OK
+- [x] Desktop OK
 
 ### Código
-- [ ] Sin conflictos CSS
-- [ ] Overrides centralizados
+- [x] Sin conflictos CSS
+- [x] Overrides centralizados
 
 ---
 
