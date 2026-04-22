@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="main-container">
@@ -70,7 +71,8 @@
             <h2>Películas en cartelera</h2>
             <div class="movies-list">
                 <article class="movie-card">
-                    <img class="movie-image" src="assets/images/hoppers.jpeg" alt="Hoppers Operacion Castor" width="300" height="350">
+                    <a href="#trailer">
+                    <img class="movie-image" src="assets/images/hoppers.jpeg" alt="Hoppers Operacion Castor" width="300" height="350"></a>
                     <h3 class="movie-title">Hoppers Operación Castor</h3>
                     <data class="movie-date" value="2024-03-06">Fecha de estreno: 03 de Marzo de 2024</data>
                     <time datetime="21:00">21:00HS</time>
@@ -90,6 +92,24 @@
                     <a class="buy-button" href="https://multiplex.com.ar/peliculas/el-agente-secreto/" target="_blank" rel="noopener noreferrer">Compra boleto aquí</a>
                 </article>
             </div>
+        </section>
+        <section id="multimedia">
+            <h2>Multimedia</h2>
+            <h3 id="trailer">Trailer de Película</h3>
+            <div class="ratio ratio-16x9">
+            <iframe src="https://www.youtube.com/embed/9P_3xFt3HBk" allowfullscreen></iframe>
+            </div>
+            <p><strong>Tráiler oficial: Scream 7</strong></p>
+
+            <div class="ratio ratio-16x9">
+            <iframe src="https://www.youtube.com/embed/UJrghaPJ0RY"title="Tráiler de Scream 7"allowfullscreen></iframe>
+            </div>
+            
+            <p><strong>Tráiler oficial: el Agente Secreto</strong></p>
+
+            <div class="ratio ratio-16x9">
+            <iframe src="https://www.youtube.com/embed/YxvymcujX14" title="Video de YouTube" allowfullscreen></iframe></div>
+
         </section>
         <section>
             <h2>Horarios de Funciones</h2>

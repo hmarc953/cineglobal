@@ -2,48 +2,24 @@
 
 ## Componentes HTML Avanzados Implementados
 
-Se implementar谩n los siguientes dos componentes HTML avanzados:
+Se implementar醤 los siguientes dos componentes HTML avanzados:
 
-1. **<video>**: Para reproducir videos como trailers de pel铆culas directamente en el sitio web, mejorando la experiencia del usuario al permitir la visualizaci贸n sin necesidad de redirigir a plataformas externas.
+1. **<video>**: Para reproducir videos como trailers de pel韈ulas directamente en el sitio web, mejorando la experiencia del usuario al permitir la visualizaci髇 sin necesidad de redirigir a plataformas externas.
 
-2. **<audio>**: Para reproducir pistas de audio, como previews de bandas sonoras o efectos de sonido, complementando el contenido multimedia del sitio.
-
-## Plan de Testing con Playwright
-
-Utilizaremos Playwright para automatizar las pruebas de los componentes multimedia. El plan incluye:
-
-- Pruebas de carga: Verificar que los elementos se carguen correctamente en diferentes navegadores (Chrome, Firefox, Safari).
-- Pruebas de reproducci贸n: Asegurar que los controles de play/pause funcionen.
-- Pruebas de accesibilidad: Verificar que los elementos tengan atributos adecuados para lectores de pantalla.
-- Pruebas de rendimiento: Medir tiempos de carga y uso de recursos.
-
-## Criterios de Aceptaci贸n
-
-- Los elementos `<video>` y `<audio>` deben renderizarse correctamente en navegadores modernos.
-- Los controles deben ser funcionales y accesibles.
-- El contenido debe cargarse sin errores y reproducirse sin interrupciones.
-- Compatibilidad con formatos est谩ndar (MP4 para video, MP3 para audio).# Especificaciones HTML Avanzados
-
-## Componentes HTML Avanzados Implementados
-
-Se implementar谩n los siguientes dos componentes HTML avanzados:
-
-1. **<video>**: Para reproducir videos como trailers de pel铆culas directamente en el sitio web, mejorando la experiencia del usuario al permitir la visualizaci贸n sin necesidad de redirigir a plataformas externas.
-
-2. **<audio>**: Para reproducir pistas de audio, como previews de bandas sonoras o efectos de sonido, complementando el contenido multimedia del sitio.
+2. **<iframe>**: Para integrar contenido externo, como mapas interactivos de ubicaciones de cines o embeds de videos de plataformas como YouTube, permitiendo una experiencia multimedia rica sin necesidad de alojar todo el contenido localmente.
 
 ## Plan de Testing con Playwright
 
-Utilizaremos Playwright para automatizar las pruebas de los componentes multimedia. El plan incluye:
+Utilizaremos Playwright para automatizar las pruebas de los componentes. El plan incluye:
 
 - Pruebas de carga: Verificar que los elementos se carguen correctamente en diferentes navegadores (Chrome, Firefox, Safari).
-- Pruebas de reproducci贸n: Asegurar que los controles de play/pause funcionen.
-- Pruebas de accesibilidad: Verificar que los elementos tengan atributos adecuados para lectores de pantalla.
+- Pruebas de funcionalidad: Para <video>, asegurar que los controles de reproducci髇 funcionen; para <iframe>, verificar que el contenido externo se cargue y sea interactivo si corresponde.
+- Pruebas de accesibilidad: Verificar que los elementos tengan atributos adecuados para lectores de pantalla y navegaci髇 por teclado.
 - Pruebas de rendimiento: Medir tiempos de carga y uso de recursos.
 
-## Criterios de Aceptaci贸n
+## Criterios de Aceptaci髇
 
-- Los elementos `<video>` y `<audio>` deben renderizarse correctamente en navegadores modernos.
-- Los controles deben ser funcionales y accesibles.
-- El contenido debe cargarse sin errores y reproducirse sin interrupciones.
-- Compatibilidad con formatos est谩ndar (MP4 para video, MP3 para audio).
+- Los elementos `<video>` e `<iframe>` deben renderizarse correctamente en navegadores modernos.
+- Los controles de video deben ser funcionales y accesibles.
+- El contenido del iframe debe cargarse sin errores y ser funcional.
+- Compatibilidad con formatos est醤dar (MP4 para video) y fuentes externas seguras.
