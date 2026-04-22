@@ -2,6 +2,18 @@
 
 ## [Unreleased]
 
+## [Release Primer Parcial] - 2026-04-22
+
+### Added
+
+- [feature/devops-planificacion-y-mockup] Feature/devops planificacion y mockup  
+  PR: [#78](https://github.com/hmarc953/cineglobal/pull/78) - @hmarc953 (Coordinador / DevOps)
+
+- [feature/dev-frontend-bootstrap-migration] Migración a Bootstrap 5 con grid responsive, overrides y mejoras visuales.
+  PR: [#81](https://github.com/hmarc953/cineglobal/pull/81) - @abartomioli (Desarrollador Frontend/Bootstrap)
+
+---
+
 ## [Release Actividad Obligatoria N°2] - 2026-04-12
 
 ### Added
@@ -16,7 +28,7 @@
   PR: [#54](https://github.com/hmarc953/cineglobal/pull/54) - @hmarc953 (Documentador / QA Tester)
 
 - [feature/coord-dev-ops-repo-update-readme-md] Creacion de code review en PR, actualizacion de Plan.md y Readme.md
-  PR: [#56](https://github.com/hmarc953/cineglobal/pull/56) - @9919-Mili (Cordinador / DevOps)
+  PR: [#56](https://github.com/hmarc953/cineglobal/pull/56) - @9919-Mili (Coordinador / DevOps)
 
 ### Changed
 
@@ -26,52 +38,52 @@
   PR: [#55](https://github.com/hmarc953/cineglobal/pull/55) - @Santi22-7 (Especialista en Responsive Design)
 
 - [fix/RC1-imagen-A2-ruta-incorrecta] Fix - RC1: ruta de la imagen A2 corregida + links en readme agregados
-  PR: [#58](https://github.com/hmarc953/cineglobal/pull/58) - @hmarc953 (Coodinador / DevOps)
+  PR: [#58](https://github.com/hmarc953/cineglobal/pull/58) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/RC2-README-desactualizado] Fix - RC2: README.md actualizado
-  PR: [#59](https://github.com/hmarc953/cineglobal/pull/59) - @hmarc953 (Coodinador / DevOps)
+  PR: [#59](https://github.com/hmarc953/cineglobal/pull/59) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/RC3-spec-devops-ausente] Fix - RC3: spec devops ausente
-  PR: [#60](https://github.com/hmarc953/cineglobal/pull/60) - @hmarc953 (Coodinador / DevOps)
+  PR: [#60](https://github.com/hmarc953/cineglobal/pull/60) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/RC4-changelog-entradas-faltantes] Fix - RC4: Correccion del changelog
-  PR: [#61](https://github.com/hmarc953/cineglobal/pull/61) - @hmarc953 (Coodinador / DevOps)
+  PR: [#61](https://github.com/hmarc953/cineglobal/pull/61) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/RC7-Playwright-GitHub-MCP-no-configurados] Fix - RC7: .vscode/mcp.json agregado
-  PR: [#62](https://github.com/hmarc953/cineglobal/pull/62) - @hmarc953 (Coodinador / DevOps)
+  PR: [#62](https://github.com/hmarc953/cineglobal/pull/62) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/RC8-trazabilidad-mal-asignado] Fix - RC8: Correccion de la trazabilidad
-  PR: [#63](https://github.com/hmarc953/cineglobal/pull/63) - @hmarc953 (Coodinador / DevOps)
+  PR: [#63](https://github.com/hmarc953/cineglobal/pull/63) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/RC9-checkboxes-sin-marcar] Fix - RC9: Checkboxes marcados
-  PR: [#64](https://github.com/hmarc953/cineglobal/pull/64) - @hmarc953 (Coodinador / DevOps)
+  PR: [#64](https://github.com/hmarc953/cineglobal/pull/64) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/RC2-parentesis-doble] Fix - RC2: Parentesis doble corregido
-  PR: [#65](https://github.com/hmarc953/cineglobal/pull/65) - @hmarc953 (Coodinador / DevOps)
+  PR: [#65](https://github.com/hmarc953/cineglobal/pull/65) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/RC10-responsive-mobile-filtros] Fix - RC10: Filtros mobile (≤767px) agregados
-  PR: [#66](https://github.com/hmarc953/cineglobal/pull/66) - @hmarc953 (Coodinador / DevOps)
+  PR: [#66](https://github.com/hmarc953/cineglobal/pull/66) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/RC11-boton-compra-boleto] Fix - RC11: boton compra boleto actualizado
-  PR: [#67](https://github.com/hmarc953/cineglobal/pull/67) - @hmarc953 (Coodinador / DevOps)
+  PR: [#67](https://github.com/hmarc953/cineglobal/pull/67) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/RC12-cards-desbordan] Fix - RC12: Cards arreglados 
-  PR: [#68](https://github.com/hmarc953/cineglobal/pull/68) - @hmarc953 (Coodinador / DevOps)
+  PR: [#68](https://github.com/hmarc953/cineglobal/pull/68) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/RC13-cards-con-alturas-distintas] Fix - RC13: cards con mismas alturas 
-  PR: [#69](https://github.com/hmarc953/cineglobal/pull/69) - @hmarc953 (Coodinador / DevOps)
+  PR: [#69](https://github.com/hmarc953/cineglobal/pull/69) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/RC14-optimizacion-horarios-de-funcion] Fix - RC14: Horarios de funcion optimizadas
-  PR: [#70](https://github.com/hmarc953/cineglobal/pull/70) - @hmarc953 (Coodinador / DevOps)
+  PR: [#70](https://github.com/hmarc953/cineglobal/pull/70) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/RC15-cards-con-alturas-distintas] Fix - RC15: Imagenes enteras + Card no desborda
-  PR: [#71](https://github.com/hmarc953/cineglobal/pull/71) - @hmarc953 (Coodinador / DevOps)
+  PR: [#71](https://github.com/hmarc953/cineglobal/pull/71) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/Horarios-no-centrados] Fix - Horarios centrados
-  PR: [#72](https://github.com/hmarc953/cineglobal/pull/72) - @hmarc953 (Coodinador / DevOps)
+  PR: [#72](https://github.com/hmarc953/cineglobal/pull/72) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/Horario-de-funciones-se-ve-mal-en-mobile] Fix - Horario de funciones se ve mal en mobile
-  PR: [#73](https://github.com/hmarc953/cineglobal/pull/73) - @hmarc953 (Coodinador / DevOps)
+  PR: [#73](https://github.com/hmarc953/cineglobal/pull/73) - @hmarc953 (Coordinador / DevOps)
 
 - [backport/release-actividad-obligatoria-2] Fusion a rama Develop
   PR: [#74](https://github.com/hmarc953/cineglobal/pull/74) - @9919-Mili (Coordinador / DevOps)

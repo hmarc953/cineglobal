@@ -34,15 +34,16 @@ Esta entrega actualiza el proyecto a la segunda actividad obligatoria, incorpora
 
 - Mockup A1: [Ver diseño inicial](docs/01-mockup/actividad-obligatoria-1/diseño-inicial.png)   
 - Mockup A2: [Ver diseño con estilos](docs/01-mockup/actividad-obligatoria-2/diseño-con-estilos.png) · [Abrir en Figma](https://www.figma.com/design/NfChLFCsX27WSaDCEiaevS/Sin-t%C3%ADtulo?node-id=69-81&m=dev&t=UOqRl9HcyQYB4uCQ-1)
+- Mockup PP: [Ver diseño bootstrap](docs/01-mockup/primer-parcial/diseño-bootstrap.png) · [Abrir en Figma](https://www.figma.com/proto/Xk7vwqJNdLzY66x0859tXS/Cineglobal?node-id=1-2&p=f&t=uBPoXwkkepZQlUlm-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1)
 - Testing: [Índice de test cases](docs/04-testing/testing-doc.md)
 - Índice de Prompts: [Índice de prompts](docs/02-prompts/prompts.md)
 - Changelog: [Ver changelog](changelog.md)
 
 ## Integrantes del Grupo
 
-| Nombre completo          | N° de Matrícula | Usuario GitHub | Rol en esta entrega                  |
-|--------------------------|-----------------|----------------|-------------------------------------|
-| Marc Holste              | 160313          | @hmarc953      | Documentador / QA Tester            |
-| Milagros Magali Araujo   | 148197          | @9919-Mili     | Coordinador / DevOps                |
-| Santiago Ariel Samitier  | 148249          | @Santi22-7     | Especialista en Responsive Design   |
-| Alejandro Bartomioli     | 153041          | @abartomioli   | Desarrollador Frontend/CSS          |
+| Nombre completo          | N° de Matrícula | Usuario GitHub | Rol en esta entrega                           |
+|--------------------------|-----------------|----------------|-----------------------------------------------|
+| Marc Holste              | 160313          | @hmarc953      | Coordinador / DevOps                          |
+| Milagros Magali Araujo   | 148197          | @9919-Mili     | Especialista en Componentes Bootstrap         |
+| Santiago Ariel Samitier  | 148249          | @Santi22-7     | Desarrollador de Componentes HTML Avanzados   |
+| Alejandro Bartomioli     | 153041          | @abartomioli   | Desarrollador Frontend/Bootstrap              |

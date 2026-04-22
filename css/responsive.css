@@ -18,7 +18,7 @@ section {
 }
 
 header {
-  display: flex;
+  /* display: flex; */ /* Migrado a Bootstrap Grid. */
   flex-direction: column;
   align-items: center;
   text-align: center;
@@ -43,8 +43,6 @@ nav {
 
 nav form {
   display: flex;
-  flex-direction: column;
-  gap: var(--spacing-sm);
   background: var(--color-card);
   padding: var(--spacing-md);
   border-radius: 12px;
@@ -99,8 +97,9 @@ main section {
   width: 100%;
 }
 
-.movies-list {
-  display: grid;
+/* .movies-list {
+  display: grid; */
+/* Migrado a Bootstrap Grid. Esta regla se comenta para evitar conflicto con row/col de Bootstrap. */
   grid-template-columns: 1fr;
   gap: var(--spacing-lg);
   width: 100%;
