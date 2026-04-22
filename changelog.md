@@ -5,10 +5,10 @@
 ### Fixed
 
 - [fix/resolucion-issues-82] Fix - #82: servidor local sin caché para evitar desincronización entre `/` e `/index.html` en tests.
-   PR: [#90]([https://github.com/hmarc953/cineglobal/pull/59](https://github.com/hmarc953/cineglobal/pull/90#issue-4310813662)) - @9919-Mili (Especialista en componentes Bootstrap)
+   PR:[#90](https://github.com/hmarc953/cineglobal/pull/90#issue-4310813662) - @9919-Mili (Especialista en componentes Bootstrap)
 
 - [fix/resolucion-issues-83] Fix - #83: caracteres acentuados se renderizan corruptos (mojibake) en la vista local.
-   PR: [#89]([https://github.com/hmarc953/cineglobal/pull/59](https://github.com/hmarc953/cineglobal/pull/89#issue-4310599849)) - @9919-Mili (Especialista en componentes Bootstrap)
+   PR:[#89](https://github.com/hmarc953/cineglobal/pull/89#issue-4310599849) - @9919-Mili (Especialista en componentes Bootstrap)
 
 
 
