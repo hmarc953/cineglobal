@@ -24,6 +24,9 @@
 - [fix/rc-07-spec-frontend-bootstrap-mcp-evidence] Fix - RC-07: Documentación de tool calls y output de Figma MCP en spec-frontend-bootstrap.md.
   PR: [#104](https://github.com/hmarc953/cineglobal/pull/104) - @abartomioli (Coordinador/DevOps)
 
+- [fix/rc-08-spec-html-avanzados-moments] Fix - RC-08: Estructura de "Momentos" en spec-html-avanzados.md con planificación previa y preservación de evidencia técnica.
+  PR: [#105](https://github.com/hmarc953/cineglobal/pull/105) - @abartomioli (Coordinador/DevOps)
+
 ## [Release Primer Parcial] - 2026-04-22
 
 ### Added
