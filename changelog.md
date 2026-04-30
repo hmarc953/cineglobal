@@ -6,6 +6,9 @@
 - [fix/rc-01-test-case-6-playwright] e corrigio evidencias visuales TC-6
   PR: [#98](https://github.com/hmarc953/cineglobal/pull/98) - @abartomioli (Coordinador/DevOps)
 
+- [fix/rc-02-readme-bootstrap-tech] Fix - RC-02: Bootstrap 5.3.3 agregado a la lista de tecnologías en README.md
+  PR: [#99](https://github.com/hmarc953/cineglobal/pull/99) - @abartomioli (Coordinador / DevOps)
+
 ## [Release Primer Parcial] - 2026-04-22
 
 ### Added
@@ -183,4 +186,3 @@
   PR: [#31](https://github.com/hmarc953/cineglobal/pull/31) - @9919-Mili (Coordinador / DevOps)
 
   
-
