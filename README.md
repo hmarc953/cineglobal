@@ -13,6 +13,7 @@ CineGlobal es una aplicación web front-end que permite visualizar películas y 
 Tecnologías utilizadas:
 - HTML
 - CSS
+- Bootstrap 5.3.3 (CDN vía jsDelivr)
 
 ### Objetivo del entregable
 Esta entrega actualiza el proyecto a la segunda actividad obligatoria, incorporando estilos CSS, diseño responsive y documentación complementaria. Incluye la estructura de página con listado de películas, vista de detalle con información y horarios, y entrega de los documentos del proyecto.
