@@ -16,7 +16,10 @@
   PR:[#101](https://github.com/hmarc953/cineglobal/pull/101) - @abartomioli (Coordinador/DevOps)
 
 - [fix/rc-05-spec-devops-figma-mcp] Fix - RC-05: Evidencia "AT CLOSE" con tool calls y output real de Figma MCP en spec-devops.md.
-   PR:[#102](https://github.com/hmarc953/cineglobal/pull/102) - @abartomioli (Coordinador/DevOps)
+  PR:[#102](https://github.com/hmarc953/cineglobal/pull/102) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-06-spec-devops-moments] Fix - RC-06: Explicitada estructura de "Momentos" (Antes de empezar / Al cierre) en spec-devops.md.
+  PR:[#103](https://github.com/hmarc953/cineglobal/pull/103) - @abartomioli (Coordinador/DevOps)
 
 ## [Release Primer Parcial] - 2026-04-22
 
