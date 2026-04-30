@@ -15,6 +15,9 @@
 - [fix/rc-04-readme-checkboxes] Fix - RC-04: Marcadas funcionalidades implementadas (Bootstrap, Navbar, Modal) en README.md.
   PR:[#101](https://github.com/hmarc953/cineglobal/pull/101) - @abartomioli (Coordinador/DevOps)
 
+- [fix/rc-05-spec-devops-figma-mcp] Fix - RC-05: Evidencia "AT CLOSE" con tool calls y output real de Figma MCP en spec-devops.md.
+   PR:[#102](https://github.com/hmarc953/cineglobal/pull/102) - @abartomioli (Coordinador/DevOps)
+
 ## [Release Primer Parcial] - 2026-04-22
 
 ### Added
