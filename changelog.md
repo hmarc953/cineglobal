@@ -12,6 +12,9 @@
 - [fix/rc-03-readme-objective] Fix - RC-03: Actualización del objetivo del entregable para el Primer Parcial en README.md
   PR: [#100](https://github.com/hmarc953/cineglobal/pull/100) - @abartomioli (Coordinador/DevOps)
 
+- [fix/rc-04-readme-checkboxes] Fix - RC-04: Marcadas funcionalidades implementadas (Bootstrap, Navbar, Modal) en README.md.
+  PR:[#101](https://github.com/hmarc953/cineglobal/pull/101) - @abartomioli (Coordinador/DevOps)
+
 ## [Release Primer Parcial] - 2026-04-22
 
 ### Added
