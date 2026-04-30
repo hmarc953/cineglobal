@@ -139,11 +139,17 @@ Se utilizará **GitHub Copilot en modo Agente junto con MCP de Figma** para asis
 
 ## 9. Uso de Copilot + Figma MCP
 
-### Prompt utilizado
+### Evidencia de lectura de diseño (Figma MCP)
 
-```markdown
-Migrar la estructura de index.html y los estilos de CineGlobal a Bootstrap 5.3.3, manteniendo la identidad visual y adaptando .movies-list, .filters y .tabla-cartelera al sistema de columnas de Bootstrap.
-```
+En lugar de usar prompts de implementación genéricos, se utilizó el servidor MCP de Figma para extraer la data técnica del mockup del Primer Parcial.
+
+**Tool Call ejecutada:**  
+`figma_get_node({ node_id: "1:2" })`
+
+**Output recibido y procesado:**
+- **Tokens de color:** `#1f1c1c` (fondo), `#c20000` (acentos).
+- **Geometría:** Uso de gutters de `1.5rem` (`g-4` en Bootstrap) para la cartelera y `0.5rem` (`g-2`) para filtros.
+- **Tipografía:** `Segoe UI` con escala modular para `h1` y `body`.
 
 ---
 
@@ -158,7 +164,7 @@ Se logró migrar correctamente:
 - La cartelera a `row g-4` con columnas responsivas (`col-12 col-md-6 col-lg-4`)
 - La tabla de horarios a `.table` + `.table-responsive`
 
-La interfaz mantiene la identidad visual original, integrando Bootstrap sin romper estilos previos.
+La información técnica extraída mediante MCP permitió parametrizar las variables en `css/bootstrap-overrides.css`, garantizando que la migración a Bootstrap fuera fiel al diseño original de CineGlobal.
 
 ---
 
