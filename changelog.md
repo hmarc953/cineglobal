@@ -7,7 +7,10 @@
   PR: [#98](https://github.com/hmarc953/cineglobal/pull/98) - @abartomioli (Coordinador/DevOps)
 
 - [fix/rc-02-readme-bootstrap-tech] Fix - RC-02: Bootstrap 5.3.3 agregado a la lista de tecnologías en README.md
-  PR: [#99](https://github.com/hmarc953/cineglobal/pull/99) - @abartomioli (Coordinador / DevOps)
+  PR: [#99](https://github.com/hmarc953/cineglobal/pull/99) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-03-readme-objective] Fix - RC-03: Actualización del objetivo del entregable para el Primer Parcial en README.md
+  PR: [#100](https://github.com/hmarc953/cineglobal/pull/100) - @abartomioli (Coordinador/DevOps)
 
 ## [Release Primer Parcial] - 2026-04-22
 

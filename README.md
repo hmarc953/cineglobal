@@ -16,7 +16,7 @@ Tecnologías utilizadas:
 - Bootstrap 5.3.3 (CDN vía jsDelivr)
 
 ### Objetivo del entregable
-Esta entrega actualiza el proyecto a la segunda actividad obligatoria, incorporando estilos CSS, diseño responsive y documentación complementaria. Incluye la estructura de página con listado de películas, vista de detalle con información y horarios, y entrega de los documentos del proyecto.
+Esta entrega corresponde al Primer Parcial, integrando Bootstrap 5 mediante CDN para optimizar la responsividad y el diseño visual. Se incorporan componentes avanzados, personalización de estilos mediante overrides, y una validación de calidad mediante Testing (Playwright) y Code Reviews asistidos por IA.
 
 ### Funcionalidades implementadas
 - [x] Estructura de página con listado de películas
