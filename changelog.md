@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Fixed Primer Parcial - 2026-04-30
+- [fix/rc-01-test-case-6-playwright] e corrigio evidencias visuales TC-6
+  PR: [#98](https://github.com/hmarc953/cineglobal/pull/98) - @abartomioli (Coordinador/DevOps)
+
 ## [Release Primer Parcial] - 2026-04-22
 
 ### Added
