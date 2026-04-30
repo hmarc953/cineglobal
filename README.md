@@ -26,10 +26,10 @@ Esta entrega corresponde al Primer Parcial, integrando Bootstrap 5 mediante CDN 
 
 ### Funcionalidades planeadas
 - [x] Integrar Bootstrap 5 en el proyecto usando CDN, manteniendo la identidad visual actual y asegurando compatibilidad con los estilos existentes.
-- [ ] Implementar el sistema de columnas de Bootstrap para mejorar la respuesta del diseño en dispositivos móviles y tablet.
-- [ ] Crear `css/bootstrap-overrides.css` con ajustes personalizados para mantener la identidad visual del proyecto sobre la base de Bootstrap.
+- [x] Implementar el sistema de columnas de Bootstrap para mejorar la respuesta del diseño en dispositivos móviles y tablet.
+- [x] Crear `css/bootstrap-overrides.css` con ajustes personalizados para mantener la identidad visual del proyecto sobre la base de Bootstrap.
 - [x] Incorporar componentes Bootstrap avanzados como navbar, modal, carousel o accordion, y asegurar que funcionen de forma coherente con el diseño.
-- [ ] Personalizar componentes HTML avanzados y de Bootstrap para que se vean correctamente en los tres dispositivos obligatorios.
+- [x] Personalizar componentes HTML avanzados y de Bootstrap para que se vean correctamente en los tres dispositivos obligatorios.
 
 ## Documentación
 
