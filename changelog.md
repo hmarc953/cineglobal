@@ -13,13 +13,16 @@
   PR: [#100](https://github.com/hmarc953/cineglobal/pull/100) - @abartomioli (Coordinador/DevOps)
 
 - [fix/rc-04-readme-checkboxes] Fix - RC-04: Marcadas funcionalidades implementadas (Bootstrap, Navbar, Modal) en README.md.
-  PR:[#101](https://github.com/hmarc953/cineglobal/pull/101) - @abartomioli (Coordinador/DevOps)
+  PR: [#101](https://github.com/hmarc953/cineglobal/pull/101) - @abartomioli (Coordinador/DevOps)
 
 - [fix/rc-05-spec-devops-figma-mcp] Fix - RC-05: Evidencia "AT CLOSE" con tool calls y output real de Figma MCP en spec-devops.md.
-  PR:[#102](https://github.com/hmarc953/cineglobal/pull/102) - @abartomioli (Coordinador/DevOps)
+  PR: [#102](https://github.com/hmarc953/cineglobal/pull/102) - @abartomioli (Coordinador/DevOps)
 
 - [fix/rc-06-spec-devops-moments] Fix - RC-06: Explicitada estructura de "Momentos" (Antes de empezar / Al cierre) en spec-devops.md.
-  PR:[#103](https://github.com/hmarc953/cineglobal/pull/103) - @abartomioli (Coordinador/DevOps)
+  PR: [#103](https://github.com/hmarc953/cineglobal/pull/103) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-07-spec-frontend-bootstrap-mcp-evidence] Fix - RC-07: Documentación de tool calls y output de Figma MCP en spec-frontend-bootstrap.md.
+  PR: [#104](https://github.com/hmarc953/cineglobal/pull/104) - @abartomioli (Coordinador/DevOps)
 
 ## [Release Primer Parcial] - 2026-04-22
 
