@@ -145,49 +145,23 @@ ul:not(.footer-links) {
   - align-items center: centra contenido interno
 */
 .main-container {
+  background: var(--color-bg-content);
   max-width: 1100px;
-  margin: 20px auto 0 auto;
-  padding: 0 var(--spacing-lg);
+  margin: var(--spacing-xl) auto 0 auto;
+  padding: var(--spacing-lg) var(--spacing-lg) 0 var(--spacing-lg);
+  border-radius: 8px;
+  overflow: hidden;
 
   /* Control del modelo de caja */
   box-sizing: border-box;
 
   /* Altura mínima para mantener estructura visual */
   min-height: 80vh;
-}
 
-/* =========================
-   HERO SECTION
-   ========================= */
-.hero-section {
-  background: url('../assets/images/cinema-hall-bg.jpg') no-repeat center center; /* Path corrected to match assets structure */
-  background-size: cover;
-  color: white;
+  /* Layout flexible */
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  min-height: 60vh;
-  text-align: center;
-  position: relative;
-}
-
-.hero-section::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, 0.5); /* Dark overlay for text readability */
-  z-index: 1;
-}
-
-.hero-title {
-  font-size: 4.5rem;
-  margin-bottom: var(--spacing-sm);
-}
-
-.hero-section > .container {
-  position: relative;
-  z-index: 2;
 }
 
 /* =========================
@@ -210,6 +184,9 @@ ul:not(.footer-links) {
 
   /* separación respecto al contenido */
   margin-top: var(--spacing-lg);
+
+  /* mantiene coherencia visual con el contenedor */
+  border-radius: 0 0 8px 8px;
 
   width: 100%;
 }

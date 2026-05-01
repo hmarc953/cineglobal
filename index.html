@@ -24,221 +24,233 @@
     <link rel="stylesheet" href="css/bootstrap-overrides.css">
 </head>
 <body>
-    <header class="header">
-        <nav class="navbar navbar-expand-lg navbar-dark navbar-cineglobal">
-            <div class="container">
-                <a class="navbar-brand" href="#">CINEGLOBAL</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPrincipal" aria-controls="navbarPrincipal" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarPrincipal">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#cartelera">Cartelera</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#horarios">Horarios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#contacto">Contacto</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="btn btn-primary">Comprar</a>
-                        </li>
-                    </ul>
+    <div class="main-container container">
+        <header class="header">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">CINEGLOBAL</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPrincipal" aria-controls="navbarPrincipal" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarPrincipal">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#cartelera">Cartelera</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#contacto">Contacto</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
-        <!-- Hero Section -->
-        <div class="hero-section">
-            <div class="container text-center text-white">
-                <h1 class="fw-bold hero-title">Viví el cine como nunca antes</h1>
-                <p class="lead mb-4">Descubrí las mejores películas y horarios en tu cine favorito</p>
-                <a href="#cartelera" class="btn btn-primary btn-lg">Ver Cartelera</a>
-            </div>
-        </div>
-    </header>
+            </nav>
+            <h1 class="header-title">CINEGLOBAL</h1>
+            <p class="header-subtitle">Hace de tus fines de semana más divertidos</p>
+        </header>
 
-    <div class="main-container">
+        <!-- Filtros: migrados a grid de Bootstrap -->
+        <section class="filters" role="search" aria-label="Filtrar películas">
+            <h2 class="sr-only">Filtrar películas</h2>
+            <form action="#" method="get" class="row g-2 justify-content-center align-items-end">
+                <div class="col-auto">
+                    <label for="cine" class="form-label">Seleccionar cine</label>
+                    <select class="form-select filter-select" id="cine">
+                        <option value="">Por Cine</option>
+                        <option value="cine1">Palermo</option>
+                        <option value="cine2">Abasto</option>
+                        <option value="cine3">Lavalle</option>
+                        <option value="cine4">Puerto Madero</option>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <label for="cat" class="form-label">Seleccionar categoría</label>
+                    <select class="form-select filter-select" id="cat">
+                        <option value="">Categoría</option>
+                        <option value="cat1">Acción</option>
+                        <option value="cat2">Comedia</option>
+                        <option value="cat3">Drama</option>
+                        <option value="cat4">Terror</option>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <label for="clasificacion" class="form-label">Seleccionar clasificación</label>
+                    <select class="form-select filter-select" id="clasificacion">
+                        <option value="todas">Todas</option>
+                        <option value="atp">ATP</option>
+                        <option value="13">+13</option>
+                        <option value="16">+16</option>
+                        <option value="18">+18</option>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <button type="button" class="btn btn-primary filter-button">Aplicar filtro</button>
+                </div>
+            </form>
+        </section>
+
         <main>
+            <section>
+                <h2>Géneros disponibles</h2>
+                <ul>
+                    <li>Acción</li>
+                    <li>Comedia</li>
+                    <li>Drama</li>
+                    <li>Terror</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Cines participantes</h2>
+                <ul>
+                    <li>Cine Palermo</li>
+                    <li>Cine Abasto</li>
+                    <li>Cine Lavalle</li>
+                    <li>Cine Puerto Madero</li>
+                </ul>
+            </section>
+
             <section id="cartelera">
-                <h2 class="mb-4">Películas en cartelera</h2>
-                
-                <!-- Filtros integrados en la sección cartelera -->
-                <section class="filters mb-5"> 
-                    <form action="#" method="get" class="row g-3">
-                        <div class="col-6 col-md-3">
-                            <select class="form-select filter-select" id="cine" aria-label="Seleccionar cine">
-                                <option value="" selected="">Cine</option>
-                                <option value="cine1">Palermo</option>
-                                <option value="cine2">Abasto</option>
-                            </select>
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <select class="form-select filter-select" id="cat" aria-label="Seleccionar género">
-                                <option value="" selected="">Categoría</option>
-                                <option value="cat1">Acción</option>
-                                <option value="cat2">Comedia</option>
-                            </select>
-                        </div>
-                        <!-- Filtros faltantes detectados en RC-17 -->
-                        <div class="col-6 col-md-3">
-                            <select class="form-select filter-select" id="idioma" aria-label="Seleccionar Idioma">
-                                <option value="" selected="">Idioma</option>
-                                <option value="es">Español</option>
-                                <option value="en">Inglés</option>
-                            </select>
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <select class="form-select filter-select" id="clasificacion" aria-label="Seleccionar Clasificación">
-                                <option value="" selected="">Clasificación</option>
-                                <option value="atp">ATP</option>
-                                <option value="13">+13</option>
-                                <option value="16">+16</option>
-                            </select>
-                        </div>
-                    </form>
-                </section>
-
+                <h2>Películas en cartelera</h2>
                 <div class="row g-4 movies-list">
-                    <div class="col-12 col-md-6 col-lg-3">
-                        <article class="movie-card">
-                            <img class="movie-image img-fluid" src="assets/images/hoppers.jpeg" alt="Hoppers Operacion Castor" width="300" height="350">
-                            <h3 class="movie-title">Hoppers Operación Castor</h3>
-                            <data class="movie-date" value="2024-03-06">Fecha de estreno: 03 de Marzo de 2024</data>
-                        </article>
-                    </div>
+                    <article class="movie-card col-12 col-md-6 col-lg-4">
+                        <img class="movie-image img-fluid" src="assets/images/hoppers.jpeg" alt="Hoppers Operacion Castor" width="300" height="350">
+                        <h3 class="movie-title">Hoppers Operación Castor</h3>
+                        <data class="movie-date" value="2024-03-06">Fecha de estreno: 03 de Marzo de 2024</data>
+                        <time datetime="21:00">21:00HS</time>
+                        <a class="btn btn-primary buy-button" href="https://www.cinemark.com.ar/pelicula/hoppers-operacion-castor" target="_blank" rel="noopener noreferrer">Compra boleto aquí</a>
+                    </article>
 
-                    <div class="col-12 col-md-6 col-lg-3">
-                        <article class="movie-card">
-                            <img class="movie-image img-fluid" src="assets/images/scream-7.jpg" alt="Scream" width="300" height="350">
-                            <h3 class="movie-title">Scream 7</h3>
-                            <data class="movie-date" value="PROXIMAMENTE">Fecha de estreno: PROXIMAMENTE</data>
-                        </article>
-                    </div>
+                    <article class="movie-card col-12 col-md-6 col-lg-4">
+                        <img class="movie-image img-fluid" src="assets/images/scream-7.jpg" alt="Scream" width="300" height="350">
+                        <h3 class="movie-title">Scream 7</h3>
+                        <data class="movie-date" value="PROXIMAMENTE">Fecha de estreno: PROXIMAMENTE</data>
+                        <a class="btn btn-primary buy-button" href="https://www.cinemark.com.ar/pelicula/scream-7" target="_blank" rel="noopener noreferrer">Compra boleto aquí</a>
+                    </article>
 
-                    <div class="col-12 col-md-6 col-lg-3">
-                        <article class="movie-card">
-                            <img class="movie-image img-fluid" src="assets/images/el-agente-secreto.jpg" alt="El Agente Secreto" width="300" height="350">
-                            <h3 class="movie-title">El Agente Secreto</h3>
-                            <data class="movie-date" value="2024-02-26">Fecha de estreno: 26 de febrero de 2026</data>
-                        </article>
-                    </div>
-
-                    <div class="col-12 col-md-6 col-lg-3">
-                        <article class="movie-card">
-                            <!-- Nota: Asegúrate de que esta imagen exista en tu carpeta assets/images/ -->
-                            <img class="movie-image img-fluid" src="assets/images/mario-galaxy.jpg" alt="Super Mario Galaxy: The Movie" width="300" height="350">
-                            <h3 class="movie-title">Super Mario Galaxy: The Movie</h3>
-                            <data class="movie-date" value="2026-04-01">Fecha de estreno: 01 de Abril de 2026</data>
-                        </article>
-                    </div>
+                    <article class="movie-card col-12 col-md-6 col-lg-4">
+                        <img class="movie-image img-fluid" src="assets/images/el-agente-secreto.jpg" alt="El Agente Secreto" width="300" height="350">
+                        <h3 class="movie-title">El Agente Secreto</h3>
+                        <data class="movie-date" value="2024-02-26">Fecha de estreno: 26 de febrero de 2026</data>
+                        <time datetime="21:00">21:00HS</time>
+                        <a class="btn btn-primary buy-button" href="https://multiplex.com.ar/peliculas/el-agente-secreto/" target="_blank" rel="noopener noreferrer">Compra boleto aquí</a>
+                    </article>
                 </div>
             </section>
 
-            <section id="horarios" class="mb-2">
+            <section>
                 <h2>Horarios de Funciones</h2>
                 <div class="table-responsive">
                     <table class="table table-dark">
                         <caption>Horarios de funciones por película y cine</caption>
                         <thead>
                             <tr>
-                                <th scope="col">Película</th>
-                                <th scope="col">Cine</th>
-                                <th scope="col">Horarios</th>
+                                <th>Película</th>
+                                <th>Cine</th>
+                                <th>Horarios</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td data-label="Película">HOPPERS OPERACION CASTOR</td>
-                                <td data-label="Cine">Palermo</td>
-                                <td data-label="Horarios">21:00</td>
+                                <td>HOPPERS OPERACION CASTOR</td>
+                                <td>Palermo</td>
+                                <td>21:00</td>
                             </tr>
                             <tr>
-                                <td data-label="Película">HOPPERS OPERACION CASTOR</td>
-                                <td data-label="Cine">Abasto</td>
-                                <td data-label="Horarios">19:00, 21:30</td>
+                                <td>HOPPERS OPERACION CASTOR</td>
+                                <td>Abasto</td>
+                                <td>19:00, 21:30</td>
                             </tr>
                             <tr>
-                                <td data-label="Película">HOPPERS OPERACION CASTOR</td>
-                                <td data-label="Cine">Lavalle</td>
-                                <td data-label="Horarios">20:00</td>
+                                <td>HOPPERS OPERACION CASTOR</td>
+                                <td>Lavalle</td>
+                                <td>20:00</td>
                             </tr>
                             <tr>
-                                <td data-label="Película">HOPPERS OPERACION CASTOR</td>
-                                <td data-label="Cine">Puerto Madero</td>
-                                <td data-label="Horarios">18:00, 22:00</td>
+                                <td>HOPPERS OPERACION CASTOR</td>
+                                <td>Puerto Madero</td>
+                                <td>18:00, 22:00</td>
                             </tr>
                             <tr>
-                                <td data-label="Película">SCREAM 7</td>
-                                <td data-label="Cine">Todos</td>
-                                <td data-label="Horarios">Próximamente</td>
+                                <td>SCREAM 7</td>
+                                <td>Todos</td>
+                                <td>Próximamente</td>
                             </tr>
                             <tr>
-                                <td data-label="Película">EL AGENTE SECRETO</td>
-                                <td data-label="Cine">Palermo</td>
-                                <td data-label="Horarios">21:00</td>
+                                <td>EL AGENTE SECRETO</td>
+                                <td>Palermo</td>
+                                <td>21:00</td>
                             </tr>
                             <tr>
-                                <td data-label="Película">EL AGENTE SECRETO</td>
-                                <td data-label="Cine">Abasto</td>
-                                <td data-label="Horarios">19:30, 22:00</td>
+                                <td>EL AGENTE SECRETO</td>
+                                <td>Abasto</td>
+                                <td>19:30, 22:00</td>
                             </tr>
                             <tr>
-                                <td data-label="Película">EL AGENTE SECRETO</td>
-                                <td data-label="Cine">Lavalle</td>
-                                <td data-label="Horarios">20:30</td>
+                                <td>EL AGENTE SECRETO</td>
+                                <td>Lavalle</td>
+                                <td>20:30</td>
                             </tr>
                             <tr>
-                                <td data-label="Película">EL AGENTE SECRETO</td>
-                                <td data-label="Cine">Puerto Madero</td>
-                                <td data-label="Horarios">18:30, 21:30</td>
+                                <td>EL AGENTE SECRETO</td>
+                                <td>Puerto Madero</td>
+                                <td>18:30, 21:30</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </section>
 
-            <!-- Sección Contacto: Usamos mb-1 para que quede pegado a la siguiente -->
-            <section id="contacto" class="mb-1">
-                <div class="info-box">
-                    <h2 class="h4 fw-bold">Contacto</h2>
-                    <p class="mb-1">Consultas y soporte: <a href="mailto:contacto@cineglobal.com" class="text-decoration-none email-link">contacto@cineglobal.com</a></p>
-                    <p class="mb-0">Atención telefónica: +54 11 5555-0000</p>
-                </div>
+            <section id="contacto">
+                <h2>Contacto</h2>
+                <p>Consultas y soporte: contacto@cineglobal.com</p>
+                <p>Atención telefónica: +54 11 5555-0000</p>
             </section>
 
-            <!-- Sección Términos: mb-4 para separar del footer, pero sin espacio arriba -->
-            <section id="terminos" class="mb-4">
-                <div class="info-box">
-                    <h2 class="h4 fw-bold">Términos y condiciones</h2>
-                    <p class="mb-0">Las entradas están sujetas a disponibilidad, políticas de reprogramación y condiciones de cada complejo.</p>
-                </div>
+            <section id="terminos">
+                <h2>Términos y condiciones</h2>
+                <p>Las entradas están sujetas a disponibilidad, políticas de reprogramación y condiciones de cada complejo.</p>
             </section>
         </main>
-    </div>
 
-    <footer class="footer">
-        <div class="container text-center">
+        <footer class="footer">
             <nav aria-label="Enlaces de pie de página">
-                <ul class="footer-links d-flex justify-content-center list-unstyled gap-4">
-                    <li><a href="#" class="text-decoration-none text-dark">Inicio</a></li>
-                    <li><a href="#cartelera" class="text-decoration-none text-dark">Cartelera</a></li>
-                    <li><a href="#contacto" class="text-decoration-none text-dark">Contacto</a></li>
-                    <li><a href="#terminos" class="text-decoration-none text-dark">Términos</a></li>
+                <ul class="footer-links">
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#cartelera">Cartelera</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="#terminos">Términos</a></li>
                 </ul>
             </nav>
-            <p class="mt-3 mb-0">© 2026 CineGlobal</p>
+            <p>© 2026 CineGlobal</p>
+        </footer>
+    </div>
+
+    <!-- Modal de Promociones (Bootstrap 5) -->
+    <div class="modal fade" id="promoModal" tabindex="-1" aria-labelledby="promoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="promoModalLabel">¡Promoción CineGlobal!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>¡Disfrutá de los mejores estrenos con beneficios exclusivos para usuarios registrados!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary">Ver funciones</button>
+                </div>
+            </div>
         </div>
-    </footer>
+    </div>
 
     <!-- Bootstrap 5.3.3 JS Bundle — jsDelivr CDN -->
     <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc4s9bIOgUxi8T/jzmVD4WB0b1JxVvl4rSY/4yGiMIHm"
         crossorigin="anonymous"
     ></script>
 </body>
