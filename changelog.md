@@ -62,7 +62,6 @@
   PR: [#93](https://github.com/hmarc953/cineglobal/pull/93) - @hmarc953 (Coordinador / DevOps)
 
 ---
-### Changed
 
 ### Fixed
 - [fix/correción-de-bug-de-elementos-html-avanzados] Correcion de bug dectectado en los test
@@ -150,9 +149,6 @@
 
 - [fix/Horario-de-funciones-se-ve-mal-en-mobile] Fix - Horario de funciones se ve mal en mobile
   PR: [#73](https://github.com/hmarc953/cineglobal/pull/73) - @hmarc953 (Coordinador / DevOps)
-
-- [backport/release-actividad-obligatoria-2] Fusion a rama Develop
-  PR: [#74](https://github.com/hmarc953/cineglobal/pull/74) - @9919-Mili (Coordinador / DevOps)
 
 ---
 
