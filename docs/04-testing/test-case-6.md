@@ -93,5 +93,5 @@ Las capturas reales generadas mediante la herramienta se encuentran en el direct
 | **Desktop** | ![](capturas/tc-6/desktop.png) |
 
 ---
-## 17. Conclusión
+## 16. Conclusión
 La migración a Bootstrap 5 es exitosa y cumple con los requerimientos de responsividad en todos los dispositivos evaluados.

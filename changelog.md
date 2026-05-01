@@ -27,6 +27,9 @@
 - [fix/rc-08-spec-html-avanzados-moments] Fix - RC-08: Estructura de "Momentos" en spec-html-avanzados.md con planificación previa y preservación de evidencia técnica.
   PR: [#105](https://github.com/hmarc953/cineglobal/pull/105) - @abartomioli (Coordinador/DevOps)
 
+- [fix/rc-09-bootstrap-spec-outputs] Fix - RC-09: Inclusión de outputs técnicos (assertions, estado DOM, tool calls) en spec-componentes-bootstrap.md.
+  PR: [#106](https://github.com/hmarc953/cineglobal/pull/106) - @abartomioli (Coordinador/DevOps)
+
 ## [Release Primer Parcial] - 2026-04-22
 
 ### Added
