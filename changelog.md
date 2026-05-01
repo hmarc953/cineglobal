@@ -30,6 +30,9 @@
 - [fix/rc-09-bootstrap-spec-outputs] Fix - RC-09: Inclusión de outputs técnicos (assertions, estado DOM, tool calls) en spec-componentes-bootstrap.md.
   PR: [#106](https://github.com/hmarc953/cineglobal/pull/106) - @abartomioli (Coordinador/DevOps)
 
+- [fix/rc-10-test-case-7-evidence] Fix - RC-10: Se agregaron capturas de Playwright y estructura de hallazgos en test-case-7.md
+  PR: [#107](https://github.com/hmarc953/cineglobal/pull/107) - @abartomioli (Coordinador/DevOps)
+
 ## [Release Primer Parcial] - 2026-04-22
 
 ### Added
