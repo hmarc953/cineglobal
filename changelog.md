@@ -39,6 +39,9 @@
 - [fix/rc-12-titulo-tc10] Fix - RC-12: Se corrigió título de test-case-10.md.
   PR: [#109](https://github.com/hmarc953/cineglobal/pull/109) - @abartomioli (Coordinador/DevOps)
 
+- [fix/rc-14-correcion-changelod] Fix - RC-14: Se corrigió título changelod.md.
+  PR: [#110](https://github.com/hmarc953/cineglobal/pull/110) - @abartomioli (Coordinador/DevOps)
+
 ## [Release Primer Parcial] - 2026-04-22
 
 ### Added
