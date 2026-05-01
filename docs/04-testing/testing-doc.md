@@ -7,7 +7,7 @@
 - [Test Case 4 - Accesibilidad](test-case-4.md)[← Volver al índice de testing](testing-doc.md)
 - [Test Case 5 - Estructura HTML semantica y validacion](test-case-5.md)[← Volver al índice de testing](testing-doc.md)
 - [Test Case 7 - Navbar Bootstrap Mobile (Playwright MCP)](test-case-7.md)[← Volver al índice de testing](testing-doc.md)
-- [Test Case 8 - Modal Bootstrap Desktop + Mobile (Playwright MCP)](test-case-8.md)[← Volver al índice de testing](testing-doc.md)
+- [Test Case 8 - Modal Bootstrap Desktop + Mobile (Playwright MCP)](test-case-8.md) ✅ **PASS** [← Volver al índice de testing](testing-doc.md)
 
 ## Resumen de Issues por Momento
 
@@ -36,3 +36,13 @@
 	- [#49 - TC4 - Contraste de color insuficiente en selects, boton de filtro y botones de compra](https://github.com/hmarc953/cineglobal/issues/49)
 	- [#50 - TC4 - El formulario de filtros no esta contenido en un landmark semantico](https://github.com/hmarc953/cineglobal/issues/50)
 	- [#51 - TC5 - Section de filtros sin heading semantico - warning W3C HTML linea 20](https://github.com/hmarc953/cineglobal/issues/51)
+
+### Momento 3 (Cierre Primer Parcial)
+- Rama evaluada: `feature/dev-frontend-bootstrap-migration`
+- Estado: **Aprobado**. Correcciones de QA integradas.
+- Issues cerrados:
+    - #82 - TC7 - Contraste en Navbar toggler
+    - #83 - TC8 - Padding Modal Mobile
+- **RC-11**: Corregido (Documentación y capturas de TC-8 completadas).
+
+**Resultado Final:** ✅ **LGTM - Listo para Merge a develop**

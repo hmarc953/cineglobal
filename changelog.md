@@ -33,6 +33,9 @@
 - [fix/rc-10-test-case-7-evidence] Fix - RC-10: Se agregaron capturas de Playwright y estructura de hallazgos en test-case-7.md
   PR: [#107](https://github.com/hmarc953/cineglobal/pull/107) - @abartomioli (Coordinador/DevOps)
 
+- [fix/rc-11-test-case-8-evidence] Fix - RC-11: Se completó la documentación de test-case-8.md y se agregaron las capturas en la carpeta tc-8/.
+  PR: [#108](https://github.com/hmarc953/cineglobal/pull/108) - @abartomioli (Coordinador/DevOps)
+
 ## [Release Primer Parcial] - 2026-04-22
 
 ### Added
