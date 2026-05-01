@@ -39,6 +39,9 @@
 - [fix/rc-12-titulo-tc10] Fix - RC-12: Se corrigió título de test-case-10.md.
   PR: [#109](https://github.com/hmarc953/cineglobal/pull/109) - @abartomioli (Coordinador/DevOps)
 
+- [fix/rc-14-correcion-changelod] Fix - RC-14: Se corrigió título changelod.md.
+  PR: [#110](https://github.com/hmarc953/cineglobal/pull/110) - @abartomioli (Coordinador/DevOps)
+
 ## [Release Primer Parcial] - 2026-04-22
 
 ### Added
@@ -47,7 +50,7 @@
   PR: [#78](https://github.com/hmarc953/cineglobal/pull/78) - @hmarc953 (Coordinador / DevOps)
 
 - [feature/esp-com-bootstrap-add-component] Agregado de componentes Bootstrap (Navbar y Modal) con estilos y ajustes de integración.
-  PR: [#91](https://github.com/hmarc953/cineglobal/pull/91#issue-4310956446) - @9919-Mili (Especialista en componentes Bootstrap)
+  PR: [#91](https://github.com/hmarc953/cineglobal/pull/91) - @9919-Mili (Especialista en componentes Bootstrap)
 
 - [feature/dev-frontend-bootstrap-migration] Migración a Bootstrap 5 con grid responsive, overrides y mejoras visuales.
   PR: [#81](https://github.com/hmarc953/cineglobal/pull/81) - @abartomioli (Desarrollador Frontend/Bootstrap)
@@ -66,10 +69,10 @@
   PR: [#85](https://github.com/hmarc953/cineglobal/pull/85) - @Santi22-7 (Desarrollador de Componentes HTML Avanzados)
 
 - [fix/resolucion-issues-82] Fix - #82: servidor local sin caché para evitar desincronización entre `/` e `/index.html` en tests.
-   PR:[#90](https://github.com/hmarc953/cineglobal/pull/90#issue-4310813662) - @9919-Mili (Especialista en componentes Bootstrap)
+   PR:[#90](https://github.com/hmarc953/cineglobal/pull/90) - @9919-Mili (Especialista en componentes Bootstrap)
 
 - [fix/resolucion-issues-83] Fix - #83: caracteres acentuados se renderizan corruptos (mojibake) en la vista local.
-   PR:[#89](https://github.com/hmarc953/cineglobal/pull/89#issue-4310599849) - @9919-Mili (Especialista en componentes Bootstrap)
+   PR:[#89](https://github.com/hmarc953/cineglobal/pull/89) - @9919-Mili (Especialista en componentes Bootstrap)
 
 - [fix/trailer-equivocado] Fix - Trailer Scream 7 corregido
   PR: [#94](https://github.com/hmarc953/cineglobal/pull/94) - @hmarc953 (Coordinador / DevOps)
