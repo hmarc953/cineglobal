@@ -1,4 +1,4 @@
-# Test Case 1 — Compatibilidad Visual en Navegadores Desktop
+# Test Case 10 — Compatibilidad Visual en Navegadores Desktop
 
 ## Metadata
 | Campo | Valor |
