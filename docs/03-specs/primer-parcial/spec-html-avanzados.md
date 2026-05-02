@@ -93,3 +93,11 @@ Guardar capturas en: docs/04-testing/capturas/tc-9/momento-2/
 -  No se detectan scrolls horizontales ni overflow visual
 -  El comportamiento general del layout es consistente en todos los dispositivos
 -  La navegación se adapta correctamente sin romper estructura visual
+
+---
+
+**Aclaración de Auditoría de Componentes Avanzados (RC-19):**
+
+**Estado:** Se eliminaron las etiquetas `<details>`, `<summary>` e `<iframe>` por no ser parte del contrato de diseño inicial.
+
+**Justificación:** Se prioriza la fidelidad al mockup entregado por el Coordinador para asegurar la consistencia del producto.

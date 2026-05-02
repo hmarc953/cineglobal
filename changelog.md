@@ -54,6 +54,9 @@
 - [fix/rc-18-ajustes-bootstrap] Fix - RC-18: Sincronización con Figma, eliminación de componentes inventados (modal) e implementación de navegación real según auditoría de componentes.
   PR: [#120](https://github.com/hmarc953/cineglobal/pull/120) - @abartomioli (Coordinador/DevOps)
 
+- [fix/rc-19-correcion-spec] Fix - RC-19: Eliminación de etiquetas `<details>`, `<summary>` e `<iframe>` por no ser parte del contrato de diseño inicial, priorizando la fidelidad al mockup.
+  PR: [#121](https://github.com/hmarc953/cineglobal/pull/121) - @abartomioli (Coordinador/DevOps)
+
 ## [Release Primer Parcial] - 2026-04-22
 
 ### Added
