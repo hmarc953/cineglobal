@@ -42,6 +42,9 @@
 - [fix/rc-14-correcion-changelod] Fix - RC-14: Se corrigió título changelod.md.
   PR: [#110](https://github.com/hmarc953/cineglobal/pull/110) - @abartomioli (Coordinador/DevOps)
 
+- [fix/rc-17-alinear-con-figma] Fix - RC-17: Se arregla en base al figma el proyecto.
+  PR: [#117](https://github.com/hmarc953/cineglobal/pull/117) - @abartomioli (Coordinador/DevOps)
+
 ## [Release Primer Parcial] - 2026-04-22
 
 ### Added

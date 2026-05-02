@@ -160,9 +160,9 @@ a:focus {
    9. Compatibilidad ligera con el grid Bootstrap
    Solo ajustes menores para convivir con clases previas.
 ================================================== */
-.movies-list.row {
-  margin-left: -0.5rem;
-  margin-right: -0.5rem;
+.movies-list.row, .filters .row {
+  margin-left: -0.75rem;
+  margin-right: -0.75rem;
 }
 
 /* =============================================
@@ -222,83 +222,4 @@ a:focus {
 
 .navbar.navbar-cineglobal .navbar-toggler-icon {
   filter: invert(1) contrast(115%);
-}
-
-/* =============================================
-   MODAL (scoped al modal de promo)
-   ============================================= */
-#promoModal .modal-content {
-  background-color: var(--color-bg-content, #5a5a5a);
-  color: var(--color-text-main, #fff);
-  border: 1px solid var(--color-accent, #c20000);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-}
-
-#promoModal .modal-header,
-#promoModal .modal-footer {
-  border-color: var(--color-accent, #c20000);
-}
-
-#promoModal .modal-title {
-  color: #fff;
-  font-weight: 700;
-}
-
-#promoModal .modal-body {
-  background: var(--color-card, #333);
-  color: var(--color-text-secondary, #e0e0e0);
-}
-
-#promoModal .form-control,
-#promoModal .form-select {
-  background-color: #242424;
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.24);
-}
-
-#promoModal .form-control::placeholder {
-  color: rgba(255, 255, 255, 0.65);
-}
-
-#promoModal .form-control:focus,
-#promoModal .form-select:focus {
-  border-color: var(--color-accent, #c20000);
-  box-shadow: 0 0 0 0.2rem rgba(194, 0, 0, 0.25);
-}
-
-#promoModal .btn-danger {
-  background-color: var(--color-accent, #c20000);
-  border-color: var(--color-accent, #c20000);
-}
-
-#promoModal .btn-danger:hover,
-#promoModal .btn-danger:focus-visible {
-  background-color: var(--color-accent-hover, #9a0000);
-  border-color: var(--color-accent-hover, #9a0000);
-}
-
-#promoModal .btn-close {
-  filter: invert(1) grayscale(100%);
-}
-
-@media (max-width: 575.98px) {
-  #promoModal .modal-dialog {
-    margin: 0.75rem;
-  }
-
-  #promoModal .modal-content {
-    border-radius: 0.75rem;
-  }
-
-  #promoModal .modal-body,
-  #promoModal .modal-footer {
-    padding: 0.9rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .navbar.navbar-cineglobal .nav-link,
-  .navbar.navbar-cineglobal .btn-outline-light {
-    transition: none;
-  }
 }
