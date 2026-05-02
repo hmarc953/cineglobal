@@ -45,6 +45,9 @@
 - [fix/rc-17-alinear-con-figma] Fix - RC-17: Se arregla en base al figma el proyecto.
   PR: [#117](https://github.com/hmarc953/cineglobal/pull/117) - @abartomioli (Coordinador/DevOps)
 
+- [fix/diseño-bootstrap] Fix - Diseño bootstrap
+  PR: [#118](https://github.com/hmarc953/cineglobal/pull/118) - @abartomioli (Coordinador/DevOps)
+
 ## [Release Primer Parcial] - 2026-04-22
 
 ### Added

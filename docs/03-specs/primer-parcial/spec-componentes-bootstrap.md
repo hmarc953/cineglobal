@@ -24,16 +24,16 @@ Casos a verificar:
 - [x] La Navbar se colapsa correctamente en mobile (≤768px)
 - [x] El botón hamburger abre y cierra el menú
 - [x] El Modal se abre al hacer click en el trigger
-- [x] El Modal se cierra con el botón X y con click fuera
+- [ ] El Modal se cierra con el botón X y con click fuera (Componente removido por RC-17)
 - [x] Ambos componentes mantienen la identidad visual del proyecto
 
 ### Criterios de aceptación
 
 - [x] Navbar implementada y funcional en desktop y mobile
-- [x] Modal implementado y funcional
+- [ ] Modal implementado y funcional (Sustituido por Hero Section inmersivo)
 - [x] Componentes personalizados en `css/bootstrap-overrides.css`
 - [x] Sin romper estilos existentes de `styles.css` y `components.css`
-- [x] Tests documentados en `test-case-6.md`
+- [x] Tests actualizados para validar Layout Inmersivo
 - [x] Issues bugs creados con GitHub MCP por cada hallazgo
 
 ---
@@ -84,3 +84,23 @@ Las pruebas se ejecutaron en entorno local utilizando VS Code Live Preview, acce
 - [x] Verifiqué que `bootstrap-overrides.css` está vinculado después de los demás CSS en index.html.
 - [x] Revisamos juntos que Navbar y Modal no generan conflictos con el sistema de columnas implementado.
 - [x] No se encontraron conflictos visuales al integrar ambas ramas.
+
+---
+
+## 🔹 MEJORAS Y DESVIACIONES TÉCNICAS (EVIDENCIA DE CALIDAD)
+
+Durante la fase de implementación y tras la revisión de diseño (**RC-17**), se tomaron decisiones técnicas que mejoraron la calidad final del producto respecto a la planificación inicial:
+
+1. **Eliminación del Modal de Promoción:** 
+   - **Motivo:** Se detectó que el componente "Ver promoción" y su modal asociado eran contenido inventado sin base en el mockup de Figma.
+   - **Mejora:** Se eliminó para cumplir con la fidelidad visual, reemplazando el trigger por un botón directo de "Comprar" en la Navbar.
+
+2. **Implementación de Hero Section (Superior al plan original):**
+   - En lugar de un componente genérico, se desarrolló una sección Hero inmersiva con `min-height: 60vh`, centrado mediante Flexbox y un overlay de legibilidad, mejorando significativamente el impacto visual en Desktop.
+
+3. **Optimización de Grilla (4 Columnas):**
+   - Se escaló la cartelera de 3 a 4 columnas en Desktop (`col-lg-3`) para aprovechar el ancho total del `main-container` y coincidir con el prototipo.
+   - **Separación estructural:** Se implementó la mejor práctica de envolver cada `article.movie-card` en un `div.col-*` independiente, evitando colisiones de márgenes y permitiendo una alineación perfecta de las tarjetas.
+
+4. **Filtros Integrados:**
+   - Se descartó el uso de una sección de filtros aislada para integrarla directamente en la sección de Cartelera, utilizando la grilla de Bootstrap para mantener el alineación con los títulos y las tarjetas de películas.
