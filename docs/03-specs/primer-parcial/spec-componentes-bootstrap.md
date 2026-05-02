@@ -104,3 +104,9 @@ Durante la fase de implementación y tras la revisión de diseño (**RC-17**), s
 
 4. **Filtros Integrados:**
    - Se descartó el uso de una sección de filtros aislada para integrarla directamente en la sección de Cartelera, utilizando la grilla de Bootstrap para mantener el alineación con los títulos y las tarjetas de películas.
+
+---
+
+**Aclaración de Auditoría de Componentes (RC-18):**
+- **Componentes vigentes:** Navbar con enlaces de navegación y botón de acción principal "Comprar".
+- **Justificación:** Se eliminó el componente de modal de promoción por no formar parte del MVP definido en el Figma, priorizando la navegación directa.

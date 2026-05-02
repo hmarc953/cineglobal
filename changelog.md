@@ -51,6 +51,9 @@
 - [fix/rc-20-ajustes] Fix - RC-20: Verificación de sincronización final con Figma, implementación de Hero Section, grilla de 4 columnas y actualización de spec-devops.md.
   PR: [#119](https://github.com/hmarc953/cineglobal/pull/119) - @abartomioli (Coordinador/DevOps)
 
+- [fix/rc-18-ajustes-bootstrap] Fix - RC-18: Sincronización con Figma, eliminación de componentes inventados (modal) e implementación de navegación real según auditoría de componentes.
+  PR: [#120](https://github.com/hmarc953/cineglobal/pull/120) - @abartomioli (Coordinador/DevOps)
+
 ## [Release Primer Parcial] - 2026-04-22
 
 ### Added
