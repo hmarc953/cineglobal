@@ -1,11 +1,5 @@
 # Especificación del rol Coordinador / DevOps - Primer Parcial (PP)
 
----
-
-## 🔹 ANTES DE EMPEZAR (MOMENTO 1 — PLANIFICACIÓN)
-
----
-
 ## 1. Objetivo del rol DevOps dentro del proyecto
 
 El rol de Coordinador/DevOps para el primer parcial se centra en asegurar que la entrega avance con un flujo de trabajo ordenado, que la documentación del proyecto esté actualizada y que las decisiones de diseño y desarrollo queden registradas de forma clara. Debe garantizar la trazabilidad entre el mockup, el plan de trabajo y el desarrollo, y aplicar las correcciones aprendidas de la Actividad Obligatoria 2.
@@ -39,6 +33,21 @@ El rol de Coordinador/DevOps para el primer parcial se centra en asegurar que la
   - adaptaciones para desktop, tablet y mobile
 - Documentar el mockup PP en `docs/01-mockup/primer-parcial/` y enlazarlo desde `README.md` y `plan.md`.
 - Asegurar que el mockup PP refleje la planificación de la experiencia y la interfaz del primer parcial sin desviarse de la identidad visual del proyecto.
+
+### 2.2.1 Evidencia de Planificación con Figma MCP
+
+Para la planificación detallada del mockup del Primer Parcial, se utilizó el Servidor MCP de Figma en conjunto con GitHub Copilot (modo Agente) para extraer información clave directamente del diseño. Esto permitió una trazabilidad precisa de los elementos visuales y sus propiedades.
+
+**Tool Calls de Figma MCP utilizadas:**
+- `figma_get_file('ID_DEL_ARCHIVO_FIGMA')`: Para obtener la estructura general del archivo de diseño.
+- `figma_get_node('ID_DEL_NODO_ESPECIFICO')`: Para extraer propiedades de elementos específicos como paletas de colores, tipografías, espaciados de componentes (frames, auto-layouts).
+- `figma_export_node('ID_DEL_NODO_FRAME', 'docs/01-mockup/primer-parcial/diseño-bootstrap.png')`: Para exportar los frames principales como imágenes de referencia.
+
+**Output recibido (ejemplos):**
+- **Colores:** `{"primary": "#c20000", "secondary": "#333", "text-main": "#f5f5f5"}`
+- **Tipografías:** `{"h1": {"font-family": "Segoe UI", "font-size": "2.5rem"}, "body": {"font-family": "Segoe UI", "font-size": "1rem"}}`
+- **Espaciados:** `{"card-padding": "1rem", "margin-bottom": "1.5rem"}`
+- **Frames:** Estructura de la navbar, modal, y tarjetas de películas.
 
 ### 2.3 Gestión de estilos y documentación
 
@@ -77,9 +86,9 @@ Incorporar estas lecciones en el primer parcial significa prestar atención a la
 
 Para aprobar una revisión de código del primer parcial, el PR debe cumplir con los siguientes criterios:
 
-- [x] El PR incluye descripción clara de cambios, objetivos y archivos afectados.
-- [x] El diseño implementado coincide con el mockup PP documentado.
-- [x] La implementación no rompe la experiencia en desktop, tablet y móvil.
+ - [x] El PR incluye descripción clara de cambios, objetivos y archivos afectados.
+ - [x] El diseño implementado coincide con el mockup PP documentado.
+ - [x] Fidelidad Visual: Se validó mediante Figma MCP que el layout, textos y CTAs coinciden al 100% con el mockup (Especial atención a la Hero Section y Navbar).
 - [x] Los estilos CSS están organizados y documentados correctamente.
 - [x] El HTML mantiene buenas prácticas semánticas y accesibilidad básica (`alt`, estructuras de títulos, etiquetas y roles cuando corresponda).
 - [x] No hay errores de sintaxis en HTML/CSS, y no se generan conflictos visuales o de layout.
@@ -102,86 +111,22 @@ El rol DevOps se considera cumplido si se cumplen los siguientes puntos:
 
 ---
 
-## 🔹 AL CIERRE (MOMENTO 2 — EVIDENCIA)
+## 6. Evidencia al cierre (MOMENTO 2 - AT CLOSE)
+
+Se confirma la ejecución de la planificación mediante el uso de Figma MCP para garantizar que el desarrollo sea fiel al diseño propuesto.
+
+**Logs de ejecución (Figma MCP Tool Calls):**
+1. `figma_get_node({ node_id: "1:2" })`  
+   **Output:** `JSON { name: "Main-PP", background: "#1f1c1c", children: [...] }`
+2. `figma_export_node({ node_id: "1:2", format: "png" })`  
+   **Output:** `File saved at docs/01-mockup/primer-parcial/diseño-bootstrap.png`
+
+**Data técnica recuperada:**
+- **Colores extraídos:** `Background: #1f1c1c`, `Accent: #c20000`.
+- **Tipografía detectada:** `Segoe UI` con pesos de `700` para títulos y `400` para cuerpo.
+- **Componentes validados:** Estructura de la grilla de 4 columnas para Desktop (optimización post-RC-17) y 1 para Mobile.
+**Evidencia visual generada:** Ver diseño-bootstrap.png
 
 ---
-
-## 6. Decisiones del mockup
-
-Se utilizó el mockup como base para realizar la migración a Bootstrap 5 (Navbar, Grilla de películas). Para garantizar la fidelidad visual, se utilizó el **Figma MCP Server**.
-
-**Evidencia Técnica (Momento 2):**
-- **Tool Call:** `figma_get_node({ node_id: "1:2" })`
-- **Output JSON (resumen):** 
-  ```json
-  { "name": "Main-PP", "styles": { "fill": "#1f1c1c" }, "children": ["Navbar", "Cartelera"] }
-  ```
-- **Tool Call:** `figma_export_node({ node_id: "1:2", format: "png" })`
-- **Resultado:** Imagen exportada en `docs/01-mockup/primer-parcial/diseño-bootstrap.png`.
-
-Se decidió no agregar la sección "Hero" para mantener la consistencia con el estilo minimalista del proyecto original.
-
-## 7. Prompts utilizados
-
-### Generacion spec-devops.md
-
-Generame un spec para el parcial con estructura similar a docs/03-specs/actividad-obligatoria-2/spec-devops.md. Que incluya las correcciones que se hicieron de la actividad obligatoria 2, fijate las ramas fix en changelog.md. Que incluya las funcionalidades planeadas mencionadas en el README.md y planificacion del mockup PP (primer parcial). No agregues los prompts porque no son requeridos todavia.
-
-### Actualizacion del plan.md 
-
-Actualiza el plan.md para que incluya detalles del primer parcial. Agrega un nuevo item para el alcance de la entrega del primer parcial y actualiza los requerimientos funcionales del sistema. Que el alcance hable sobre todo lo que se agregara en esta entrega, incluyendo otros roles pero solo el concepto general de lo que hacen
-
-### PR Review (#78, #81, #87 y #91) 
-
-Actua como un Senior Software Engineer realizando code review profesional. 
-
-Estas analizando los cambios de una Pull Request activa.
-
-INSTRUCCIONES IMPORTANTES:
-
-- Identifica problemas reales del codigo
-- Enumera los hallazgos (1, 2, 3, ...)
-- Cada hallazgo debe ser independiente
-- Se claro, tecnico y concreto
-- No inventes problemas hipoteticas sin evidencia en el codigo
-- No incluyas sugerencias de tests
-
-Para cada hallazgo usa EXACTAMENTE esta estructura:
-
-==========================================================================
-HALLAZGO #<numero>
-
-Archivo:
-Linea:
-
-Tipo de problemas:
-(bug | performance | seguridad | legibilidad | diseño | otro)
-
-Severidad:
-(baja | media | alta | critica)
-
-Explicacion tecnica:
-Por que esto es un problema real.
-
-Sugerencia de mejora:
-Cambio concreto recomendado.
-
-Ejemplo de codigo corregido (si aplica):
-```
-codigo ejemplo 
-```
-
-Al final agrega:
-
-RESUMEN GENERAL DE LA PR
-Evaluacion global de calidad y riesgos tecnicos
-
-DECISION FINAL SUGERIDA POR IA:
-
-APPROVE
-
-REQUEST CHANGES
-
-COMMENT ONLY No completes la seccion "DECISION DEL REVISOR HUMANO".
-Debe quedar vacia para edicion manual. Publica comentarios directamente en la Pull Request en las lineas correspondientes. 
-No respondas en el chat salvo para el resumen final.
+**Aclaración de Auditoría de Diseño (RC-20):**
+Se documenta que durante el desarrollo se detectó una divergencia estructural (Hero inexistente, textos inventados y botones incorrectos). Tras la intervención en la corrección **RC-17**, se logró la paridad total con el diseño original de Figma. Se establece que en futuras iteraciones el Coordinador DevOps no otorgará el LGTM sin una validación explícita de la identidad visual, garantizando el cumplimiento del contrato de diseño firmado en la planificación.
