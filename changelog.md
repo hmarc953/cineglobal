@@ -54,7 +54,7 @@
 - [fix/rc-18-ajustes-bootstrap] Fix - RC-18: Sincronización con Figma, eliminación de componentes inventados (modal) e implementación de navegación real según auditoría de componentes.
   PR: [#120](https://github.com/hmarc953/cineglobal/pull/120) - @abartomioli (Coordinador/DevOps)
 
-- [fix/rc-21-ajustes-botones-cartelera] Fix - RC-21: Reubicación de los botones de compra al final de cada tarjeta de película y actualización del texto a "Compra boletos aqui" para mejorar la consistencia visual.
+- [fix/ajustes-html-y-bootstrap] Fix - Ajustes HTML y Bootstrap, los botones de compra al final de cada tarjeta de película y actualización del texto a "Compra boletos aqui" para mejorar la consistencia visual.
   PR: [#121](https://github.com/hmarc953/cineglobal/pull/121) - @abartomioli (Coordinador/DevOps)
 
 ## [Release Primer Parcial] - 2026-04-22
