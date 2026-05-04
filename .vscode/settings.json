@@ -1,0 +1,4 @@
+{
+    "mcpFigma.autoStartWebSocket": true,
+    "mcpFigma.websocketPort": 3845
+}
