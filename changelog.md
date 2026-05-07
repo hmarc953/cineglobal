@@ -8,7 +8,7 @@
   PR: [#125](https://github.com/hmarc953/cineglobal/pull/125) - @abartomioli (Coordinador/DevOps)
 
 ### Fixed Primer Parcial - 2026-04-30
-- [fix/rc-01-test-case-6-playwright] e corrigio evidencias visuales TC-6
+- [fix/rc-01-test-case-6-playwright] Se corrigieron evidencias visuales TC-6.
   PR: [#98](https://github.com/hmarc953/cineglobal/pull/98) - @abartomioli (Coordinador/DevOps)
 
 - [fix/rc-02-readme-bootstrap-tech] Fix - RC-02: Bootstrap 5.3.3 agregado a la lista de tecnologías en README.md
@@ -44,7 +44,7 @@
 - [fix/rc-12-titulo-tc10] Fix - RC-12: Se corrigió título de test-case-10.md.
   PR: [#109](https://github.com/hmarc953/cineglobal/pull/109) - @abartomioli (Coordinador/DevOps)
 
-- [fix/rc-14-correcion-changelod] Fix - RC-14: Se corrigió título changelod.md.
+- [fix/rc-14-correcion-changelog] Fix - RC-14: Se corrigió título en el archivo changelog.md.
   PR: [#110](https://github.com/hmarc953/cineglobal/pull/110) - @abartomioli (Coordinador/DevOps)
 
 - [fix/rc-17-alinear-con-figma] Fix - RC-17: Se arregla en base al figma el proyecto.
@@ -62,7 +62,7 @@
 - [fix/ajustes-html-y-bootstrap] Fix - Ajustes HTML y Bootstrap, los botones de compra al final de cada tarjeta de película y actualización del texto a "Compra boletos aqui" para mejorar la consistencia visual.
   PR: [#121](https://github.com/hmarc953/cineglobal/pull/121) - @abartomioli (Coordinador/DevOps)
 
-- [fix/imagen-faltante-y-figma-actualizado] Fix - Optimización de la Hero Section mediante el uso de clamp() para dimensiones fluidas, limitación de ancho máximo a 1100px para alineación con el contenedor principal y corrección de z-index para visibilidad del texto y actualización imagen figma diseño-bootstrap
+- [fix/imagen-faltante-y-figma-actualizado] Fix - Optimización de la Hero Section mediante el uso de clamp() para dimensiones fluidas, limitación de ancho máximo a 1100px para alineación con el contenedor principal, corrección de z-index para visibilidad del texto y actualización de la imagen figma diseño-bootstrap. (Entrada preservada para trazabilidad histórica).
   PR: [#123](https://github.com/hmarc953/cineglobal/pull/123) - @abartomioli (Coordinador/DevOps)
 
 ## [Release Primer Parcial] - 2026-04-22

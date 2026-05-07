@@ -20,7 +20,7 @@ A diferencia de una revisión manual que suele centrarse en la superficie (estil
 - **Verificación de Accesibilidad:** Auditoría automática de etiquetas ARIA y roles semánticos conforme a WCAG 2.1 Level AA, reportando hallazgos en el log de revisión (sección 5).
 
 ## 4. Criterios de Aceptación (Checklist DevOps)
-Los siguientes criterios deben validarse al finalizar la A3. Este checklist servirá como registro de cumplimiento y se marcará progresivamente conforme se completen las tareas en el repositorio:
+Los siguientes criterios deben validarse al finalizar la A3. Este checklist servirá como registro de cumplimiento operacional y se marcará progresivamente conforme se completen las tareas en el repositorio:
 
 - [ ] **GitHub Pages:** El sitio debe estar desplegado y actualizado automáticamente mediante GitHub Actions o configuración manual validada.
 - [ ] **Gestión de Releases:** Se debe haber generado un tag de versión y una "Release" formal en GitHub que resuma los cambios de A3.
@@ -36,10 +36,10 @@ Cada PR debe incluir obligatoriamente:
 
 ### 5.1 Documentación de Logs de Copilot Agent
 Para garantizar la trazabilidad y calidad técnica, los logs de revisión se manejarán bajo los siguientes lineamientos:
-- **Formato:** Formato Markdown, estructurado con un resumen de hallazgos clave y el log técnico detallado encerrado en bloques de código.
+- **Formato:** Markdown estructurado con un resumen de hallazgos clave y el log técnico detallado encerrado en bloques de código.
 - **Ubicación:** El log debe pegarse directamente en el cuerpo de la descripción del Pull Request (PR Description).
 - **Responsable de validación:** El Coordinador / DevOps será el encargado de verificar la presencia y coherencia del log antes de la aprobación final.
-- **Retención:** Los logs se preservarán de forma permanente como parte del historial de Pull Requests del repositorio en GitHub.
+- **Retención:** Los logs se preservarán como parte del historial de Pull Requests del repositorio.
 
 ---
 *Documento preparado para la fase de inicio de la Actividad Obligatoria 3.*
