@@ -13,9 +13,10 @@ CineGlobal es una aplicación web front-end que permite visualizar películas y 
 Tecnologías utilizadas:
 - HTML
 - CSS
+- Bootstrap 5.3.3 (CDN vía jsDelivr)
 
 ### Objetivo del entregable
-Esta entrega actualiza el proyecto a la segunda actividad obligatoria, incorporando estilos CSS, diseño responsive y documentación complementaria. Incluye la estructura de página con listado de películas, vista de detalle con información y horarios, y entrega de los documentos del proyecto.
+Esta entrega corresponde al Primer Parcial, integrando Bootstrap 5 mediante CDN para optimizar la responsividad y el diseño visual. Se incorporan componentes avanzados, personalización de estilos mediante overrides, y una validación de calidad mediante Testing (Playwright) y Code Reviews asistidos por IA.
 
 ### Funcionalidades implementadas
 - [x] Estructura de página con listado de películas
@@ -24,11 +25,11 @@ Esta entrega actualiza el proyecto a la segunda actividad obligatoria, incorpora
 - [x] Mockup A2 con diseño de la interfaz y documentación de proyecto en README.md, plan.md y test cases
 
 ### Funcionalidades planeadas
-- [ ] Integrar Bootstrap 5 en el proyecto usando CDN, manteniendo la identidad visual actual y asegurando compatibilidad con los estilos existentes.
-- [ ] Implementar el sistema de columnas de Bootstrap para mejorar la respuesta del diseño en dispositivos móviles y tablet.
-- [ ] Crear `css/bootstrap-overrides.css` con ajustes personalizados para mantener la identidad visual del proyecto sobre la base de Bootstrap.
-- [ ] Incorporar componentes Bootstrap avanzados como navbar, modal, carousel o accordion, y asegurar que funcionen de forma coherente con el diseño.
-- [ ] Personalizar componentes HTML avanzados y de Bootstrap para que se vean correctamente en los tres dispositivos obligatorios.
+- [x] Integrar Bootstrap 5 en el proyecto usando CDN, manteniendo la identidad visual actual y asegurando compatibilidad con los estilos existentes.
+- [x] Implementar el sistema de columnas de Bootstrap para mejorar la respuesta del diseño en dispositivos móviles y tablet.
+- [x] Crear `css/bootstrap-overrides.css` con ajustes personalizados para mantener la identidad visual del proyecto sobre la base de Bootstrap.
+- [x] Incorporar componentes Bootstrap avanzados como navbar, modal, carousel o accordion, y asegurar que funcionen de forma coherente con el diseño.
+- [x] Personalizar componentes HTML avanzados y de Bootstrap para que se vean correctamente en los tres dispositivos obligatorios.
 
 ## Documentación
 
