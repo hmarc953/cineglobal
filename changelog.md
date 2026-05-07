@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [Release Actividad Obligatoria N°3] - 2026-05-07
+
+- [feature/coord-devops-tercera-entrega] Se crea archivo de especificaciones spec-devops.md.
+  PR: [#125](https://github.com/hmarc953/cineglobal/pull/125) - @abartomioli (Coordinador/DevOps)
+
 ### Fixed Primer Parcial - 2026-04-30
 - [fix/rc-01-test-case-6-playwright] e corrigio evidencias visuales TC-6
   PR: [#98](https://github.com/hmarc953/cineglobal/pull/98) - @abartomioli (Coordinador/DevOps)
