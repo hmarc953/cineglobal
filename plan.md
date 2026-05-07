@@ -1,4 +1,4 @@
-﻿# Plan Maestro del Proyecto CineGlobal
+﻿﻿# Plan Maestro del Proyecto CineGlobal
 
 ## 1. Objetivo del proyecto
 
@@ -31,6 +31,12 @@ CineGlobal es una aplicación web front-end que permite visualizar películas y 
 - Personalización de componentes HTML y Bootstrap para una visualización correcta en los tres dispositivos obligatorios (desktop, tablet, móvil).
 - Actualización de la documentación del proyecto, incluyendo mockup del primer parcial, especificaciones DevOps y pruebas relacionadas.
 
+### 2.4 Actividad Obligatoria 3
+
+- Integración de correcciones (fixes) críticas detectadas en el Primer Parcial.
+- Ejecución de Backports para asegurar paridad técnica entre ramas de desarrollo.
+- Implementación de nuevas funcionalidades mediante flujo estricto de Pull Requests validados por IA (Copilot Agent Mode) bajo estándar WCAG 2.1 AA.
+
 ## 3. Actores o usuarios del sistema
 
 - **Usuario final**: persona que consulta películas y horarios.
@@ -55,4 +61,3 @@ CineGlobal es una aplicación web front-end que permite visualizar películas y 
 - Cargar datos desde un archivo JSON local.
 - Mejora de la vista de detalle con carteles y valoraciones.
 - Guardar favoritos en localStorage.
-
