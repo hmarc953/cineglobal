@@ -8,22 +8,7 @@ body {
   font-family: var(--font-main);
 }
 
-header,
-main,
-nav,
-footer,
-section {
-  width: 100%;
-  box-sizing: border-box;
-}
-
 header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: var(--spacing-xs);
-  padding: var(--spacing-lg) var(--spacing-lg);
 }
 
 header h1 {
@@ -35,30 +20,34 @@ header h1 {
 header p {
   color: var(--color-text-secondary);
   max-width: 720px;
+  margin: 0 auto;
 }
 
-nav {
+/*
+  Se usa .filters (y no nav) para apuntar solo al formulario de filtros.
+  La barra de navegación principal ahora está migrada a Bootstrap (.navbar)
+  y no debe heredar estos estilos responsivos.
+*/
+.filters {
   padding: 0 var(--spacing-lg) var(--spacing-lg);
 }
 
-nav form {
+.filters form {
   display: flex;
-  flex-direction: column;
-  gap: var(--spacing-sm);
   background: var(--color-card);
   padding: var(--spacing-md);
   border-radius: 12px;
 }
 
-nav label {
+.filters label {
   display: block;
   margin-bottom: 4px;
   font-weight: 600;
   color: var(--color-text-main);
 }
 
-nav select,
-nav button {
+.filters select,
+.filters button {
   width: 100%;
   max-width: 100%;
   padding: var(--spacing-sm);
@@ -68,28 +57,27 @@ nav button {
   color: var(--color-text-main);
 }
 
-nav button {
+.filters button {
   cursor: pointer;
   border: none;
   font-weight: 700;
 }
 
-nav .filter-button {
+.filters .filter-button {
   background: var(--color-accent);
 }
 
 main {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-lg);
-  padding: 0 var(--spacing-lg) var(--spacing-xl);
+  gap: 0; /* Cambia var(--spacing-lg) por 0 */
+  padding: 0 var(--spacing-lg); /* Mantén solo el padding lateral */
 }
 
 main section {
-  background: var(--color-card);
-  border-radius: 12px;
-  padding: var(--spacing-md);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.16);
+  background: transparent !important;
+  padding: 0; /* Cambia var(--spacing-lg) 0 por 0 */
+  box-shadow: none;
 }
 
 .galeria-imagenes {
@@ -100,11 +88,7 @@ main section {
 }
 
 .movies-list {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--spacing-lg);
   width: 100%;
-  justify-items: center;
 }
 
 .galeria-imagenes img {
@@ -180,7 +164,6 @@ footer {
   }
 
   .movies-list {
-    grid-template-columns: 1fr;
     width: 100%;
   }
 
@@ -248,23 +231,6 @@ footer {
     padding: var(--spacing-xl) var(--spacing-lg);
   }
 
-  nav form {
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-items: center;
-    gap: var(--spacing-md);
-  }
-
-  nav select {
-    flex: 1;
-    min-width: 120px;
-  }
-
-  nav button {
-    flex: 0 0 120px;
-  }
-
   .galeria-imagenes {
     flex-direction: row;
     flex-wrap: wrap;
@@ -295,44 +261,23 @@ footer {
 /* Desktop: 1024px en adelante */
 @media (min-width: 1024px) {
   body {
-    padding: var(--spacing-lg) 0;
   }
 
   header {
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: left;
-    align-items: center;
-    padding: var(--spacing-xl) var(--spacing-lg);
   }
 
   header h1 {
     font-size: 2.6rem;
   }
 
-  nav {
+  .filters {
     padding: 0 var(--spacing-lg) var(--spacing-lg);
-  }
-
-  nav form {
-    flex-wrap: nowrap;
-    gap: var(--spacing-md);
-  }
-
-  nav select {
-    width: auto;
-    min-width: 180px;
-  }
-
-  nav button {
-    width: auto;
-    min-width: 180px;
   }
 
   main {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 0 var(--spacing-lg) var(--spacing-xl);
+    padding: 0 var(--spacing-lg); /* Elimina el padding superior e inferior */
   }
 
   .galeria-imagenes {
@@ -346,8 +291,9 @@ footer {
   }
 
   .movies-list {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    align-items: start;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
   }
 
   .movie-card {

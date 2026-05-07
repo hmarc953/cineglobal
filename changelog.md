@@ -2,6 +2,101 @@
 
 ## [Unreleased]
 
+### Fixed Primer Parcial - 2026-04-30
+- [fix/rc-01-test-case-6-playwright] e corrigio evidencias visuales TC-6
+  PR: [#98](https://github.com/hmarc953/cineglobal/pull/98) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-02-readme-bootstrap-tech] Fix - RC-02: Bootstrap 5.3.3 agregado a la lista de tecnologías en README.md
+  PR: [#99](https://github.com/hmarc953/cineglobal/pull/99) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-03-readme-objective] Fix - RC-03: Actualización del objetivo del entregable para el Primer Parcial en README.md
+  PR: [#100](https://github.com/hmarc953/cineglobal/pull/100) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-04-readme-checkboxes] Fix - RC-04: Marcadas funcionalidades implementadas (Bootstrap, Navbar, Modal) en README.md.
+  PR: [#101](https://github.com/hmarc953/cineglobal/pull/101) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-05-spec-devops-figma-mcp] Fix - RC-05: Evidencia "AT CLOSE" con tool calls y output real de Figma MCP en spec-devops.md.
+  PR: [#102](https://github.com/hmarc953/cineglobal/pull/102) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-06-spec-devops-moments] Fix - RC-06: Explicitada estructura de "Momentos" (Antes de empezar / Al cierre) en spec-devops.md.
+  PR: [#103](https://github.com/hmarc953/cineglobal/pull/103) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-07-spec-frontend-bootstrap-mcp-evidence] Fix - RC-07: Documentación de tool calls y output de Figma MCP en spec-frontend-bootstrap.md.
+  PR: [#104](https://github.com/hmarc953/cineglobal/pull/104) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-08-spec-html-avanzados-moments] Fix - RC-08: Estructura de "Momentos" en spec-html-avanzados.md con planificación previa y preservación de evidencia técnica.
+  PR: [#105](https://github.com/hmarc953/cineglobal/pull/105) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-09-bootstrap-spec-outputs] Fix - RC-09: Inclusión de outputs técnicos (assertions, estado DOM, tool calls) en spec-componentes-bootstrap.md.
+  PR: [#106](https://github.com/hmarc953/cineglobal/pull/106) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-10-test-case-7-evidence] Fix - RC-10: Se agregaron capturas de Playwright y estructura de hallazgos en test-case-7.md
+  PR: [#107](https://github.com/hmarc953/cineglobal/pull/107) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-11-test-case-8-evidence] Fix - RC-11: Se completó la documentación de test-case-8.md y se agregaron las capturas en la carpeta tc-8/.
+  PR: [#108](https://github.com/hmarc953/cineglobal/pull/108) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-12-titulo-tc10] Fix - RC-12: Se corrigió título de test-case-10.md.
+  PR: [#109](https://github.com/hmarc953/cineglobal/pull/109) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-14-correcion-changelod] Fix - RC-14: Se corrigió título changelod.md.
+  PR: [#110](https://github.com/hmarc953/cineglobal/pull/110) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-17-alinear-con-figma] Fix - RC-17: Se arregla en base al figma el proyecto.
+  PR: [#117](https://github.com/hmarc953/cineglobal/pull/117) - @abartomioli (Coordinador/DevOps)
+
+- [fix/diseño-bootstrap] Fix - Diseño bootstrap
+  PR: [#118](https://github.com/hmarc953/cineglobal/pull/118) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-20-ajustes] Fix - RC-20: Verificación de sincronización final con Figma, implementación de Hero Section, grilla de 4 columnas y actualización de spec-devops.md.
+  PR: [#119](https://github.com/hmarc953/cineglobal/pull/119) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-18-ajustes-bootstrap] Fix - RC-18: Sincronización con Figma, eliminación de componentes inventados (modal) e implementación de navegación real según auditoría de componentes.
+  PR: [#120](https://github.com/hmarc953/cineglobal/pull/120) - @abartomioli (Coordinador/DevOps)
+
+- [fix/ajustes-html-y-bootstrap] Fix - Ajustes HTML y Bootstrap, los botones de compra al final de cada tarjeta de película y actualización del texto a "Compra boletos aqui" para mejorar la consistencia visual.
+  PR: [#121](https://github.com/hmarc953/cineglobal/pull/121) - @abartomioli (Coordinador/DevOps)
+
+- [fix/imagen-faltante-y-figma-actualizado] Fix - Optimización de la Hero Section mediante el uso de clamp() para dimensiones fluidas, limitación de ancho máximo a 1100px para alineación con el contenedor principal y corrección de z-index para visibilidad del texto y actualización imagen figma diseño-bootstrap
+  PR: [#123](https://github.com/hmarc953/cineglobal/pull/123) - @abartomioli (Coordinador/DevOps)
+
+## [Release Primer Parcial] - 2026-04-22
+
+### Added
+
+- [feature/devops-planificacion-y-mockup] Feature/devops planificacion y mockup  
+  PR: [#78](https://github.com/hmarc953/cineglobal/pull/78) - @hmarc953 (Coordinador / DevOps)
+
+- [feature/esp-com-bootstrap-add-component] Agregado de componentes Bootstrap (Navbar y Modal) con estilos y ajustes de integración.
+  PR: [#91](https://github.com/hmarc953/cineglobal/pull/91) - @9919-Mili (Especialista en componentes Bootstrap)
+
+- [feature/dev-frontend-bootstrap-migration] Migración a Bootstrap 5 con grid responsive, overrides y mejoras visuales.
+  PR: [#81](https://github.com/hmarc953/cineglobal/pull/81) - @abartomioli (Desarrollador Frontend/Bootstrap)
+
+- [feature/dev-comp-html-avanzados-add-component] Conecto dos componetes avanzados de html
+  PR: [#87](https://github.com/hmarc953/cineglobal/pull/87) - @Santi22-7 (Desarrollador de Componentes HTML Avanzados)
+
+- [feature/cierre-specs] Feature - Cierre de specs
+  PR: [#93](https://github.com/hmarc953/cineglobal/pull/93) - @hmarc953 (Coordinador / DevOps)
+
+---
+
+### Fixed
+- [fix/correción-de-bug-de-elementos-html-avanzados] Correcion de bug dectectado en los test
+  PR: [#85](https://github.com/hmarc953/cineglobal/pull/85) - @Santi22-7 (Desarrollador de Componentes HTML Avanzados)
+
+- [fix/resolucion-issues-82] Fix - #82: servidor local sin caché para evitar desincronización entre `/` e `/index.html` en tests.
+   PR:[#90](https://github.com/hmarc953/cineglobal/pull/90) - @9919-Mili (Especialista en componentes Bootstrap)
+
+- [fix/resolucion-issues-83] Fix - #83: caracteres acentuados se renderizan corruptos (mojibake) en la vista local.
+   PR:[#89](https://github.com/hmarc953/cineglobal/pull/89) - @9919-Mili (Especialista en componentes Bootstrap)
+
+- [fix/trailer-equivocado] Fix - Trailer Scream 7 corregido
+  PR: [#94](https://github.com/hmarc953/cineglobal/pull/94) - @hmarc953 (Coordinador / DevOps)
+
+- [fix/entrada-changelog-mal-ubicada] Fix - Changelog corregido
+  PR: [#96](https://github.com/hmarc953/cineglobal/pull/96) - @hmarc953 (Coordinador / DevOps)
+
 ## [Release Actividad Obligatoria N°2] - 2026-04-12
 
 ### Added
@@ -16,7 +111,7 @@
   PR: [#54](https://github.com/hmarc953/cineglobal/pull/54) - @hmarc953 (Documentador / QA Tester)
 
 - [feature/coord-dev-ops-repo-update-readme-md] Creacion de code review en PR, actualizacion de Plan.md y Readme.md
-  PR: [#56](https://github.com/hmarc953/cineglobal/pull/56) - @9919-Mili (Cordinador / DevOps)
+  PR: [#56](https://github.com/hmarc953/cineglobal/pull/56) - @9919-Mili (Coordinador / DevOps)
 
 ### Changed
 
@@ -26,52 +121,52 @@
   PR: [#55](https://github.com/hmarc953/cineglobal/pull/55) - @Santi22-7 (Especialista en Responsive Design)
 
 - [fix/RC1-imagen-A2-ruta-incorrecta] Fix - RC1: ruta de la imagen A2 corregida + links en readme agregados
-  PR: [#58](https://github.com/hmarc953/cineglobal/pull/58) - @hmarc953 (Coodinador / DevOps)
+  PR: [#58](https://github.com/hmarc953/cineglobal/pull/58) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/RC2-README-desactualizado] Fix - RC2: README.md actualizado
-  PR: [#59](https://github.com/hmarc953/cineglobal/pull/59) - @hmarc953 (Coodinador / DevOps)
+  PR: [#59](https://github.com/hmarc953/cineglobal/pull/59) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/RC3-spec-devops-ausente] Fix - RC3: spec devops ausente
-  PR: [#60](https://github.com/hmarc953/cineglobal/pull/60) - @hmarc953 (Coodinador / DevOps)
+  PR: [#60](https://github.com/hmarc953/cineglobal/pull/60) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/RC4-changelog-entradas-faltantes] Fix - RC4: Correccion del changelog
-  PR: [#61](https://github.com/hmarc953/cineglobal/pull/61) - @hmarc953 (Coodinador / DevOps)
+  PR: [#61](https://github.com/hmarc953/cineglobal/pull/61) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/RC7-Playwright-GitHub-MCP-no-configurados] Fix - RC7: .vscode/mcp.json agregado
-  PR: [#62](https://github.com/hmarc953/cineglobal/pull/62) - @hmarc953 (Coodinador / DevOps)
+  PR: [#62](https://github.com/hmarc953/cineglobal/pull/62) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/RC8-trazabilidad-mal-asignado] Fix - RC8: Correccion de la trazabilidad
-  PR: [#63](https://github.com/hmarc953/cineglobal/pull/63) - @hmarc953 (Coodinador / DevOps)
+  PR: [#63](https://github.com/hmarc953/cineglobal/pull/63) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/RC9-checkboxes-sin-marcar] Fix - RC9: Checkboxes marcados
-  PR: [#64](https://github.com/hmarc953/cineglobal/pull/64) - @hmarc953 (Coodinador / DevOps)
+  PR: [#64](https://github.com/hmarc953/cineglobal/pull/64) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/RC2-parentesis-doble] Fix - RC2: Parentesis doble corregido
-  PR: [#65](https://github.com/hmarc953/cineglobal/pull/65) - @hmarc953 (Coodinador / DevOps)
+  PR: [#65](https://github.com/hmarc953/cineglobal/pull/65) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/RC10-responsive-mobile-filtros] Fix - RC10: Filtros mobile (≤767px) agregados
-  PR: [#66](https://github.com/hmarc953/cineglobal/pull/66) - @hmarc953 (Coodinador / DevOps)
+  PR: [#66](https://github.com/hmarc953/cineglobal/pull/66) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/RC11-boton-compra-boleto] Fix - RC11: boton compra boleto actualizado
-  PR: [#67](https://github.com/hmarc953/cineglobal/pull/67) - @hmarc953 (Coodinador / DevOps)
+  PR: [#67](https://github.com/hmarc953/cineglobal/pull/67) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/RC12-cards-desbordan] Fix - RC12: Cards arreglados 
-  PR: [#68](https://github.com/hmarc953/cineglobal/pull/68) - @hmarc953 (Coodinador / DevOps)
+  PR: [#68](https://github.com/hmarc953/cineglobal/pull/68) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/RC13-cards-con-alturas-distintas] Fix - RC13: cards con mismas alturas 
-  PR: [#69](https://github.com/hmarc953/cineglobal/pull/69) - @hmarc953 (Coodinador / DevOps)
+  PR: [#69](https://github.com/hmarc953/cineglobal/pull/69) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/RC14-optimizacion-horarios-de-funcion] Fix - RC14: Horarios de funcion optimizadas
-  PR: [#70](https://github.com/hmarc953/cineglobal/pull/70) - @hmarc953 (Coodinador / DevOps)
+  PR: [#70](https://github.com/hmarc953/cineglobal/pull/70) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/RC15-cards-con-alturas-distintas] Fix - RC15: Imagenes enteras + Card no desborda
-  PR: [#71](https://github.com/hmarc953/cineglobal/pull/71) - @hmarc953 (Coodinador / DevOps)
+  PR: [#71](https://github.com/hmarc953/cineglobal/pull/71) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/Horarios-no-centrados] Fix - Horarios centrados
-  PR: [#72](https://github.com/hmarc953/cineglobal/pull/72) - @hmarc953 (Coodinador / DevOps)
+  PR: [#72](https://github.com/hmarc953/cineglobal/pull/72) - @hmarc953 (Coordinador / DevOps)
 
 - [fix/Horario-de-funciones-se-ve-mal-en-mobile] Fix - Horario de funciones se ve mal en mobile
-  PR: [#73](https://github.com/hmarc953/cineglobal/pull/73) - @hmarc953 (Coodinador / DevOps)
+  PR: [#73](https://github.com/hmarc953/cineglobal/pull/73) - @hmarc953 (Coordinador / DevOps)
 
 ---
 
@@ -138,4 +233,3 @@
   PR: [#31](https://github.com/hmarc953/cineglobal/pull/31) - @9919-Mili (Coordinador / DevOps)
 
   
-

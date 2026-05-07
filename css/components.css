@@ -1,4 +1,81 @@
 /* =========================
+   DETAILS / SUMMARY
+   ========================= */
+/*
+  Se utiliza una clase dedicada (.details-summary) para estilizar el <summary>
+  y evitar depender directamente de clases de Bootstrap en el contenedor principal.
+
+  CORRECCIÓN IMPORTANTE:
+  - Se removieron clases de Bootstrap aplicadas directamente al <summary> (por ejemplo .btn, .btn-link)
+  - Estas clases pueden interferir con el comportamiento nativo de expand/collapse
+
+  Sin embargo:
+  - Se permite el uso de clases de Bootstrap (por ejemplo .h4, .mb-0)
+    dentro del contenido del <summary> para mantener consistencia visual
+
+  Además:
+  - Se eliminan los estilos por defecto del navegador
+  - Se ajusta el contenido interno para que herede tipografía y tamaños correctamente
+
+  Decisiones de diseño:
+  - cursor: pointer → indica interactividad
+  - width: 100% → ocupa todo el ancho disponible
+  - padding/background → consistente con el sistema visual del proyecto
+  - transition → mejora la experiencia de usuario
+  - display: block → asegura comportamiento correcto del summary
+*/
+details {
+  width: 100%;
+}
+
+/* Clase dedicada para el summary, respetando Bootstrap */
+.details-summary {
+  cursor: pointer;
+  user-select: none;
+  display: block;
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+
+  background: #c20000; /* color-button-bg */
+  border: none;
+  border-radius: 4px;
+
+  color: var(--color-text-main);
+  font-family: var(--font-main);
+  font-size: 1rem;
+  text-align: left;
+
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.details-summary:hover {
+  background: #a30000; /* color-button-hover */
+}
+
+.details-summary:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+/* Eliminar estilos por defecto del navegador */
+.details-summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Respetar estilos de Bootstrap dentro del summary */
+.details-summary h2,
+.details-summary .h4 {
+  display: inline;
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/* Contenido expandido de details */
+details > *:not(.details-summary) {
+  margin-top: var(--spacing-md);
+}
+
+/* =========================
    TABLA CARTELERA
    ========================= */
 /*
@@ -20,6 +97,7 @@
   background: var(--color-bg-content, #5a5a5a);
   color: var(--color-text-main, #fff);
 }
+
 .tabla-cartelera tbody tr:nth-child(even) {
   background: #444;
 }
@@ -54,35 +132,6 @@
 */
 .header {
   text-align: center;
-  margin-bottom: var(--spacing-md);
-}
-
-/*
-  El título principal funciona como punto de entrada visual de la pantalla.
-
-  Decisiones:
-  - tamaño grande para reforzar jerarquía principal
-  - peso bold para mayor protagonismo
-  - leve letter-spacing para mejorar presencia visual
-*/
-.header-title {
-  font-size: var(--font-size-title);
-  font-weight: bold;
-  letter-spacing: 1px;
-  margin-bottom: var(--spacing-xs);
-}
-
-/*
-  El subtítulo complementa al título con un tono visual más liviano.
-
-  Decisiones:
-  - color secundario para diferenciarlo del título principal
-  - margen inferior para generar aire antes del sector de filtros
-*/
-.header-subtitle {
-  font-size: var(--font-size-subtitle);
-  color: var(--color-text-secondary);
-  margin-bottom: var(--spacing-md);
 }
 
 /* =========================
@@ -98,11 +147,16 @@
   - gap para separar elementos sin depender de márgenes individuales
 */
 .filters {
-  display: flex;
-  gap: var(--spacing-sm);
-  justify-content: center;
-  margin-bottom: var(--spacing-lg);
+  width: 100%; /* Que ocupe todo el ancho disponible */
+  max-width: none; /* Eliminamos el límite de 900px */
+  margin: 0 0 var(--spacing-lg) 0; /* Quitamos el centrado automático */
+  padding: 0; /* Eliminamos paddings extra que puedan desplazarlo */
   flex-wrap: wrap;
+}
+
+.filters .row {
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .sr-only {
@@ -130,6 +184,15 @@
   - transición suave para mejorar la percepción de interacción
 */
 
+.filter-select {
+  width: 100% !important;
+  max-width: none;
+}
+
+.filter-button {
+  min-width: 120px;
+}
+
 .filter-select,
 .filter-button {
   background: var(--color-button-bg);
@@ -139,7 +202,6 @@
   padding: var(--spacing-xs) var(--spacing-md);
   font-size: 1rem;
   cursor: pointer;
-  min-width: 120px;
   transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -167,7 +229,7 @@
    ========================= */
 .footer-links {
   list-style: none;
-  display: flex;
+  /* display: flex; */ /* Migrado a Bootstrap Grid. */
   gap: 1.5em;
   justify-content: center;
   padding: 0;
@@ -198,9 +260,6 @@
   - width 100% para aprovechar el ancho disponible del contenedor padre
 */
 .movies-list {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--spacing-lg);
   width: 100%;
   margin-bottom: var(--spacing-lg);
 }
@@ -222,16 +281,15 @@
   background: var(--color-card);
   border-radius: 8px;
   width: 100%;
-  max-width: 320px;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  padding: 18px 12px 24px 12px;
+  align-items: center;
+  padding: 12px;
   box-sizing: border-box;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   margin: 0 auto;
-  height: 100%;
 }
 
 /*
@@ -247,9 +305,10 @@
 .movie-image {
   display: block;
   width: 100%;
+  max-width: 100%;
   height: auto;
-  aspect-ratio: 300 / 350;
-  object-fit: contain;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
   border-radius: 4px;
   margin-bottom: var(--spacing-md);
   background: var(--color-card-img);
@@ -273,6 +332,7 @@
   margin-bottom: var(--spacing-xs);
   color: var(--color-text-main);
   text-align: center;
+  min-height: 3.2em; /* Reserva espacio para hasta 2 líneas de título */
 }
 
 /*
@@ -300,6 +360,7 @@
   font-size: 0.95rem;
   color: var(--color-text-muted);
   margin-bottom: var(--spacing-md);
+  margin-top: auto;
   text-align: center;
   min-height: 2.6em;
 }
@@ -349,4 +410,43 @@
 .buy-button:hover {
   background: var(--color-accent-hover);
   transform: translateY(-1px);
+}
+
+/* =========================
+   INFO BOX (Contacto, Términos)
+   ========================= */
+.info-box {
+    background-color: #2a2a2a; 
+    border-radius: 12px;       
+    padding: var(--spacing-lg); 
+    /* Reducimos el margen para que las cajas estén más juntas */
+    margin-bottom: var(--spacing-sm); 
+    border: 1px solid rgba(255, 255, 255, 0.05); 
+}
+
+/* Forzar que el email y cualquier link dentro de la info-box sea blanco */
+.info-box a {
+    color: var(--color-text-main) !important; /* Asegura el color blanco */
+    text-decoration: none;
+}
+
+.info-box a:hover {
+    text-decoration: underline;
+    color: var(--color-text-secondary) !important;
+}
+
+.info-box a.email-link {
+    color: #ffffff !important; /* Blanco puro como la fuente principal */
+    text-decoration: none;
+}
+
+.info-box h2 {
+    color: var(--color-text-main);
+    margin-bottom: var(--spacing-sm);
+}
+
+.info-box p {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
 }
