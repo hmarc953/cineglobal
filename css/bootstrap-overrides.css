@@ -172,6 +172,8 @@ a:focus {
   background: linear-gradient(90deg, #111 0%, #2f2f2f 45%, #5a0000 100%);
   border-bottom: 2px solid var(--color-accent, #c20000);
   padding: 0.5rem 1rem;
+  position: relative;
+  z-index: 2;
 }
 
 @supports ((-webkit-backdrop-filter: blur(4px)) or (backdrop-filter: blur(4px))) {

@@ -160,16 +160,19 @@ ul:not(.footer-links) {
    HERO SECTION
    ========================= */
 .hero-section {
-  background: url('../assets/images/cinema-hall-bg.jpg') no-repeat center center; /* Path corrected to match assets structure */
+  background: url('../assets/images/cinema-hall-bg.jpg') no-repeat center center;
   background-size: cover;
   color: white;
+  max-width: 1100px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 60vh;
+  min-height: clamp(320px, 45vh, 520px);
   text-align: center;
   position: relative;
+  z-index: 2;
 }
 
 .hero-section::before {
@@ -181,7 +184,7 @@ ul:not(.footer-links) {
 }
 
 .hero-title {
-  font-size: 4.5rem;
+  font-size: clamp(2rem, 4vw, 4rem);
   margin-bottom: var(--spacing-sm);
 }
 
