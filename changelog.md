@@ -58,7 +58,7 @@
   PR: [#121](https://github.com/hmarc953/cineglobal/pull/121) - @abartomioli (Coordinador/DevOps)
 
 - [fix/imagen-faltante-y-figma-actualizado] Fix - Optimización de la Hero Section mediante el uso de clamp() para dimensiones fluidas, limitación de ancho máximo a 1100px para alineación con el contenedor principal y corrección de z-index para visibilidad del texto y actualización imagen figma diseño-bootstrap
-  PR: [#122](https://github.com/hmarc953/cineglobal/pull/122) - @abartomioli (Coordinador/DevOps)
+  PR: [#123](https://github.com/hmarc953/cineglobal/pull/123) - @abartomioli (Coordinador/DevOps)
 
 ## [Release Primer Parcial] - 2026-04-22
 
