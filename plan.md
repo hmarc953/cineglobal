@@ -56,6 +56,11 @@ CineGlobal es una aplicación web front-end que permite visualizar películas y 
 - **RF-03**: El sistema utiliza Bootstrap 5 para mejorar la responsividad y el diseño visual, manteniendo la identidad del proyecto.
 - **RF-04**: Los componentes de la interfaz (navbar, modales, carruseles) funcionan correctamente en desktop, tablet y móvil.
 - **RF-05**: El usuario puede interactuar con elementos avanzados como filtros, navegación expandida y vistas modales para una mejor experiencia.
+- **RF-06**: El sistema permite iniciar sesión de forma simulada validando usuario y contraseña.
+- **RF-07**: El sistema permite simular la compra de entradas seleccionando película, función y cantidad.
+- **RF-08**: El sistema permite filtrar películas por género, cine o franja horaria.
+- **RF-09**: El sistema permite consultar soporte.
+- **RF-10**: El sistema incorpora pruebas automatizadas con Jasmine para validar los flujos principales.
 
 ## 5. Reglas o supuestos del sistema
 
