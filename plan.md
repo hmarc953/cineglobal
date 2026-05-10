@@ -35,7 +35,14 @@ CineGlobal es una aplicación web front-end que permite visualizar películas y 
 
 - Integración de correcciones (fixes) críticas detectadas en el Primer Parcial.
 - Ejecución de Backports para asegurar paridad técnica entre ramas de desarrollo.
-- Implementación de nuevas funcionalidades mediante flujo estricto de Pull Requests validados por IA (Copilot Agent Mode) bajo estándar WCAG 2.1 AA.
+- Implementación de la lógica de negocio de CineGlobal en JavaScript puro,
+  sin manipulación del DOM.
+- Definición de los nuevos flujos.
+- Creación de un menú interactivo mediante prompt() que permita al usuario
+  navegar entre los 4 flujos principales del sistema.
+- Creación de diagramas de actividades en PlantUML que modelen cada flujo
+  antes de la implementación.
+- Testeo de las ramas
 
 ## 3. Actores o usuarios del sistema
 

@@ -62,7 +62,7 @@
 - [fix/ajustes-html-y-bootstrap] Fix - Ajustes HTML y Bootstrap, los botones de compra al final de cada tarjeta de película y actualización del texto a "Compra boletos aqui" para mejorar la consistencia visual.
   PR: [#121](https://github.com/hmarc953/cineglobal/pull/121) - @abartomioli (Coordinador/DevOps)
 
-- [fix/imagen-faltante-y-figma-actualizado] Fix - Optimización de la Hero Section mediante el uso de clamp() para dimensiones fluidas, limitación de ancho máximo a 1100px para alineación con el contenedor principal, corrección de z-index para visibilidad del texto y actualización de la imagen figma diseño-bootstrap. (Entrada preservada para trazabilidad histórica).
+- [fix/imagen-faltante-y-figma-actualizado] Fix - Optimización de la Hero Section mediante el uso de clamp() para dimensiones fluidas, corrección de z-index y actualización de la imagen figma diseño-bootstrap. (Entrada preservada para trazabilidad histórica).
   PR: [#123](https://github.com/hmarc953/cineglobal/pull/123) - @abartomioli (Coordinador/DevOps)
 
 ## [Release Primer Parcial] - 2026-04-22
