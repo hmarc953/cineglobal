@@ -7,6 +7,9 @@
 - [feature/coord-devops-tercera-entrega] Se crea archivo de especificaciones spec-devops.md.
   PR: [#125](https://github.com/hmarc953/cineglobal/pull/125) - @abartomioli (Coordinador/DevOps)
 
+- [feature/estructura-carpetas-y-readme] Se modifica plan.md, estructura carpetas y readme.
+  PR: [#136](https://github.com/hmarc953/cineglobal/pull/136) - @abartomioli (Coordinador/DevOps)
+
 ### Fixed Primer Parcial - 2026-04-30
 - [fix/rc-01-test-case-6-playwright] Se corrigieron evidencias visuales TC-6.
   PR: [#98](https://github.com/hmarc953/cineglobal/pull/98) - @abartomioli (Coordinador/DevOps)
