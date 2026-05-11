@@ -450,3 +450,138 @@ details > *:not(.details-summary) {
     font-size: 0.95rem;
     line-height: 1.5;
 }
+
+/* =========================
+   CONTACTO CTA
+   ========================= */
+.contacto-box {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.contacto-titulo {
+  color: var(--color-text-main);
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: var(--spacing-md);
+}
+
+.contacto-texto {
+  color: var(--color-text-main);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.info-box .contacto-link {
+  color: #ff4d57 !important;
+  font-weight: 700;
+  text-decoration: underline;
+  margin-left: 0.5rem;
+}
+
+.info-box .contacto-link:hover,
+.info-box .contacto-link:focus {
+  color: #ff6b73 !important;
+}
+
+/* =========================
+   MODAL COMPRA
+   ========================= */
+.compra-modal .modal-body {
+  padding: 1rem 2rem 2.25rem;
+}
+
+.compra-pelicula {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.compra-titulo-pelicula {
+  color: var(--color-text-main);
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.compra-poster {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 0;
+  object-fit: cover;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+}
+
+.compra-form {
+  padding-top: 0.5rem;
+}
+
+.compra-label {
+  display: block;
+  color: var(--color-text-main);
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.compra-select {
+  min-height: 68px;
+  font-size: 1rem;
+  border-radius: 0.75rem !important;
+}
+
+.compra-submit-btn {
+  padding: 0.9rem 1.5rem;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  min-width: 290px;
+}
+
+/* =========================
+   MODAL PAGO
+   ========================= */
+.pago-modal .modal-body {
+  padding: 1rem 2.5rem 2.25rem;
+}
+
+.pago-form {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.pago-form .modal-title {
+  color: var(--color-text-main);
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.pago-input {
+  min-height: 64px;
+  font-size: 1rem;
+  border-radius: 0 !important;
+}
+
+.pago-submit-btn {
+  min-width: 190px;
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* =========================
+   CONFIRMACIÓN COMPRA
+   ========================= */
+.cineglobal-confirm-text {
+  color: var(--color-text-main);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.cineglobal-confirm-btn {
+  min-width: 140px;
+  padding: 0.65rem 1.25rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+}

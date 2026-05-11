@@ -225,3 +225,139 @@ a:focus {
 .navbar.navbar-cineglobal .navbar-toggler-icon {
   filter: invert(1) contrast(115%);
 }
+
+.navbar.navbar-cineglobal .navbar-nav {
+  gap: 0.25rem;
+}
+
+.navbar.navbar-cineglobal .nav-login-btn {
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* =========================
+   MODAL LOGIN
+   ========================= */
+.cineglobal-modal {
+  background: linear-gradient(180deg, #2f2f2f 0%, #262626 100%);
+  color: var(--color-text-main);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.25rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.cineglobal-modal .modal-header {
+  padding: 1.5rem 1.5rem 1rem;
+  position: relative;
+}
+
+.cineglobal-modal .modal-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.cineglobal-modal .modal-body {
+  padding: 1rem 2.25rem 2rem;
+}
+
+.cineglobal-input {
+  background-color: #555 !important;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 0 !important;
+  min-height: 4rem;
+  font-size: 1rem;
+}
+
+.cineglobal-input::placeholder {
+  color: #cfcfcf;
+}
+
+.cineglobal-input:focus {
+  background-color: #555 !important;
+  color: #fff !important;
+  border-color: var(--color-accent) !important;
+  box-shadow: 0 0 0 0.2rem rgba(194, 0, 0, 0.2) !important;
+}
+
+.cineglobal-modal-btn {
+  min-width: 250px;
+  padding: 0.85rem 1.5rem;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.cineglobal-divider {
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.55);
+  margin: 1.75rem 0 1rem;
+}
+
+.cineglobal-modal-text {
+  color: #fff;
+  font-size: 1rem;
+}
+
+.cineglobal-register-link {
+  color: #ff4d6d !important;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.cineglobal-register-link:hover,
+.cineglobal-register-link:focus {
+  color: #ff6b86 !important;
+  text-decoration: underline;
+}
+
+.cineglobal-modal .modal-close-custom {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  opacity: 0.75;
+  z-index: 1056;
+  pointer-events: auto;
+}
+
+.cineglobal-modal .modal-header {
+  position: relative;
+  z-index: 1055;
+}
+
+.cineglobal-modal .modal-close-custom:hover {
+  opacity: 1;
+}
+
+#modalRegistro .cineglobal-input {
+  min-height: 3.6rem;
+}
+
+#modalRegistro .cineglobal-modal-btn {
+  min-width: 260px;
+}
+
+.cineglobal-textarea {
+  min-height: 240px;
+  resize: none;
+  padding-top: 1rem;
+}
+
+.cineglobal-confirm-text {
+  color: var(--color-text-main);
+  font-size: 1rem;
+  line-height: 1.5;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cineglobal-confirm-btn {
+  min-width: 140px;
+  padding: 0.65rem 1.25rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+}
