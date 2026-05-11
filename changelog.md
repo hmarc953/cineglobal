@@ -7,7 +7,7 @@
 - [feature/coord-devops-tercera-entrega] Se crea archivo de especificaciones spec-devops.md.
   PR: [#125](https://github.com/hmarc953/cineglobal/pull/125) - @abartomioli (Coordinador/DevOps)
 
-- [feature/estructura-carpetas-y-readme] Se modifica plan.md, estrcutura carpetas y readme.
+- [feature/estructura-carpetas-y-readme] Se modifica plan.md, estructura carpetas y readme.
   PR: [#136](https://github.com/hmarc953/cineglobal/pull/136) - @abartomioli (Coordinador/DevOps)
 
 ### Fixed Primer Parcial - 2026-04-30

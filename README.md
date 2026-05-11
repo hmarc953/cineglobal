@@ -26,14 +26,16 @@ flujos principales del sistema accesibles a través de un menú interactivo con
 prompt(), con testing automatizado usando Jasmine y diagramas de actividades 
 en PlantUML que modelan cada flujo antes de su implementación.
 
-### Funcionalidades implementadas
+### Funcionalidades del Proyecto (Histórico)
+
+#### Completadas en entregas previas (A1, A2, PP)
 - [x] Estructura de página con listado de películas
 - [x] Vista de detalle de película con información básica y horarios de funciones
 - [x] Estilos CSS aplicados para mejorar la apariencia visual y soporte responsive
 - [x] Integración de Bootstrap 5 con componentes avanzados (navbar, modal, carousel)
 - [x] Diseño responsive validado en desktop, tablet y móvil
 
-### Funcionalidades de esta entrega (A3)
+#### En desarrollo para esta entrega (A3)
 - [ ] Menú de navegación interactivo mediante `prompt()` con acceso a los 4 flujos
 - [ ] Flujo 1 - Inicio de sesión: valida credenciales del usuario (nombre de 
       usuario y contraseña) simulando el acceso al sistema
