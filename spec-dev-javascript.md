@@ -104,3 +104,54 @@ Este flujo corresponde a la funcionalidad más compleja del proyecto, ya que agr
 - El prototipo puede usar datos mock presentes en `index.html` y estructuras de películas estáticas.
 - El diseño de Figma se utiliza como referencia visual para los estados de navegación y las opciones del menú.
 - El objetivo principal es que la aplicación tenga una base JavaScript testeable con Jasmine y una interacción simple basada en `prompt()`.
+
+## 6. Prompt y código generado
+
+### 6.1 Prompt utilizado
+Para generar esta especificación se utilizó el siguiente prompt como contexto de trabajo:
+
+> Hola necesito que me cree un archivo llamado "spec-dev-javascript.md" y tenga como contexto esto: index.html, plan.md y este link: https://www.figma.com/proto/Xk7vwqJNdLzY66x0859tXS/Cineglobal?node-id=1-2&p=f&t=uBPoXwkkepZQlUlm-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1. Los flujos serán:
+> - Iniciar sesión
+> - Comprar entrada
+> - Filtros
+> - Consultar soporte
+> y el archivo tendrá dentro esto: Descripción de los 4 flujos a implementar y la estructura del menú principal con prompt().
+> ● Decisiones de arquitectura: cómo se separa la lógica de negocio de la interacción con el usuario (prompt/alert) para facilitar el testing con Jasmine. Qué funciones serán puras y cuáles serán expuestas globalmente.
+> ● Criterios de aceptación en formato checklist:
+> ○ 4 flujos completos con validación de entrada.
+> ○ Funciones con nombres descriptivos, parámetros y valores de retorno explícitos.
+> ○ Lógica separada de UI: las funciones de negocio no llaman a prompt() ni alert() directamente.
+> ○ Funciones expuestas para testing (no encapsuladas en IIFE).
+> Fragmento del código generado por Copilot para al menos uno de los flujos y los ajustes manuales realizados para mejorar la testabilidad.
+> ● Decisiones finales sobre la estructura del código y cómo facilita el trabajo del Tester.
+
+### 6.2 Fragmento de código generado
+Un ejemplo de código generado para el flujo de compra de entradas podría incluir:
+
+```js
+function comprarEntrada(peliculaId, cineId, horarioId, cantidad) {
+  const pelicula = obtenerPeliculaPorId(peliculaId);
+  const funcionDisponible = verificarFuncionDisponible(pelicula, cineId, horarioId);
+  if (!funcionDisponible) {
+    return { success: false, error: 'Función no disponible' };
+  }
+  const total = calcularTotalCompra(pelicula.precio, cantidad);
+  return { success: true, total, pelicula, cineId, horarioId, cantidad };
+}
+```
+
+### 6.3 Ajustes manuales para mejorar testabilidad
+Para mejorar la testabilidad se hicieron los siguientes ajustes manuales:
+
+- Separar la lógica de negocio de la UI, de modo que `comprarEntrada()` no use `prompt()` ni `alert()`.
+- Hacer que las funciones retornen objetos claros con `success`, `error` y datos estructurados para validar fácilmente en pruebas.
+- Exponer funciones clave al ámbito global, evitando IIFE y permitiendo la ejecución directa desde Jasmine.
+- Crear funciones auxiliares puras como `validarEntradaNumerica()` y `verificarFuncionDisponible()` para aislar la lógica de validación.
+
+### 6.4 Decisiones finales sobre estructura y tester
+La estructura de código recomendada para facilitar el trabajo del tester es:
+
+- `menuPrincipal()` y funciones UI como `solicitarCredenciales()` actúan como fachada de interacción.
+- Las funciones de negocio (`comprarEntrada()`, `filtrarPeliculas()`, `validarUsuario()`, `crearConsultaSoporte()`) se mantienen puras y con parámetros explícitos.
+- Las funciones expuestas globalmente permiten que el tester escriba casos de Jasmine sin depender de la ejecución completa de la interfaz.
+- El menú basado en `prompt()` se mantiene como mecanismo de interacción, pero el flujo de datos se valida y retorna desde funciones independientes, facilitando mocks y stubs.
