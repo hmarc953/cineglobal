@@ -1,0 +1,51 @@
+@startuml
+title Flujo 3 - Contacto con soporte mediante formulario
+
+|#E6E6E6|Usuario|
+start
+
+:Ingresa a la sección de contacto;
+
+repeat
+  :Ingresa email;
+  :Ingresa titulo de consulta;
+  :Ingresa descripcion del problema;
+
+  |#D9F2FF|Formulario de Contacto|
+  :Recibe datos del formulario;
+  :Valida campos obligatorios;
+
+  if (¿Todos los campos estan completos?) then (No)
+    :Informa que faltan campos obligatorios;
+
+  else (Si)
+    |Formulario de Contacto|
+    :Valida formato de email;
+
+    if (¿El email tiene formato valido?) then (No)
+      :Informa que el email no es valido;
+
+    else (Si)
+      |#DDF5DD|Soporte|
+       :Recibe la consulta;
+       :Registra la consulta;
+       :Genera ticket de seguimiento;
+
+       |Usuario|
+       :Visualiza confirmacion de envio;
+       :Recibe numero de ticket;
+      break
+      
+    endif
+  endif
+
+  |Usuario|
+  :Visualiza mensaje de error;
+  
+repeat while (¿Desea reintentar el envio?) is (Si) -[#blue,dashed]->
+
+|Usuario|
+:Retorna al menu principal;
+
+stop
+@enduml
