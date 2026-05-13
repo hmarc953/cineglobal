@@ -115,17 +115,17 @@ Esta estructura permitirá que cada diagrama refleje no solo las acciones del us
 
 ### 3. Criterios de aceptación
 
-- [ ] Se identificaron claramente los 4 flujos principales del proyecto.
-- [ ] Cada diagrama representará un flujo distinto y coherente con el dominio de CineGlobal.
-- [ ] Cada diagrama incluirá inicio (`start`) y fin (`stop`).
-- [ ] Cada diagrama incluirá actividades expresadas con sintaxis correcta de PlantUML.
-- [ ] Cada diagrama incluirá decisiones condicionales con estructuras `if / then / else`.
-- [ ] Cada diagrama incluirá ciclos o repeticiones cuando el flujo lo requiera.
-- [ ] Se utilizarán swimlanes `Usuario` y `Sistema` para separar responsabilidades.
-- [ ] Los flujos modelados serán coherentes con la implementación planificada en `plan.md`, con el `index.html` actualizado y con el mockup del proyecto.
-- [ ] Cada diagrama se exportará en formato `.puml` y `.png`.
-- [ ] Se creará el archivo `diagramas-doc.md` con índice, descripción de cada flujo, enlaces a los archivos editables e imágenes embebidas.
-- [ ] Los diagramas servirán como base para que el Desarrollador JavaScript implemente la lógica del sistema en la siguiente etapa.
+- [x] Se identificaron claramente los 4 flujos principales del proyecto.
+- [x] Cada diagrama representará un flujo distinto y coherente con el dominio de CineGlobal.
+- [x] Cada diagrama incluirá inicio (`start`) y fin (`stop`).
+- [x] Cada diagrama incluirá actividades expresadas con sintaxis correcta de PlantUML.
+- [x] Cada diagrama incluirá decisiones condicionales con estructuras `if / then / else`.
+- [x] Cada diagrama incluirá ciclos o repeticiones cuando el flujo lo requiera.
+- [x] Se utilizarán swimlanes adecuados para separar responsabilidades entre el usuario y los módulos funcionales involucrados en cada flujo.
+- [x] Los flujos modelados serán coherentes con la implementación planificada en `plan.md`, con el `index.html` actualizado y con el mockup del proyecto.
+- [x] Cada diagrama se exportará en formato `.puml` y `.png`.
+- [x] Se creará el archivo `diagramas-doc.md` con índice, descripción de cada flujo, enlaces a los archivos editables e imágenes embebidas.
+- [x] Los diagramas servirán como base para que el Desarrollador JavaScript implemente la lógica del sistema en la siguiente etapa.
 
 ## AT CLOSE
 
@@ -368,3 +368,5 @@ Luego de los cambios manuales, el flujo 1 quedó modelado como un proceso más c
 7. El usuario decide si desea realizar otra búsqueda.  
 
 De esta manera, el diagrama final refleja mejor la lógica real del proyecto y sirve como una base más consistente para la futura implementación en JavaScript.
+
+Además, la versión final del flujo 1 se ajustó para reflejar con mayor fidelidad la implementación visual del proyecto, especialmente el uso de filtros mediante dropdowns en lugar de entradas libres. Esto permitió alinear el diagrama con el mockup actualizado y con el `index.html` del proyecto.
