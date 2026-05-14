@@ -251,6 +251,7 @@ a:focus {
 .cineglobal-modal .modal-header {
   padding: 1.5rem 1.5rem 1rem;
   position: relative;
+  z-index: 1055;
 }
 
 .cineglobal-modal .modal-title {
@@ -321,11 +322,6 @@ a:focus {
   opacity: 0.75;
   z-index: 1056;
   pointer-events: auto;
-}
-
-.cineglobal-modal .modal-header {
-  position: relative;
-  z-index: 1055;
 }
 
 .cineglobal-modal .modal-close-custom:hover {

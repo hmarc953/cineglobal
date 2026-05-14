@@ -570,14 +570,6 @@ details > *:not(.details-summary) {
   font-weight: 600;
 }
 
-/* =========================
-   CONFIRMACIÓN COMPRA
-   ========================= */
-.cineglobal-confirm-text {
-  color: var(--color-text-main);
-  font-size: 1rem;
-  line-height: 1.5;
-}
 
 .cineglobal-confirm-btn {
   min-width: 140px;

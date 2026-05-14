@@ -11,7 +11,7 @@
   PR: [#136](https://github.com/hmarc953/cineglobal/pull/136) - @abartomioli (Coordinador/DevOps)
 
 - [feature/arq-diagramas-actividades] [Arquitecto] Actualiza mockup, HTML/CSS y diagramas de actividades
-  PR: [#140](https://github.com/hmarc953/cineglobal/pull/140) - @hmarc953 ()
+  PR: [#140](https://github.com/hmarc953/cineglobal/pull/140) - @hmarc953 (Arquitecto de Diagramas de Actividades)
 
 ### Fixed Primer Parcial - 2026-04-30
 - [fix/rc-01-test-case-6-playwright] Se corrigieron evidencias visuales TC-6.
