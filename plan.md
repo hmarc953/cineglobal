@@ -1,4 +1,4 @@
-﻿# Plan Maestro del Proyecto CineGlobal
+﻿﻿﻿﻿# Plan Maestro del Proyecto CineGlobal
 
 ## 1. Objetivo del proyecto
 
@@ -31,6 +31,19 @@ CineGlobal es una aplicación web front-end que permite visualizar películas y 
 - Personalización de componentes HTML y Bootstrap para una visualización correcta en los tres dispositivos obligatorios (desktop, tablet, móvil).
 - Actualización de la documentación del proyecto, incluyendo mockup del primer parcial, especificaciones DevOps y pruebas relacionadas.
 
+### 2.4 Actividad Obligatoria 3
+
+- Integración de correcciones (fixes) críticas detectadas en el Primer Parcial.
+- Ejecución de Backports para asegurar paridad técnica entre ramas de desarrollo.
+- Implementación de la lógica de negocio de CineGlobal en JavaScript puro,
+  sin manipulación del DOM.
+- Definición de los nuevos flujos.
+- Creación de un menú interactivo mediante prompt() que permita al usuario
+  navegar entre los 4 flujos principales del sistema.
+- Creación de diagramas de actividades en PlantUML que modelen cada flujo
+  antes de la implementación.
+- Testeo de las ramas
+
 ## 3. Actores o usuarios del sistema
 
 - **Usuario final**: persona que consulta películas y horarios.
@@ -38,11 +51,24 @@ CineGlobal es una aplicación web front-end que permite visualizar películas y 
 
 ## 4. Requerimientos funcionales del sistema
 
+### Funcionalidad Visual y Navegación (Completados)
 - **RF-01**: Mostrar lista de películas con su título, género y sinopsis breve.
 - **RF-02**: El usuario puede navegar entre la lista de películas y la vista de detalle mediante enlaces o botones.
 - **RF-03**: El sistema utiliza Bootstrap 5 para mejorar la responsividad y el diseño visual, manteniendo la identidad del proyecto.
 - **RF-04**: Los componentes de la interfaz (navbar, modales, carruseles) funcionan correctamente en desktop, tablet y móvil.
 - **RF-05**: El usuario puede interactuar con elementos avanzados como filtros, navegación expandida y vistas modales para una mejor experiencia.
+
+### Funcionalidad de Lógica de Negocio (A3)
+- **RF-06**: El sistema permite iniciar sesión de forma simulada validando usuario y contraseña.
+- **RF-07**: El sistema permite simular la compra de entradas seleccionando película, función y cantidad.
+- **RF-08**: El sistema permite filtrar películas por género, cine o franja horaria.
+- **RF-09**: El sistema permite consultar soporte.
+
+## 4b. Requerimientos No-Funcionales del Sistema
+
+- **NFR-01**: Testing automatizado con Jasmine (>80% cobertura de funciones)
+- **NFR-02**: Diagramas de actividades previos a implementación
+- **NFR-03**: Code reviews asistidos por Copilot Agent
 
 ## 5. Reglas o supuestos del sistema
 
@@ -55,4 +81,3 @@ CineGlobal es una aplicación web front-end que permite visualizar películas y 
 - Cargar datos desde un archivo JSON local.
 - Mejora de la vista de detalle con carteles y valoraciones.
 - Guardar favoritos en localStorage.
-

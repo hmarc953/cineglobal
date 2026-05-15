@@ -42,6 +42,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#contacto">Contacto</a>
                         </li>
+                        <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                            <a href="#" class="btn btn-primary nav-login-btn" data-bs-toggle="modal" data-bs-target="#modalLogin">Iniciar sesión</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -63,7 +66,7 @@
                 
                 <!-- Filtros integrados en la sección cartelera -->
                 <section class="filters mb-5"> 
-                    <form action="#" method="get" class="row g-3">
+                    <form action="#" method="get" class="row gx-3">
                         <div class="col-6 col-md-3">
                             <select class="form-select filter-select" id="cine" aria-label="Seleccionar cine">
                                 <option value="" selected="">Cine</option>
@@ -103,7 +106,9 @@
                             <img class="movie-image img-fluid" src="assets/images/hoppers.jpeg" alt="Hoppers Operacion Castor" width="300" height="350">
                             <h3 class="movie-title">Hoppers Operación Castor</h3>
                             <data class="movie-date" value="2024-03-06">Fecha de estreno: 03 de Marzo de 2024</data>
-                            <a href="#" class="btn btn-primary buy-button">Compra boletos aqui</a>
+                            <a href="#" class="btn btn-primary buy-button" data-bs-toggle="modal" data-bs-target="#modalCompraHoppers">
+                                Compra boletos aqui
+                            </a>
                         </article>
                     </div>
 
@@ -221,10 +226,12 @@
 
             <!-- Sección Contacto: Usamos mb-1 para que quede pegado a la siguiente -->
             <section id="contacto" class="mb-1">
-                <div class="info-box">
+                <div class="info-box contacto-box">
                     <h2 class="h4 fw-bold">Contacto</h2>
-                    <p class="mb-1">Consultas y soporte: <a href="mailto:contacto@cineglobal.com" class="text-decoration-none email-link">contacto@cineglobal.com</a></p>
-                    <p class="mb-0">Atención telefónica: +54 11 5555-0000</p>
+                    <p class="contacto-texto mb-0">
+                        ¿Tenes una consulta?
+                        <a href="#" class="contacto-link" data-bs-toggle="modal" data-bs-target="#modalConsulta">Comunicate con nosotros aca</a>
+                    </p>
                 </div>
             </section>
 
@@ -251,6 +258,331 @@
             <p class="mt-3 mb-0">© 2026 CineGlobal</p>
         </div>
     </footer>
+
+    <!-- Modal Iniciar Sesión -->
+    <div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="modalLoginLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content cineglobal-modal">
+                <div class="modal-header border-0">
+                    <h2 class="modal-title w-100 text-center" id="modalLoginLabel">Iniciar sesión</h2>
+                    <button type="button" class="btn-close btn-close-white modal-close-custom" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body pt-0">
+                    <form>
+                        <div class="mb-4">
+                            <input type="email" class="form-control cineglobal-input" id="loginEmail" placeholder="Correo electronico" aria-label="Correo electrónico">
+                        </div>
+
+                        <div class="mb-4">
+                            <input type="password" class="form-control cineglobal-input" id="loginPassword" placeholder="Contraseña" aria-label="Contraseña">
+                        </div>
+                    
+                        <div class="text-center mb-4">
+                            <button type="button" class="btn btn-primary cineglobal-modal-btn" data-bs-target="#modalConfirmLogin" data-bs-toggle="modal" data-bs-dismiss="modal">
+                                Iniciar Sesion
+                            </button>
+                        </div>
+
+                        <hr class="cineglobal-divider">
+
+                        <p class="text-center mb-0 cineglobal-modal-text">
+                            Si no tenes cuenta
+                            <a href="#" class="cineglobal-register-link" data-bs-toggle="modal" data-bs-target="#modalRegistro" data-bs-dismiss="modal">registrate acá</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Registro -->
+    <div class="modal fade" id="modalRegistro" tabindex="-1" aria-labelledby="modalRegistroLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content cineglobal-modal">
+                <div class="modal-header border-0">
+                    <h2 class="modal-title w-100 text-center" id="modalRegistroLabel">Registrarme</h2>
+                    <button type="button" class="btn-close btn-close-white modal-close-custom" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body pt-0">
+                    <form>
+                        <div class="mb-3">
+                            <input type="email" class="form-control cineglobal-input" id="registroEmail" placeholder="Correo electronico" aria-label="Correo electrónico">
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="password" class="form-control cineglobal-input" id="registroPassword" placeholder="Contraseña" aria-label="Contraseña">
+                        </div>
+
+                        <div class="mb-4">
+                            <input type="password" class="form-control cineglobal-input" id="registroPasswordConfirm" placeholder="Repetir contraseña" aria-label="Repetir contraseña">
+                        </div>
+
+                        <div class="text-center mb-4">
+                            <button type="button" class="btn btn-primary cineglobal-modal-btn" data-bs-target="#modalConfirmRegistro" data-bs-toggle="modal" data-bs-dismiss="modal">
+                                Registrarme
+                            </button>
+                        </div>
+
+                        <hr class="cineglobal-divider">
+
+                        <p class="text-center mb-0 cineglobal-modal-text">
+                            ¿Ya tenes cuenta?
+                            <a href="#" class="cineglobal-register-link" data-bs-toggle="modal" data-bs-target="#modalLogin" data-bs-dismiss="modal">Iniciá sesión acá</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Compra Hoppers -->
+    <div class="modal fade" id="modalCompraHoppers" tabindex="-1" aria-labelledby="modalCompraHoppersLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content cineglobal-modal compra-modal">
+                <div class="modal-header border-0 pb-0">
+                    <button type="button" class="btn-close btn-close-white modal-close-custom" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+
+                <div class="modal-body pt-0">
+                    <div class="container-fluid">
+                        <div class="row g-4 align-items-start">
+                            <div class="col-12 col-lg-4">
+                                <div class="compra-pelicula">
+                                    <h2 class="compra-titulo-pelicula mb-4" id="modalCompraHoppersLabel">Hoppers Operación Castor</h2>
+                                    <img
+                                        src="assets/images/hoppers.jpeg"
+                                        alt="Poster de Hoppers Operación Castor"
+                                        class="img-fluid compra-poster"
+                                        width="300"
+                                        height="450"
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-lg-8">
+                                <form class="compra-form">
+                                    <div class="mb-4">
+                                        <label for="compraCineHoppers" class="form-label compra-label">Cines</label>
+                                        <select class="form-select filter-select compra-select" id="compraCineHoppers" aria-label="Seleccionar cine">
+                                            <option selected>Cine</option>
+                                            <option>Palermo</option>
+                                            <option>Abasto</option>
+                                            <option>Lavalle</option>
+                                            <option>Puerto Madero</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label for="compraIdiomaHoppers" class="form-label compra-label">Idiomas</label>
+                                        <select class="form-select filter-select compra-select" id="compraIdiomaHoppers" aria-label="Seleccionar idioma">
+                                            <option selected>Idioma</option>
+                                            <option>Español</option>
+                                            <option>Inglés</option>
+                                            <option>Subtitulada</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label for="compraHorarioHoppers" class="form-label compra-label">Horarios</label>
+                                        <select class="form-select filter-select compra-select" id="compraHorarioHoppers" aria-label="Seleccionar horario">
+                                            <option selected>Horario</option>
+                                            <option>18:00</option>
+                                            <option>19:00</option>
+                                            <option>20:00</option>
+                                            <option>21:00</option>
+                                            <option>21:30</option>
+                                            <option>22:00</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-5">
+                                        <label for="compraAsientosHoppers" class="form-label compra-label">Asientos</label>
+                                        <select class="form-select filter-select compra-select" id="compraAsientosHoppers" aria-label="Seleccionar cantidad de asientos">
+                                            <option selected>Asientos</option>
+                                            <option>1 asiento</option>
+                                            <option>2 asientos</option>
+                                            <option>3 asientos</option>
+                                            <option>4 asientos</option>
+                                            <option>5 asientos</option>
+                                            <option>6 asientos</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="text-start">
+                                        <button
+                                            type="button"
+                                            class="btn btn-primary compra-submit-btn"
+                                            data-bs-target="#modalPagoHoppers"
+                                            data-bs-toggle="modal"
+                                            data-bs-dismiss="modal"
+                                        >
+                                            Comprar entradas
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Pago Hoppers -->
+    <div class="modal fade" id="modalPagoHoppers" tabindex="-1" aria-labelledby="modalPagoHoppersLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content cineglobal-modal pago-modal">
+                <div class="modal-header border-0 pb-0">
+                    <button type="button" class="btn-close btn-close-white modal-close-custom" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+
+                <div class="modal-body pt-0">
+                    <form class="pago-form">
+                        <h2 class="modal-title text-center mb-5" id="modalPagoHoppersLabel">Datos de la tarjeta</h2>
+
+                        <div class="mb-4">
+                            <input type="text" class="form-control cineglobal-input pago-input" id="pagoTitularHoppers" placeholder="Nombre del titular" aria-label="Nombre del titular">
+                        </div>
+
+                        <div class="mb-4">
+                            <input type="text" class="form-control cineglobal-input pago-input" id="pagoTarjetaHoppers" placeholder="Numero de la tarjeta" aria-label="Número de la tarjeta">
+                        </div>
+
+                        <div class="row g-3 mb-4">
+                            <div class="col-8">
+                                <input type="text" class="form-control cineglobal-input pago-input" id="pagoVencimientoHoppers" placeholder="Fecha de vencimiento" aria-label="Fecha de vencimiento">
+                            </div>
+                            <div class="col-4">
+                                <input type="text" class="form-control cineglobal-input pago-input" id="pagoCvvHoppers" placeholder="CVV" aria-label="CVV">
+                            </div>
+                        </div>
+
+                        <div class="mb-5">
+                            <input type="email" class="form-control cineglobal-input pago-input" id="pagoEmailHoppers" placeholder="Correo electronico" aria-label="Correo electrónico">
+                        </div>
+
+                        <div class="text-center">
+                            <button
+                                type="button"
+                                class="btn btn-primary pago-submit-btn"
+                                data-bs-target="#modalConfirmCompra"
+                                data-bs-toggle="modal"
+                                data-bs-dismiss="modal"
+                            >
+                                Comprar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Consulta -->
+    <div class="modal fade" id="modalConsulta" tabindex="-1" aria-labelledby="modalConsultaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content cineglobal-modal">
+                <div class="modal-header border-0">
+                    <h2 class="modal-title w-100 text-center" id="modalConsultaLabel">Consulta</h2>
+                    <button type="button" class="btn-close btn-close-white modal-close-custom" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body pt-0">
+                    <form>
+                        <div class="mb-4">
+                            <input type="email" class="form-control cineglobal-input" id="consultaEmail" placeholder="Correo electronico" aria-label="Correo electrónico">
+                        </div>
+
+                        <div class="mb-4">
+                            <input type="text" class="form-control cineglobal-input" id="consultaTitulo" placeholder="Titulo" aria-label="Título de la consulta">
+                        </div>
+
+                        <div class="mb-4">
+                            <textarea class="form-control cineglobal-input cineglobal-textarea" id="consultaDescripcion" rows="7" placeholder="Descripcion" aria-label="Descripción de la consulta"></textarea>
+                        </div>
+
+                        <div class="text-center mb-4">
+                            <button type="button" class="btn btn-primary cineglobal-modal-btn" data-bs-target="#modalConfirmConsulta" data-bs-toggle="modal" data-bs-dismiss="modal">
+                                Enviar
+                            </button>
+                        </div>
+
+                        <hr class="cineglobal-divider">
+
+                        <p class="text-center mb-0 cineglobal-modal-text">
+                            Atencion al cliente: 0800-345-2463
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Confirmación Login -->
+    <div class="modal fade" id="modalConfirmLogin" tabindex="-1" aria-labelledby="modalConfirmLoginLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content cineglobal-modal">
+                <div class="modal-header border-0 pb-0">
+                    <button type="button" class="btn-close btn-close-white modal-close-custom" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body text-center pt-2 pb-4">
+                    <h2 class="modal-title mb-3" id="modalConfirmLoginLabel">¡Listo!</h2>
+                    <p class="cineglobal-confirm-text mb-4">Inicio de sesion realizado correctamente.</p>
+                    <button type="button" class="btn btn-primary cineglobal-confirm-btn" data-bs-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Confirmación Registro -->
+    <div class="modal fade" id="modalConfirmRegistro" tabindex="-1" aria-labelledby="modalConfirmRegistroLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content cineglobal-modal">
+                <div class="modal-header border-0 pb-0">
+                    <button type="button" class="btn-close btn-close-white modal-close-custom" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body text-center pt-2 pb-4">
+                    <h2 class="modal-title mb-3" id="modalConfirmRegistroLabel">¡Listo!</h2>
+                    <p class="cineglobal-confirm-text mb-4">Tu cuenta fue creada correctamente.</p>
+                    <button type="button" class="btn btn-primary cineglobal-confirm-btn" data-bs-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Confirmación Compra -->
+    <div class="modal fade" id="modalConfirmCompra" tabindex="-1" aria-labelledby="modalConfirmCompraLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content cineglobal-modal">
+                <div class="modal-header border-0 pb-0">
+                    <button type="button" class="btn-close btn-close-white modal-close-custom" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body text-center pt-2 pb-4">
+                    <h2 class="modal-title mb-3" id="modalConfirmCompraLabel">¡Compra realizada con éxito!</h2>
+                    <p class="cineglobal-confirm-text mb-4">
+                        Tus entradas fueron reservadas correctamente.<br>
+                        En breve recibirás la confirmación en tu correo electrónico.
+                    </p>
+                    <button type="button" class="btn btn-primary cineglobal-confirm-btn" data-bs-dismiss="modal">Volver al inicio</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Confirmación Consulta -->
+    <div class="modal fade" id="modalConfirmConsulta" tabindex="-1" aria-labelledby="modalConfirmConsultaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content cineglobal-modal">
+                <div class="modal-header border-0 pb-0">
+                    <button type="button" class="btn-close btn-close-white modal-close-custom" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body text-center pt-2 pb-4">
+                    <h2 class="modal-title mb-3" id="modalConfirmConsultaLabel">¡Listo!</h2>
+                    <p class="cineglobal-confirm-text mb-4">Tu consulta fue enviada correctamente.</p>
+                    <button type="button" class="btn btn-primary cineglobal-confirm-btn" data-bs-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Bootstrap 5.3.3 JS Bundle — jsDelivr CDN -->
     <script
