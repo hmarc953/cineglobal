@@ -6,6 +6,8 @@ const MOVIES = [
   { title: 'Toy Story', genre: 'Animacion', year: 1995, rating: 8.3 },
 ];
 
+
+// Mock data para testing. En producción, usar base de datos segura.
 const USER_DATABASE = [
   { name: 'Admin', email: 'admin@cineglobal.com', password: 'Admin123' },
 ];
@@ -84,6 +86,7 @@ function searchMovies(filters, catalog) {
   });
 }
 
+// Unificado con searchMovies para evitar duplicación
 function filtrarPeliculas(filters) {
   return searchMovies(filters, MOVIES);
 }
@@ -119,11 +122,11 @@ function solicitarCriteriosFiltro() {
 }
 
 function solicitarConsultaSoporte() {
-  const email = prompt('Ingrese su email:');
+  const email = promptUntilValid('Ingrese su email:', (value) => isValidEmail(value), 'Debe ingresar un email valido.');
   if (email === null) return null;
-  const title = prompt('Ingrese el titulo de su consulta:');
+  const title = promptUntilValid('Ingrese el titulo de su consulta:', (value) => value.trim().length > 0, 'El titulo no puede estar vacio.');
   if (title === null) return null;
-  const description = prompt('Ingrese la descripcion del problema:');
+  const description = promptUntilValid('Ingrese la descripcion del problema:', (value) => value.trim().length > 0, 'La descripcion no puede estar vacia.');
   if (description === null) return null;
   return { email, title, description };
 }
@@ -135,7 +138,7 @@ function solicitarCompra() {
   const seatsString = prompt('Ingrese la cantidad de entradas que desea comprar:');
   if (seatsString === null) return null;
   const seats = validarEntradaNumerica(seatsString);
-  if (!selectedMovie || seats === null) {
+  if (!selectedMovie || seats === null || !isPositiveInteger(seats)) {
     return null;
   }
   const cardNumber = prompt('Ingrese el numero de tarjeta (16 digitos):');
@@ -149,17 +152,20 @@ function solicitarCompra() {
   return { selectedMovie, seats, paymentData: { cardNumber, expiry, cvc, holder } };
 }
 
-function comprarEntrada(movie, seats, paymentData) {
+function comprarEntrada(seats, paymentData, generatorFn) {
   const paymentValidation = validatePaymentDetails(paymentData);
   if (!paymentValidation.valid) {
     return { success: false, error: paymentValidation.message };
   }
 
-  const totalPrice = calculateTotalPrice(movie, seats);
-  const confirmationCode = `CONF-${Math.floor(Math.random() * 900000 + 100000)}`;
+  if (!isPositiveInteger(seats)) {
+    return { success: false, error: 'La cantidad de entradas debe ser un número positivo.' };
+  }
+
+  const totalPrice = calculateTotalPrice(seats);
+  const confirmationCode = generateConfirmationCode(generatorFn);
   return {
     success: true,
-    movie: movie.title,
     seats,
     totalPrice,
     confirmationCode,
@@ -365,11 +371,11 @@ function consultarSoporteUI() {
   let continueContact = true;
 
   while (continueContact) {
-    const email = prompt('Ingrese su email:');
+    const email = promptUntilValid('Ingrese su email:', (value) => isValidEmail(value), 'Debe ingresar un email valido.');
     if (email === null) return;
-    const title = prompt('Ingrese el titulo de su consulta:');
+    const title = promptUntilValid('Ingrese el titulo de su consulta:', (value) => value.trim().length > 0, 'El titulo no puede estar vacio.');
     if (title === null) return;
-    const description = prompt('Ingrese la descripcion del problema:');
+    const description = promptUntilValid('Ingrese la descripcion del problema:', (value) => value.trim().length > 0, 'La descripcion no puede estar vacia.');
     if (description === null) return;
 
     const validation = validateContactForm({ email, title, description });
@@ -438,8 +444,9 @@ function validatePaymentDetails(payment) {
   return { valid: true, message: 'Datos de pago validos.' };
 }
 
-function calculateTotalPrice(movie, seats) {
+function calculateTotalPrice(seats, generatorFn) {
   const basePrice = 120.0;
+  // generatorFn es un parámetro inyectable para testing, permite generar códigos de confirmación predecibles
   return basePrice * seats;
 }
 
@@ -454,9 +461,9 @@ function comprarEntradaUI() {
 
     const seatsString = prompt('Ingrese la cantidad de entradas que desea comprar:');
     if (seatsString === null) return;
-    const seats = parseInt(seatsString, 10);
+    const seats = validarEntradaNumerica(seatsString);
 
-    if (!selectedMovie || !isPositiveInteger(seats)) {
+    if (!selectedMovie || seats === null || !isPositiveInteger(seats)) {
       alert('La seleccion de funcion no es valida o la cantidad de entradas no es correcta.');
       const retry = prompt('Desea reintentar la seleccion? (Si/No)');
       continuePurchase = retry !== null && parseYesNoResponse(retry);
@@ -484,8 +491,9 @@ function comprarEntradaUI() {
         continue;
       }
 
-      const totalPrice = calculateTotalPrice(selectedMovie, seats);
-      const confirmationCode = `CONF-${Math.floor(Math.random() * 900000 + 100000)}`;
+      const totalPrice = calculateTotalPrice(seats);
+      // Para testabilidad, usar generador de códigos inyectable en lugar de Math.random()
+      const confirmationCode = generateConfirmationCode();
       alert(`Compra exitosa. Pelicula: ${selectedMovie.title}\nEntradas: ${seats}\nTotal: $${totalPrice.toFixed(2)}\nNumero de confirmacion: ${confirmationCode}`);
       console.log('Compra registrada:', {
         movie: selectedMovie.title,
@@ -500,7 +508,15 @@ function comprarEntradaUI() {
 }
 
 function displayMainMenu() {
-  return prompt('Menu principal:\n1) Busqueda de peliculas con filtros\n2) Inicio de sesion / Registro de usuario\n3) Contacto con soporte\n4) Compra de entradas\n5) Salir\n\nIngrese el numero de la opcion que desea ejecutar:');
+  return prompt('Menu principal:\n1) Inicio de sesion / Registro de usuario\n2) Compra de entradas\n3) Busqueda de peliculas con filtros\n4) Contacto con soporte\n5) Salir\n\nIngrese el numero de la opcion que desea ejecutar:');
+}
+
+function generateConfirmationCode(generatorFn) {
+  // Inyectable para testing. Por defecto, usa Math.random().
+  if (generatorFn && typeof generatorFn === 'function') {
+    return generatorFn();
+  }
+  return `CONF-${Math.floor(Math.random() * 900000 + 100000)}`;
 }
 
 function runMainMenu() {
@@ -514,16 +530,16 @@ function runMainMenu() {
 
     switch (choice.trim()) {
       case '1':
-        handleMovieSearchFlow();
+        iniciarSesionUI();
         break;
       case '2':
-        handleAuthFlow();
+        comprarEntradaUI();
         break;
       case '3':
-        handleContactFlow();
+        filtrarPeliculasUI();
         break;
       case '4':
-        handlePurchaseFlow();
+        consultarSoporteUI();
         break;
       case '5':
         alert('Gracias por usar CineGlobal. Hasta pronto!');
@@ -535,4 +551,7 @@ function runMainMenu() {
   }
 }
 
-runMainMenu();
+// No invocar runMainMenu() directamente para permitir testing con Jasmine
+if (typeof jasmine === 'undefined') {
+  runMainMenu();
+}

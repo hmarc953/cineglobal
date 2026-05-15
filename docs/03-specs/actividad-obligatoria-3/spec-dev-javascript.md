@@ -108,7 +108,7 @@ Este flujo corresponde a la funcionalidad más compleja del proyecto, ya que agr
 ## 6. Prompt y código generado
 
 ### 6.1 Prompt utilizado
-Para generar esta especificación se utilizó el siguiente prompt como contexto de trabajo:
+Para generar esta especificación se utilizó el siguiente prompt como contexto de trabajo(Cree primero la estrutura del spec por eso no aparece en el contexto inicial .puml):
 
 > Hola necesito que me cree un archivo llamado "spec-dev-javascript.md" y tenga como contexto esto: index.html, plan.md y este link: https://www.figma.com/proto/Xk7vwqJNdLzY66x0859tXS/Cineglobal?node-id=1-2&p=f&t=uBPoXwkkepZQlUlm-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1. Los flujos serán:
 > - Iniciar sesión
