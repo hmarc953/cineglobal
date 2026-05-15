@@ -1,0 +1,34 @@
+@startuml
+title Flujo 1 - Búsqueda de películas con filtros
+
+|#E6E6E6|Usuario|
+start
+
+repeat
+:Selecciona filtros disponibles;
+
+|#D9F2FF|Módulo de Filtros|
+:Recibe selección de filtros;
+:Aplica criterios de búsqueda;
+
+|#DDF5DD|Catálogo de Películas|
+:Busca películas coincidentes;
+:Obtiene resultados;
+
+
+if (¿Hay resultados?) then (Si) 
+  -[#green,bold]->
+  :Informa resultados de búsqueda;
+  
+else (No) 
+  -[#red,bold]->
+  :Informa mensaje sin coincidencias;
+
+endif
+
+|Usuario|
+:Visualiza contenido de resultados;
+repeat while (¿Desea realizar otra búsqueda?) is (Si) -[#blue,bold]->
+
+stop
+@enduml
