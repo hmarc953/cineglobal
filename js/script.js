@@ -152,7 +152,11 @@ function solicitarCompra() {
   return { selectedMovie, seats, paymentData: { cardNumber, expiry, cvc, holder } };
 }
 
-function comprarEntrada(seats, paymentData, generatorFn) {
+function comprarEntrada(movie, seats, paymentData, generatorFn) {
+  if (!movie || !movie.title) {
+    return { success: false, error: 'Pelicula invalida.' };
+  }
+
   const paymentValidation = validatePaymentDetails(paymentData);
   if (!paymentValidation.valid) {
     return { success: false, error: paymentValidation.message };
@@ -162,10 +166,11 @@ function comprarEntrada(seats, paymentData, generatorFn) {
     return { success: false, error: 'La cantidad de entradas debe ser un número positivo.' };
   }
 
-  const totalPrice = calculateTotalPrice(seats);
+  const totalPrice = calculateTotalPrice(seats, movie);
   const confirmationCode = generateConfirmationCode(generatorFn);
   return {
     success: true,
+    movie: movie.title,
     seats,
     totalPrice,
     confirmationCode,
@@ -444,9 +449,9 @@ function validatePaymentDetails(payment) {
   return { valid: true, message: 'Datos de pago validos.' };
 }
 
-function calculateTotalPrice(seats, generatorFn) {
+function calculateTotalPrice(seats, movie) {
   const basePrice = 120.0;
-  // generatorFn es un parámetro inyectable para testing, permite generar códigos de confirmación predecibles
+  // Calcula el precio total; `movie` se acepta para permitir ajustes futuros por película.
   return basePrice * seats;
 }
 
@@ -491,7 +496,7 @@ function comprarEntradaUI() {
         continue;
       }
 
-      const totalPrice = calculateTotalPrice(seats);
+      const totalPrice = calculateTotalPrice(seats, selectedMovie);
       // Para testabilidad, usar generador de códigos inyectable en lugar de Math.random()
       const confirmationCode = generateConfirmationCode();
       alert(`Compra exitosa. Pelicula: ${selectedMovie.title}\nEntradas: ${seats}\nTotal: $${totalPrice.toFixed(2)}\nNumero de confirmacion: ${confirmationCode}`);
