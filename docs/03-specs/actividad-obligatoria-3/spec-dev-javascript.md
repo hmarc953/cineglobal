@@ -126,7 +126,6 @@ Para generar esta especificación se utilizó el siguiente prompt como contexto 
 > ● Decisiones finales sobre la estructura del código y cómo facilita el trabajo del Tester.
 
 Adicionalmente, para cumplir el requisito expresado en el entregable (usar los archivos `.puml` como contexto para generar `script.js`), se aplicó un segundo prompt específico que incluye los diagramas `.puml` y las instrucciones detalladas de implementación. A continuación se muestra ese segundo prompt (separado del prompt previo que sirvió para crear el spec):
-<!--
 
 ```
 Hola necesito que en el archivo script.js Implementar un menú principal mediante prompt() que permita al usuario
@@ -419,7 +418,6 @@ va a testear)
 ```
 
 Nota: en la generación del código final se documenta que parte del código fue removida temporalmente del entregable porque no existía en la rama `develop` en el momento de la creación; esa decisión está registrada para que el equipo pueda reintegrar los fragmentos faltantes desde la rama correspondiente si es necesario.
--->
 
 ### 6.2 Fragmento de código generado
 Un ejemplo de código generado para el flujo de compra de entradas podría incluir:
