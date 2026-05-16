@@ -10,6 +10,12 @@
 - [feature/estructura-carpetas-y-readme] Se modifica plan.md, estructura carpetas y readme.
   PR: [#136](https://github.com/hmarc953/cineglobal/pull/136) - @abartomioli (Coordinador/DevOps)
 
+- [feature/arq-diagramas-actividades] [Arquitecto] Actualiza mockup, HTML/CSS y diagramas de actividades
+  PR: [#140](https://github.com/hmarc953/cineglobal/pull/140) - @hmarc953 (Arquitecto de Diagramas de Actividades)
+
+- [feature/dev-javascript-logica-negocio] Implemento los 4 flujos
+  PR: [#141](https://github.com/hmarc953/cineglobal/pull/141) - @Santi22-7 (DESARROLLADOR JAVASCRIPT)
+
 ### Fixed Primer Parcial - 2026-04-30
 - [fix/rc-01-test-case-6-playwright] Se corrigieron evidencias visuales TC-6.
   PR: [#98](https://github.com/hmarc953/cineglobal/pull/98) - @abartomioli (Coordinador/DevOps)

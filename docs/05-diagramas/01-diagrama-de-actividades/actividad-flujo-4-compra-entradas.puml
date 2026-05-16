@@ -1,0 +1,64 @@
+@startuml
+title Flujo 4 - Compra de entradas
+
+|#E6E6E6|Usuario|
+start
+
+:Ingresa al flujo de compra;
+
+repeat
+  :Selecciona datos de funcion;
+
+  |#D9F2FF|Módulo de Compra|
+  :Recibe seleccion;
+  :Valida disponibilidad y datos obligatorios;
+
+  if (¿La seleccion de funcion es valida?) then (Si)
+  
+    |Usuario|
+    :Avanza al pago;
+    repeat
+      :Ingresa datos de pago;
+
+      |#DDF5DD|Pasarela de Pago|
+      :Recibe datos de pago;
+      :Valida datos obligatorios;
+      :Valida formato de pago;
+
+      if (¿Los datos de pago son validos?) then (No)
+        |Pasarela de Pago|
+        :Informa errores en el pago;
+        -[#Red,dashed]->
+
+      else (Si)
+        |#E8DDF5|Gestión de Entradas|
+        :Registra la compra;
+        :Genera confirmacion final;
+
+        |Usuario|
+        :Visualiza confirmacion de compra;
+        :Recibe numero de confirmacion;
+        break
+
+      endif
+      |Usuario|
+      :Visualiza mensaje de error en el pago;
+    
+    repeat while (¿Desea reintentar el pago?) is (Si) -[#blue,dashed]->
+    break
+
+  else (No)
+    |Módulo de Compra|
+    :Informa errores en la seleccion;
+
+  endif
+  |Usuario|
+  :Visualiza mensaje de error en la seleccion;
+
+repeat while (¿Desea reintentar la seleccion?) is (Si) -[#blue,dashed]->
+
+|Usuario|
+:Retorna al menu principal;
+
+stop
+@enduml
