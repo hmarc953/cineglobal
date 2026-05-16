@@ -417,7 +417,7 @@ va a testear)
 ● Documentar funciones complejas con comentarios JSDoc     (Pone en una parte que tuve que sacar del codigo poque no estaba en develop la rama en ese momento de la creacion)
 ```
 
-Nota: en la generación del código final se documenta que parte del código fue removida temporalmente del entregable porque no existía en la rama `develop` en el momento de la creación; esa decisión está registrada para que el equipo pueda reintegrar los fragmentos faltantes desde la rama correspondiente si es necesario.
+
 
 ### 6.2 Fragmento de código generado
 Un ejemplo de código generado para el flujo de compra de entradas podría incluir:
