@@ -153,13 +153,13 @@ y se verificó qué líneas son ejecutadas por los tests implementados.
 ## Capturas de Pantalla
 
 ### 20 specs, 0 failures
-![Tests exitosos](./js/test/screenshots/test-pass.png)
+![Tests exitosos](./screenshots/test-pass.png)
 
 
 
 ### 18 specs, 2 failures
-![Tests fail 1](./js/test/screenshots/test-fail-1.png)
-![Tests fail 2](./js/test/screenshots/test-fail-2.png)
+![Tests fail 1](./screenshots/test-fail-1.png)
+![Tests fail 2](./screenshots/test-fail-2.png)
 
 ---
 
@@ -195,12 +195,9 @@ y se verificó qué líneas son ejecutadas por los tests implementados.
     expect(resultados[0].title).toBe('La La Land');
   });
 ```
-- **Resolución:** Se ajustó el filtro a `{ title: 'La La', minRating: 8 }`
-  para mayor especificidad
+- **Resolución:** Se ajustó el filtro a `{ title: 'La La', minRating: 8 }` para mayor especificidad
 - **GitHub Issue:** [#143](https://github.com/hmarc953/cineglobal/issues/143)
 - **Estado:** Resuelto ✅
-
----
 
 ## Limitaciones del Testing
 

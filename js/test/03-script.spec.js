@@ -133,11 +133,11 @@ describe('Filtros de Películas', function() {
     expect(resultados[0].genre).toBe('Accion');
   });
 
- it('busca películas por título parcial y rating mínimo en el happy path', function() {
+  it('busca películas por título parcial y rating mínimo en el happy path', function() {
     const resultados = searchMovies({ title: 'La La', minRating: 8 }, MOVIES);
     expect(resultados.length).toBe(1);
     expect(resultados[0].title).toBe('La La Land');
-});
+  });
 
   it('devuelve arreglo vacío cuando no hay coincidencias e ignora mayúsculas y espacios en filtros', function() {
     expect(searchMovies({ title: 'no existe' }, MOVIES)).toEqual([]);
