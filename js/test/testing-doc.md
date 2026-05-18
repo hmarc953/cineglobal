@@ -9,6 +9,32 @@
 
 ---
 
+## BEFORE: Plan de Testing
+
+### Objetivo
+Verificar los 4 flujos principales de CineGlobal con pruebas unitarias en Jasmine y asegurar que el runner funciona correctamente en el navegador.
+
+### Alcance
+[x] Inicio de Sesión
+[x] Compra de Entrada
+[x] Filtros de Películas
+[x] Consulta de Soporte
+
+### Herramientas
+- Jasmine 5 (CDN)
+- Navegador web para ejecutar `js/test/test-runner.html`
+- Live Server en VS Code o un servidor estático local
+- Capturas de pantalla para PASS/FAIL
+
+### Criterios de Aceptación
+[x] 4 suites de tests, una por cada flujo principal
+[x] ○ Mínimo 3 tests por suite
+[x] ○ Tests ejecutados exitosamente en `test-runner.html`
+[x] ○ Screenshots del resultado PASS/FAIL disponibles
+[x] ○ Bugs documentados como issues en GitHub con pasos para reproducir y test case que falla
+
+---
+
 ## Ejecución de Tests
 
 ### Pasos para Ejecutar
@@ -212,7 +238,7 @@ y se verificó qué líneas son ejecutadas por los tests implementados.
 
 ---
 
-## Prompts utilizado para para generar script.spec.js
+## AT CLOSE (prompt utilizado)
 
 Actua como un QA Engineer experto en testing con Jasmine.
 
