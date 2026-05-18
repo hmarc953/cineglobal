@@ -153,13 +153,15 @@ y se verificó qué líneas son ejecutadas por los tests implementados.
 ## Capturas de Pantalla
 
 ### 20 specs, 0 failures
-![Tests exitosos](./screenshots/test-pass.png)
+![Tests exitosos](./js/test/screenshots/test-pass.png)
+
 
 
 
 ### 18 specs, 2 failures
-![Tests fail 1](./screenshots/test-fail-1.png)
-![Tests fail 2](./screenshots/test-fail-2.png)
+![Tests fail 1](./js/test/screenshots/test-fail-1.png )
+![Tests fail 2](./js/test/screenshots/test-fail-2.png )
+
 
 ---
 
