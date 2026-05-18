@@ -210,6 +210,35 @@ y se verificó qué líneas son ejecutadas por los tests implementados.
 
 ---
 
+## Prompts utilizado para para generar script.spec.js
+
+Actua como un QA Engineer experto en testing con Jasmine.
+
+Tengo el archivo js/script.js adjunto que contiene 4 flujos principales 
+de CineGlobal: Inicio de Sesión, Compra de Entrada, Filtros y Consultar Soporte.
+
+Generá el archivo js/test/script.spec.js con:
+- 4 suites usando describe(), una por cada flujo
+- Mínimo 3 tests por suite usando it()
+- Funcionalidad basica: Tests de happy path (casos normales)
+- Tests de edge cases (valores límite: 0, negativos, strings vacíos)
+- Tests de validación de errores (datos inválidos, null, undefined)
+- Tests de operaciones con arrays: agregar, eliminar, buscar, filtrar elementos
+- Tests de operaciones con objetos: crear, modificar propiedades, metodos
+- Verificar que operaciones matematicas sean correctas.
+- Utilizar Assertions de Jasmine que sean apropiadas: 
+	expect(valor).toBe(esperado) igualdad estricta
+	expect(valor).toEqual(esperado) igualdad profunda (objetos/arrays)
+  	expect(valor).toBeTruthy()/toBeFalsy()
+	expect(valor).toBeNull()/toBeUndefinined()
+	expect(array).toContain(elemento)
+	expect(function).toThrow() - si debe arrojar error
+- Nombres descriptivos en español para cada it()
+
+Las funciones testeadas deben ser exactamente las que están en script.js, sin inventar nombres. Tal cual lo solicito.
+
+---
+
 **Última Actualización:** 17/05/2026
 **Tester/QA Engineer:** [@9919-Mili]
 **Colaboración con:** [Desarrollador JavaScript - @Santi22-7]
