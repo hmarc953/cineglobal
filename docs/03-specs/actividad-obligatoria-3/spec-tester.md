@@ -139,6 +139,6 @@ Se utilizó el siguiente prompt para generar los tests en `js/test/script.spec.j
 
 ## 6. Referencias y Documentación Relacionada
 - Testing JS: [Ver documentación de testing](../../04-testing/testing-doc.md)
-- Diagramas de Actividades: [Ver actividades por flujo](../../05-diagrama-de-actividades/01-diagrama-de-actividades/diagramas-doc.md)
+- Diagramas de Actividades: [Ver actividades por flujo](../../05-diagramas/01-diagrama-de-actividades/diagramas-doc.md)
 - Changelog: [Ver registro de cambios](../../../changelog.md)
 
