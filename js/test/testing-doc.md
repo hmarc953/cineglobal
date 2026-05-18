@@ -24,6 +24,7 @@ Verificar los 4 flujos principales de CineGlobal con pruebas unitarias en Jasmin
 - Jasmine 5 (CDN)
 - Navegador web para ejecutar `js/test/test-runner.html`
 - Live Server en VS Code o un servidor estático local
+- Playwright MCP para validar el runner en un navegador real y generar evidencia adicional
 - Capturas de pantalla para PASS/FAIL
 
 ### Criterios de Aceptación
@@ -41,7 +42,7 @@ Verificar los 4 flujos principales de CineGlobal con pruebas unitarias en Jasmin
 1. Clonar el repositorio
 2. Abrir el proyecto en VS Code
 3. Instalar la extensión **Live Server**
-4. Click derecho sobre `js/test/test-runner.html` → **Open with Live Server**
+4. Abrir `js/test/test-runner.html` desde la raíz del servidor del proyecto (por ejemplo, `http://localhost:5500/js/test/test-runner.html`).
 5. Los tests se ejecutan automáticamente en el navegador
 
 ### Interpretación de Resultados
@@ -139,12 +140,14 @@ Verificar los 4 flujos principales de CineGlobal con pruebas unitarias en Jasmin
 | Tiempo de ejecución | 0.072s |
 
 ### Cobertura por Tipo de Test
-| Tipo | Cantidad | Porcentaje |
-|------|----------|------------|
-| Happy Path | 8 | 40% |
-| Casos Borde | 7 | 35% |
-| Validación de Errores | 5 | 25% |
-| Operaciones Arrays/Objetos | 2 | 10% |
+| Tipo | Cantidad |
+|------|----------|
+| Happy Path | 7 |
+| Casos Borde | 7 |
+| Validación de Errores | 5 |
+| Operaciones Arrays/Objetos | 2 |
+
+> Nota: las categorías no son excluyentes; un mismo test puede pertenecer a más de una categoría.
 
 ### Análisis de Cobertura de Código
 
@@ -179,14 +182,14 @@ y se verificó qué líneas son ejecutadas por los tests implementados.
 ## Capturas de Pantalla
 
 ### 20 specs, 0 failures
-![Tests exitosos](./js/test/screenshots/test-pass.png)
+![Tests exitosos](./screenshots/test-pass.png)
 
 
 
 
 ### 18 specs, 2 failures
-![Tests fail 1](./js/test/screenshots/test-fail-1.png )
-![Tests fail 2](./js/test/screenshots/test-fail-2.png )
+![Tests fail 1](./screenshots/test-fail-1.png)
+![Tests fail 2](./screenshots/test-fail-2.png)
 
 
 ---

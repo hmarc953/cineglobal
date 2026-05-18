@@ -358,6 +358,10 @@ function validateContactForm(formData) {
  * @returns {{ticketId:string, status:string}}
  */
 function createSupportTicket(formData) {
+  if (!formData || !formData.email || !formData.title || !formData.description) {
+    throw new Error('Datos de ticket invalidos.');
+  }
+
   const ticketId = `TKT-${Date.now()}`;
   const ticket = {
     id: ticketId,

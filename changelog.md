@@ -16,6 +16,9 @@
 - [feature/dev-javascript-logica-negocio] Implemento los 4 flujos
   PR: [#141](https://github.com/hmarc953/cineglobal/pull/141) - @Santi22-7 (DESARROLLADOR JAVASCRIPT)
 
+- [feature/tester-javascript-jasmine] Tester QA implementa pruebas Jasmine para los 4 flujos de CineGlobal, corrige runner y evidencia Playwright MCP.
+  PR: [#144](https://github.com/hmarc953/cineglobal/pull/144) - @9919-Mili (Tester / QA)
+
 ### Fixed Primer Parcial - 2026-04-30
 - [fix/rc-01-test-case-6-playwright] Se corrigieron evidencias visuales TC-6.
   PR: [#98](https://github.com/hmarc953/cineglobal/pull/98) - @abartomioli (Coordinador/DevOps)

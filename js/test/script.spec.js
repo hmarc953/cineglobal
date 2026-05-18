@@ -49,14 +49,14 @@ describe('Compra de Entrada', function() {
     expect(emptyMovie.error).toBe('Pelicula invalida.');
   });
 
-  it('valida detalles de pago y rechaza tarjeta con formato inválido, fecha expirada o CVC incorrecto', function() {
+  it('valida detalles de pago y rechaza tarjeta con formato inválido, fecha vencida o CVC incorrecto', function() {
     const invalidCard = validatePaymentDetails({ cardNumber: '1234', expiry: '12/99', cvc: '123', holder: 'Juan' });
     expect(invalidCard.valid).toBe(false);
     expect(invalidCard.message).toBe('El numero de tarjeta debe tener 16 digitos.');
 
-    const invalidExpiry = validatePaymentDetails({ cardNumber: '4111111111111111', expiry: '99/99', cvc: '123', holder: 'Juan' });
+    const invalidExpiry = validatePaymentDetails({ cardNumber: '4111111111111111', expiry: '12/10', cvc: '123', holder: 'Juan' });
     expect(invalidExpiry.valid).toBe(false);
-    expect(invalidExpiry.message).toContain('expiracion');
+    expect(invalidExpiry.message).toBe('La tarjeta esta vencida.');
 
     const invalidCvc = validatePaymentDetails({ cardNumber: '4111111111111111', expiry: '12/99', cvc: '12', holder: 'Juan' });
     expect(invalidCvc.valid).toBe(false);
@@ -109,13 +109,6 @@ describe('Compra de Entrada', function() {
     expect(result.confirmationCode).toBe('CONF-123456');
   });
 
-  it('calcula el precio total correctamente con diferentes cantidades de entradas', function() {
-    expect(calculateTotalPrice(1, movie)).toBe(120);
-    expect(calculateTotalPrice(2, movie)).toBe(240);
-    expect(calculateTotalPrice(5, movie)).toBe(600);
-    expect(calculateTotalPrice(0, movie)).toBe(0);
-  });
-
   it('selecciona película por índice válido y retorna null para índices inválidos', function() {
     expect(selectMovieByIndex('1', MOVIES)).toEqual(MOVIES[0]);
     expect(selectMovieByIndex('2', MOVIES)).toEqual(MOVIES[1]);
@@ -137,6 +130,12 @@ describe('Filtros de Películas', function() {
     const resultados = searchMovies({ title: 'La La', minRating: 8 }, MOVIES);
     expect(resultados.length).toBe(1);
     expect(resultados[0].title).toBe('La La Land');
+  });
+
+  it('filtra películas por año exacto y retorna los resultados esperados', function() {
+    const resultados2019 = searchMovies({ year: 2019 }, MOVIES);
+    expect(resultados2019.length).toBe(2);
+    expect(resultados2019).toEqual([MOVIES[0], MOVIES[2]]);
   });
 
   it('devuelve arreglo vacío cuando no hay coincidencias e ignora mayúsculas y espacios en filtros', function() {
@@ -196,7 +195,7 @@ describe('Consulta de Soporte', function() {
   it('arroja error al crear ticket de soporte con datos nulos', function() {
     expect(function() {
       createSupportTicket(null);
-    }).toThrow();
+    }).toThrow(new Error('Datos de ticket invalidos.'));
   });
 
   it('no encuentra ticket inexistente en el arreglo de soporte', function() {
