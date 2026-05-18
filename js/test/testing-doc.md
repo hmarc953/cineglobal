@@ -15,10 +15,10 @@
 Verificar los 4 flujos principales de CineGlobal con pruebas unitarias en Jasmine y asegurar que el runner funciona correctamente en el navegador.
 
 ### Alcance
-[x] Inicio de Sesión
-[x] Compra de Entrada
-[x] Filtros de Películas
-[x] Consulta de Soporte
+[✅] Inicio de Sesión
+[✅] Compra de Entrada
+[✅] Filtros de Películas
+[✅] Consulta de Soporte
 
 ### Herramientas
 - Jasmine 5 (CDN)
@@ -27,11 +27,11 @@ Verificar los 4 flujos principales de CineGlobal con pruebas unitarias en Jasmin
 - Capturas de pantalla para PASS/FAIL
 
 ### Criterios de Aceptación
-[x] 4 suites de tests, una por cada flujo principal
-[x] ○ Mínimo 3 tests por suite
-[x] ○ Tests ejecutados exitosamente en `test-runner.html`
-[x] ○ Screenshots del resultado PASS/FAIL disponibles
-[x] ○ Bugs documentados como issues en GitHub con pasos para reproducir y test case que falla
+[✅] 4 suites de tests, una por cada flujo principal
+[✅] ○ Mínimo 3 tests por suite
+[✅] ○ Tests ejecutados exitosamente en `test-runner.html`
+[✅] ○ Screenshots del resultado PASS/FAIL disponibles
+[✅] ○ Bugs documentados como issues en GitHub con pasos para reproducir y test case que falla
 
 ---
 
