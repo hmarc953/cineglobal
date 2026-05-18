@@ -239,6 +239,10 @@ Generá el archivo js/test/script.spec.js con:
 
 Las funciones testeadas deben ser exactamente las que están en script.js, sin inventar nombres. Tal cual lo solicito.
 
+
+[prompts](./docs\02-prompts\imagenes_evidencias\imag_evidencia_prompts_QA_tester.png)
+
+
 ---
 
 **Última Actualización:** 17/05/2026
