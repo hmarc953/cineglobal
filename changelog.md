@@ -19,6 +19,9 @@
 - [feature/tester-javascript-jasmine] Tester QA implementa pruebas Jasmine para los 4 flujos de CineGlobal, corrige runner y evidencia Playwright MCP.
   PR: [#144](https://github.com/hmarc953/cineglobal/pull/144) - @9919-Mili (Tester / QA)
 
+- [feature/coord-devops-tercera-entrega] Cierre, spec, evidencias de pr review.
+  PR: [#145](https://github.com/hmarc953/cineglobal/pull/145) - @abartomioli (Coordinador/DevOps)
+
 ### Fixed Primer Parcial - 2026-04-30
 - [fix/rc-01-test-case-6-playwright] Se corrigieron evidencias visuales TC-6.
   PR: [#98](https://github.com/hmarc953/cineglobal/pull/98) - @abartomioli (Coordinador/DevOps)

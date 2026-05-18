@@ -36,18 +36,18 @@ en PlantUML que modelan cada flujo antes de su implementación.
 - [x] Diseño responsive validado en desktop, tablet y móvil
 
 #### En desarrollo para esta entrega (A3)
-- [ ] Menú de navegación interactivo mediante `prompt()` con acceso a los 4 flujos
-- [ ] Flujo 1 - Inicio de sesión: valida credenciales del usuario (nombre de 
+- [x] Menú de navegación interactivo mediante `prompt()` con acceso a los 4 flujos
+- [x] Flujo 1 - Inicio de sesión: valida credenciales del usuario (nombre de 
       usuario y contraseña) simulando el acceso al sistema
-- [ ] Flujo 2 - Compra de entrada: permite seleccionar película, función y 
+- [x] Flujo 2 - Compra de entrada: permite seleccionar película, función y 
       cantidad de entradas.
-- [ ] Flujo 3 - Filtros: filtra el catálogo de películas según criterios como 
+- [x] Flujo 3 - Filtros: filtra el catálogo de películas según criterios como 
       género, cine o franja horaria
-- [ ] Flujo 4 - Consultar soporte: permite al usuario describir su problema y 
+- [x] Flujo 4 - Consultar soporte: permite al usuario describir su problema y 
       obtener una respuesta o derivación según el tipo de consulta
-- [ ] Validación de entradas del usuario en todos los flujos
-- [ ] Testing automatizado con Jasmine (4 suites, una por flujo)
-- [ ] Diagramas de actividades en PlantUML para cada flujo
+- [x] Validación de entradas del usuario en todos los flujos
+- [x] Testing automatizado con Jasmine (4 suites, una por flujo)
+- [x] Diagramas de actividades en PlantUML para cada flujo
 
 ## Documentación
 
@@ -56,7 +56,9 @@ en PlantUML que modelan cada flujo antes de su implementación.
 - Mockup PP: [Ver diseño bootstrap](docs/01-mockup/primer-parcial/diseño-bootstrap.png) · [Abrir en Figma](https://www.figma.com/proto/iFkK0k0pcsUrl8ZD1FvE8E/Cineglobal-Primer-Parcial?node-id=83-178&p=f&t=Gy7wEVFcQtWgGqQg-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=83%3A178)
 - Mockup A3: [Ver diseño](docs/01-mockup/actividad-obligatoria-3/diseño-con-flujos.png) · [Abrir en Figma](https://www.figma.com/proto/Xk7vwqJNdLzY66x0859tXS/Cineglobal-A3?node-id=83-178&p=f&t=uBPoXwkkepZQlUlm-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=83%3A178)
 - Diagramas de Actividades: [Ver índice de diagramas](docs/05-diagramas/01-diagrama-de-actividades/diagramas-doc.md)
-- Testing JS: [Ver documentación de testing](js/test/testing-doc.md)
+- Especificaciones de Rol (A3): [Arquitecto](docs/03-specs/actividad-obligatoria-3/spec-arq-diagramas.md) · [Desarrollo JS](docs/03-specs/actividad-obligatoria-3/spec-dev-javascript.md) · [Testing](docs/03-specs/actividad-obligatoria-3/spec-tester.md) · [DevOps](docs/03-specs/actividad-obligatoria-3/spec-devops.md)
+- Documentación JavaScript: [Ver especificación técnica](docs/03-specs/actividad-obligatoria-3/spec-dev-javascript.md)
+- Testing JS: [Reporte de Jasmine](js/test/testing-doc.md) · [Plan de Pruebas](docs/03-specs/actividad-obligatoria-3/spec-tester.md)
 - Testing HTML/CSS: [Índice de test cases](docs/04-testing/testing-doc.md)
 - Índice de Prompts: [Índice de prompts](docs/02-prompts/prompts.md)
 - Changelog: [Ver changelog](changelog.md)
