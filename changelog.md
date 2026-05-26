@@ -26,7 +26,8 @@
 ---
 
 ### Fixed
-
+- [fix/correcione-en-changelog-y-spec] Correcion de errores en changelog y spec (rc1 ,rc2, rc3,rc4,rc5,rc6,correcion de copia de codigo completo,rc8)
+  PR: [#148](https://github.com/hmarc953/cineglobal/pull/148) - @Santi22-7 (Coordinador / DevOps + Tester QA)
 
 ## [Release Primer Parcial] - 2026-04-22
 
