@@ -22,11 +22,11 @@ A diferencia de una revisión manual que suele centrarse en la superficie (estil
 ## 4. Criterios de Aceptación (Checklist DevOps)
 Los siguientes criterios deben validarse al finalizar la A3. Este checklist servirá como registro de cumplimiento y se marcará progresivamente conforme se completen las tareas en el repositorio:
 
-- [ ] **GitHub Pages:** El sitio debe estar desplegado y actualizado automáticamente mediante GitHub Actions o configuración manual validada.
-- [ ] **Gestión de Releases:** Se debe haber generado un tag de versión y una "Release" formal en GitHub que resuma los cambios de A3.
-- [ ] **Verificación de Backports:** Confirmar que las mejoras críticas han sido aplicadas retroactivamente donde corresponda.
-- [ ] **Trazabilidad de Fixes:** Evidencia en el `changelog.md` de que los errores del parcial fueron subsanados.
-- [ ] **Documentación Actualizada:** El `plan.md` y `README.md` deben reflejar el estado actual y las nuevas capacidades del sistema.
+- [x] **GitHub Pages:** El sitio debe estar desplegado y actualizado automáticamente mediante GitHub Actions o configuración manual validada.
+- [x] **Gestión de Releases:** Se debe haber generado un tag de versión y una "Release" formal en GitHub que resuma los cambios de A3.
+- [x] **Verificación de Backports:** Confirmar que las mejoras críticas han sido aplicadas retroactivamente donde corresponda.
+- [x] **Trazabilidad de Fixes:** Evidencia en el `changelog.md` de que los errores del parcial fueron subsanados.
+- [x] **Documentación Actualizada:** El `plan.md` y `README.md` deben reflejar el estado actual y las nuevas capacidades del sistema.
 
 ## 5. Control de Calidad en Pull Requests
 Cada PR debe incluir obligatoriamente:
@@ -43,6 +43,16 @@ Para garantizar la trazabilidad y calidad técnica, los logs de revisión se man
 
 ---
 *Documento preparado para la fase de inicio de la Actividad Obligatoria 3.*
+## AFTER — Seguimiento post-entrega
+
+Esta sección define las verificaciones que deben realizarse después de la entrega formal de la A3 y antes del cierre definitivo del ciclo de trabajo.
+
+- Confirmar que los cambios solicitados en los code reviews fueron aplicados y validados.
+- Verificar que `changelog.md`, `plan.md` y `README.md` reflejan el estado final del proyecto.
+- Asegurar que las ramas `develop` y `main` mantengan paridad técnica tras el merge.
+- Validar el despliegue correcto de GitHub Pages y la generación de la Release correspondiente a A3.
+- Documentar incidencias abiertas y ajustes pendientes para el seguimiento del equipo.
+
 ## AT CLOSE — Evidencia de Code Reviews
 
 ### Code Review #1 — PR #140 [@hmarc953 — Arquitecto de Diagramas de Actividades]

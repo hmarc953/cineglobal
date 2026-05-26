@@ -6,7 +6,8 @@ Garantizar la cobertura funcional y la calidad de los 4 flujos principales de Ci
 ## 2. Plan de Testing en dos momentos
 El flujo de trabajo de testing se divide en dos momentos críticos para mantener trazabilidad y evidencia documentada:
 
-### Momento 1 - Antes de escribir cualquier test (commitear primero)
+### BEFORE — Antes de escribir cualquier test (commitear primero)
+Esta fase se centra en preparar el estado base y definir la estrategia de cobertura antes de crear o modificar cualquier archivo de test.
 
 #### 2.1 Punto de control obligatorio
 - Realizar un commit de la base funcional actual antes de crear o modificar cualquier archivo de test.
@@ -40,7 +41,7 @@ Se cubrirán los 4 flujos principales del sistema con la siguiente estrategia:
 - Edge cases: texto mínimo, texto largo (>500 caracteres), categorías ambiguas.
 - Errores: entrada vacía, no interpretable, caracteres no permitidos.
 
-### Momento 2 - Después de implementar y ejecutar tests
+### AFTER — Después de implementar y ejecutar tests
 
 #### 2.3 Ejecución y validación
 - Ejecutar todas las suites en `test-runner.html` mediante Playwright MCP.
