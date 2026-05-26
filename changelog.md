@@ -4,6 +4,7 @@
 
 ## [Release Actividad Obligatoria N°3] - 2026-05-07
 
+### Added
 - [feature/coord-devops-tercera-entrega] Se crea archivo de especificaciones spec-devops.md.
   PR: [#125](https://github.com/hmarc953/cineglobal/pull/125) - @abartomioli (Coordinador/DevOps)
 
@@ -22,7 +23,48 @@
 - [feature/coord-devops-tercera-entrega] Cierre, spec, evidencias de pr review.
   PR: [#145](https://github.com/hmarc953/cineglobal/pull/145) - @abartomioli (Coordinador/DevOps)
 
-### Fixed Primer Parcial - 2026-04-30
+---
+
+### Fixed
+- [fix/correcione-en-changelog-y-spec] Correcion de errores en changelog y spec (rc1 ,rc2, rc3,rc4,rc5,rc6,correcion de copia de codigo completo,rc8)
+  PR: [#148](https://github.com/hmarc953/cineglobal/pull/148) - @Santi22-7 (Coordinador / DevOps + Tester QA)
+
+## [Release Primer Parcial] - 2026-04-22
+
+### Added
+
+- [feature/devops-planificacion-y-mockup] Feature/devops planificacion y mockup  
+  PR: [#78](https://github.com/hmarc953/cineglobal/pull/78) - @hmarc953 (Coordinador / DevOps)
+
+- [feature/esp-com-bootstrap-add-component] Agregado de componentes Bootstrap (Navbar y Modal) con estilos y ajustes de integración.
+  PR: [#91](https://github.com/hmarc953/cineglobal/pull/91) - @9919-Mili (Especialista en componentes Bootstrap)
+
+- [feature/dev-frontend-bootstrap-migration] Migración a Bootstrap 5 con grid responsive, overrides y mejoras visuales.
+  PR: [#81](https://github.com/hmarc953/cineglobal/pull/81) - @abartomioli (Desarrollador Frontend/Bootstrap)
+
+- [feature/dev-comp-html-avanzados-add-component] Conecto dos componetes avanzados de html
+  PR: [#87](https://github.com/hmarc953/cineglobal/pull/87) - @Santi22-7 (Desarrollador de Componentes HTML Avanzados)
+
+- [feature/cierre-specs] Feature - Cierre de specs
+  PR: [#93](https://github.com/hmarc953/cineglobal/pull/93) - @hmarc953 (Coordinador / DevOps)
+
+---
+
+### Fixed
+- [fix/correción-de-bug-de-elementos-html-avanzados] Correcion de bug dectectado en los test
+  PR: [#85](https://github.com/hmarc953/cineglobal/pull/85) - @Santi22-7 (Desarrollador de Componentes HTML Avanzados)
+
+- [fix/resolucion-issues-82] Fix - #82: servidor local sin caché para evitar desincronización entre `/` e `/index.html` en tests.
+   PR:[#90](https://github.com/hmarc953/cineglobal/pull/90) - @9919-Mili (Especialista en componentes Bootstrap)
+
+- [fix/resolucion-issues-83] Fix - #83: caracteres acentuados se renderizan corruptos (mojibake) en la vista local.
+   PR:[#89](https://github.com/hmarc953/cineglobal/pull/89) - @9919-Mili (Especialista en componentes Bootstrap)
+
+- [fix/trailer-equivocado] Fix - Trailer Scream 7 corregido
+  PR: [#94](https://github.com/hmarc953/cineglobal/pull/94) - @hmarc953 (Coordinador / DevOps)
+
+- [fix/entrada-changelog-mal-ubicada] Fix - Changelog corregido
+  PR: [#96](https://github.com/hmarc953/cineglobal/pull/96) - @hmarc953 (Coordinador / DevOps)
 - [fix/rc-01-test-case-6-playwright] Se corrigieron evidencias visuales TC-6.
   PR: [#98](https://github.com/hmarc953/cineglobal/pull/98) - @abartomioli (Coordinador/DevOps)
 
@@ -79,43 +121,6 @@
 
 - [fix/imagen-faltante-y-figma-actualizado] Fix - Optimización de la Hero Section.
   PR: [#123](https://github.com/hmarc953/cineglobal/pull/123) - @abartomioli (Coordinador/DevOps)
-
-## [Release Primer Parcial] - 2026-04-22
-
-### Added
-
-- [feature/devops-planificacion-y-mockup] Feature/devops planificacion y mockup  
-  PR: [#78](https://github.com/hmarc953/cineglobal/pull/78) - @hmarc953 (Coordinador / DevOps)
-
-- [feature/esp-com-bootstrap-add-component] Agregado de componentes Bootstrap (Navbar y Modal) con estilos y ajustes de integración.
-  PR: [#91](https://github.com/hmarc953/cineglobal/pull/91) - @9919-Mili (Especialista en componentes Bootstrap)
-
-- [feature/dev-frontend-bootstrap-migration] Migración a Bootstrap 5 con grid responsive, overrides y mejoras visuales.
-  PR: [#81](https://github.com/hmarc953/cineglobal/pull/81) - @abartomioli (Desarrollador Frontend/Bootstrap)
-
-- [feature/dev-comp-html-avanzados-add-component] Conecto dos componetes avanzados de html
-  PR: [#87](https://github.com/hmarc953/cineglobal/pull/87) - @Santi22-7 (Desarrollador de Componentes HTML Avanzados)
-
-- [feature/cierre-specs] Feature - Cierre de specs
-  PR: [#93](https://github.com/hmarc953/cineglobal/pull/93) - @hmarc953 (Coordinador / DevOps)
-
----
-
-### Fixed
-- [fix/correción-de-bug-de-elementos-html-avanzados] Correcion de bug dectectado en los test
-  PR: [#85](https://github.com/hmarc953/cineglobal/pull/85) - @Santi22-7 (Desarrollador de Componentes HTML Avanzados)
-
-- [fix/resolucion-issues-82] Fix - #82: servidor local sin caché para evitar desincronización entre `/` e `/index.html` en tests.
-   PR:[#90](https://github.com/hmarc953/cineglobal/pull/90) - @9919-Mili (Especialista en componentes Bootstrap)
-
-- [fix/resolucion-issues-83] Fix - #83: caracteres acentuados se renderizan corruptos (mojibake) en la vista local.
-   PR:[#89](https://github.com/hmarc953/cineglobal/pull/89) - @9919-Mili (Especialista en componentes Bootstrap)
-
-- [fix/trailer-equivocado] Fix - Trailer Scream 7 corregido
-  PR: [#94](https://github.com/hmarc953/cineglobal/pull/94) - @hmarc953 (Coordinador / DevOps)
-
-- [fix/entrada-changelog-mal-ubicada] Fix - Changelog corregido
-  PR: [#96](https://github.com/hmarc953/cineglobal/pull/96) - @hmarc953 (Coordinador / DevOps)
 
 ## [Release Actividad Obligatoria N°2] - 2026-04-12
 

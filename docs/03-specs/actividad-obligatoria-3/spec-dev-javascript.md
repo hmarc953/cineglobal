@@ -87,17 +87,25 @@ Este flujo corresponde a la funcionalidad más compleja del proyecto, ya que agr
 
 ## 4. Criterios de aceptación
 
-- [ ] 4 flujos completos con validación de entrada.
-- [ ] Funciones con nombres descriptivos, parámetros y valores de retorno explícitos.
-- [ ] Lógica separada de UI: las funciones de negocio no llaman a `prompt()` ni `alert()` directamente.
-- [ ] Funciones expuestas para testing (no encapsuladas en IIFE).
+- [x] 4 flujos completos con validación de entrada.
+- [x] Funciones con nombres descriptivos, parámetros y valores de retorno explícitos.
+- [x] Lógica separada de UI: las funciones de negocio no llaman a `prompt()` ni `alert()` directamente.
+- [x] Funciones expuestas para testing (no encapsuladas en IIFE).
 
 ### 4.1 Criterios adicionales
-- [ ] El menú principal está implementado con `prompt()` y permite navegar entre los 4 flujos.
-- [ ] Las entradas de usuario se validan antes de procesar cualquier acción.
-- [ ] Los flujos de login y compra devuelven resultados claros para pruebas unitarias.
-- [ ] El filtro permite combinar al menos un criterio de selección y devuelve un conjunto filtrado.
-- [ ] La consulta de soporte construye un objeto de solicitud con datos válidos.
+- [x] El menú principal está implementado con `prompt()` y permite navegar entre los 4 flujos.
+- [x] Las entradas de usuario se validan antes de procesar cualquier acción.
+- [x] Los flujos de login y compra devuelven resultados claros para pruebas unitarias.
+- [x] El filtro permite combinar al menos un criterio de selección y devuelve un conjunto filtrado.
+- [x] La consulta de soporte construye un objeto de solicitud con datos válidos.
+
+## 4.2 AT CLOSE
+Los siguientes criterios se revisan al cierre de la tarea y permanecen sin marcar hasta que se confirme su cumplimiento final:
+- [x] Verificar que todos los criterios de aceptación y adicionales estén completos.
+- [x] Confirmar que `js/script.js` implementa los flujos de acuerdo a los `.puml` y al spec.
+- [x] Asegurar que se documentaron los prompts utilizados y los resultados del testing con Jasmine.
+- [x] Validar que no hay manipulación de DOM en la entrega y que la interacción es solo `prompt()`/`alert()`.
+- [x] Registrar el cierre en el changelog y en el seguimiento del equipo.
 
 ## 5. Notas de implementación
 
@@ -125,297 +133,35 @@ Para generar esta especificación se utilizó el siguiente prompt como contexto 
 > Fragmento del código generado por Copilot para al menos uno de los flujos y los ajustes manuales realizados para mejorar la testabilidad.
 > ● Decisiones finales sobre la estructura del código y cómo facilita el trabajo del Tester.
 
-Adicionalmente, para cumplir el requisito expresado en el entregable (usar los archivos `.puml` como contexto para generar `script.js`), se aplicó un segundo prompt específico que incluye los diagramas `.puml` y las instrucciones detalladas de implementación. A continuación se muestra ese segundo prompt (separado del prompt previo que sirvió para crear el spec):
+Adicionalmente, para cumplir el requisito expresado en el entregable (usar los archivos `.puml` como contexto para generar `script.js`)
+ Archivos del que se hace referencia para esta entrega:
+- actividad-flujo-1-filtros.puml
+- actividad-flujo-2-iniciar-secion.puml
+- actividad-flujo-3-contacto-soporte.puml
+- actividad-flujo-4-compra-entradas.puml
+
+## AFTER — Seguimiento post-desarrollo
+
+Esta sección describe las verificaciones que deben realizarse después de completar la implementación y antes de cerrar la entrega.
+
+- Confirmar que todos los problemas detectados en los code reviews se resolvieron y se verificó su aplicación.
+- Validar que `js/script.js` y `js/test/script.spec.js` reflejan el contrato de los flujos definidos en los `.puml`.
+- Revisar la consistencia entre el spec, el código implementado y el testing documentado.
+- Asegurar que las funciones expuestas para Jasmine están disponibles y tienen interfaces claras.
+- Registrar en `changelog.md` las correcciones y los ajustes finales de la entrega.
+
+## AT CLOSE — Evidencia final de la entrega
+
+### Evidencia requerida
+- Prompt exacto utilizado para generar el código y la especificación de soporte.
+- Lista de archivos clave revisados: `js/script.js`, `js/test/script.spec.js`, `docs/03-specs/actividad-obligatoria-3/spec-dev-javascript.md`, `.puml` asociados y `changelog.md`.
+- Estado del checklist de aceptación con las marcas de validación correspondientes.
+- Comentarios breves sobre los resultados del testing automatizado con Jasmine.
+- Confirmación de que no se manipula el DOM y que la lógica de usuario se basa únicamente en `prompt()`/`alert()`.
+
+### Cierre
+Al cerrar la tarea, se documenta en esta sección el resumen de la entrega, los hallazgos finales y la decisión de aprobación o ajustes pendientes.
 
-```
-Hola necesito que en el archivo script.js Implementar un menú principal mediante prompt() que permita al usuario
-elegir entre los 4 flujos Los flujos son 1: @startuml
-title Flujo 1 - Búsqueda de películas con filtros
-
-|#E6E6E6|Usuario|
-start
-
-repeat
-:Selecciona filtros disponibles;
-
-|#D9F2FF|Módulo de Filtros|
-:Recibe selección de filtros;
-:Aplica criterios de búsqueda;
-
-|#DDF5DD|Catálogo de Películas|
-:Busca películas coincidentes;
-:Obtiene resultados;
-
-if (¿Hay resultados?) then (Si)
--[#green,bold]->
-:Informa resultados de búsqueda;
-
-else (No)
--[#red,bold]->
-:Informa mensaje sin coincidencias;
-
-endif
-
-|Usuario|
-:Visualiza contenido de resultados;
-repeat while (¿Desea realizar otra búsqueda?) is (Si) -[#blue,bold]->
-
-stop
-@enduml Flujo 2: @startuml
-title Flujo 2 - Inicio de sesión / Registro de usuario
-
-|#E6E6E6|Usuario|
-start
-:Accede a la página de inicio de sesión/registro de usuario;
-
-if (¿Ya tiene cuenta?) then (Sí - Iniciar sesión)
--[#Green,bold]->
-repeat
--[#Green,bold]->
-:Ingresa credenciales;
--[#Green,dashed]->
-
-|#D9F2FF|Módulo de Autenticación|
-:Recibe credenciales;
--[#Green,bold]->
-:Valida formatos de datos; 
--[#Green,bold]->
-
-if (¿Los datos tienen formato válido?) then (No) 
-
-  |Módulo de Autenticación|
-  -[#Green,bold]->
-  :Informa errores de validación;
-  -[#Green,bold]->
-
-else (Si)
-  |#DDF5DD|Gestión de Usuarios|
-  -[#Green,dashed]->
-  :Busca usuario registrado;
-  -[#Green,bold]->
-  :Verifica credenciales;
-  -[#Green,bold]->
-
-  if (¿Las credenciales son válidas?) then (Sí)
-    |Usuario|
-    -[#Green,bold]->
-    :Visualiza confirmación de inicio de sesión;
-    -[#Green,bold]->
-    break
-
-  else (No)
-    |Gestión de Usuarios|
-    -[#Green,bold]->
-    :Informa credenciales inválidas;
-    -[#Green,bold]->
-
-  endif
-endif
-
-|Usuario|
--[#Green,dashed]->
-:Visualiza mensaje de error;
--[#Green,bold]->
-
-repeat while (¿Desea reintentar el acceso?) is (Sí) -[#blue,dashed]->
-
-else (No - Registrarse)
--[#Red,bold]->
-repeat
--[#Red,bold]->
-:Ingresa datos de registro;
-
-|#D9F2FF|Módulo de Autenticación|
--[#Red]->
-:Recibe datos de registro;
--[#Red,bold]->
-:Valida formato de datos;
--[#Red,bold]->
-:Valida coincidencia de contraseñas;
--[#Red,bold]->
-
-if (¿Los datos son válidos y las contraseñas coinciden?) then (No)
-
-  |Módulo de Autenticación|
-  -[#Red,bold]->
-  :Informa errores de validación;
-  -[#Red,bold]->
-
-else (Si)
-  |#DDF5DD|Gestión de Usuarios|
-  -[#Red,bold]->
-  :Verifica si el email ya está registrado;
-  -[#Red,bold]->
-
-  if (¿El email ya existe?) then (No)
-  
-    |Gestión de Usuarios|
-    -[#Red,bold]->
-    :Registra nuevo usuario;
-    -[#Red,bold]->
-
-    |Usuario|
-    -[#Red,bold]->
-    :Visualiza confirmación de registro;
-    -[#Red,bold]-> 
-    break
-
-  else (Si)
-    |Gestión de Usuarios|
-    -[#Red,bold]->
-    :Informa que el email ya está registrado;
-    -[#Red,bold]->
-  
-  endif
-endif
-
-|Usuario|
--[#Red,bold]->
-:Visualiza mensaje de error;
--[#Red,bold]->
-
-repeat while (¿Desea reintentar?) is (Sí) -[#blue,dashed]->
-
-endif
-
-|Usuario|
-:Retorna al menú principal;
-
-stop
-@enduml Flujo 3: @startuml
-title Flujo 3 - Contacto con soporte mediante formulario
-
-|#E6E6E6|Usuario|
-start
-
-:Ingresa a la sección de contacto;
-
-repeat
-:Ingresa email;
-:Ingresa titulo de consulta;
-:Ingresa descripcion del problema;
-
-|#D9F2FF|Formulario de Contacto|
-:Recibe datos del formulario;
-:Valida campos obligatorios;
-
-if (¿Todos los campos estan completos?) then (No)
-:Informa que faltan campos obligatorios;
-
-else (Si)
-|Formulario de Contacto|
-:Valida formato de email;
-
-if (¿El email tiene formato valido?) then (No)
-  :Informa que el email no es valido;
-
-else (Si)
-  |#DDF5DD|Soporte|
-   :Recibe la consulta;
-   :Registra la consulta;
-   :Genera ticket de seguimiento;
-
-   |Usuario|
-   :Visualiza confirmacion de envio;
-   :Recibe numero de ticket;
-  break
-  
-endif
-
-endif
-
-|Usuario|
-:Visualiza mensaje de error;
-
-repeat while (¿Desea reintentar el envio?) is (Si) -[#blue,dashed]->
-
-|Usuario|
-:Retorna al menu principal;
-
-stop
-@enduml flujo 4: @startuml
-title Flujo 4 - Compra de entradas
-
-|#E6E6E6|Usuario|
-start
-
-:Ingresa al flujo de compra;
-
-repeat
-:Selecciona datos de funcion;
-
-|#D9F2FF|Módulo de Compra|
-:Recibe seleccion;
-:Valida disponibilidad y datos obligatorios;
-
-if (¿La seleccion de funcion es valida?) then (Si)
-
-|Usuario|
-:Avanza al pago;
-repeat
-  :Ingresa datos de pago;
-
-  |#DDF5DD|Pasarela de Pago|
-  :Recibe datos de pago;
-  :Valida datos obligatorios;
-  :Valida formato de pago;
-
-  if (¿Los datos de pago son validos?) then (No)
-    |Pasarela de Pago|
-    :Informa errores en el pago;
-    -[#Red,dashed]->
-
-  else (Si)
-    |#E8DDF5|Gestión de Entradas|
-    :Registra la compra;
-    :Genera confirmacion final;
-
-    |Usuario|
-    :Visualiza confirmacion de compra;
-    :Recibe numero de confirmacion;
-    break
-
-  endif
-  |Usuario|
-  :Visualiza mensaje de error en el pago;
-
-repeat while (¿Desea reintentar el pago?) is (Si) -[#blue,dashed]->
-break
-
-else (No)
-|Módulo de Compra|
-:Informa errores en la seleccion;
-
-endif
-|Usuario|
-:Visualiza mensaje de error en la seleccion;
-
-repeat while (¿Desea reintentar la seleccion?) is (Si) -[#blue,dashed]->
-
-|Usuario|
-:Retorna al menu principal;
-
-stop
-@enduml Esto necesito que cumpla con esto : ● Desarrollar funciones específicas para cada flujo, siguiendo principios de
-código limpio:
-○ Nombres descriptivos
-○ Funciones con responsabilidad única
-○ Parámetros y valores de retorno apropiados
-● Implementar algoritmos condicionales y ciclos de manera eficiente
-● Crear y manipular arrays y objetos relevantes al contexto del proyecto
-● Validar entradas del usuario
-● Mostrar resultados mediante alert() y/o console.log()
-● IMPORTANTE: No manipular el DOM ni usar eventos en esta entrega (solo
-lógica con prompt/alert)
-● CRÍTICO para testing: Estructurar el código de forma que las funciones sean
-testeables:
-○ Separar lógica de negocio de interacción con usuario (prompt/alert)
-○ Crear funciones puras que reciban parámetros y retornen valores
-○ Evitar side effects innecesarios
-○ Exponer funciones necesarias para testing (no anidar todo en IIFE si se
-va a testear)
-● Documentar funciones complejas con comentarios JSDoc     (Pone en una parte que tuve que sacar del codigo poque no estaba en develop la rama en ese momento de la creacion)
-```
 
 
 
