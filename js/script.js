@@ -215,18 +215,21 @@ function filtrarPeliculasUI() {
 
   while (continueSearch) {
     const filters = getMovieSearchFilters();
+
     if (!filters) {
       alert('Busqueda cancelada. Retornando al menu principal.');
       return;
     }
 
     const results = searchMovies(filters, MOVIES);
+
     if (results.length === 0) {
       alert('No se encontraron coincidencias para los filtros seleccionados.');
       console.log('Resultados de busqueda: ningun resultado encontrado');
     } else {
-      alert(`Se encontraron ${results.length} pelicula(s). Revisa la consola para detalles.`);
-      console.log('Resultados de busqueda:\n' + formatMovieList(results));
+      alert(`Se encontraron ${results.length} pelicula(s):
+
+${formatMovieList(results)}`);
     }
 
     const repeat = prompt('Desea realizar otra busqueda? (Si/No)');
@@ -558,9 +561,4 @@ function runMainMenu() {
         alert('Opcion invalida. Por favor ingrese un numero entre 1 y 5.');
     }
   }
-}
-
-// No invocar runMainMenu() directamente para permitir testing con Jasmine
-if (typeof jasmine === 'undefined') {
-  runMainMenu();
 }
