@@ -31,6 +31,8 @@
 - [fix/correciones-en-testing-doc.md-y-script.js] Correcion de errores ( rc7,rc9,rc10,rc11,rc12)
   PR: [#149](https://github.com/hmarc953/cineglobal/pull/149) - @Santi22-7 (Coordinador / DevOps + Tester QA)
 
+- [fix/correción-de-función] Corrección de un error que no permitía que se vea los flujos
+  PR: [#150](https://github.com/hmarc953/cineglobal/pull/150) - @Santi22-7 (Coordinador / DevOps + Tester QA)
 
 ## [Release Primer Parcial] - 2026-04-22
 
