@@ -562,3 +562,8 @@ function runMainMenu() {
     }
   }
 }
+
+
+if (typeof jasmine === 'undefined') {
+  runMainMenu();
+}
