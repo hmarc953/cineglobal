@@ -6,7 +6,30 @@ Garantizar la cobertura funcional y la calidad de los 4 flujos principales de Ci
 ## 2. Plan de Testing en dos momentos
 El flujo de trabajo de testing se divide en dos momentos críticos para mantener trazabilidad y evidencia documentada:
 
-### Momento 1 - Antes de escribir cualquier test (commitear primero)
+### BEFORE — Antes de escribir cualquier test (commitear primero)
+
+#### Objetivo
+Verificar los 4 flujos principales de CineGlobal con pruebas unitarias en Jasmine y asegurar que el runner funciona correctamente en el navegador.
+
+#### Alcance
+- Inicio de Sesión
+- Compra de Entrada
+- Filtros de Películas
+- Consulta de Soporte
+
+#### Herramientas
+- Jasmine 5 (CDN)
+- Navegador web para ejecutar `js/test/test-runner.html`
+- Live Server en VS Code o un servidor estático local
+- Playwright MCP para validar el runner en un navegador real y generar evidencia adicional
+- Capturas de pantalla para PASS/FAIL
+
+#### Criterios de Aceptación
+- 4 suites de tests, una por cada flujo principal
+- Mínimo 3 tests por suite
+- Tests ejecutados exitosamente en `test-runner.html`
+- Screenshots del resultado PASS/FAIL disponibles
+- Bugs documentados como issues en GitHub con pasos para reproducir y test case que falla
 
 #### 2.1 Punto de control obligatorio
 - Realizar un commit de la base funcional actual antes de crear o modificar cualquier archivo de test.
@@ -40,7 +63,7 @@ Se cubrirán los 4 flujos principales del sistema con la siguiente estrategia:
 - Edge cases: texto mínimo, texto largo (>500 caracteres), categorías ambiguas.
 - Errores: entrada vacía, no interpretable, caracteres no permitidos.
 
-### Momento 2 - Después de implementar y ejecutar tests
+### AFTER — Después de implementar y ejecutar tests
 
 #### 2.3 Ejecución y validación
 - Ejecutar todas las suites en `test-runner.html` mediante Playwright MCP.

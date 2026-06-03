@@ -9,33 +9,6 @@
 
 ---
 
-## BEFORE: Plan de Testing
-
-### Objetivo
-Verificar los 4 flujos principales de CineGlobal con pruebas unitarias en Jasmine y asegurar que el runner funciona correctamente en el navegador.
-
-### Alcance
-- Inicio de Sesión
-- Compra de Entrada
-- Filtros de Películas
-- Consulta de Soporte
-
-### Herramientas
-- Jasmine 5 (CDN)
-- Navegador web para ejecutar `js/test/test-runner.html`
-- Live Server en VS Code o un servidor estático local
-- Playwright MCP para validar el runner en un navegador real y generar evidencia adicional
-- Capturas de pantalla para PASS/FAIL
-
-### Criterios de Aceptación
-- 4 suites de tests, una por cada flujo principal
-- Mínimo 3 tests por suite
-- Tests ejecutados exitosamente en `test-runner.html`
-- Screenshots del resultado PASS/FAIL disponibles
-- Bugs documentados como issues en GitHub con pasos para reproducir y test case que falla
-
----
-
 ## Ejecución de Tests
 
 ### Pasos para Ejecutar
@@ -168,6 +141,32 @@ y se verificó qué líneas son ejecutadas por los tests implementados.
 | `validateContactForm()` | 2 | 100% |
 | `createSupportTicket()` | 2 | 90% |
 
+### Simular prompt():
+```javascript
+describe('Test de prompt', () => {
+  it('debería obtener un nombre desde prompt', () => {
+    spyOn(window, 'prompt').and.returnValue('Matias');
+
+    const nombre = prompt('Ingrese su nombre');
+
+    expect(nombre).toBe('Matias');
+    expect(window.prompt).toHaveBeenCalledWith('Ingrese su nombre');
+  });
+});
+```
+### Simular alert():
+```javascript
+describe('Test de alert', () => {
+  it('debería mostrar un alert', () => {
+    spyOn(window, 'alert');
+
+    alert('Hola Mundo');
+
+    expect(window.alert).toHaveBeenCalled();
+    expect(window.alert).toHaveBeenCalledWith('Hola Mundo');
+  });
+});
+```
 **Cobertura Total Estimada:** ~95%
 
 #### Líneas NO Cubiertas
@@ -240,34 +239,6 @@ y se verificó qué líneas son ejecutadas por los tests implementados.
   spies/mocks de `prompt()` y `alert()`
 
 ---
-
-## AT CLOSE (prompt utilizado)
-
-Actua como un QA Engineer experto en testing con Jasmine.
-
-Tengo el archivo js/script.js adjunto que contiene 4 flujos principales 
-de CineGlobal: Inicio de Sesión, Compra de Entrada, Filtros y Consultar Soporte.
-
-Generá el archivo js/test/script.spec.js con:
-- 4 suites usando describe(), una por cada flujo
-- Mínimo 3 tests por suite usando it()
-- Funcionalidad basica: Tests de happy path (casos normales)
-- Tests de edge cases (valores límite: 0, negativos, strings vacíos)
-- Tests de validación de errores (datos inválidos, null, undefined)
-- Tests de operaciones con arrays: agregar, eliminar, buscar, filtrar elementos
-- Tests de operaciones con objetos: crear, modificar propiedades, metodos
-- Verificar que operaciones matematicas sean correctas.
-- Utilizar Assertions de Jasmine que sean apropiadas: 
-	expect(valor).toBe(esperado) igualdad estricta
-	expect(valor).toEqual(esperado) igualdad profunda (objetos/arrays)
-  	expect(valor).toBeTruthy()/toBeFalsy()
-	expect(valor).toBeNull()/toBeUndefinined()
-	expect(array).toContain(elemento)
-	expect(function).toThrow() - si debe arrojar error
-- Nombres descriptivos en español para cada it()
-
-Las funciones testeadas deben ser exactamente las que están en script.js, sin inventar nombres. Tal cual lo solicito.
-
 
 [prompts](./docs\02-prompts\imagenes_evidencias\imag_evidencia_prompts_QA_tester.png)
 
