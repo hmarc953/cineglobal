@@ -310,3 +310,72 @@ footer {
     overflow-x: visible;
   }
 }
+
+@media (max-width: 576px) {
+  .cineglobal-modal .modal-title {
+    font-size: 1.6rem;
+  }
+
+  .cineglobal-modal .modal-body {
+    padding: 1rem 1.25rem 1.5rem;
+  }
+
+  .cineglobal-modal-btn {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .cineglobal-input {
+    min-height: 3.5rem;
+  }
+
+  .cineglobal-textarea {
+    min-height: 180px;
+  }
+
+  .cineglobal-confirm-btn {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .compra-modal .modal-body,
+  .pago-modal .modal-body {
+    padding: 1rem 1.25rem 1.75rem;
+  }
+
+  .compra-titulo-pelicula,
+  .pago-form .modal-title {
+    font-size: 1.5rem;
+  }
+
+  .compra-select,
+  .pago-input {
+    min-height: 56px;
+  }
+
+  .compra-submit-btn,
+  .pago-submit-btn,
+  .cineglobal-confirm-btn {
+    width: 100%;
+    min-width: unset;
+  }
+}
+
+@media (max-width: 991px) {
+  .compra-pelicula {
+    align-items: center;
+    text-align: center;
+  }
+
+  .compra-titulo-pelicula {
+    font-size: 1.8rem;
+  }
+
+  .compra-poster {
+    max-width: 260px;
+  }
+
+  .compra-form {
+    padding-top: 0;
+  }
+}

@@ -2,63 +2,37 @@
 
 ## [Unreleased]
 
-### Fixed Primer Parcial - 2026-04-30
-- [fix/rc-01-test-case-6-playwright] e corrigio evidencias visuales TC-6
-  PR: [#98](https://github.com/hmarc953/cineglobal/pull/98) - @abartomioli (Coordinador/DevOps)
+## [Release Actividad Obligatoria N°3] - 2026-05-07
 
-- [fix/rc-02-readme-bootstrap-tech] Fix - RC-02: Bootstrap 5.3.3 agregado a la lista de tecnologías en README.md
-  PR: [#99](https://github.com/hmarc953/cineglobal/pull/99) - @abartomioli (Coordinador/DevOps)
+### Added
+- [feature/coord-devops-tercera-entrega] Se crea archivo de especificaciones spec-devops.md.
+  PR: [#125](https://github.com/hmarc953/cineglobal/pull/125) - @abartomioli (Coordinador/DevOps)
 
-- [fix/rc-03-readme-objective] Fix - RC-03: Actualización del objetivo del entregable para el Primer Parcial en README.md
-  PR: [#100](https://github.com/hmarc953/cineglobal/pull/100) - @abartomioli (Coordinador/DevOps)
+- [feature/estructura-carpetas-y-readme] Se modifica plan.md, estructura carpetas y readme.
+  PR: [#136](https://github.com/hmarc953/cineglobal/pull/136) - @abartomioli (Coordinador/DevOps)
 
-- [fix/rc-04-readme-checkboxes] Fix - RC-04: Marcadas funcionalidades implementadas (Bootstrap, Navbar, Modal) en README.md.
-  PR: [#101](https://github.com/hmarc953/cineglobal/pull/101) - @abartomioli (Coordinador/DevOps)
+- [feature/arq-diagramas-actividades] [Arquitecto] Actualiza mockup, HTML/CSS y diagramas de actividades
+  PR: [#140](https://github.com/hmarc953/cineglobal/pull/140) - @hmarc953 (Arquitecto de Diagramas de Actividades)
 
-- [fix/rc-05-spec-devops-figma-mcp] Fix - RC-05: Evidencia "AT CLOSE" con tool calls y output real de Figma MCP en spec-devops.md.
-  PR: [#102](https://github.com/hmarc953/cineglobal/pull/102) - @abartomioli (Coordinador/DevOps)
+- [feature/dev-javascript-logica-negocio] Implemento los 4 flujos
+  PR: [#141](https://github.com/hmarc953/cineglobal/pull/141) - @Santi22-7 (DESARROLLADOR JAVASCRIPT)
 
-- [fix/rc-06-spec-devops-moments] Fix - RC-06: Explicitada estructura de "Momentos" (Antes de empezar / Al cierre) en spec-devops.md.
-  PR: [#103](https://github.com/hmarc953/cineglobal/pull/103) - @abartomioli (Coordinador/DevOps)
+- [feature/tester-javascript-jasmine] Tester QA implementa pruebas Jasmine para los 4 flujos de CineGlobal, corrige runner y evidencia Playwright MCP.
+  PR: [#144](https://github.com/hmarc953/cineglobal/pull/144) - @9919-Mili (Tester / QA)
 
-- [fix/rc-07-spec-frontend-bootstrap-mcp-evidence] Fix - RC-07: Documentación de tool calls y output de Figma MCP en spec-frontend-bootstrap.md.
-  PR: [#104](https://github.com/hmarc953/cineglobal/pull/104) - @abartomioli (Coordinador/DevOps)
+- [feature/coord-devops-tercera-entrega] Cierre, spec, evidencias de pr review.
+  PR: [#145](https://github.com/hmarc953/cineglobal/pull/145) - @abartomioli (Coordinador/DevOps)
 
-- [fix/rc-08-spec-html-avanzados-moments] Fix - RC-08: Estructura de "Momentos" en spec-html-avanzados.md con planificación previa y preservación de evidencia técnica.
-  PR: [#105](https://github.com/hmarc953/cineglobal/pull/105) - @abartomioli (Coordinador/DevOps)
+---
 
-- [fix/rc-09-bootstrap-spec-outputs] Fix - RC-09: Inclusión de outputs técnicos (assertions, estado DOM, tool calls) en spec-componentes-bootstrap.md.
-  PR: [#106](https://github.com/hmarc953/cineglobal/pull/106) - @abartomioli (Coordinador/DevOps)
+### Fixed
+- [fix/correcione-en-changelog-y-spec] Correcion de errores en changelog y spec (rc1 ,rc2, rc3,rc4,rc5,rc6,correcion de copia de codigo completo,rc8)
+  PR: [#148](https://github.com/hmarc953/cineglobal/pull/148) - @Santi22-7 (Coordinador / DevOps + Tester QA)
+- [fix/correciones-en-testing-doc.md-y-script.js] Correcion de errores ( rc7,rc9,rc10,rc11,rc12)
+  PR: [#149](https://github.com/hmarc953/cineglobal/pull/149) - @Santi22-7 (Coordinador / DevOps + Tester QA)
 
-- [fix/rc-10-test-case-7-evidence] Fix - RC-10: Se agregaron capturas de Playwright y estructura de hallazgos en test-case-7.md
-  PR: [#107](https://github.com/hmarc953/cineglobal/pull/107) - @abartomioli (Coordinador/DevOps)
-
-- [fix/rc-11-test-case-8-evidence] Fix - RC-11: Se completó la documentación de test-case-8.md y se agregaron las capturas en la carpeta tc-8/.
-  PR: [#108](https://github.com/hmarc953/cineglobal/pull/108) - @abartomioli (Coordinador/DevOps)
-
-- [fix/rc-12-titulo-tc10] Fix - RC-12: Se corrigió título de test-case-10.md.
-  PR: [#109](https://github.com/hmarc953/cineglobal/pull/109) - @abartomioli (Coordinador/DevOps)
-
-- [fix/rc-14-correcion-changelod] Fix - RC-14: Se corrigió título changelod.md.
-  PR: [#110](https://github.com/hmarc953/cineglobal/pull/110) - @abartomioli (Coordinador/DevOps)
-
-- [fix/rc-17-alinear-con-figma] Fix - RC-17: Se arregla en base al figma el proyecto.
-  PR: [#117](https://github.com/hmarc953/cineglobal/pull/117) - @abartomioli (Coordinador/DevOps)
-
-- [fix/diseño-bootstrap] Fix - Diseño bootstrap
-  PR: [#118](https://github.com/hmarc953/cineglobal/pull/118) - @abartomioli (Coordinador/DevOps)
-
-- [fix/rc-20-ajustes] Fix - RC-20: Verificación de sincronización final con Figma, implementación de Hero Section, grilla de 4 columnas y actualización de spec-devops.md.
-  PR: [#119](https://github.com/hmarc953/cineglobal/pull/119) - @abartomioli (Coordinador/DevOps)
-
-- [fix/rc-18-ajustes-bootstrap] Fix - RC-18: Sincronización con Figma, eliminación de componentes inventados (modal) e implementación de navegación real según auditoría de componentes.
-  PR: [#120](https://github.com/hmarc953/cineglobal/pull/120) - @abartomioli (Coordinador/DevOps)
-
-- [fix/ajustes-html-y-bootstrap] Fix - Ajustes HTML y Bootstrap, los botones de compra al final de cada tarjeta de película y actualización del texto a "Compra boletos aqui" para mejorar la consistencia visual.
-  PR: [#121](https://github.com/hmarc953/cineglobal/pull/121) - @abartomioli (Coordinador/DevOps)
-
-- [fix/imagen-faltante-y-figma-actualizado] Fix - Optimización de la Hero Section mediante el uso de clamp() para dimensiones fluidas, limitación de ancho máximo a 1100px para alineación con el contenedor principal y corrección de z-index para visibilidad del texto y actualización imagen figma diseño-bootstrap
-  PR: [#123](https://github.com/hmarc953/cineglobal/pull/123) - @abartomioli (Coordinador/DevOps)
+- [fix/correción-de-función] Corrección de un error que no permitía que se vea los flujos
+  PR: [#150](https://github.com/hmarc953/cineglobal/pull/150) - @Santi22-7 (Coordinador / DevOps + Tester QA)
 
 ## [Release Primer Parcial] - 2026-04-22
 
@@ -96,6 +70,62 @@
 
 - [fix/entrada-changelog-mal-ubicada] Fix - Changelog corregido
   PR: [#96](https://github.com/hmarc953/cineglobal/pull/96) - @hmarc953 (Coordinador / DevOps)
+- [fix/rc-01-test-case-6-playwright] Se corrigieron evidencias visuales TC-6.
+  PR: [#98](https://github.com/hmarc953/cineglobal/pull/98) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-02-readme-bootstrap-tech] Fix - RC-02: Bootstrap 5.3.3 agregado a la lista de tecnologías en README.md
+  PR: [#99](https://github.com/hmarc953/cineglobal/pull/99) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-03-readme-objective] Fix - RC-03: Actualización del objetivo del entregable para el Primer Parcial en README.md
+  PR: [#100](https://github.com/hmarc953/cineglobal/pull/100) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-04-readme-checkboxes] Fix - RC-04: Marcadas funcionalidades implementadas (Bootstrap, Navbar, Modal) en README.md.
+  PR: [#101](https://github.com/hmarc953/cineglobal/pull/101) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-05-spec-devops-figma-mcp] Fix - RC-05: Evidencia "AT CLOSE" con tool calls y output real de Figma MCP en spec-devops.md.
+  PR: [#102](https://github.com/hmarc953/cineglobal/pull/102) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-06-spec-devops-moments] Fix - RC-06: Explicitada estructura de "Momentos" (Antes de empezar / Al cierre) en spec-devops.md.
+  PR: [#103](https://github.com/hmarc953/cineglobal/pull/103) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-07-spec-frontend-bootstrap-mcp-evidence] Fix - RC-07: Documentación de tool calls y output de Figma MCP en spec-frontend-bootstrap.md.
+  PR: [#104](https://github.com/hmarc953/cineglobal/pull/104) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-08-spec-html-avanzados-moments] Fix - RC-08: Estructura de "Momentos" en spec-html-avanzados.md con planificación previa y preservación de evidencia técnica.
+  PR: [#105](https://github.com/hmarc953/cineglobal/pull/105) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-09-bootstrap-spec-outputs] Fix - RC-09: Inclusión de outputs técnicos (assertions, estado DOM, tool calls) en spec-componentes-bootstrap.md.
+  PR: [#106](https://github.com/hmarc953/cineglobal/pull/106) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-10-test-case-7-evidence] Fix - RC-10: Se agregaron capturas de Playwright y estructura de hallazgos en test-case-7.md
+  PR: [#107](https://github.com/hmarc953/cineglobal/pull/107) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-11-test-case-8-evidence] Fix - RC-11: Se completó la documentación de test-case-8.md y se agregaron las capturas en la carpeta tc-8/.
+  PR: [#108](https://github.com/hmarc953/cineglobal/pull/108) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-12-titulo-tc10] Fix - RC-12: Se corrigió título de test-case-10.md.
+  PR: [#109](https://github.com/hmarc953/cineglobal/pull/109) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-14-correcion-changelog] Fix - RC-14: Se corrigió título en el archivo changelog.md.
+  PR: [#110](https://github.com/hmarc953/cineglobal/pull/110) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-17-alinear-con-figma] Fix - RC-17: Se arregla en base al figma el proyecto.
+  PR: [#117](https://github.com/hmarc953/cineglobal/pull/117) - @abartomioli (Coordinador/DevOps)
+
+- [fix/diseño-bootstrap] Fix - Diseño bootstrap
+  PR: [#118](https://github.com/hmarc953/cineglobal/pull/118) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-20-ajustes] Fix - RC-20: Verificación de sincronización final con Figma, implementación de Hero Section, grilla de 4 columnas y actualización de spec-devops.md.
+  PR: [#119](https://github.com/hmarc953/cineglobal/pull/119) - @abartomioli (Coordinador/DevOps)
+
+- [fix/rc-18-ajustes-bootstrap] Fix - RC-18: Sincronización con Figma, eliminación de componentes inventados (modal) e implementación de navegación real según auditoría de componentes.
+  PR: [#120](https://github.com/hmarc953/cineglobal/pull/120) - @abartomioli (Coordinador/DevOps)
+
+- [fix/ajustes-html-y-bootstrap] Fix - Ajustes HTML y Bootstrap, los botones de compra al final de cada tarjeta de película y actualización del texto a "Compra boletos aqui" para mejorar la consistencia visual.
+  PR: [#121](https://github.com/hmarc953/cineglobal/pull/121) - @abartomioli (Coordinador/DevOps)
+
+- [fix/imagen-faltante-y-figma-actualizado] Fix - Optimización de la Hero Section.
+  PR: [#123](https://github.com/hmarc953/cineglobal/pull/123) - @abartomioli (Coordinador/DevOps)
 
 ## [Release Actividad Obligatoria N°2] - 2026-04-12
 
