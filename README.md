@@ -28,6 +28,13 @@ Orientada a Objetos, se agrega persistencia de datos con localStorage y
 sessionStorage, y se extiende la cobertura de testing automatizado usando 
 Jasmine.
 
+###  Descripción del trabajo realizado
+Actualización de documentación coordinadora (DevOps):
+- Incorporación de cambios y correcciones de la Actividad Obligatoria N°3 en `README.md`, `plan.md` y documentación de seguimiento.
+- Actualización del `changelog.md` con la nueva release de A4 y backport de correcciones de A3.
+- Creación o ajuste del spec DevOps para A4 con plan de coordinación y criterios de aceptación.
+- Reorganización de roles del equipo y ajustes en la estructura del proyecto para reflejar nuevas responsabilidades en A4.
+
 ### Funcionalidades del Proyecto (Histórico)
 
 #### Completadas en entregas previas (A1, A2, PP, A3)

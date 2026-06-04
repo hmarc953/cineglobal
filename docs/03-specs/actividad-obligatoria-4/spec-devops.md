@@ -21,7 +21,7 @@
   - Utilizarlo como apoyo para revisar PRs, proponer mejoras de estructura y confirmar que las correcciones de AO3 y el backport cumplen los requisitos.
   - Complementar con revisiones humanas para garantizar calidad, contexto y decisiones de integración.
 
-## Criterios de aceptaci�n
+## Criterios de aceptación
 - [ ] Correcciones de la Actividad Obligatoria N°3 aplicadas al proyecto.
 - [ ] Backport realizado correctamente y documentado en el flujo de trabajo.
 - [ ] Al menos 4 code reviews con CHANGES_REQUESTED documentados y resueltos.
