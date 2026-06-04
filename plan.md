@@ -1,4 +1,4 @@
-﻿﻿﻿﻿# Plan Maestro del Proyecto CineGlobal
+﻿﻿﻿# Plan Maestro del Proyecto CineGlobal
 
 ## 1. Objetivo del proyecto
 
@@ -43,6 +43,10 @@ CineGlobal es una aplicación web front-end que permite visualizar películas y 
 - Creación de diagramas de actividades en PlantUML que modelen cada flujo
   antes de la implementación.
 - Testeo de las ramas
+
+### 2.5 Actividad Obligatoria 4
+
+- Una aplicación web interactiva completa que utiliza manipulación del DOM, eventos del usuario, Programación Orientada a Objetos (POO) y  almacenamiento persistente mediante Storage API. 
 
 ## 3. Actores o usuarios del sistema
 
