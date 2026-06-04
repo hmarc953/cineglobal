@@ -4,6 +4,8 @@
 ## [Release Actividad Obligatoria N°4] - 2026-05-18
 
 ### Added
+- [feature/coord-devops-cuarta-entrega] Creacion del spec , actualizacion del changelog y del Readme.md
+  PR: [#152](https://github.com/hmarc953/cineglobal/pull/152) - @Santi22-7 (Coordinador / DevOps + Tester QA)
 ---
 ### Fixed
 
