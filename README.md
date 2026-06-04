@@ -20,34 +20,37 @@ Tecnologías utilizadas:
 - PlantUML (diagramas de actividades)
 
 ### Objetivo del entregable
-Esta entrega corresponde a la Actividad Obligatoria 3, e integra la lógica de 
-negocio fundamental de CineGlobal mediante JavaScript puro. Se implementan 4 
-flujos principales del sistema accesibles a través de un menú interactivo con 
-prompt(), con testing automatizado usando Jasmine y diagramas de actividades 
-en PlantUML que modelan cada flujo antes de su implementación.
+Esta entrega corresponde a la Actividad Obligatoria 4, que continúa desde la A3 
+eliminando completamente el uso de prompt() y alert() para implementar una 
+interfaz web moderna. Se implementa interactividad completa mediante eventos 
+del usuario y manipulación del DOM, se refactoriza el código con Programación 
+Orientada a Objetos, se agrega persistencia de datos con localStorage y 
+sessionStorage, y se extiende la cobertura de testing automatizado usando 
+Jasmine.
 
 ### Funcionalidades del Proyecto (Histórico)
 
-#### Completadas en entregas previas (A1, A2, PP)
+#### Completadas en entregas previas (A1, A2, PP, A3)
 - [x] Estructura de página con listado de películas
 - [x] Vista de detalle de película con información básica y horarios de funciones
 - [x] Estilos CSS aplicados para mejorar la apariencia visual y soporte responsive
 - [x] Integración de Bootstrap 5 con componentes avanzados (navbar, modal, carousel)
 - [x] Diseño responsive validado en desktop, tablet y móvil
-
-#### En desarrollo para esta entrega (A3)
 - [x] Menú de navegación interactivo mediante `prompt()` con acceso a los 4 flujos
-- [x] Flujo 1 - Inicio de sesión: valida credenciales del usuario (nombre de 
-      usuario y contraseña) simulando el acceso al sistema
-- [x] Flujo 2 - Compra de entrada: permite seleccionar película, función y 
-      cantidad de entradas.
-- [x] Flujo 3 - Filtros: filtra el catálogo de películas según criterios como 
-      género, cine o franja horaria
-- [x] Flujo 4 - Consultar soporte: permite al usuario describir su problema y 
-      obtener una respuesta o derivación según el tipo de consulta
-- [x] Validación de entradas del usuario en todos los flujos
-- [x] Testing automatizado con Jasmine (4 suites, una por flujo)
-- [x] Diagramas de actividades en PlantUML para cada flujo
+- [x] Flujo 1 - Inicio de sesión: valida credenciales del usuario
+- [x] Flujo 2 - Compra de entrada: permite seleccionar película, función y cantidad
+- [x] Flujo 3 - Filtros: filtra el catálogo según criterios
+- [x] Flujo 4 - Consultar soporte: permite describir problemas
+- [x] Validación de entradas en todos los flujos
+- [x] Testing automatizado con Jasmine
+- [x] Diagramas de actividades en PlantUML
+
+#### En desarrollo para esta entrega (A4)
+- [x] Eliminar completamente el uso de prompt() y alert() para migrar a una interfaz web moderna
+- [x] Implementar interactividad completa mediante eventos del usuario y manipulación del DOM
+- [x] Refactorizar el código aplicando Programación Orientada a Objetos (POO)
+- [x] Implementar persistencia de datos usando localStorage y/o sessionStorage
+- [x] Mantener y extender la cobertura de testing automatizado
 
 ## Documentación
 
@@ -67,7 +70,7 @@ en PlantUML que modelan cada flujo antes de su implementación.
 
 | Nombre completo          | N° de Matrícula | Usuario GitHub | Rol en esta entrega                        |
 |--------------------------|-----------------|----------------|--------------------------------------------|
-| Alejandro Bartomioli     | 153041          | @abartomioli   | Coordinador / DevOps                       |
-| Marc Holste              | 160313          | @hmarc953      | Arquitecto de Diagramas de Actividades     |
-| Santiago Ariel Samitier  | 148249          | @Santi22-7     | Desarrollador JavaScript                   |
-| Milagros Magali Araujo   | 148197          | @9919-Mili     | Tester JavaScript / QA Engineer            |
+| Santiago Ariel Samitier  | 148249          | @Santi22-7     | Coordinador / DevOps + Tester QA           |
+| Alejandro Bartomioli     | 153041          | @abartomioli   | Desarrollador JS Eventos + DOM             |
+| Milagros Magali Araujo   | 148197          | @9919-Mili     | Desarrollador JS Local y Session Storage   |
+| Marc Holste              | 160313          | @hmarc953      | Desarrollador JS POO                       |
