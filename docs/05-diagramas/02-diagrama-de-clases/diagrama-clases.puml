@@ -1,0 +1,162 @@
+@startuml DiagramaClasesCineGlobal
+!define ARROWCOLOR #3498db
+!define CLASSCOLOR #ecf0f1
+!define BORDERCOLOR #34495e
+
+skinparam linetype ortho
+skinparam classBackgroundColor CLASSCOLOR
+skinparam classArrowColor ARROWCOLOR
+skinparam classBorderColor BORDERCOLOR
+skinparam classStereotypeCBackgroundColor #95a5a6
+skinparam arrowLollipopColor BORDERCOLOR
+skinparam backgroundColor #ffffff
+
+'==============================================================
+' ENTIDADES DEL DOMINIO - CATÁLOGO
+'==============================================================
+
+class Pelicula {
+  - id: string
+  - titulo: string
+  - categoria: string
+  - clasificacion: string
+  - fechaEstreno: Date
+  - imagen: string
+  - funciones: Funcion[]
+  --
+  + coincideConFiltros(filtros): boolean
+  + agregarFuncion(funcion: Funcion): void
+  + obtenerFuncionesDisponibles(): Funcion[]
+  + toJSON(): object
+  + {static} fromJSON(json): Pelicula
+}
+
+class Funcion {
+  - id: string
+  - cine: string
+  - idioma: string
+  - horario: string
+  - asientosDisponibles: number
+  - precio: number
+  --
+  + coincideConSeleccion(datos): boolean
+  + hayDisponibilidad(cantidad: number): boolean
+  + reservarAsientos(cantidad: number): boolean
+  + toJSON(): object
+  + {static} fromJSON(json): Funcion
+}
+
+class CatalogoPeliculas {
+  - peliculas: Pelicula[]
+  --
+  + buscarPorFiltros(filtros): Pelicula[]
+  + listarPeliculas(): Pelicula[]
+  + obtenerPeliculaPorId(id: string): Pelicula
+  + obtenerPeliculaPorIndice(indice: number): Pelicula
+  + toJSON(): object
+  + {static} fromJSON(json): CatalogoPeliculas
+}
+
+'==============================================================
+' ENTIDADES DEL DOMINIO - USUARIOS Y AUTENTICACIÓN
+'==============================================================
+
+class Usuario {
+  - id: string
+  - nombre: string
+  - email: string
+  - password: string
+  --
+  + validarPassword(password: string): boolean
+  + coincideConEmail(email: string): boolean
+  + actualizarDatos(datos): void
+  + toJSON(): object
+  + {static} fromJSON(json): Usuario
+}
+
+class GestorUsuarios {
+  - usuarios: Usuario[]
+  --
+  + registrarUsuario(datos): Usuario
+  + autenticar(email: string, password: string): Usuario
+  + buscarPorEmail(email: string): Usuario
+  + emailExiste(email: string): boolean
+  + toJSON(): object
+  + {static} fromJSON(json): GestorUsuarios
+}
+
+'==============================================================
+' ENTIDADES DEL DOMINIO - SOPORTE
+'==============================================================
+
+class ConsultaSoporte {
+  - idTicket: string
+  - email: string
+  - titulo: string
+  - descripcion: string
+  - estado: string
+  - fechaCreacion: Date
+  --
+  + validar(): boolean
+  + generarTicket(): string
+  + cambiarEstado(nuevoEstado: string): void
+  + toJSON(): object
+  + {static} fromJSON(json): ConsultaSoporte
+}
+
+'==============================================================
+' ENTIDADES DEL DOMINIO - COMPRAS
+'==============================================================
+
+class Compra {
+  - id: string
+  - funcion: Funcion
+  - cantidadEntradas: number
+  - emailComprador: string
+  - total: number
+  - codigoConfirmacion: string
+  --
+  + calcularTotal(): number
+  + confirmarCompra(): void
+  + esValida(): boolean
+  + toJSON(): object
+  + {static} fromJSON(json): Compra
+}
+
+'==============================================================
+' RELACIONES - COMPOSICIÓN Y AGREGACIÓN
+'==============================================================
+
+CatalogoPeliculas "1" *-- "0..*" Pelicula : contiene
+Pelicula "1" *-- "0..*" Funcion : contiene
+GestorUsuarios "1" o-- "0..*" Usuario : gestiona
+Compra "0..*" --> "1" Funcion : reserva
+
+note right of ConsultaSoporte
+  Entidad independiente del dominio
+  Puede persistirse de forma autonoma
+end note
+
+'==============================================================
+' NOTAS DE ARQUITECTURA
+'==============================================================
+
+note bottom of CatalogoPeliculas
+  Catalogo de peliculas
+  Responsabilidad: gestionar el catalogo
+  y la busqueda de peliculas
+end note
+
+note bottom of GestorUsuarios
+  Gestion de usuarios
+  Responsabilidad: autenticacion,
+  registro y validacion de credenciales
+end note
+
+note bottom of Compra
+  Transacciones
+  Responsabilidad: orquestar la compra
+  de entradas a partir de una funcion
+end note
+
+@enduml
