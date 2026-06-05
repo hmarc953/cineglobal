@@ -178,7 +178,9 @@ Encapsular los datos de una consulta, validar su contenido y gestionar su estado
 - `toJSON()` / `fromJSON()`: permiten serializar y reconstruir instancias.
 
 **Justificación:**  
-Se modela como entidad independiente porque tiene estructura propia y un ciclo de vida separado del resto de las operaciones del sistema.
+Se modela como entidad independiente porque tiene estructura propia y un ciclo de vida separado del resto de las operaciones del sistema. 
+
+Además, para mantener consistencia en el ciclo de vida de la consulta, se definió un conjunto acotado de estados posibles (`Abierto`, `En progreso`, `Resuelto` y `Cerrado`), implementado en código mediante una constante estática de la clase.
 
 ---
 
