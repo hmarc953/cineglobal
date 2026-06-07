@@ -93,7 +93,7 @@ class ConsultaSoporte {
       titulo: this.titulo,
       descripcion: this.descripcion,
       estado: this.estado,
-      fechaCreacion: fechaCreacion.toISOString(),
+      fechaCreacion: fechaCreacion,
     };
   }
 
