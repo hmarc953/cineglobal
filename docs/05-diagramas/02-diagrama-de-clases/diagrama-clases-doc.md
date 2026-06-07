@@ -128,7 +128,8 @@ Encapsular los datos y comportamientos básicos asociados a un usuario.
 - `toJSON()` / `fromJSON()`: permiten serializar y reconstruir instancias.
 
 **Justificación:**  
-`Usuario` es una entidad necesaria para modelar los flujos de inicio de sesión y registro.
+`Usuario` representa una entidad individual del dominio y encapsula datos básicos de autenticación y perfil.  
+La actualización de sus datos se mantiene como una operación sobre la entidad, pero las validaciones que dependen del conjunto de usuarios del sistema, como la unicidad del email o la aplicación de políticas globales de contraseña, se delegan a `GestorUsuarios`.
 
 ---
 
@@ -148,10 +149,12 @@ Encapsular las operaciones de autenticación, búsqueda y registro de usuarios.
 - `autenticar(email, password)`: valida credenciales de acceso.
 - `buscarPorEmail(email)`: busca un usuario por email.
 - `emailExiste(email)`: verifica si un email ya está registrado.
+- `actualizarUsuario(id, datos)`: actualiza los datos de un usuario existente aplicando validaciones de unicidad de email y política mínima de contraseña.
 - `toJSON()` / `fromJSON()`: permiten serializar y reconstruir el gestor.
 
 **Justificación:**  
-Se separa de `Usuario` para diferenciar claramente la entidad individual de la lógica de administración del conjunto de usuarios.
+Se separa de `Usuario` para diferenciar claramente la entidad individual de la lógica de administración del conjunto de usuarios.  
+Además de registrar y autenticar usuarios, `GestorUsuarios` concentra validaciones globales del sistema que no pueden resolverse desde una entidad aislada, como la unicidad del email y la aplicación consistente de reglas de actualización de credenciales.
 
 ---
 
@@ -348,6 +351,11 @@ La estructura de clases también fue pensada para facilitar la integración con 
 - **Tester QA:** podrá probar métodos de las clases sin depender de la interfaz
 
 Esto mejora la coordinación entre capas y hace más ordenado el desarrollo grupal.
+
+### 4.8. Validaciones a nivel de entidad y a nivel de gestor
+
+Se distinguió entre validaciones propias de una entidad individual y validaciones que requieren conocimiento del conjunto de objetos del sistema.  
+Por este motivo, operaciones como la actualización básica de atributos permanecen en `Usuario`, mientras que validaciones globales, como la unicidad del email o la política mínima de contraseña en actualizaciones, se centralizan en `GestorUsuarios`.
 
 ---
 

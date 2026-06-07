@@ -197,7 +197,7 @@ Se definió una arquitectura orientada a objetos basada en separación de respon
 - [x] Las clases complejas estarán documentadas con JSDoc.
 - [x] Se creará un diagrama de clases UML en PlantUML.
 - [x] El diagrama de clases se exportará en formato `.puml` y `.png`.
-- [x] Se documentará el diagrama en `docs/04-diagramas/02-diagrama-de-clases/diagrama-clases-doc.md`.
+- [x] Se documentará el diagrama en `docs/05-diagramas/02-diagrama-de-clases/diagrama-clases-doc.md`.
 - [x] La arquitectura final facilitará la integración con el rol DOM/Eventos, el rol Storage y el rol Tester QA.
 
 ## AT CLOSE
@@ -423,11 +423,11 @@ El diagrama es coherente con el spec y está listo para ser exportado a imagen P
 ```
 Tomando como contexto:
 - docs/03-specs/actividad-obligatoria-4/spec-dev-poo.md
-- docs/04-diagramas/02-diagrama-de-clases/diagrama-clases.puml
+- docs/05-diagramas/02-diagrama-de-clases/diagrama-clases.puml
 
 generá el archivo:
 
-docs/04-diagramas/02-diagrama-de-clases/diagrama-clases-doc.md
+docs/05-diagramas/02-diagrama-de-clases/diagrama-clases-doc.md
 
 Objetivo:
 Documentar el diagrama de clases UML del proyecto de forma clara, académica y coherente con la arquitectura definida para CineGlobal.
@@ -498,7 +498,7 @@ Requisitos de redacción:
 - ser consistente con spec-dev-poo.md y con diagrama-clases.puml
 
 Formato de salida:
-1. generá o actualizá directamente el archivo docs/04-diagramas/02-diagrama-de-clases/diagrama-clases-doc.md
+1. generá o actualizá directamente el archivo docs/05-diagramas/02-diagrama-de-clases/diagrama-clases-doc.md
 2. mostrame el contenido completo en la respuesta
 3. si detectás ambigüedades entre el spec y el diagrama, aclaralas brevemente antes del markdown
 ```

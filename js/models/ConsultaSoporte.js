@@ -86,13 +86,14 @@ class ConsultaSoporte {
    * @returns {{idTicket: string, email: string, titulo: string, descripcion: string, estado: string, fechaCreacion: string}}
    */
   toJSON() {
+    const fechaCreacion = this.fechaCreacion instanceof Date && !Number.isNaN(this.fechaCreacion) ? this.fechaCreacion.toISOString() : null;
     return {
       idTicket: this.idTicket,
       email: this.email,
       titulo: this.titulo,
       descripcion: this.descripcion,
       estado: this.estado,
-      fechaCreacion: this.fechaCreacion.toISOString(),
+      fechaCreacion: fechaCreacion.toISOString(),
     };
   }
 

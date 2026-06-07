@@ -44,41 +44,36 @@ class Usuario {
   }
 
   /**
-   * Actualiza los datos del usuario con los valores proporcionados.
-   * Solo modifica los campos válidos presentes en el objeto recibido.
-   *
-   * @param {{nombre?: string, email?: string, password?: string}} datos - Datos a actualizar.
-   * @returns {boolean} true si se actualizó al menos un campo.
-   */
-  actualizarDatos(datos) {
-    if (!datos || typeof datos !== "object") {
-      return false;
-    }
-
-    let actualizado = false;
-    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (typeof datos.nombre === "string" && datos.nombre.trim() !== "") {
-      this.nombre = datos.nombre.trim();
-      actualizado = true;
-    }
-
-    if (
-      typeof datos.email === "string" &&
-      datos.email.trim() !== "" &&
-      regexEmail.test(datos.email.trim())
-    ) {
-      this.email = datos.email.trim().toLowerCase();
-      actualizado = true;
-    }
-
-    if (typeof datos.password === "string" && datos.password.trim() !== "") {
-      this.password = datos.password.trim();
-      actualizado = true;
-    }
-
-    return actualizado;
+ * Actualiza los datos del usuario con los valores proporcionados.
+ * Solo modifica los campos presentes y no vacíos.
+ *
+ * @param {{nombre?: string, email?: string, password?: string}} datos - Datos a actualizar.
+ * @returns {boolean} true si se actualizó al menos un campo.
+ */
+actualizarDatos(datos) {
+  if (!datos || typeof datos !== "object") {
+    return false;
   }
+
+  let actualizado = false;
+
+  if (typeof datos.nombre === "string" && datos.nombre.trim() !== "") {
+    this.nombre = datos.nombre.trim();
+    actualizado = true;
+  }
+
+  if (typeof datos.email === "string" && datos.email.trim() !== "") {
+    this.email = datos.email.trim().toLowerCase();
+    actualizado = true;
+  }
+
+  if (typeof datos.password === "string" && datos.password.trim() !== "") {
+    this.password = datos.password.trim();
+    actualizado = true;
+  }
+
+  return actualizado;
+}
 
   /**
    * Convierte la instancia en un objeto plano serializable.

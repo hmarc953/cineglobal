@@ -81,6 +81,7 @@ class GestorUsuarios {
   + autenticar(email: string, password: string): Usuario
   + buscarPorEmail(email: string): Usuario
   + emailExiste(email: string): boolean
+  + actualizarUsuario(id: string, datos): boolean
   + toJSON(): object
   + {static} fromJSON(json): GestorUsuarios
 }

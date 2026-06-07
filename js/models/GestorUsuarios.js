@@ -103,6 +103,62 @@ class GestorUsuarios {
   }
 
   /**
+   * Actualiza los datos de un usuario existente.
+   * Valida unicidad de email y política mínima de contraseña.
+   *
+   * @param {string} id - ID del usuario a actualizar.
+   * @param {{nombre?: string, email?: string, password?: string}} datos - Datos a actualizar.
+   * @returns {boolean} true si la actualización fue exitosa, false en caso contrario.
+   */
+  actualizarUsuario(id, datos) {
+    if (!id || typeof datos !== "object" || !datos) {
+      return false;
+    }
+
+    const usuario = this.usuarios.find((u) => u.id === String(id).trim());
+    if (!usuario) {
+      return false;
+    }
+
+    const datosValidados = {};
+
+    if (typeof datos.nombre === "string" && datos.nombre.trim() !== "") {
+      datosValidados.nombre = datos.nombre.trim();
+    }
+
+    if (typeof datos.email === "string" && datos.email.trim() !== "") {
+      const emailNuevo = datos.email.trim().toLowerCase();
+      const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!regexEmail.test(emailNuevo)) {
+        return false;
+      }
+
+      const emailEnUso = this.usuarios.some(
+        (u) => u.id !== usuario.id && u.coincideConEmail(emailNuevo)
+      );
+
+      if (emailEnUso) {
+        return false;
+      }
+
+      datosValidados.email = emailNuevo;
+    }
+
+    if (typeof datos.password === "string" && datos.password.trim() !== "") {
+      const passwordNueva = datos.password.trim();
+
+      if (passwordNueva.length < 6) {
+        return false;
+      }
+
+      datosValidados.password = passwordNueva;
+    }
+
+    return usuario.actualizarDatos(datosValidados);
+  }
+
+  /**
    * Convierte la instancia en un objeto plano serializable.
    * @returns {{usuarios: Array<object>}} Representación serializable del gestor.
    */

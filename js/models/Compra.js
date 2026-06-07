@@ -55,7 +55,7 @@ class Compra {
    * @returns {number} Total calculado.
    */
   calcularTotal() {
-    if (!this.funcion || typeof this.funcion.precio !== "number") {
+    if (!this.funcion || !Number.isFinite(this.funcion.precio) || typeof this.funcion.precio !== "number") {
       this.total = 0;
       return this.total;
     }
