@@ -9,6 +9,9 @@
 
 - [feature/dev-poo-logica-negocio] Implementación del modelo de dominio y diagrama de clases
   PR: [#158](https://github.com/hmarc953/cineglobal/pull/158) @hmarc953 (Desarrollador JS POO)
+
+- [feature/dev-poo-logica-negocio] Adaptación de clases del dominio para módulos ES6
+  PR: [#160](https://github.com/hmarc953/cineglobal/pull/160) @hmarc953 (Desarrollador JS POO)
 ---
 ### Fixed
 

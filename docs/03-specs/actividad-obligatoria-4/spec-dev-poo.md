@@ -756,10 +756,12 @@ Los resultados generados con Copilot no se incorporaron de forma directa sin rev
 
 ### 9. Consideración de integración con otros roles
 
-Durante el desarrollo del rol no se realizó una coordinación directa y formal con los otros roles. Sin embargo, la implementación se diseñó teniendo en cuenta la futura integración con:
+Durante el desarrollo del rol se realizaron ajustes a partir de la coordinación con el rol **DOM/Eventos**, especialmente para preparar las clases del dominio para su integración desde `js/script.js` mediante módulos ES6.
 
-- **DOM/Eventos**, manteniendo las clases desacopladas de la interfaz y con métodos públicos claros.
-- **Storage**, incorporando métodos `toJSON()` y `fromJSON()` en las clases principales.
+A partir de ello, la implementación final se dejó preparada para su articulación con:
+
+- **DOM/Eventos**, manteniendo las clases desacopladas de la interfaz, con métodos públicos claros y adaptadas para ser utilizadas mediante `import` y `export`.
+- **Storage**, incorporando métodos `toJSON()` y `fromJSON()` en las clases principales para facilitar la persistencia y reconstrucción de instancias.
 - **Tester QA**, separando la lógica de negocio del DOM para facilitar pruebas aisladas.
 
-De este modo, aunque no hubo coordinación explícita durante esta etapa, sí se contempló la integración posterior con las demás partes del sistema.
+De este modo, además de definir la capa del dominio, el trabajo realizado dejó preparada la base técnica para la integración posterior con las demás partes del sistema.

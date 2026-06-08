@@ -1,8 +1,10 @@
+import { Usuario } from "./Usuario.js";
+
 /**
  * Clase GestorUsuarios
  * Administra la colección de usuarios del sistema.
  */
-class GestorUsuarios {
+export class GestorUsuarios {
   /**
    * Crea una nueva instancia de GestorUsuarios.
    * @param {Array<Usuario>} [usuarios=[]] - Usuarios iniciales del sistema.
