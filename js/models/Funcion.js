@@ -2,7 +2,7 @@
  * Clase Funcion
  * Representa una función específica de una película en un cine determinado.
  */
-class Funcion {
+export class Funcion {
   /**
    * Crea una nueva instancia de Funcion.
    * @param {string} id - Identificador único de la función.

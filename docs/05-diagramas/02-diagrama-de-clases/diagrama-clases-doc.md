@@ -357,6 +357,10 @@ Esto mejora la coordinación entre capas y hace más ordenado el desarrollo grup
 Se distinguió entre validaciones propias de una entidad individual y validaciones que requieren conocimiento del conjunto de objetos del sistema.  
 Por este motivo, operaciones como la actualización básica de atributos permanecen en `Usuario`, mientras que validaciones globales, como la unicidad del email o la política mínima de contraseña en actualizaciones, se centralizan en `GestorUsuarios`.
 
+### 4.9. Uso de módulos ES6 para integración
+
+Como decisión de implementación, las clases del dominio fueron preparadas para trabajar con módulos ES6. Para ello, cada clase exporta su definición y las clases que dependen de otras realizan los `import` correspondientes. Esto facilita su integración desde `js/script.js` y mantiene una organización más clara entre archivos del modelo.
+
 ---
 
 ## 5. Archivos asociados

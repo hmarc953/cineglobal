@@ -1,8 +1,10 @@
+import { Funcion } from "./Funcion.js";
+
 /**
  * Clase Pelicula
  * Representa una película disponible en cartelera.
  */
-class Pelicula {
+export class Pelicula {
   /**
    * Crea una nueva instancia de Pelicula.
    * @param {string} id - Identificador único de la película.
