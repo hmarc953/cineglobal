@@ -133,7 +133,7 @@ Ejemplos de claves:
 
 ## 5. Ejemplos de uso
 
-El módulo `js/utils/storage.js` expone `window.StorageUtil` con las siguientes funciones:
+El módulo `js/utils/storage.js` exporta `StorageUtil` (ES6) y además lo asigna a `window.StorageUtil` para compatibilidad con scripts no modularizados. Expone las siguientes funciones:
 
 - `guardar(clave, valor, tipo)`
 - `obtener(clave, tipo)`
@@ -150,13 +150,13 @@ StorageUtil.guardar('cine:usuario:preferencias', {
   tipoAsientoPreferido: 'preferencial',
   recibirNotificaciones: true,
   ultimaCiudad: 'Buenos Aires'
-}, 'localStorage');
+}, 'local');
 ```
 
 ### Recuperar preferencias
 
 ```javascript
-const preferencias = StorageUtil.obtener('cine:usuario:preferencias', 'localStorage');
+const preferencias = StorageUtil.obtener('cine:usuario:preferencias', 'local');
 console.log(preferencias);
 ```
 
@@ -169,32 +169,32 @@ StorageUtil.guardar('cine:sesion:carrito', {
   asientos: ['F7', 'F8'],
   subtotal: 7000,
   timestamp: '2026-06-04T15:00:00'
-}, 'sessionStorage');
+}, 'session');
 ```
 
 ### Actualizar el paso actual del flujo de compra
 
 ```javascript
-StorageUtil.actualizar('cine:sesion:paso-actual', 'pago', 'sessionStorage');
+StorageUtil.actualizar('cine:sesion:paso-actual', 'pago', 'session');
 ```
 
 ### Listar todas las claves de sesión
 
 ```javascript
-const clavesSesion = StorageUtil.listar('cine:sesion:', 'sessionStorage');
+const clavesSesion = StorageUtil.listar('cine:sesion:', 'session');
 console.log(clavesSesion);
 ```
 
 ### Eliminar un dato temporal
 
 ```javascript
-StorageUtil.eliminar('cine:sesion:carrito', 'sessionStorage');
+StorageUtil.eliminar('cine:sesion:carrito', 'session');
 ```
 
 ### Limpiar todo el `localStorage`
 
 ```javascript
-StorageUtil.limpiar('localStorage');
+StorageUtil.limpiar('local');
 ```
 
 ## 6. Buenas prácticas

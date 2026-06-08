@@ -60,9 +60,22 @@ const StorageUtil = {
    * @returns {Storage}
    */
   _getStorage(tipo = 'local') {
-    if (tipo === 'local') return localStorage;
-    if (tipo === 'session') return sessionStorage;
+    const t = this._normalizeTipo(tipo);
+    if (t === 'local') return localStorage;
+    if (t === 'session') return sessionStorage;
     throw new Error(`Tipo de storage inválido: "${tipo}". Use 'local' o 'session'.`);
+  },
+
+  /**
+   * Normaliza posibles valores aceptados para tipo
+   * @private
+   */
+  _normalizeTipo(tipo) {
+    if (!tipo) return 'local';
+    const t = String(tipo).toLowerCase();
+    if (t === 'local' || t === 'localstorage') return 'local';
+    if (t === 'session' || t === 'sessionstorage') return 'session';
+    return t;
   },
 
   /**
@@ -184,5 +197,36 @@ const StorageUtil = {
     }
   }
 };
+
+// Helpers para integración con POO: serializar/recuperar instancias
+StorageUtil.guardarInstancia = function (clave, instancia, tipo = 'local') {
+  if (!instancia) return false;
+  let payload = instancia;
+  if (typeof instancia.toJSON === 'function') {
+    payload = instancia.toJSON();
+  } else if (typeof instancia === 'object') {
+    payload = { ...instancia };
+  }
+  return this._setItem(clave, payload, tipo);
+};
+
+StorageUtil.cargarInstancia = function (clave, Constructor, tipo = 'local') {
+  const data = this._getItem(clave, tipo);
+  if (data === null) return null;
+  if (typeof Constructor === 'function') {
+    try {
+      return new Constructor(data);
+    } catch (e) {
+      console.warn(`[StorageUtil] No se pudo instanciar ${Constructor.name}: ${e.message}`);
+      return null;
+    }
+  }
+  return data;
+};
+
+// Exponer en window para compatibilidad con scripts no modularizados
+if (typeof window !== 'undefined') {
+  window.StorageUtil = StorageUtil;
+}
 
 export { StorageUtil };
