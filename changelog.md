@@ -4,6 +4,10 @@
 ## [Release Actividad Obligatoria N°4] - 2026-05-18
 
 ### Added
+
+-  [feature/dev-storage] Creacion de archivos storage.js strorage-doc.md y spec-dev-storrage.md, actualizacion de changelog.md
+  PR: [#161](https://github.com/hmarc953/cineglobal/pull/161) - @9919-Mili
+
 - [feature/coord-devops-cuarta-entrega] Creacion del spec , actualizacion del changelog y del Readme.md
   PR: [#152](https://github.com/hmarc953/cineglobal/pull/152) - @Santi22-7 (Coordinador / DevOps + Tester QA)
 ---
