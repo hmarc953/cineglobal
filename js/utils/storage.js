@@ -60,9 +60,25 @@ const StorageUtil = {
    * @returns {Storage}
    */
   _getStorage(tipo = 'local') {
+    if (typeof window === 'undefined') {
+      throw new Error('Storage no está disponible en este entorno.');
+    }
+
     const t = this._normalizeTipo(tipo);
-    if (t === 'local') return localStorage;
-    if (t === 'session') return sessionStorage;
+    if (t === 'local') {
+      if (typeof localStorage === 'undefined') {
+        throw new Error('localStorage no disponible.');
+      }
+      return localStorage;
+    }
+
+    if (t === 'session') {
+      if (typeof sessionStorage === 'undefined') {
+        throw new Error('sessionStorage no disponible.');
+      }
+      return sessionStorage;
+    }
+
     throw new Error(`Tipo de storage inválido: "${tipo}". Use 'local' o 'session'.`);
   },
 
@@ -84,6 +100,9 @@ const StorageUtil = {
    * @returns {string}
    */
   _serialize(valor) {
+    if (valor === undefined) {
+      throw new Error('No se puede guardar un valor undefined en storage.');
+    }
     if (typeof valor === 'string') return valor;
     try {
       return JSON.stringify(valor);
@@ -101,16 +120,10 @@ const StorageUtil = {
     if (valor === null) return null;
     if (typeof valor !== 'string') return valor;
 
-    const texto = valor.trim();
-    if (!texto.startsWith('{') && !texto.startsWith('[')) {
-      return valor;
-    }
-
     try {
       return JSON.parse(valor);
     } catch (error) {
-      console.warn(`[StorageUtil] JSON corrupto en storage: ${error.message}`);
-      return null;
+      return valor;
     }
   },
 
@@ -213,6 +226,16 @@ StorageUtil.guardarInstancia = function (clave, instancia, tipo = 'local') {
 StorageUtil.cargarInstancia = function (clave, Constructor, tipo = 'local') {
   const data = this._getItem(clave, tipo);
   if (data === null) return null;
+
+  if (Constructor && typeof Constructor.fromJSON === 'function') {
+    try {
+      return Constructor.fromJSON(data);
+    } catch (e) {
+      console.warn(`[StorageUtil] No se pudo reconstruir ${Constructor.name} desde fromJSON: ${e.message}`);
+      return null;
+    }
+  }
+
   if (typeof Constructor === 'function') {
     try {
       return new Constructor(data);
