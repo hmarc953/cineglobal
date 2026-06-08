@@ -267,12 +267,41 @@ Tambien se deberan revisar escenarios de prueba asociados a:
 
 ## AT CLOSE - Evidencia al cerrar la tarea
 
-Esta seccion queda preparada para completarse al cerrar la tarea, luego de utilizar Copilot Agent y revisar el resultado generado.
+Esta seccion documenta la evidencia de cierre de la tarea de refactorizacion del controlador principal de CineGlobal.
 
 ### Prompt exacto utilizado en Copilot Agent
 
 ```text
-[Completar al cerrar la tarea con el prompt exacto usado en Copilot Agent]
+Actua como Desarrollador JS Eventos + DOM del proyecto CineGlobal.
+
+Contexto adjunto:
+- js/models/Usuario.js
+- js/models/GestorUsuarios.js
+- js/models/Pelicula.js
+- js/models/Funcion.js
+- js/models/CatalogoPeliculas.js
+- js/models/Compra.js
+- js/models/ConsultaSoporte.js
+- docs/03-specs/actividad-obligatoria-4/spec-dev-eventos-dom.md
+- index.html
+- js/script.js
+
+Necesito refactorizar js/script.js para que actue unicamente como controlador principal:
+- eliminar toda logica de negocio del archivo;
+- eliminar prompt() y alert();
+- registrar event listeners para login, registro, compra, filtros y soporte;
+- capturar datos desde formularios e inputs;
+- validar en tiempo real con feedback visual;
+- manipular el DOM para mostrar resultados, errores y confirmaciones;
+- crear, actualizar o limpiar elementos dinamicos cuando corresponda;
+- aplicar clases CSS para estados success, error, loading o equivalentes;
+- invocar metodos publicos de las clases del dominio sin duplicar reglas internas;
+- integrar la persistencia usando la capa Storage cuando este disponible.
+
+Mantener el patron:
+DOMContentLoaded -> inicializarApp -> cargarDatosIniciales -> configurarEventos.
+
+Revisar tambien index.html y realizar solo los cambios necesarios para conectar formularios, botones, mensajes y scripts de modelos.
 ```
 
 ### Archivos adjuntados como contexto
@@ -286,13 +315,40 @@ Esta seccion queda preparada para completarse al cerrar la tarea, luego de utili
 ### Fragmento de codigo generado por Copilot
 
 ```js
-// Completar al cerrar la tarea con un event listener generado por Copilot Agent.
+document.addEventListener('DOMContentLoaded', inicializarApp);
+
+function configurarEventos() {
+  escuchar(SELECTORES.formularioFiltros, 'submit', manejarFiltroPeliculas);
+  escuchar(SELECTORES.inputTitulo, 'input', manejarFiltroPeliculas);
+  escuchar(SELECTORES.selectCategoria, 'change', manejarFiltroPeliculas);
+  escuchar(SELECTORES.selectClasificacion, 'change', manejarFiltroPeliculas);
+  escuchar(SELECTORES.botonLimpiarFiltros, 'click', manejarLimpiarFiltros);
+  escuchar(SELECTORES.formularioLogin, 'submit', manejarLogin);
+  escuchar(SELECTORES.formularioRegistro, 'submit', manejarRegistro);
+  escuchar(SELECTORES.formularioCompra, 'submit', manejarSeleccionCompra);
+  escuchar(SELECTORES.formularioPago, 'submit', manejarConfirmacionCompra);
+  escuchar(SELECTORES.formularioConsulta, 'submit', manejarConsultaSoporte);
+
+  document.addEventListener('input', manejarValidacionEnTiempoReal);
+  document.addEventListener('change', manejarValidacionEnTiempoReal);
+  escuchar(SELECTORES.listadoPeliculas, 'click', manejarClickPelicula);
+}
 ```
 
 ### Ajustes manuales realizados
 
-* Pendiente de completar luego de revisar el output generado por Copilot Agent.
+* Se reemplazo el flujo previo basado en `prompt()` y `alert()` por formularios HTML, mensajes en pantalla y modales de confirmacion.
+* Se ajusto `index.html` para agregar IDs de formularios, botones `submit`, contenedores de mensajes y carga de clases del dominio antes de `js/script.js`.
+* Se agregaron estilos reutilizables para mensajes de estado `success`, `error` y controles en estado `loading`.
+* Se adapto el controlador para leer campos por `id` cuando el HTML existente no tenia `name` o `data-validate`.
+* Se dejo la integracion con Storage preparada mediante `window.StorageUtil`, para usar la utilidad del rol Storage cuando su rama se integre.
+* Se verifico con Playwright que la pagina cargue sin errores, renderice 4 peliculas y complete flujos de filtro, login, soporte y compra.
 
 ### Decisiones finales sobre la estructura del controlador
 
-* Pendiente de completar al finalizar la refactorizacion de `js/script.js`.
+* `js/script.js` queda organizado como controlador principal con estado global minimo en `estadoApp`.
+* La inicializacion sigue el patron `DOMContentLoaded` -> `inicializarApp` -> `cargarDatosIniciales` -> `configurarEventos`.
+* La logica de dominio se delega en `GestorUsuarios`, `CatalogoPeliculas`, `Pelicula`, `Compra` y `ConsultaSoporte`.
+* Las funciones DOM reutilizables concentran mensajes, validacion visual, renderizado de peliculas, renderizado de funciones, resumen de compra, limpieza de formularios y habilitacion/deshabilitacion de controles.
+* La delegacion de eventos se usa en el listado de peliculas para capturar clicks sobre botones generados dinamicamente.
+* La persistencia queda desacoplada del controlador mediante funciones auxiliares que invocan `StorageUtil` si esta disponible.
