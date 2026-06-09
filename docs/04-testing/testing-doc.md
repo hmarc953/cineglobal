@@ -45,24 +45,4 @@
     - #83 - TC8 - Padding Modal Mobile
 - **RC-11**: Corregido (Documentación y capturas de TC-8 completadas).
 
-### Momento 4 (Pruebas unitarias con Jasmine)
-- Rama evaluada: `feature/tester-qa-specs`
-- Archivo de ejecución: `js/test/test-runner.html`
-- Especificaciones ejecutadas: `js/test/models.spec.js`
-- Código probado: `js/script.js`
-- Resultado: 37 specs ejecutadas, 3 fallos
-- Fallos detectados:
-    1. `Funciones de sistema existentes selecciona película por índice válido y no permite selecciones inválidas`
-       - Error: `TypeError: Cannot read properties of undefined (reading 'length')`
-       - Causa probable: `window.MOVIES` no está definido desde `js/script.js` porque `const MOVIES` no expone la variable como propiedad global de `window`.
-    2. `Funciones de sistema existentes valida el formulario de contacto y crea ticket con datos válidos`
-       - Error: `TypeError: Cannot set properties of undefined (setting 'length')`
-       - Causa probable: `window.SUPPORT_TICKETS` no está definido por la misma razón.
-    3. `Funciones de sistema existentes filtra películas por título parcial y formatea correctamente el listado`
-       - Error: `TypeError: Cannot read properties of undefined (reading 'filter')`
-       - Causa probable: `searchMovies()` se invoca con `catalog` indefinido.
-- Observación:
-    - El runner Jasmine fue cargado en `http://127.0.0.1:8001/js/test/test-runner.html`.
-    - El problema principal es la exposición de constantes globales en `js/script.js` para su uso desde `window`.
-
 **Resultado Final:** ✅ **LGTM - Listo para Merge a develop**
