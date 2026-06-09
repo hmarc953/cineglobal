@@ -1,250 +1,119 @@
-# Documentación de Testing - Suite Jasmine
+﻿# Documentación de Testing - Suite Jasmine
 
 ## Índice
-1. [Ejecución de Tests](#ejecución-de-tests)
-2. [Suites de Tests](#suites-de-tests)
-3. [Métricas de Cobertura](#métricas-de-cobertura)
-4. [Capturas de Pantalla](#capturas-de-pantalla)
-5. [Issues Conocidos](#issues-conocidos)
+1. [Resumen de Ejecución](#resumen-de-ejecución)
+2. [Suites Ejecutadas](#suites-ejecutadas)
+3. [Resultados de Tests](#resultados-de-tests)
+4. [Fallos Detectados](#fallos-detectados)
+5. [Limitaciones](#limitaciones)
 
 ---
 
-## Ejecución de Tests
+## Resumen de Ejecución
 
-### Pasos para Ejecutar
-1. Clonar el repositorio
-2. Abrir el proyecto en VS Code
-3. Instalar la extensión **Live Server**
-4. Abrir `js/test/test-runner.html` desde la raíz del servidor del proyecto (por ejemplo, `http://localhost:5500/js/test/test-runner.html`).
-5. Los tests se ejecutan automáticamente en el navegador
-
-### Interpretación de Resultados
-- **Verde**: Tests pasando ✅
-- **Rojo**: Tests fallando ❌
-- **Amarillo**: Tests pendientes ⚠️
+- **Archivo de tests:** `js/test/models.spec.js`
+- **Runner:** `js/test/test-runner.html`
+- **Biblioteca:** Jasmine 5.10.0
+- **Total de specs:** 37
+- **Tests pasados:** 34 ✅
+- **Tests fallando:** 3 ❌
+- **Porcentaje de éxito:** 91.9%
 
 ---
 
-## Suites de Tests
+## Suites Ejecutadas
 
-### Suite 1: Inicio de Sesión
-**Funciones Testeadas:**
-- `authenticateUser(email, password, users)` - Verifica credenciales contra un arreglo de usuarios
-- `registerUser(newUser, users)` - Registra un nuevo usuario con validaciones
+### Suite: Usuario
+- `Usuario()` normaliza email, valida password y maneja actualización de datos.
+- Serialización/deserialización JSON.
 
-**Casos de Prueba:**
-| # | Descripción | Tipo |
-|---|-------------|------|
-| 1 | Autentica credenciales válidas para un usuario registrado | Happy Path |
-| 2 | Rechaza credenciales inválidas y mantiene intacto el arreglo | Validación de Errores |
-| 3 | Registra un nuevo usuario válido y lo agrega al arreglo | Happy Path |
-| 4 | No registra usuario con email inválido | Validación de Errores |
-| 5 | No registra usuario con contraseña menor a 6 caracteres | Caso Borde |
+### Suite: Película
+- `Pelicula()` crea y filtra películas.
+- Maneja filtros parciales e insensibles a mayúsculas.
+- Serialización/deserialización JSON.
 
----
+### Suite: Función
+- `Funcion()` valida disponibilidad y reservas.
+- Rechaza reservas inválidas.
+- Soporta serialización/deserialización.
 
-### Suite 2: Compra de Entrada
-**Funciones Testeadas:**
-- `comprarEntrada(movie, seats, paymentData, generatorFn)` - Procesa la compra completa
-- `validatePaymentDetails(payment)` - Valida tarjeta, fecha y CVC
-- `calculateTotalPrice(seats, movie)` - Calcula precio total
-- `selectMovieByIndex(selection, movies)` - Selecciona película por índice
+### Suite: Compra
+- `Compra()` valida datos, calcula total y confirma compras.
+- Rechaza compras inválidas.
+- Genera códigos de confirmación.
 
-**Casos de Prueba:**
-| # | Descripción | Tipo |
-|---|-------------|------|
-| 1 | Rechaza compra si la película es null o no tiene título | Validación de Errores |
-| 2 | Rechaza tarjeta con menos de 16 dígitos | Validación de Errores |
-| 3 | Rechaza fecha de expiración inválida | Caso Borde |
-| 4 | Rechaza CVC con menos de 3 dígitos | Validación de Errores |
-| 5 | Rechaza compra cuando el pago es inválido | Validación de Errores |
-| 6 | Rechaza compra cuando seats es 0 o negativo | Caso Borde |
-| 7 | Genera compra exitosa con código de confirmación inyectado | Happy Path |
-| 8 | Calcula precio correctamente con 1, 2 y 5 entradas | Happy Path |
-| 9 | Retorna null para índices fuera de rango o no numéricos | Caso Borde |
+### Suite: Catálogo de Películas
+- `CatalogoPeliculas` busca por filtros.
+- Obtiene película por id e índice.
+- Maneja casos de catálogo vacío.
+
+### Suite: Gestor de Usuarios
+- `GestorUsuarios` registra usuarios y evita duplicados.
+- Autentica credenciales válidas.
+- Rechaza datos inválidos.
+
+### Suite: Sistema y Soporte
+- `searchMovies()`, `selectMovieByIndex()` y `createSupportTicket()`.
+- Uso de constantes globales `MOVIES` y `SUPPORT_TICKETS`.
 
 ---
 
-### Suite 3: Filtros de Películas
-**Funciones Testeadas:**
-- `filtrarPeliculas(filters)` - Filtra usando el catálogo global MOVIES
-- `searchMovies(filters, catalog)` - Búsqueda con múltiples filtros
-- `formatMovieList(movies)` - Formatea el listado para mostrar
+## Resultados de Tests
 
-**Casos de Prueba:**
-| # | Descripción | Tipo |
-|---|-------------|------|
-| 1 | Filtra películas por género exacto | Happy Path |
-| 2 | Busca por título parcial y rating mínimo | Happy Path |
-| 3 | Devuelve arreglo vacío cuando no hay coincidencias | Caso Borde |
-| 4 | Ignora mayúsculas y espacios en los filtros | Caso Borde |
-| 5 | Formatea lista vacía correctamente | Caso Borde |
-| 6 | Formatea lista con películas incluyendo título y año | Happy Path |
-
----
-
-### Suite 4: Consulta de Soporte
-**Funciones Testeadas:**
-- `validateContactForm(formData)` - Valida email, título y descripción
-- `createSupportTicket(formData)` - Crea ticket y lo agrega al arreglo global
-
-**Casos de Prueba:**
-| # | Descripción | Tipo |
-|---|-------------|------|
-| 1 | Valida formulario completo y válido | Happy Path |
-| 2 | Rechaza formulario con email vacío | Validación de Errores |
-| 3 | Rechaza formulario con email sin formato válido | Validación de Errores |
-| 4 | Crea ticket con ID formato TKT- y status Abierto | Happy Path |
-| 5 | Agrega ticket al arreglo global SUPPORT_TICKETS | Operaciones con Arrays |
-| 6 | Arroja error al crear ticket con datos nulos | Validación de Errores |
-| 7 | No encuentra ticket inexistente en el arreglo | Caso Borde |
-
----
-
-## Métricas de Cobertura
-
-### Resumen General
+### Resumen general
 | Métrica | Valor |
 |---------|-------|
-| Total de Tests | 20 |
-| Tests Pasando | 20 ✅ |
-| Tests Fallando | 0 ❌ |
-| Porcentaje de Éxito | 100% |
-| Tiempo de ejecución | 0.072s |
+| Total de specs | 37 |
+| Especificaciones exitosas | 34 |
+| Especificaciones fallidas | 3 |
+| Estado general | Parcialmente estable |
 
-### Cobertura por Tipo de Test
-| Tipo | Cantidad |
-|------|----------|
-| Happy Path | 7 |
-| Casos Borde | 7 |
-| Validación de Errores | 5 |
-| Operaciones Arrays/Objetos | 2 |
-
-> Nota: las categorías no son excluyentes; un mismo test puede pertenecer a más de una categoría.
-
-### Análisis de Cobertura de Código
-
-**Metodología:** Se revisó manualmente cada función del código fuente 
-y se verificó qué líneas son ejecutadas por los tests implementados.
-
-| Función | Tests | Cobertura |
-|---------|-------|-----------|
-| `authenticateUser()` | 2 | 100% |
-| `registerUser()` | 2 | 95% |
-| `comprarEntrada()` | 4 | 90% |
-| `validatePaymentDetails()` | 3 | 85% |
-| `calculateTotalPrice()` | 1 | 100% |
-| `selectMovieByIndex()` | 1 | 100% |
-| `filtrarPeliculas()` | 1 | 100% |
-| `searchMovies()` | 3 | 90% |
-| `formatMovieList()` | 2 | 100% |
-| `validateContactForm()` | 2 | 100% |
-| `createSupportTicket()` | 2 | 90% |
-
-### Simular prompt():
-```javascript
-describe('Test de prompt', () => {
-  it('debería obtener un nombre desde prompt', () => {
-    spyOn(window, 'prompt').and.returnValue('Matias');
-
-    const nombre = prompt('Ingrese su nombre');
-
-    expect(nombre).toBe('Matias');
-    expect(window.prompt).toHaveBeenCalledWith('Ingrese su nombre');
-  });
-});
-```
-### Simular alert():
-```javascript
-describe('Test de alert', () => {
-  it('debería mostrar un alert', () => {
-    spyOn(window, 'alert');
-
-    alert('Hola Mundo');
-
-    expect(window.alert).toHaveBeenCalled();
-    expect(window.alert).toHaveBeenCalledWith('Hola Mundo');
-  });
-});
-```
-**Cobertura Total Estimada:** ~95%
-
-#### Líneas NO Cubiertas
-- Funciones de UI (`iniciarSesionUI`, `comprarEntradaUI`, 
-  `filtrarPeliculasUI`, `consultarSoporteUI`) — dependen de 
-  `prompt()` y `alert()`, no testeables con Jasmine sin mocks
-- `runMainMenu()` — función principal del menú, excluida del testing unitario
-- `promptUntilValid()` — helper de UI, no expuesto para testing directo
+### Observaciones
+- Los modelos de dominio (`Usuario`, `Pelicula`, `Funcion`, `Compra`) pasan correctamente.
+- `CatalogoPeliculas` y `GestorUsuarios` también pasan.
+- Las fallas se concentran en funciones de sistema global y manejo de datos compartidos.
 
 ---
 
-## Capturas de Pantalla
+## Fallos Detectados
 
-### 20 specs, 0 failures
-![Tests exitosos](./screenshots/test-pass.png)
+### Fallo 1: `searchMovies()`
+- **Suite:** Funciones de Sistema Existentes
+- **Error:** `TypeError: Cannot read properties of undefined (reading 'filter')`
+- **Causa probable:** `searchMovies()` recibe `catalog` indefinido o `MOVIES` no está expuesto.
+- **Test implicado:** Busca películas con `{ title: 'La La', minRating: 8 }`.
 
+### Fallo 2: `createSupportTicket()`
+- **Suite:** Consulta de Soporte y Manejo de Tickets
+- **Error:** `TypeError: Cannot set properties of undefined (setting 'length')`
+- **Causa probable:** `SUPPORT_TICKETS` no está definido en el contexto global.
+- **Test implicado:** Intenta reiniciar `SUPPORT_TICKETS.length = 0` y luego crea ticket.
 
-
-
-### 18 specs, 2 failures
-![Tests fail 1](./screenshots/test-fail-1.png)
-![Tests fail 2](./screenshots/test-fail-2.png)
-
-
----
-
-## Issues Conocidos
-
-### Issue #142: test-runner.html ubicado en carpeta incorrecta
-- **Severidad:** Alta
-- **Suite Afectada:** Todas las suites
-- **Comportamiento Esperado:** Acceder a `127.0.0.1:5500/js/test/test-runner.html`
-- **Comportamiento Obtenido:** `Cannot GET /.vscode/test-runner.html`
-- **Causa:** El archivo fue generado en `.vscode/` en lugar de `js/test/`
-- **Resolución:** Se movieron todos los archivos a `js/test/` y se
-  corrigieron las rutas en `test-runner.html`
-- **GitHub Issue:** [#142](https://github.com/hmarc953/cineglobal/issues/142)
-- **Estado:** Resuelto ✅
+### Fallo 3: `selectMovieByIndex()`
+- **Suite:** Funciones de Sistema Existentes
+- **Error:** `TypeError: Cannot read properties of undefined (reading 'length')`
+- **Causa probable:** `MOVIES` no está disponible o el parámetro `movies` es indefinido.
+- **Test implicado:** Selección por índice con `selectMovieByIndex('1', MOVIES)`.
 
 ---
 
-### Issue #143: searchMovies con título 'la' retorna 2 resultados en vez de 1
-- **Severidad:** Baja
-- **Suite Afectada:** `describe("Filtros de Películas")`
-- **Test Afectado:** `it("busca películas por título parcial y rating mínimo en el happy path")`
-- **Comportamiento Esperado:** Retornar 1 resultado (`La La Land`)
-- **Comportamiento Obtenido:** `Expected 2 to be 1` — retornaba 
-  `La La Land` e `Interstellar`
-- **Causa:** La subcadena `'la'` también está contenida en `'Interstellar'`
-- **Código del Test que Fallaba:**
-```javascript
-  it('busca películas por título parcial y rating mínimo en el happy path', 
-  function() {
-    const resultados = searchMovies({ title: 'la', minRating: 8 }, MOVIES);
-    expect(resultados.length).toBe(1);
-    expect(resultados[0].title).toBe('La La Land');
-  });
-```
-- **Resolución:** Se ajustó el filtro a `{ title: 'La La', minRating: 8 }` para mayor especificidad
-- **GitHub Issue:** [#143](https://github.com/hmarc953/cineglobal/issues/143)
-- **Estado:** Resuelto ✅
+## Recomendaciones
 
-## Limitaciones del Testing
-
-- Tests síncronos únicamente (sin Promises/async-await)
-- Sin cobertura automatizada de código
-- Requiere conexión a internet para cargar Jasmine vía CDN
-- No incluye tests de integración con DOM
-- Las funciones de UI no son testeables sin implementar
-  spies/mocks de `prompt()` y `alert()`
+1. Exponer `MOVIES` y `SUPPORT_TICKETS` como variables globales en `js/script.js`.
+2. Confirmar que `js/test/test-runner.html` carga `js/script.js` antes de `models.spec.js`.
+3. Ajustar `searchMovies()` para validar `catalog` antes de aplicar `.filter()`.
+4. Agregar tests que verifiquen la existencia de las constantes globales usadas por la suite.
 
 ---
 
-[prompts](./docs\02-prompts\imagenes_evidencias\imag_evidencia_prompts_QA_tester.png)
+## Limitaciones
 
+- Dependencia de Jasmine desde CDN.
+- No se ejecutaron tests de UI o integración con DOM.
+- No se evaluaron mocks `prompt()`/`alert()` en este documento.
+- La cobertura de código es estimada y no medida automáticamente.
 
 ---
 
-**Última Actualización:** 17/05/2026
-**Tester/QA Engineer:** [@9919-Mili]
-**Colaboración con:** [Desarrollador JavaScript - @Santi22-7]
+**Última actualización:** 2026-06-09
+**Archivo:** `js/test/testing-doc.md`
