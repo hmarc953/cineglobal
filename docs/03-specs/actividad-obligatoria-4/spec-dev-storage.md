@@ -301,3 +301,4 @@ export { StorageUtil };
 
 ### Coordinación con Desarrollador JS POO
 - El módulo está alineado con la estructura de datos de la aplicación y puede integrarse con los modelos de dominio.
+- Se utiliza para persistir preferencias de filtros de cartelera en la UI, lo cual demuestra integración real con el flujo de la app.

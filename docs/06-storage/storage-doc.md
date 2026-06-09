@@ -142,7 +142,9 @@ El módulo `js/utils/storage.js` exporta `StorageUtil` (ES6) y además lo asigna
 - `listar(prefijo, tipo)`
 - `limpiar(tipo)`
 
-### Guardar preferencias en `localStorage`
+### Guardar preferencias en `local`
+
+> El parámetro `tipo` acepta `local` o `session`. También se reconocen los alias `localStorage` y `sessionStorage`, pero el uso recomendado es `local`/`session`.
 
 ```javascript
 StorageUtil.guardar('cine:usuario:preferencias', {
@@ -159,6 +161,8 @@ StorageUtil.guardar('cine:usuario:preferencias', {
 const preferencias = StorageUtil.obtener('cine:usuario:preferencias', 'local');
 console.log(preferencias);
 ```
+
+> En esta aplicación, `StorageUtil` se utiliza también para persistir las preferencias de filtros de cartelera y restaurarlas en visitas posteriores.
 
 ### Guardar carrito de sesión
 
@@ -191,7 +195,7 @@ console.log(clavesSesion);
 StorageUtil.eliminar('cine:sesion:carrito', 'session');
 ```
 
-### Limpiar todo el `localStorage`
+### Limpiar todo el `local`
 
 ```javascript
 StorageUtil.limpiar('local');

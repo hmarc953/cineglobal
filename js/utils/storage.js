@@ -103,7 +103,6 @@ const StorageUtil = {
     if (valor === undefined) {
       throw new Error('No se puede guardar un valor undefined en storage.');
     }
-    if (typeof valor === 'string') return valor;
     try {
       return JSON.stringify(valor);
     } catch (error) {
