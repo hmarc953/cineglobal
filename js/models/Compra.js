@@ -1,8 +1,10 @@
+import { Funcion } from "./Funcion.js";
+
 /**
  * Clase Compra
  * Representa una operación de compra de entradas para una función específica.
  */
-class Compra {
+export class Compra {
   /**
    * Crea una nueva instancia de Compra.
    * @param {string} id - Identificador único de la compra.

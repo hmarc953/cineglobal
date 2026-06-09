@@ -2,7 +2,7 @@
  * Clase Usuario
  * Representa a un usuario registrado en el sistema CineGlobal.
  */
-class Usuario {
+export class Usuario {
   /**
    * Crea una nueva instancia de Usuario.
    * @param {string} id - Identificador único del usuario.

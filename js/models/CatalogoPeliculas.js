@@ -1,8 +1,10 @@
+import { Pelicula } from "./Pelicula.js";
+
 /**
  * Clase CatalogoPeliculas
  * Representa el catálogo general de películas disponibles.
  */
-class CatalogoPeliculas {
+export class CatalogoPeliculas {
   /**
    * Crea una nueva instancia de CatalogoPeliculas.
    * @param {Array<Pelicula>} [peliculas=[]] - Películas iniciales del catálogo.

@@ -2,7 +2,7 @@
  * Clase ConsultaSoporte
  * Representa una consulta o solicitud de soporte técnico.
  */
-class ConsultaSoporte {
+export class ConsultaSoporte {
   /**
    * Estados posibles de una consulta.
    */
