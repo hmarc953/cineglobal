@@ -1,3 +1,12 @@
+import { Usuario } from './models/Usuario.js';
+import { GestorUsuarios } from './models/GestorUsuarios.js';
+import { Funcion } from './models/Funcion.js';
+import { Pelicula } from './models/Pelicula.js';
+import { CatalogoPeliculas } from './models/CatalogoPeliculas.js';
+import { Compra } from './models/Compra.js';
+import { ConsultaSoporte } from './models/ConsultaSoporte.js';
+import { StorageUtil } from './utils/storage.js';
+
 const SELECTORES = {
   formularioFiltros: '#formFiltrosPeliculas',
   inputTitulo: '#filtroTitulo',
@@ -58,7 +67,7 @@ function inicializarApp() {
 }
 
 function cargarStorage() {
-  estadoApp.storage = window.StorageUtil || null;
+  estadoApp.storage = StorageUtil;
 }
 
 function cargarDatosIniciales() {

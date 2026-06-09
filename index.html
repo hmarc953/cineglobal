@@ -66,8 +66,8 @@
                 
                 <!-- Filtros integrados en la sección cartelera -->
                 <section class="filters mb-5"> 
-                    <form action="#" method="get" class="row gx-3 gy-3" id="formFiltrosPeliculas" novalidate>
-                        <div class="col-12 col-md-3">
+                    <form action="#" method="get" class="row gx-3 align-items-center" id="formFiltrosPeliculas" novalidate>
+                        <div class="col-6 col-md-2">
                             <input type="search" class="form-control filter-select" id="filtroTitulo" name="titulo" placeholder="Titulo" aria-label="Buscar por titulo">
                         </div>
                         <div class="col-6 col-md-2">
@@ -100,7 +100,7 @@
                                 <option value="16">+16</option>
                             </select>
                         </div>
-                        <div class="col-12 col-md-1">
+                        <div class="col-6 col-md-2">
                             <button type="button" class="btn btn-secondary filter-button w-100" id="btnLimpiarFiltros">Limpiar</button>
                         </div>
                     </form>
@@ -600,13 +600,6 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"
     ></script>
-    <script src="js/models/Usuario.js"></script>
-    <script src="js/models/GestorUsuarios.js"></script>
-    <script src="js/models/Funcion.js"></script>
-    <script src="js/models/Pelicula.js"></script>
-    <script src="js/models/CatalogoPeliculas.js"></script>
-    <script src="js/models/Compra.js"></script>
-    <script src="js/models/ConsultaSoporte.js"></script>
-    <script src="js/script.js"></script>
+    <script type="module" src="js/script.js"></script>
 </body>
 </html>

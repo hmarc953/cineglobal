@@ -301,7 +301,7 @@ Necesito refactorizar js/script.js para que actue unicamente como controlador pr
 Mantener el patron:
 DOMContentLoaded -> inicializarApp -> cargarDatosIniciales -> configurarEventos.
 
-Revisar tambien index.html y realizar solo los cambios necesarios para conectar formularios, botones, mensajes y scripts de modelos.
+Revisar tambien index.html y realizar solo los cambios necesarios para conectar formularios, botones, mensajes y el controlador como modulo ES6.
 ```
 
 ### Archivos adjuntados como contexto
@@ -338,10 +338,11 @@ function configurarEventos() {
 ### Ajustes manuales realizados
 
 * Se reemplazo el flujo previo basado en `prompt()` y `alert()` por formularios HTML, mensajes en pantalla y modales de confirmacion.
-* Se ajusto `index.html` para agregar IDs de formularios, botones `submit`, contenedores de mensajes y carga de clases del dominio antes de `js/script.js`.
-* Se agregaron estilos reutilizables para mensajes de estado `success`, `error` y controles en estado `loading`.
+* Se ajusto `index.html` para agregar IDs de formularios, botones `submit`, contenedores de mensajes y carga del controlador mediante `type="module"`.
+* Se adapto `js/script.js` para importar las clases del dominio con modulos ES6 desde `js/models/`.
+* Se utilizaron clases CSS existentes de Bootstrap para feedback visual de estados `success` y `error`.
 * Se adapto el controlador para leer campos por `id` cuando el HTML existente no tenia `name` o `data-validate`.
-* Se dejo la integracion con Storage preparada mediante `window.StorageUtil`, para usar la utilidad del rol Storage cuando su rama se integre.
+* Se integro la capa Storage mediante import ES6 de `StorageUtil` desde `js/utils/storage.js`.
 * Se verifico con Playwright que la pagina cargue sin errores, renderice 4 peliculas y complete flujos de filtro, login, soporte y compra.
 
 ### Decisiones finales sobre la estructura del controlador
@@ -351,4 +352,4 @@ function configurarEventos() {
 * La logica de dominio se delega en `GestorUsuarios`, `CatalogoPeliculas`, `Pelicula`, `Compra` y `ConsultaSoporte`.
 * Las funciones DOM reutilizables concentran mensajes, validacion visual, renderizado de peliculas, renderizado de funciones, resumen de compra, limpieza de formularios y habilitacion/deshabilitacion de controles.
 * La delegacion de eventos se usa en el listado de peliculas para capturar clicks sobre botones generados dinamicamente.
-* La persistencia queda desacoplada del controlador mediante funciones auxiliares que invocan `StorageUtil` si esta disponible.
+* La persistencia queda desacoplada del controlador mediante funciones auxiliares que invocan `StorageUtil`.
