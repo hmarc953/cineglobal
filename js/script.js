@@ -268,10 +268,16 @@ function manejarSeleccionCompra(event) {
 
   const datos = obtenerDatosFormulario(formulario);
   const funciones = estadoApp.peliculaSeleccionada.obtenerFuncionesDisponibles();
-  const funcion = funciones.find((item) => item.id === datos.funcionId) || null;
+  const funcion = funciones.find((item) =>
+    item.id === datos.funcionId &&
+    item.coincideConSeleccion({
+      cine: datos.cine,
+      idioma: normalizarTextoSeleccion(datos.idioma),
+    })
+  ) || null;
 
   if (!funcion) {
-    mostrarError(mensaje, 'La funcion seleccionada no esta disponible.');
+    mostrarError(mensaje, 'La funcion seleccionada no coincide con el cine o idioma elegidos.');
     return;
   }
 
@@ -389,7 +395,7 @@ function renderizarPeliculas(peliculas) {
   contenedor.innerHTML = '';
 
   if (!peliculas.length) {
-    contenedor.innerHTML = '<div class="col-12"><p class="cineglobal-ui-message error">No hay peliculas para mostrar.</p></div>';
+    contenedor.innerHTML = '<div class="col-12"><p class="cineglobal-ui-message alert alert-danger">No hay peliculas para mostrar.</p></div>';
     return;
   }
 
@@ -454,7 +460,7 @@ function renderizarResumenCompra(pelicula, funcion, cantidadEntradas) {
     Entradas: ${cantidadEntradas}<br>
     Total estimado: $${total}
   `;
-  resumen.className = 'cineglobal-ui-message success';
+  resumen.className = 'cineglobal-ui-message alert alert-success';
 }
 
 function validarFormulariosIniciales() {
@@ -636,6 +642,15 @@ function obtenerDatosFormulario(formulario) {
     };
   }
 
+  if (formulario.id === 'formCompra') {
+    return {
+      cine: valorCampo('#compraCineHoppers'),
+      idioma: valorCampo('#compraIdiomaHoppers'),
+      funcionId: valorCampo('#compraFuncion'),
+      cantidadEntradas: valorCampo('#compraAsientosHoppers'),
+    };
+  }
+
   if (formulario.id === 'formConsulta') {
     return {
       email: valorCampo('#consultaEmail'),
@@ -793,6 +808,19 @@ function normalizarFiltroCategoria(categoria) {
   };
 
   return mapaCategorias[categoria] || categoria;
+}
+
+function normalizarTextoSeleccion(valor) {
+  const texto = String(valor || '').trim().toLowerCase();
+  const sinAcentos = texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+  const mapa = {
+    espanol: 'Espanol',
+    ingles: 'Ingles',
+    subtitulada: 'Subtitulada',
+  };
+
+  return mapa[sinAcentos] || valor;
 }
 
 function normalizarClasificacion(clasificacion) {
