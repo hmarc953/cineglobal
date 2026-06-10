@@ -18,7 +18,7 @@
   PR: [#160](https://github.com/hmarc953/cineglobal/pull/160) @hmarc953 (Desarrollador JS POO)
 
 - [feature/dev-eventos-dom] Refactorización de js/script.js como controlador principal de Eventos + DOM.
-  PR: [#](https://github.com/hmarc953/cineglobal/pull/) - @abartomioli (Desarrollador JS Eventos + DOM)
+  PR: [#169](https://github.com/hmarc953/cineglobal/pull/169) - @abartomioli (Desarrollador JS Eventos + DOM)
 ---
 ### Fixed
 
