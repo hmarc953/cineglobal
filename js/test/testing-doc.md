@@ -511,7 +511,7 @@ describe('Test de alert', () => {
 | Casos Borde | 9 | 19.1% |
 | Validación de Errores | 10 | 21.3% |
 | Operaciones Arrays/Objetos | 2 | 4.3% |
-| **Total** | **47** | **100%** |
+| **Total** | **47** | **100%** |  
 
 ### Análisis de Cobertura de Código
 
@@ -544,13 +544,13 @@ describe('Test de alert', () => {
 ## Capturas de Pantalla
 
 ### Tests Pasando
-![Tests Exitosos](./screenshots/tests-passing.png)
+![Tests Exitosos](//js/test/screenshots/Test-pass-Actividad-4.png)
 *Todos los tests ejecutándose correctamente*
 
 ### Vista Detallada de Suites
-![Suite Detalle](./screenshots/suite-detail.png)
-*Expansión de una suite mostrando tests individuales*
-
+[Suite Detalle](//js/test/screenshots/Suite-1.png)
+[Suite Detalle](//js/test/screenshots/Suite-2.png)
+[Suite Detalle](//js/test/screenshots/Suite-3.png)
 ---
 
 ## Issues Conocidos
@@ -559,14 +559,19 @@ describe('Test de alert', () => {
 
 ## Limitaciones del Testing
 
-- Tests síncronos únicamente (sin Promises/async-await)
-- Sin cobertura automatizada de código
-- Requiere conexión a internet (CDN de Jasmine)
-- No incluye tests de integración con DOM
-- No se validan tests de UI de `prompt()`/`alert()` sin mocks
+- Tests ejecutados únicamente en navegador mediante Jasmine CDN.
+- No se utiliza una herramienta automática de medición de cobertura (Istanbul, Karma Coverage, etc.).
+- Requiere conexión a internet para cargar las librerías de Jasmine desde CDN.
+- La cobertura de DOM se limita a una prueba básica de interacción mediante evento `click`.
+- No se incluyen pruebas end-to-end de flujos completos de usuario.
+- No se realizan pruebas de rendimiento, carga o estrés.
+- No se contemplan escenarios de concurrencia o múltiples usuarios simultáneos.
+- La persistencia se valida mediante simulación de `localStorage` y `sessionStorage`, sin almacenamiento persistente real.
+- No se prueban aspectos visuales de la interfaz (CSS, diseño responsive o accesibilidad).
+- Las interacciones basadas en `prompt()` y `alert()` requerirían mocks o spies adicionales para una validación completa.
 
 ---
 
-**Última Actualización:** 2026-06-08  
-**Tester/QA Engineer:** [Nombre]  
-**Colaboración con:** [Desarrollador JavaScript - Nombre]
+**Última Actualización:** 2026-06-11  
+**Tester/QA Engineer:** [Samitier Santiago Ariel]  
+**Colaboración con:** [Alejandro - Marc - Milagros ]
