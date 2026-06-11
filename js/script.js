@@ -40,6 +40,43 @@ function formatMovieList(movies) {
     .join('\n');
 }
 
+function guardarPreferenciasFiltros() {
+  if (typeof StorageUtil === 'undefined') return false;
+  const filtros = {
+    cine: document.querySelector('#cine')?.value || '',
+    cat: document.querySelector('#cat')?.value || '',
+    idioma: document.querySelector('#idioma')?.value || '',
+    clasificacion: document.querySelector('#clasificacion')?.value || '',
+  };
+  return StorageUtil.guardar('cineglobal:filtros', filtros, 'local');
+}
+
+function restaurarPreferenciasFiltros() {
+  if (typeof StorageUtil === 'undefined') return;
+  const filtros = StorageUtil.obtener('cineglobal:filtros', 'local');
+  if (!filtros || typeof filtros !== 'object') return;
+  const selectIds = ['cine', 'cat', 'idioma', 'clasificacion'];
+
+  selectIds.forEach((id) => {
+    const elemento = document.querySelector(`#${id}`);
+    if (elemento && filtros[id] !== undefined) {
+      elemento.value = filtros[id] || '';
+    }
+  });
+}
+
+function inicializarPreferenciasFiltros() {
+  const selectIds = ['cine', 'cat', 'idioma', 'clasificacion'];
+
+  selectIds.forEach((id) => {
+    const elemento = document.querySelector(`#${id}`);
+    if (!elemento) return;
+    elemento.addEventListener('change', guardarPreferenciasFiltros);
+  });
+
+  restaurarPreferenciasFiltros();
+}
+
 function promptUntilValid(message, validator, errorMessage) {
   let value = null;
   do {
@@ -119,6 +156,16 @@ function solicitarCredenciales() {
 
 function solicitarCriteriosFiltro() {
   return getMovieSearchFilters();
+}
+
+function initApp() {
+  inicializarPreferenciasFiltros();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
 }
 
 function solicitarConsultaSoporte() {
