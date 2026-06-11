@@ -27,7 +27,7 @@ export class Pelicula {
 
   /**
    * Verifica si la película coincide con criterios de filtrado especificados.
-   * @param {{titulo?: string, categoria?: string, clasificacion?: string}} filtros - Criterios de búsqueda.
+   * @param {{titulo?: string, categoria?: string, clasificacion?: string, cine?: string, idioma?: string}} filtros - Criterios de búsqueda.
    * @returns {boolean} true si la película cumple con los criterios proporcionados.
    */
   coincideConFiltros(filtros) {
@@ -55,6 +55,26 @@ export class Pelicula {
       typeof filtros.clasificacion === "string" &&
       filtros.clasificacion.trim() !== "" &&
       this.clasificacion.toLowerCase() !== filtros.clasificacion.trim().toLowerCase()
+    ) {
+      return false;
+    }
+
+    if (
+      typeof filtros.cine === "string" &&
+      filtros.cine.trim() !== "" &&
+      !this.funciones.some(
+        (funcion) => funcion.cine.toLowerCase() === filtros.cine.trim().toLowerCase()
+      )
+    ) {
+      return false;
+    }
+
+    if (
+      typeof filtros.idioma === "string" &&
+      filtros.idioma.trim() !== "" &&
+      !this.funciones.some(
+        (funcion) => funcion.idioma.toLowerCase() === filtros.idioma.trim().toLowerCase()
+      )
     ) {
       return false;
     }

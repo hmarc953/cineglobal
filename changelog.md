@@ -16,6 +16,9 @@
 
 - [feature/dev-poo-logica-negocio] Adaptación de clases del dominio para módulos ES6
   PR: [#160](https://github.com/hmarc953/cineglobal/pull/160) @hmarc953 (Desarrollador JS POO)
+
+- [feature/dev-poo-logica-negocio] Ajustes en filtros de películas e integración con Storage
+  PR: [#170](https://github.com/hmarc953/cineglobal/pull/170) @hmarc953 (Desarrollador JS POO)
 ---
 ### Fixed
 
