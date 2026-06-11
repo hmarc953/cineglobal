@@ -19,6 +19,9 @@
 
 - [feature/dev-eventos-dom] Refactorización de js/script.js como controlador principal de Eventos + DOM.
   PR: [#169](https://github.com/hmarc953/cineglobal/pull/169) - @abartomioli (Desarrollador JS Eventos + DOM)
+  
+- [feature/dev-poo-logica-negocio] Ajustes en filtros de películas e integración con Storage
+  PR: [#170](https://github.com/hmarc953/cineglobal/pull/170) @hmarc953 (Desarrollador JS POO)
 ---
 ### Fixed
 

@@ -1,4 +1,5 @@
 import { Pelicula } from "./Pelicula.js";
+import { StorageUtil } from "../utils/storage.js";
 
 /**
  * Clase CatalogoPeliculas
@@ -88,5 +89,13 @@ export class CatalogoPeliculas {
       : [];
 
     return new CatalogoPeliculas(peliculas);
+  }
+
+  guardarEnStorage() {
+    return StorageUtil.guardarInstancia("catalogoPeliculas", this, "local");
+  }
+
+  static cargarDesdeStorage() {
+    return StorageUtil.cargarInstancia("catalogoPeliculas", CatalogoPeliculas, "local");
   }
 }

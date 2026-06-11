@@ -10,7 +10,9 @@ import { StorageUtil } from './utils/storage.js';
 const SELECTORES = {
   formularioFiltros: '#formFiltrosPeliculas',
   inputTitulo: '#filtroTitulo',
+  selectCine: '#cine',
   selectCategoria: '#cat',
+  selectIdioma: '#idioma',
   selectClasificacion: '#clasificacion',
   botonLimpiarFiltros: '#btnLimpiarFiltros',
   listadoPeliculas: '#listaPeliculas',
@@ -137,7 +139,9 @@ function crearPeliculasIniciales() {
 function configurarEventos() {
   escuchar(SELECTORES.formularioFiltros, 'submit', manejarFiltroPeliculas);
   escuchar(SELECTORES.inputTitulo, 'input', manejarFiltroPeliculas);
+  escuchar(SELECTORES.selectCine, 'change', manejarFiltroPeliculas);
   escuchar(SELECTORES.selectCategoria, 'change', manejarFiltroPeliculas);
+  escuchar(SELECTORES.selectIdioma, 'change', manejarFiltroPeliculas);
   escuchar(SELECTORES.selectClasificacion, 'change', manejarFiltroPeliculas);
   escuchar(SELECTORES.botonLimpiarFiltros, 'click', manejarLimpiarFiltros);
   escuchar(SELECTORES.formularioLogin, 'submit', manejarLogin);
@@ -370,7 +374,9 @@ function manejarValidacionEnTiempoReal(event) {
 function obtenerFiltrosPeliculas() {
   return {
     titulo: valorCampo(SELECTORES.inputTitulo),
+    cine: valorCampo(SELECTORES.selectCine),
     categoria: normalizarFiltroCategoria(valorCampo(SELECTORES.selectCategoria)),
+    idioma: normalizarTextoSeleccion(valorCampo(SELECTORES.selectIdioma)),
     clasificacion: normalizarClasificacion(valorCampo(SELECTORES.selectClasificacion)),
   };
 }
@@ -382,7 +388,9 @@ function restaurarFiltros() {
   }
 
   asignarValor(SELECTORES.inputTitulo, filtros.titulo || '');
+  asignarValor(SELECTORES.selectCine, filtros.cine || '');
   asignarValor(SELECTORES.selectCategoria, filtros.categoria || '');
+  asignarValor(SELECTORES.selectIdioma, filtros.idioma || '');
   asignarValor(SELECTORES.selectClasificacion, filtros.clasificacion || '');
 }
 
@@ -815,7 +823,9 @@ function normalizarTextoSeleccion(valor) {
   const sinAcentos = texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
   const mapa = {
+    es: 'Espanol',
     espanol: 'Espanol',
+    en: 'Ingles',
     ingles: 'Ingles',
     subtitulada: 'Subtitulada',
   };
