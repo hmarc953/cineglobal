@@ -1,4 +1,5 @@
 import { Usuario } from "./Usuario.js";
+import { StorageUtil } from "../utils/storage.js";
 
 /**
  * Clase GestorUsuarios
@@ -187,5 +188,13 @@ export class GestorUsuarios {
       : [];
 
     return new GestorUsuarios(usuarios);
+  }
+
+  guardarEnStorage() {
+    return StorageUtil.guardarInstancia("usuarios", this, "local");
+  }
+
+  static cargarDesdeStorage() {
+    return StorageUtil.cargarInstancia("usuarios", GestorUsuarios, "local");
   }
 }
