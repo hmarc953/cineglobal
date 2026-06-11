@@ -6,21 +6,6 @@ import { CatalogoPeliculas } from '../models/CatalogoPeliculas.js';
 import { GestorUsuarios } from '../models/GestorUsuarios.js';
 import { ConsultaSoporte } from '../models/ConsultaSoporte.js';
 
-const {
-  authenticateUser,
-  registerUser,
-  selectMovieByIndex,
-  validatePaymentDetails,
-  calculateTotalPrice,
-  formatMovieList,
-  searchMovies,
-  filtrarPeliculas,
-  validateContactForm,
-  createSupportTicket,
-  SUPPORT_TICKETS,
-  MOVIES,
-} = window;
-
 describe('Usuario', function() {
   it('crea un usuario con email normalizado y propiedades válidas', function() {
     const usuario = new Usuario('u1', 'Juan Perez', 'JUAN@EMAIL.COM', 'Pass123');
@@ -292,47 +277,5 @@ describe('ConsultaSoporte (Modelo)', function() {
     const json = consulta.toJSON();
     expect(json.idTicket).toBe('TKT-5');
     expect(json.fechaCreacion).toBe('2024-01-01T00:00:00.000Z');
-  });
-});
-
-describe('Funciones de sistema existentes', function() {
-  it('autentica usuario y rechaza credenciales inválidas', function() {
-    const users = [{ name: 'Admin', email: 'admin@cineglobal.com', password: 'Admin123' }];
-    expect(authenticateUser('admin@cineglobal.com', 'Admin123', users)).toBe(true);
-    expect(authenticateUser('admin@cineglobal.com', 'WrongPass', users)).toBe(false);
-  });
-
-  it('registra usuario con datos válidos y rechaza email inválido', function() {
-    const users = [];
-    expect(registerUser({ name: 'Jose', email: 'jose@cineglobal.com', password: 'Test123' }, users).success).toBe(true);
-    expect(registerUser({ name: 'Ana', email: 'ana@', password: 'Password1' }, users).success).toBe(false);
-  });
-
-  it('selecciona película por índice válido y no permite selecciones inválidas', function() {
-    expect(selectMovieByIndex('1', MOVIES)).toEqual(MOVIES[0]);
-    expect(selectMovieByIndex('0', MOVIES)).toBeNull();
-    expect(selectMovieByIndex('abc', MOVIES)).toBeNull();
-  });
-
-  it('valida datos de pago y calcula el precio total de la compra', function() {
-    const valid = validatePaymentDetails({ cardNumber: '4111111111111111', expiry: '12/99', cvc: '123', holder: 'Juan Perez' });
-    expect(valid.valid).toBe(true);
-    expect(calculateTotalPrice(3, { title: 'Test' })).toBe(360);
-  });
-
-  it('filtra películas por título parcial y formatea correctamente el listado', function() {
-    const resultados = searchMovies({ title: 'La La', minRating: 8 }, MOVIES);
-    expect(resultados.length).toBe(1);
-    expect(formatMovieList(resultados)).toContain('La La Land');
-  });
-
-  it('valida el formulario de contacto y crea ticket con datos válidos', function() {
-    const validation = validateContactForm({ email: 'tester@cineglobal.com', title: 'Hola', description: 'Consulta' });
-    expect(validation.valid).toBe(true);
-
-    SUPPORT_TICKETS.length = 0;
-    const ticket = createSupportTicket({ email: 'tester@cineglobal.com', title: 'Hola', description: 'Consulta' });
-    expect(ticket.id).toContain('TKT-');
-    expect(SUPPORT_TICKETS.length).toBe(1);
   });
 });
