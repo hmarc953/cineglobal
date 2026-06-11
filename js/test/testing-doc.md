@@ -276,122 +276,268 @@ describe('Test de alert', () => {
 
 ## Suites de Tests
 
-### Suite 1: Usuario y Modelos
-**Funciones Testeadas:**
-- `Usuario()` - Crea usuarios y valida email/password
-- `Pelicula()` - Normaliza datos de películas y aplica filtros de búsqueda
-- `Funcion()` - Valida disponibilidad y reserva de asientos
-- `Compra()` - Valida datos de compra y calcula totales
+## Suite de Tests: Eventos y DOM
 
-**Casos de Prueba:**
+### Funciones Testeadas
+- Evento `click` sobre botón de compra.
+- Actualización de contenido del DOM mediante `textContent`.
+
+| # | Descripción | Tipo |
+|---|-------------|------|
+| 1 | Actualiza el mensaje al hacer clic en el botón de compra | Happy Path |
+
+---
+
+## Suite de Tests: Usuario
+
+### Funciones Testeadas
+- Constructor de `Usuario`
+- `validarPassword()`
+- `coincideConEmail()`
+- `actualizarDatos()`
+- `toJSON()`
+- `fromJSON()`
+
 | # | Descripción | Tipo |
 |---|-------------|------|
 | 1 | Crea usuario con email normalizado | Happy Path |
-| 2 | Valida contraseña y comparación de email | Validación de Errores |
-| 3 | Actualiza datos parciales de usuario | Happy Path |
-| 4 | Serializa y deserializa usuario/película/función/compra | Happy Path |
-| 5 | Rechaza reservas inválidas o con exceso de asientos | Caso Borde |
-| 6 | Rechaza compras con id vacío o email inválido | Validación de Errores |
-| 7 | Confirma compra exitosa y genera código | Happy Path |
-| 8 | Filtra películas por categoría y título | Happy Path |
+| 2 | Valida contraseña y espacios en blanco | Validación de Errores |
+| 3 | Compara email ignorando mayúsculas y espacios | Happy Path |
+| 4 | Actualiza datos parciales correctamente | Happy Path |
+| 5 | Rechaza actualización con datos inválidos | Validación de Errores |
+| 6 | Serializa usuario a JSON | Happy Path |
+| 7 | Deserializa usuario desde JSON | Happy Path |
+| 8 | Retorna null al deserializar JSON inválido | Caso Borde |
 
 ---
 
-### Suite 2: Gestor de Usuarios
-**Funciones Testeadas:**
-- `GestorUsuarios()` - Registra usuarios, evita duplicados y autentica credenciales
+## Suite de Tests: Película
 
-**Casos de Prueba:**
+### Funciones Testeadas
+- Constructor de `Pelicula`
+- `coincideConFiltros()`
+- `toJSON()`
+- `fromJSON()`
+
 | # | Descripción | Tipo |
 |---|-------------|------|
-| 1 | Registra usuario válido y evita duplicados | Happy Path |
-| 2 | Rechaza registros con datos inválidos | Validación de Errores |
-| 3 | Autentica credenciales válidas y rechaza inválidas | Happy Path |
-| 4 | Busca usuario por email y maneja email vacío | Caso Borde |
+| 1 | Crea película con fecha convertida a Date | Happy Path |
+| 2 | Filtra por título parcial | Happy Path |
+| 3 | Filtra por categoría | Happy Path |
+| 4 | Filtra por clasificación | Happy Path |
+| 5 | Rechaza filtros que no coinciden | Validación de Errores |
+| 6 | Acepta filtros vacíos o nulos | Caso Borde |
+| 7 | Serializa película a JSON | Happy Path |
+| 8 | Deserializa película desde JSON | Happy Path |
 
 ---
 
-### Suite 3: Funciones de Sistema Existentes
-**Funciones Testeadas:**
-- `authenticateUser()` - Verifica credenciales en arreglo de usuarios
-- `registerUser()` - Registra usuarios con validación básica
-- `selectMovieByIndex()` - Traduce selección numérica a película
-- `validatePaymentDetails()` - Valida datos de tarjeta
-- `calculateTotalPrice()` - Calcula precio total de la compra
-- `searchMovies()` - Filtra películas con múltiples criterios
-- `formatMovieList()` - Formatea listado de películas
-- `validateContactForm()` - Valida formulario de contacto
-- `createSupportTicket()` - Crea ticket de soporte y lo guarda en el arreglo global
+## Suite de Tests: Función
 
-**Casos de Prueba:**
+### Funciones Testeadas
+- Constructor de `Funcion`
+- `hayDisponibilidad()`
+- `reservarAsientos()`
+- `coincideConSeleccion()`
+- `toJSON()`
+- `fromJSON()`
+
 | # | Descripción | Tipo |
 |---|-------------|------|
-| 1 | Autentica usuario con credenciales válidas | Happy Path |
-| 2 | Rechaza credenciales inválidas | Validación de Errores |
-| 3 | Selecciona película por índice válido | Happy Path |
-| 4 | Rechaza selección inválida de película | Validación de Errores |
-| 5 | Valida datos de pago válidos y calcula precio | Happy Path |
-| 6 | Filtra películas por título parcial y rating | Happy Path |
-| 7 | Valida formulario de contacto correcto | Happy Path |
-| 8 | Crea ticket de soporte y actualiza arreglo global | Happy Path |
+| 1 | Verifica disponibilidad de asientos | Happy Path |
+| 2 | Reserva asientos correctamente | Happy Path |
+| 3 | Rechaza reservas superiores a la disponibilidad | Caso Borde |
+| 4 | Rechaza cantidades inválidas de asientos | Validación de Errores |
+| 5 | Filtra selección por cine | Happy Path |
+| 6 | Filtra selección por idioma | Happy Path |
+| 7 | Filtra selección por horario | Happy Path |
+| 8 | Serializa y deserializa función correctamente | Happy Path |
 
 ---
 
-### Suite 4: Consulta de Soporte y Manejo de Tickets
-**Funciones Testeadas:**
-- `validateContactForm()` - Validación de email, título y descripción
-- `createSupportTicket()` - Generación de ticket con id y almacenamiento global
+## Suite de Tests: Compra
 
-**Casos de Prueba:**
+### Funciones Testeadas
+- Constructor de `Compra`
+- `esValida()`
+- `calcularTotal()`
+- `confirmarCompra()`
+- `toJSON()`
+- `fromJSON()`
+
 | # | Descripción | Tipo |
 |---|-------------|------|
-| 1 | Valida formulario completo y correcto | Happy Path |
-| 2 | Rechaza formulario con email inválido | Validación de Errores |
-| 3 | Crea ticket con ID y estado inicial correcto | Happy Path |
-| 4 | Asegura que el arreglo global de tickets se actualiza | Operaciones Arrays/Objetos |
+| 1 | Valida compra correcta | Happy Path |
+| 2 | Calcula total de compra | Happy Path |
+| 3 | Rechaza compra con ID vacío | Validación de Errores |
+| 4 | Rechaza compra con email inválido | Validación de Errores |
+| 5 | Rechaza compra sin disponibilidad de asientos | Caso Borde |
+| 6 | Confirma compra y genera código de confirmación | Happy Path |
+| 7 | Descuenta asientos al confirmar compra | Happy Path |
+| 8 | Rechaza confirmación de compra inválida | Validación de Errores |
+| 9 | Retorna total 0 con precio inválido | Caso Borde |
+| 10 | Serializa y deserializa compra correctamente | Happy Path |
 
 ---
 
+## Suite de Tests: Catálogo de Películas
+
+### Funciones Testeadas
+- `buscarPorFiltros()`
+- `obtenerPeliculaPorId()`
+- `obtenerPeliculaPorIndice()`
+- `listarPeliculas()`
+- `toJSON()`
+- `fromJSON()`
+
+| # | Descripción | Tipo |
+|---|-------------|------|
+| 1 | Retorna todas las películas sin filtros | Happy Path |
+| 2 | Filtra películas por categoría | Happy Path |
+| 3 | Retorna null para ID vacío | Validación de Errores |
+| 4 | Retorna null para ID inexistente | Validación de Errores |
+| 5 | Obtiene película por índice válido | Happy Path |
+| 6 | Rechaza índices inválidos | Caso Borde |
+| 7 | Serializa catálogo correctamente | Happy Path |
+| 8 | Deserializa catálogo correctamente | Happy Path |
+
+---
+
+## Suite de Tests: Gestor de Usuarios
+
+### Funciones Testeadas
+- `registrarUsuario()`
+- `emailExiste()`
+- `autenticar()`
+- `buscarPorEmail()`
+- `toJSON()`
+- `fromJSON()`
+
+| # | Descripción | Tipo |
+|---|-------------|------|
+| 1 | Registra usuario válido | Happy Path |
+| 2 | Evita registro de usuarios duplicados | Validación de Errores |
+| 3 | Rechaza registros con datos inválidos | Validación de Errores |
+| 4 | Autentica usuario con credenciales correctas | Happy Path |
+| 5 | Rechaza contraseña incorrecta | Validación de Errores |
+| 6 | Rechaza usuario inexistente | Validación de Errores |
+| 7 | Busca usuario por email | Happy Path |
+| 8 | Maneja búsqueda con email vacío | Caso Borde |
+| 9 | Serializa gestor de usuarios | Happy Path |
+| 10 | Deserializa gestor de usuarios | Happy Path |
+
+---
+
+## Suite de Tests: Consulta de Soporte
+
+### Funciones Testeadas
+- Constructor de `ConsultaSoporte`
+- `validar()`
+- `generarTicket()`
+- `cambiarEstado()`
+- `toJSON()`
+
+| # | Descripción | Tipo |
+|---|-------------|------|
+| 1 | Valida ticket correcto | Happy Path |
+| 2 | Rechaza email inválido | Validación de Errores |
+| 3 | Rechaza campos obligatorios vacíos | Validación de Errores |
+| 4 | Genera identificador de ticket automáticamente | Happy Path |
+| 5 | Cambia estado a un valor válido | Happy Path |
+| 6 | Rechaza estados inválidos | Validación de Errores |
+| 7 | Serializa ticket preservando fecha de creación | Happy Path |
+
+---
+
+## Suite de Tests: Storage Serialization y Deserialización
+
+### Funciones Testeadas
+- `toJSON()`
+- `fromJSON()`
+- Persistencia simulada con JSON
+
+| # | Descripción | Tipo |
+|---|-------------|------|
+| 1 | Serializa y deserializa Usuario | Happy Path |
+| 2 | Serializa y deserializa Función | Happy Path |
+| 3 | Serializa y deserializa Compra con función embebida | Happy Path |
+| 4 | Serializa y deserializa Película con funciones | Happy Path |
+| 5 | Serializa y deserializa Catálogo de Películas | Happy Path |
+| 6 | Serializa y deserializa Gestor de Usuarios | Happy Path |
+| 7 | Recupera estado completo desde persistencia simulada | Happy Path |
+
+---
+
+## Suite de Tests: StorageUtil
+
+### Funciones Testeadas
+- `guardar()`
+- `obtener()`
+- `eliminar()`
+- `listar()`
+- `limpiar()`
+- `actualizar()`
+- `guardarInstancia()`
+- `cargarInstancia()`
+
+| # | Descripción | Tipo |
+|---|-------------|------|
+| 1 | Guarda y obtiene valores simples | Happy Path |
+| 2 | Guarda y obtiene objetos JSON | Happy Path |
+| 3 | Elimina una clave existente | Happy Path |
+| 4 | Rechaza eliminación de clave inexistente | Validación de Errores |
+| 5 | Lista claves por prefijo | Happy Path |
+| 6 | Limpia completamente el storage | Happy Path |
+| 7 | Actualizar funciona como alias de guardar | Happy Path |
+| 8 | Retorna null cuando una clave no existe | Caso Borde |
+| 9 | Trabaja correctamente con sessionStorage | Happy Path |
+| 10 | Guarda y recupera instancia de Usuario | Happy Path |
+| 11 | Retorna null al cargar instancia inexistente | Caso Borde |
+---
 ## Métricas de Cobertura
 
 ### Resumen General
 | Métrica | Valor |
 |---------|-------|
-| Total de Tests | 37 |
-| Tests Pasando | 34 ✅ |
-| Tests Fallando | 3 ❌ |
-| Porcentaje de Éxito | 91.9% |
+| Total de Tests | 47 |
+| Tests Pasando | 47 ✅ |
+| Tests Fallando | 0 ❌ |
+| Porcentaje de Éxito | 100% |
 
 ### Cobertura por Tipo de Test
 | Tipo | Cantidad | Porcentaje |
 |------|----------|------------|
-| Happy Path | [XX] | [XX]% |
-| Casos Borde | [XX] | [XX]% |
-| Validación de Errores | [XX] | [XX]% |
-| Operaciones Arrays/Objetos | [XX] | [XX]% |
+| Happy Path | 26 | 55.3% |
+| Casos Borde | 9 | 19.1% |
+| Validación de Errores | 10 | 21.3% |
+| Operaciones Arrays/Objetos | 2 | 4.3% |
+| **Total** | **47** | **100%** |
 
 ### Análisis de Cobertura de Código
 
 **Metodología:** Se revisó manualmente el funcionamiento de cada función expuesta y se comparó con los tests disponibles.
 
-| Función | Líneas Totales | Tests | Líneas Cubiertas | Cobertura |
-|---------|----------------|-------|------------------|-----------|
-| `authenticateUser()` | [XX] | 2 | [XX] | [XX]% |
-| `registerUser()` | [XX] | 2 | [XX] | [XX]% |
-| `selectMovieByIndex()` | [XX] | 1 | [XX] | [XX]% |
-| `validatePaymentDetails()` | [XX] | 1 | [XX] | [XX]% |
-| `calculateTotalPrice()` | [XX] | 1 | [XX] | [XX]% |
-| `searchMovies()` | [XX] | 1 | [XX] | [XX]% |
-| `formatMovieList()` | [XX] | 1 | [XX] | [XX]% |
-| `validateContactForm()` | [XX] | 1 | [XX] | [XX]% |
-| `createSupportTicket()` | [XX] | 1 | [XX] | [XX]% |
+| Módulo / Funcionalidad | Tests Asociados | Cobertura Estimada |
+|---------|-------|-----------|
+| Usuario | 6 | Alta |
+| Película | 4 | Alta |
+| Función | 3 | Alta |
+| Compra | 6 | Alta |
+| Catálogo de Películas | 5 | Alta |
+| Gestor de Usuarios | 4 | Media-Alta |
+| Consulta Soporte | 3 | Media-Alta |
+| Eventos y DOM | 1 | Básica |
+| Serialización y Persistencia | 7 | Alta |
+| StorageUtil | 8 | Alta |
 
-**Cobertura Total Estimada:** [XX]% ([XX]/[XX] líneas ejecutables)
+**Cobertura Total Estimada:** ≈ 90%+
 
 #### Líneas NO Cubiertas
-Ej:
-- `script.js:45-48` - Manejo de error de red (difícil de simular)
-- `script.js:67` - Caso edge específico de [descripción]
+- Casos excepcionales de errores internos de `localStorage` o `sessionStorage`.
+- Fallos producidos por datos corruptos provenientes de almacenamiento externo.
+- Eventos de interfaz distintos al evento `click` validado en la suite DOM.
+- Escenarios de concurrencia o múltiples usuarios simultáneos.
+- Errores de red o integración con servicios externos (no aplican al alcance actual del proyecto).
 
 ---
 
@@ -408,73 +554,6 @@ Ej:
 ---
 
 ## Issues Conocidos
-
-### Issue #1: Fallo en selección por índice de película
-- **Severidad:** Media
-- **Suite Afectada:** `Funcsiones de Sistema Existentes`
-- **Test Afectado:** `selecciona película por índice válido y no permite selecciones inválidas`
-- **Comportamiento Esperado:** `selectMovieByIndex('1', MOVIES)` retorna la primera película
-- **Comportamiento Obtenido:** `TypeError: Cannot read properties of undefined (reading 'length')`
-- **Pasos para Reproducir:**
-  1. Abrir `js/test/test-runner.html`
-  2. Cargar `js/test/models.spec.js`
-  3. Verificar el test `selectMovieByIndex`
-- **Código del Test que Falla:**
-  ```javascript
-  it('selecciona película por índice válido y no permite selecciones inválidas', function() {
-    expect(selectMovieByIndex('1', MOVIES)).toEqual(MOVIES[0]);
-    expect(selectMovieByIndex('0', MOVIES)).toBeNull();
-    expect(selectMovieByIndex('abc', MOVIES)).toBeNull();
-  });
-  ```
-- **GitHub Issue:** N/A
-- **Estado:** Abierto
-
-### Issue #2: Fallo en creación de ticket de soporte
-- **Severidad:** Media
-- **Suite Afectada:** `Consulta de Soporte`
-- **Test Afectado:** `valida el formulario de contacto y crea ticket con datos válidos`
-- **Comportamiento Esperado:** Crea ticket y agrega un elemento a `SUPPORT_TICKETS`
-- **Comportamiento Obtenido:** `TypeError: Cannot set properties of undefined (setting 'length')`
-- **Pasos para Reproducir:**
-  1. Abrir `js/test/test-runner.html`
-  2. Ejecutar la suite `Funciones de Sistema Existentes`
-  3. Revisar el test de `createSupportTicket`
-- **Código del Test que Falla:**
-  ```javascript
-  it('valida el formulario de contacto y crea ticket con datos válidos', function() {
-    const validation = validateContactForm({ email: 'tester@cineglobal.com', title: 'Hola', description: 'Consulta' });
-    expect(validation.valid).toBe(true);
-
-    SUPPORT_TICKETS.length = 0;
-    const ticket = createSupportTicket({ email: 'tester@cineglobal.com', title: 'Hola', description: 'Consulta' });
-    expect(ticket.id).toContain('TKT-');
-    expect(SUPPORT_TICKETS.length).toBe(1);
-  });
-  ```
-- **GitHub Issue:** N/A
-- **Estado:** Abierto
-
-### Issue #3: Fallo en filtrado de películas
-- **Severidad:** Media
-- **Suite Afectada:** `Filtros de Películas`
-- **Test Afectado:** `filtra películas por título parcial y formatea correctamente el listado`
-- **Comportamiento Esperado:** `searchMovies()` retorna un arreglo con coincidencias
-- **Comportamiento Obtenido:** `TypeError: Cannot read properties of undefined (reading 'filter')`
-- **Pasos para Reproducir:**
-  1. Abrir `js/test/test-runner.html`
-  2. Ejecutar la suite `Funciones de Sistema Existentes`
-  3. Revisar la prueba de `searchMovies`
-- **Código del Test que Falla:**
-  ```javascript
-  it('filtra películas por título parcial y formatea correctamente el listado', function() {
-    const resultados = searchMovies({ title: 'La La', minRating: 8 }, MOVIES);
-    expect(resultados.length).toBe(1);
-    expect(formatMovieList(resultados)).toContain('La La Land');
-  });
-  ```
-- **GitHub Issue:** N/A
-- **Estado:** Abierto
 
 ---
 

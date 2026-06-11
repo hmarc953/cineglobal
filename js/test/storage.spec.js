@@ -137,3 +137,104 @@ describe('Storage serialization y deserialización', function() {
     expect(catalogoRecuperado.obtenerPeliculaPorId('p4').titulo).toBe('Misterio');
   });
 });
+it('actualizar funciona como alias de guardar', function () {
+  StorageUtil.guardar('contador', 1);
+
+  StorageUtil.actualizar('contador', 2);
+
+  expect(StorageUtil.obtener('contador')).toBe(2);
+});
+
+it('retorna null cuando la clave no existe', function () {
+  expect(StorageUtil.obtener('claveInexistente')).toBeNull();
+});
+
+it('trabaja correctamente con sessionStorage', function () {
+  StorageUtil.guardar('sesion', 'activa', 'session');
+
+  expect(StorageUtil.obtener('sesion', 'session')).toBe('activa');
+});
+import { StorageUtil } from '../utils/storage.js';
+
+describe('StorageUtil', function () {
+
+  beforeEach(function () {
+    localStorage.clear();
+    sessionStorage.clear();
+  });
+
+  it('guarda y obtiene valores simples en localStorage', function () {
+    expect(StorageUtil.guardar('nombre', 'Juan')).toBe(true);
+    expect(StorageUtil.obtener('nombre')).toBe('Juan');
+  });
+
+  it('guarda y obtiene objetos correctamente', function () {
+    const usuario = {
+      nombre: 'Ana',
+      edad: 25
+    };
+
+    StorageUtil.guardar('usuario', usuario);
+
+    expect(StorageUtil.obtener('usuario')).toEqual(usuario);
+  });
+
+  it('elimina una clave existente', function () {
+    StorageUtil.guardar('test', 'valor');
+
+    expect(StorageUtil.eliminar('test')).toBe(true);
+    expect(StorageUtil.obtener('test')).toBeNull();
+  });
+
+  it('retorna false al eliminar una clave inexistente', function () {
+    expect(StorageUtil.eliminar('noExiste')).toBe(false);
+  });
+
+  it('lista claves por prefijo', function () {
+    StorageUtil.guardar('user_1', {});
+    StorageUtil.guardar('user_2', {});
+    StorageUtil.guardar('movie_1', {});
+
+    const claves = StorageUtil.listar('user_');
+
+    expect(claves.length).toBe(2);
+    expect(claves).toContain('user_1');
+    expect(claves).toContain('user_2');
+  });
+
+  it('limpia completamente el storage', function () {
+    StorageUtil.guardar('a', 1);
+    StorageUtil.guardar('b', 2);
+
+    expect(StorageUtil.limpiar()).toBe(true);
+    expect(StorageUtil.listar().length).toBe(0);
+  });
+
+});
+it('guarda y recupera una instancia de Usuario', function () {
+  const usuario = new Usuario(
+    'u1',
+    'Juan',
+    'juan@test.com',
+    'Pass123'
+  );
+
+  StorageUtil.guardarInstancia('usuarioTest', usuario);
+
+  const recuperado = StorageUtil.cargarInstancia(
+    'usuarioTest',
+    Usuario
+  );
+
+  expect(recuperado).toEqual(jasmine.any(Usuario));
+  expect(recuperado.email).toBe('juan@test.com');
+});
+
+it('retorna null al cargar una instancia inexistente', function () {
+  const resultado = StorageUtil.cargarInstancia(
+    'noExiste',
+    Usuario
+  );
+
+  expect(resultado).toBeNull();
+});
