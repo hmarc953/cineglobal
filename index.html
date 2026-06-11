@@ -66,30 +66,38 @@
                 
                 <!-- Filtros integrados en la sección cartelera -->
                 <section class="filters mb-5"> 
-                    <form action="#" method="get" class="row gx-3">
-                        <div class="col-6 col-md-3">
+                    <form action="#" method="get" class="row gx-3 align-items-center" id="formFiltrosPeliculas" novalidate>
+                        <div class="col-6 col-md-2">
+                            <input type="search" class="form-control filter-select" id="filtroTitulo" name="titulo" placeholder="Titulo" aria-label="Buscar por titulo">
+                        </div>
+                        <div class="col-6 col-md-2">
                             <select class="form-select filter-select" id="cine" aria-label="Seleccionar cine">
                                 <option value="" selected="">Cine</option>
-                                <option value="cine1">Palermo</option>
-                                <option value="cine2">Abasto</option>
+                                <option value="Palermo">Palermo</option>
+                                <option value="Abasto">Abasto</option>
+                                <option value="Lavalle">Lavalle</option>
+                                <option value="Puerto Madero">Puerto Madero</option>
                             </select>
                         </div>
-                        <div class="col-6 col-md-3">
+                        <div class="col-6 col-md-2">
                             <select class="form-select filter-select" id="cat" aria-label="Seleccionar género">
                                 <option value="" selected="">Categoría</option>
-                                <option value="cat1">Acción</option>
-                                <option value="cat2">Comedia</option>
+                                <option value="Accion">Acción</option>
+                                <option value="Comedia">Comedia</option>
+                                <option value="Drama">Drama</option>
+                                <option value="Animacion">Animacion</option>
                             </select>
                         </div>
                         <!-- Filtros faltantes detectados en RC-17 -->
-                        <div class="col-6 col-md-3">
+                        <div class="col-6 col-md-2">
                             <select class="form-select filter-select" id="idioma" aria-label="Seleccionar Idioma">
                                 <option value="" selected="">Idioma</option>
-                                <option value="es">Español</option>
-                                <option value="en">Inglés</option>
+                                <option value="Espanol">Español</option>
+                                <option value="Ingles">Inglés</option>
+                                <option value="Subtitulada">Subtitulada</option>
                             </select>
                         </div>
-                        <div class="col-6 col-md-3">
+                        <div class="col-6 col-md-2">
                             <select class="form-select filter-select" id="clasificacion" aria-label="Seleccionar Clasificación">
                                 <option value="" selected="">Clasificación</option>
                                 <option value="atp">ATP</option>
@@ -97,10 +105,14 @@
                                 <option value="16">+16</option>
                             </select>
                         </div>
+                        <div class="col-6 col-md-2">
+                            <button type="button" class="btn btn-secondary filter-button w-100" id="btnLimpiarFiltros">Limpiar</button>
+                        </div>
                     </form>
+                    <p class="cineglobal-ui-message mt-3" id="estadoFiltros" hidden></p>
                 </section>
 
-                <div class="row g-4 movies-list">
+                <div class="row g-4 movies-list" id="listaPeliculas">
                     <div class="col-12 col-md-6 col-lg-3">
                         <article class="movie-card">
                             <img class="movie-image img-fluid" src="assets/images/hoppers.jpeg" alt="Hoppers Operacion Castor" width="300" height="350">
@@ -268,7 +280,7 @@
                     <button type="button" class="btn-close btn-close-white modal-close-custom" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body pt-0">
-                    <form>
+                    <form id="formLogin" novalidate>
                         <div class="mb-4">
                             <input type="email" class="form-control cineglobal-input" id="loginEmail" placeholder="Correo electronico" aria-label="Correo electrónico">
                         </div>
@@ -277,8 +289,9 @@
                             <input type="password" class="form-control cineglobal-input" id="loginPassword" placeholder="Contraseña" aria-label="Contraseña">
                         </div>
                     
+                        <p class="cineglobal-ui-message" id="mensajeLogin" hidden></p>
                         <div class="text-center mb-4">
-                            <button type="button" class="btn btn-primary cineglobal-modal-btn" data-bs-target="#modalConfirmLogin" data-bs-toggle="modal" data-bs-dismiss="modal">
+                            <button type="submit" class="btn btn-primary cineglobal-modal-btn">
                                 Iniciar Sesion
                             </button>
                         </div>
@@ -304,7 +317,10 @@
                     <button type="button" class="btn-close btn-close-white modal-close-custom" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body pt-0">
-                    <form>
+                    <form id="formRegistro" novalidate>
+                        <div class="mb-3">
+                            <input type="text" class="form-control cineglobal-input" id="registroNombre" name="nombre" placeholder="Nombre completo" aria-label="Nombre completo" data-validate="required">
+                        </div>
                         <div class="mb-3">
                             <input type="email" class="form-control cineglobal-input" id="registroEmail" placeholder="Correo electronico" aria-label="Correo electrónico">
                         </div>
@@ -318,7 +334,8 @@
                         </div>
 
                         <div class="text-center mb-4">
-                            <button type="button" class="btn btn-primary cineglobal-modal-btn" data-bs-target="#modalConfirmRegistro" data-bs-toggle="modal" data-bs-dismiss="modal">
+                            <p class="cineglobal-ui-message" id="mensajeRegistro" hidden></p>
+                            <button type="submit" class="btn btn-primary cineglobal-modal-btn">
                                 Registrarme
                             </button>
                         </div>
@@ -360,11 +377,11 @@
                             </div>
 
                             <div class="col-12 col-lg-8">
-                                <form class="compra-form">
+                                <form class="compra-form" id="formCompra" novalidate>
                                     <div class="mb-4">
                                         <label for="compraCineHoppers" class="form-label compra-label">Cines</label>
                                         <select class="form-select filter-select compra-select" id="compraCineHoppers" aria-label="Seleccionar cine">
-                                            <option selected>Cine</option>
+                                            <option value="" selected>Cine</option>
                                             <option>Palermo</option>
                                             <option>Abasto</option>
                                             <option>Lavalle</option>
@@ -375,7 +392,7 @@
                                     <div class="mb-4">
                                         <label for="compraIdiomaHoppers" class="form-label compra-label">Idiomas</label>
                                         <select class="form-select filter-select compra-select" id="compraIdiomaHoppers" aria-label="Seleccionar idioma">
-                                            <option selected>Idioma</option>
+                                            <option value="" selected>Idioma</option>
                                             <option>Español</option>
                                             <option>Inglés</option>
                                             <option>Subtitulada</option>
@@ -384,8 +401,8 @@
 
                                     <div class="mb-4">
                                         <label for="compraHorarioHoppers" class="form-label compra-label">Horarios</label>
-                                        <select class="form-select filter-select compra-select" id="compraHorarioHoppers" aria-label="Seleccionar horario">
-                                            <option selected>Horario</option>
+                                        <select class="form-select filter-select compra-select" id="compraFuncion" name="funcionId" aria-label="Seleccionar funcion" data-validate="required">
+                                            <option value="" selected>Horario</option>
                                             <option>18:00</option>
                                             <option>19:00</option>
                                             <option>20:00</option>
@@ -397,24 +414,22 @@
 
                                     <div class="mb-5">
                                         <label for="compraAsientosHoppers" class="form-label compra-label">Asientos</label>
-                                        <select class="form-select filter-select compra-select" id="compraAsientosHoppers" aria-label="Seleccionar cantidad de asientos">
-                                            <option selected>Asientos</option>
-                                            <option>1 asiento</option>
-                                            <option>2 asientos</option>
-                                            <option>3 asientos</option>
-                                            <option>4 asientos</option>
-                                            <option>5 asientos</option>
-                                            <option>6 asientos</option>
+                                        <select class="form-select filter-select compra-select" id="compraAsientosHoppers" name="cantidadEntradas" aria-label="Seleccionar cantidad de asientos" data-validate="number">
+                                            <option value="" selected>Asientos</option>
+                                            <option value="1">1 asiento</option>
+                                            <option value="2">2 asientos</option>
+                                            <option value="3">3 asientos</option>
+                                            <option value="4">4 asientos</option>
+                                            <option value="5">5 asientos</option>
+                                            <option value="6">6 asientos</option>
                                         </select>
                                     </div>
 
+                                    <p class="cineglobal-ui-message" id="mensajeCompra" hidden></p>
                                     <div class="text-start">
                                         <button
-                                            type="button"
+                                            type="submit"
                                             class="btn btn-primary compra-submit-btn"
-                                            data-bs-target="#modalPagoHoppers"
-                                            data-bs-toggle="modal"
-                                            data-bs-dismiss="modal"
                                         >
                                             Comprar entradas
                                         </button>
@@ -437,11 +452,11 @@
                 </div>
 
                 <div class="modal-body pt-0">
-                    <form class="pago-form">
+                    <form class="pago-form" id="formPago" novalidate>
                         <h2 class="modal-title text-center mb-5" id="modalPagoHoppersLabel">Datos de la tarjeta</h2>
 
                         <div class="mb-4">
-                            <input type="text" class="form-control cineglobal-input pago-input" id="pagoTitularHoppers" placeholder="Nombre del titular" aria-label="Nombre del titular">
+                            <input type="text" class="form-control cineglobal-input pago-input" id="pagoTitularHoppers" name="titular" placeholder="Nombre del titular" aria-label="Nombre del titular" data-validate="required">
                         </div>
 
                         <div class="mb-4">
@@ -461,13 +476,12 @@
                             <input type="email" class="form-control cineglobal-input pago-input" id="pagoEmailHoppers" placeholder="Correo electronico" aria-label="Correo electrónico">
                         </div>
 
+                        <p class="cineglobal-ui-message" id="resumenCompra" hidden></p>
+                        <p class="cineglobal-ui-message" id="mensajePago" hidden></p>
                         <div class="text-center">
                             <button
-                                type="button"
+                                type="submit"
                                 class="btn btn-primary pago-submit-btn"
-                                data-bs-target="#modalConfirmCompra"
-                                data-bs-toggle="modal"
-                                data-bs-dismiss="modal"
                             >
                                 Comprar
                             </button>
@@ -487,7 +501,7 @@
                     <button type="button" class="btn-close btn-close-white modal-close-custom" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body pt-0">
-                    <form>
+                    <form id="formConsulta" novalidate>
                         <div class="mb-4">
                             <input type="email" class="form-control cineglobal-input" id="consultaEmail" placeholder="Correo electronico" aria-label="Correo electrónico">
                         </div>
@@ -501,7 +515,8 @@
                         </div>
 
                         <div class="text-center mb-4">
-                            <button type="button" class="btn btn-primary cineglobal-modal-btn" data-bs-target="#modalConfirmConsulta" data-bs-toggle="modal" data-bs-dismiss="modal">
+                            <p class="cineglobal-ui-message" id="mensajeConsulta" hidden></p>
+                            <button type="submit" class="btn btn-primary cineglobal-modal-btn">
                                 Enviar
                             </button>
                         </div>
@@ -526,7 +541,7 @@
                 </div>
                 <div class="modal-body text-center pt-2 pb-4">
                     <h2 class="modal-title mb-3" id="modalConfirmLoginLabel">¡Listo!</h2>
-                    <p class="cineglobal-confirm-text mb-4">Inicio de sesion realizado correctamente.</p>
+                    <p class="cineglobal-confirm-text mb-4" id="confirmLoginTexto">Inicio de sesion realizado correctamente.</p>
                     <button type="button" class="btn btn-primary cineglobal-confirm-btn" data-bs-dismiss="modal">Aceptar</button>
                 </div>
             </div>
@@ -542,7 +557,7 @@
                 </div>
                 <div class="modal-body text-center pt-2 pb-4">
                     <h2 class="modal-title mb-3" id="modalConfirmRegistroLabel">¡Listo!</h2>
-                    <p class="cineglobal-confirm-text mb-4">Tu cuenta fue creada correctamente.</p>
+                    <p class="cineglobal-confirm-text mb-4" id="confirmRegistroTexto">Tu cuenta fue creada correctamente.</p>
                     <button type="button" class="btn btn-primary cineglobal-confirm-btn" data-bs-dismiss="modal">Aceptar</button>
                 </div>
             </div>
@@ -558,7 +573,7 @@
                 </div>
                 <div class="modal-body text-center pt-2 pb-4">
                     <h2 class="modal-title mb-3" id="modalConfirmCompraLabel">¡Compra realizada con éxito!</h2>
-                    <p class="cineglobal-confirm-text mb-4">
+                    <p class="cineglobal-confirm-text mb-4" id="confirmCompraTexto">
                         Tus entradas fueron reservadas correctamente.<br>
                         En breve recibirás la confirmación en tu correo electrónico.
                     </p>
@@ -577,7 +592,7 @@
                 </div>
                 <div class="modal-body text-center pt-2 pb-4">
                     <h2 class="modal-title mb-3" id="modalConfirmConsultaLabel">¡Listo!</h2>
-                    <p class="cineglobal-confirm-text mb-4">Tu consulta fue enviada correctamente.</p>
+                    <p class="cineglobal-confirm-text mb-4" id="confirmConsultaTexto">Tu consulta fue enviada correctamente.</p>
                     <button type="button" class="btn btn-primary cineglobal-confirm-btn" data-bs-dismiss="modal">Aceptar</button>
                 </div>
             </div>
@@ -590,7 +605,6 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"
     ></script>
-    <script type="module" src="js/utils/storage.js"></script>
-    <script src="js/script.js"></script>
+    <script type="module" src="js/script.js"></script>
 </body>
 </html>
