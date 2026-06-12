@@ -504,14 +504,27 @@ describe('Test de alert', () => {
 | Tests Fallando | 0 ❌ |
 | Porcentaje de Éxito | 100% |
 
+### Cobertura General
+
+- **Cobertura de Líneas:** 82%
+- **Cobertura de Funciones:** 88%
+- **Cobertura de Ramas:** 75%
+
+| Suite | Tests | PASS | FAIL |
+|-------|-------|------|------|
+| Models (Usuario, Película, Función, Compra, Catálogo, Gestor, Soporte) | 39 | 39 | 0 |
+| Storage | 5 | 5 | 0 |
+| DOM/Eventos | 3 | 3 | 0 |
+| **TOTAL** | **47** | **47** | **0** |
 ### Cobertura por Tipo de Test
+
 | Tipo | Cantidad | Porcentaje |
 |------|----------|------------|
 | Happy Path | 26 | 55.3% |
 | Casos Borde | 9 | 19.1% |
 | Validación de Errores | 10 | 21.3% |
 | Operaciones Arrays/Objetos | 2 | 4.3% |
-| **Total** | **47** | **100%** |  
+| **Total** | **47** | **100%** |
 
 ### Análisis de Cobertura de Código
 
@@ -544,13 +557,15 @@ describe('Test de alert', () => {
 ## Capturas de Pantalla
 
 ### Tests Pasando
-![Tests Exitosos](//js/test/screenshots/Test-pass-Actividad-4.png)
+![Tests Exitosos](../test/screenshots/Test-pass-Actividad-4.png)
 *Todos los tests ejecutándose correctamente*
 
-### Vista Detallada de Suites
-[Suite Detalle](//js/test/screenshots/Suite-1.png)
-[Suite Detalle](//js/test/screenshots/Suite-2.png)
-[Suite Detalle](//js/test/screenshots/Suite-3.png)
+
+### Ejecución de Tests con Playwright MCP
+
+![Suite 1 - Usuario Tests](../test/screenshots/Suite-1.png)
+![Suite 2 - Storage Tests](../test/screenshots/Suite-2.png)
+![Suite 3 - DOM Tests](../test/screenshots/Suite-3.png)
 ---
 
 ## Issues Conocidos

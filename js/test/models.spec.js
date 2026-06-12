@@ -279,3 +279,50 @@ describe('ConsultaSoporte (Modelo)', function() {
     expect(json.fechaCreacion).toBe('2024-01-01T00:00:00.000Z');
   });
 });
+describe('Pelicula', function() {
+  it('retorna false cuando el filtro no coincide', function() {
+    const pelicula = new Pelicula(
+      'p1',
+      'Avatar',
+      'Sci-Fi',
+      'PG-13',
+      '2024-01-01',
+      'avatar.jpg'
+    );
+
+    expect(
+      pelicula.coincideConFiltros({
+        categoria: 'Drama'
+      })
+    ).toBe(false);
+  });
+});
+describe('Funcion', function() {
+  it('no reserva asientos negativos', function() {
+    const funcion = new Funcion(
+      'f1',
+      'CineMax',
+      'Español',
+      '20:00',
+      50,
+      10
+    );
+
+    expect(funcion.reservarAsientos(-1)).toBe(false);
+  });
+});
+describe('GestorUsuarios', function() {
+  it('normaliza email al buscar usuario', function() {
+    const gestor = new GestorUsuarios([]);
+
+    gestor.registrarUsuario({
+      nombre: 'Juan',
+      email: 'juan@email.com',
+      password: 'Pass123'
+    });
+
+    expect(
+      gestor.buscarPorEmail(' JUAN@EMAIL.COM ')
+    ).toEqual(jasmine.any(Usuario));
+  });
+});
