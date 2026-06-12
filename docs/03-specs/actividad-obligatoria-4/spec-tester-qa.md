@@ -629,7 +629,7 @@ test-results/
 "bien en el archivo script.spec.js solo debe estar los test para eventos y dom. Y en el archivo models.spec.js deben estar los test solo para los modelos .Y para storage.spec.js solo los test para storage . Si tenes que crear nuevos test utiliza el archivo spec-tester-qa.md como contexto"
 
 ### Screenshots del test runner:
-- Screenshots: [Screenshots](//js/test/screenshots/Test-pass-Actividad-4.png)
+- Screenshots: [Screenshots](/js/test/screenshots/Captura_de_pantalla_del_promt.png)
 
 ### Resumen:
 La ejecución de las pruebas con Jasmine resultó satisfactoria, obteniéndose un 100% de casos aprobados. No se registraron fallos durante la ejecución ni se identificaron defectos que requirieran la creación de issues. Las pruebas cubren los principales componentes del sistema, incluyendo modelos de negocio, persistencia de datos, almacenamiento local y eventos básicos del DOM.
