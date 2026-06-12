@@ -5,6 +5,8 @@
 
 ### Added
 
+- [feature/tester-qa-specs] Realizacion de los test 
+  PR: [#174](https://github.com/hmarc953/cineglobal/pull/174) - @Santi22-7 (Coordinador / DevOps + Tester QA)
 -  [feature/dev-storage] Creacion de archivos storage.js strorage-doc.md y spec-dev-storrage.md, actualizacion de changelog.md
   PR: [#161](https://github.com/hmarc953/cineglobal/pull/161) - @9919-Mili (Desarrollador JS Local y Session Storage)
 
