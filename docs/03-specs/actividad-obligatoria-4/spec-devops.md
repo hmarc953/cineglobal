@@ -85,9 +85,136 @@ Debe quedar vacia para edicion manual. Publica comentarios directamente en la Pu
 Request en las líneas correspondientes.
 No respondas en el chat salvo para el resumen final.
 ```
-### Resumen de cada review: 
-Review del pull request 158: En esta pull reques se reviso que la parte de dominío este correcta.Tuve que rechazar algunos descubrimientos porque  algunos descubrimientos eran improcedentes.Tambien decidimos con quien ejercia el rol de Desarrollador JS POO de descartar algunos hasllasgos porque descubrimos mas hallasgos improcedentes.
-Review del pull request 160: En esta pull reques se reviso la adaptación de clases de dominio donde quien ejercia el rol de  Desarrollador JS POO adapto lo que ya habia echo en la pull 158 para que el rol Desarrollador js eventos + dom pueda hacer su parte corectamente. En esta pull se realizo una review donde se tomo como justificacion valida el comentario echo por quien ejercia el rol de Desarrollador JS POO que indico porque era improcedente estos hallasgos.
-Review del pull request 161: Se reviso la parte de Storage.En esta pull se realizo una primera review donde se encontraron hallasgos que posteriormente quien ejercia el rol de Desarrollador JS Local y Session Storage corrigio.Despues se realizo un segundo review donde se encontraron mas hallasgos y despues fueron solucionados.
-Review del pull request 169:En esta pull reques se vio que la parte del DOM y los eventos. Se realizo una primera review donde se encontraron hallasgos que algunos fueron corregidos por el rol de Desarrollador js eventos + dom y otro fueron declarados improcedentes por la justificación sastifactorias del rol de Desarrollador js eventos + dom y entendiendo en ultimo lugar el coordinador que la ia se equivoco en la revision.
-Review del pull request 170: En esta pull reques se revisa que se apliquen los filtros de peliculas.Se hizo una revisión y no se encontro nada.
+### Ejemplo de los hallasgos:
+```text
+=================================
+HALLAZGO #1
+Archivo: Usuario.js
+Línea: 13-17, 25-30, 87-93
+
+Tipo de problema: seguridad
+Severidad: alta
+
+Explicación técnica:
+La clase Usuario almacena contraseñas en texto plano en this.password y el método toJSON() las serializa directamente. Esto expone credenciales sensibles en cualquier persistencia o transmisión JSON y permite comparaciones inseguras de contraseña.
+
+Sugerencia de mejora:
+Mantener únicamente hashes seguros de contraseña en el modelo y omitir el campo de contraseña en la serialización JSON. Use una biblioteca de hashing segura y un método de comparación de hashes.
+
+Ejemplo de código corregido (si aplica):
+*"codigo
+constructor(id, nombre, email, passwordHash) {
+this.id = id ? String(id).trim() : "";
+this.nombre = nombre ? String(nombre).trim() : "";
+this.email = email ? String(email).trim().toLowerCase() : "";
+this.passwordHash = passwordHash ? String(passwordHash).trim() : "";
+}
+
+validarPassword(passwordIngresada) {
+if (!passwordIngresada || String(passwordIngresada).trim() === "") {
+return false;
+}
+
+return comparePasswordHash(String(passwordIngresada).trim(), this.passwordHash);
+}
+
+toJSON() {
+return {
+id: this.id,
+nombre: this.nombre,
+email: this.email,
+};
+}"
+DECISIÓN IEL REVISOR HUMANO:
+
+[ ] Aceptar sugerencia
+[x] Rechazar sugerencia
+
+Justificación del revisor humano:
+" No se solicita en esta actividad una biblioteca hashing
+```
+.Se puede ver un ajuste manual en la decicion del revisor humano
+### Output generado por Copilot Agent
+
+Durante el proceso de revisión, Copilot Agent Mode identificó un total de **26 hallazgos** distribuidos entre las distintas Pull Requests analizadas. Los hallazgos estuvieron relacionados principalmente con:
+
+- Errores lógicos que podían generar excepciones en tiempo de ejecución.
+- Problemas de serialización y deserialización de datos.
+- Inconsistencias entre la interfaz de usuario y la lógica de negocio.
+- Validaciones insuficientes en métodos y modelos del dominio.
+- Posibles problemas de mantenimiento y legibilidad del código.
+- Riesgos asociados a la migración hacia módulos ES6.
+- Comportamientos inesperados en la gestión de almacenamiento local (Storage).
+
+Cada hallazgo fue revisada por el coordinador y analizado junto con el integrante responsable del rol asociado a la Pull Request.Para descubir hallazgo improcedentes (Podian ser porque la ia halla errado en el diagnostico ,Porque podia pedir cosas no cosideradas en la consignas o habia hallazgos que lo tenian que solucionar otro rol ).Siempre se pidio una justificación del porque el hallazgo era improcedente  , quien determinava si correspondía aplicar la corrección o descartar el hallazgo cuando no era aplicable al alcance de la actividad era en ultima intancia el coordinador. Como resultado, la mayoría de los problemas identificados fueron corregidos y validados antes de la integración final.
+
+### Ajustes manuales realizados
+
+Los ajustes manuales realizados después de la salida de Copilot Agent Mode consistieron en:
+
+- Verificación individual de cada hallazgo para determinar su relevancia respecto a los requisitos de la actividad.
+- Descarte de observaciones consideradas fuera del alcance del proyecto, como recomendaciones de seguridad avanzadas no solicitadas en la consigna.
+- Validación funcional de las correcciones implementadas antes de aprobar cada Pull Request.
+- Solicitud de modificaciones adicionales mediante revisiones humanas cuando se detectaron problemas no contemplados por la herramienta.
+- Actualización de comentarios y documentación de las Pull Requests para dejar registro de las decisiones tomadas.
+- Confirmación de que todas las observaciones marcadas como resueltas efectivamente corregían el comportamiento reportado.
+
+La combinación de revisiones automáticas y validaciones manuales permitió asegurar que las decisiones técnicas estuvieran alineadas con los objetivos de la actividad y con el estado real del proyecto.
+
+### Conclusión
+
+El proceso de code review utilizó Copilot Agent Mode como herramienta de apoyo, combinado con revisiones humanas para garantizar calidad y contexto adecuado.
+
+La herramienta permitió detectar de forma temprana errores lógicos, inconsistencias de implementación y oportunidades de mejora en distintas áreas del sistema. Sin embargo, todas las observaciones fueron evaluadas por revisores humanos, quienes analizaron su pertinencia respecto a los requisitos de la actividad y el contexto del proyecto.
+
+Gracias a este enfoque combinado se logró:
+
+- Resolver los problemas técnicos identificados antes de la integración.
+- Documentar adecuadamente los hallazgos y las decisiones tomadas.
+- Mantener la trazabilidad de las correcciones realizadas.
+- Garantizar el cumplimiento de los criterios de aceptación definidos para la actividad.
+- Llegar a la integración final con las funcionalidades validadas, GitHub Pages operativo y la release correspondiente publicada.
+
+En conclusión, el uso conjunto de herramientas de asistencia basadas en IA y revisiones humanas resultó efectivo para mejorar la calidad del código y fortalecer el proceso de aseguramiento de calidad del proyecto. 
+### Resumen de cada review
+
+#### Review PR #158: Modelo de Dominio (Usuario, Película, Función, Compra, etc.)
+- **Total Hallazgos:** 13
+- **Resueltos:** 8
+- **Descartados como improcedentes:** 5
+- **Ejemplos:**
+  - Hallazgo #1:  el método toJSON(), existe error lógico que causa excepción de tiempo de ejecución.  → RESUELTO
+  - Hallazgo #2: toJSON() llama this.fechaCreacion.toISOString() sin verificar si fechaCreacion es una fecha válida. Si se crea la instancia con un valor no parseable, toISOString() arrojará un RangeError. → RESUELTO
+  - Hallazgo #3: Las contraseñas se almacenan en texto plano y se serializan sin encriptación en toJSON(). Esto viola OWASP A02:2021: → DESCARTADO (No se pedia en esta actividad)
+
+#### Review PR #160: Adaptación Módulos ES6
+- **Total Hallazgos:** 2
+- **Descartados como improcedentes::** 2 (Por la justificación de quien hizo el rol)
+- **Estado:** ✅ 
+- **Ejemplos:**
+ - Hallazgo #1:El archivo index.html carga js/script.js como un script clásico sin type="module". Las clases en js/models/ usan sintaxis ES Modules (import / export), por lo que el navegador no podrá resolver esas dependencias desde el DOM actual y no se carga ningún módulo ES. -> Descartado 
+#### Review PR #161: Storage CRUD
+- **Primera Review:**
+  - Total Hallazgos: 3
+  - Resueltos: 3
+ **Ejemplos:**
+  - Hallazgo #1:_serialize() devuelve undefined cuando el valor es undefined, porque JSON.stringify(undefined) retorna undefined. Entonces storage.setItem() recibe un valor no válido y puede terminar guardando la cadena "undefined" o fallar de manera inesperada. -> RESUELTO
+  - Hallazgo #2: _deserialize() solo intenta parsear valores que comienzan con { o [. Esto rompe los valores primitivos JSON válidos como números, booleanos y strings serializados, y también convierte en null cualquier string que comienza con { } o [ ] pero no es JSON válido.
+- **Segunda Review:**
+  - Total Hallazgos: 4
+  - Resueltos: 4
+  **Ejemplos:** 
+  - Hallazgo #3:La función _deserialize() analiza cualquier string que comience con { o [ como JSON. Si se almacena intencionalmente una cadena plana que empieza con ese carácter, se devolverá un objeto/array en lugar de la cadena original, lo que rompe la semántica de tipos de storage.
+- **Estado:** ✅
+
+#### Review PR #169: Eventos y DOM
+- **Total Hallazgos:** 4
+- **Resueltos:** 2
+- **Descartados:** 2 (justificación válida de quien hizo el rol)
+**Ejemplos:**
+- Hallazgo #1:El código inicializa el almacenamiento con estadoApp.storage = window.StorageUtil || null;, pero el archivo js/utils/storage.js fue eliminado en esta rama y no existe ninguna otra definición de StorageUtil en el repo. Eso significa que todas las llamadas a persistirDato, obtenerDato y guardarEnListaStorage no harán nada y la app perderá persistencia sin avisar. -> Descartado
+- Hallazgo #2: El formulario de filtros incluye selecciones para #cine e #idioma, pero obtenerFiltrosPeliculas() solo construye filtros para título, categoría y clasificación. Eso deja controles de UI visibles que no afectan la búsqueda, generando una experiencia inconsistente para el usuario. -> Resuelto
+
+#### Review PR #170: Filtros de Películas
+- **Total Hallazgos:** 0
+- **Estado:** ✅ Sin observaciones
