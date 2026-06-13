@@ -6,6 +6,8 @@
 ### Added
 - [feature/coord-devops-cuarta-entrega] Creacion del spec , actualizacion del changelog y del Readme.md
   PR: [#152](https://github.com/hmarc953/cineglobal/pull/152) - @Santi22-7 (Coordinador / DevOps + Tester QA)
+- [feature/coord-devops-cuarta-entrega] Cierre del spec
+  PR: [#176](https://github.com/hmarc953/cineglobal/pull/176) - @Santi22-7 (Coordinador / DevOps + Tester QA)
 ---
 ### Fixed
 
