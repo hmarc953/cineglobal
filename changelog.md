@@ -4,10 +4,28 @@
 ## [Release Actividad Obligatoria N°4] - 2026-05-18
 
 ### Added
+
+- [feature/tester-qa-specs] Realizacion de los test 
+  PR: [#174](https://github.com/hmarc953/cineglobal/pull/174) - @Santi22-7 (Coordinador / DevOps + Tester QA)
+-  [feature/dev-storage] Creacion de archivos storage.js strorage-doc.md y spec-dev-storrage.md, actualizacion de changelog.md
+  PR: [#161](https://github.com/hmarc953/cineglobal/pull/161) - @9919-Mili (Desarrollador JS Local y Session Storage)
+
 - [feature/coord-devops-cuarta-entrega] Creacion del spec , actualizacion del changelog y del Readme.md
   PR: [#152](https://github.com/hmarc953/cineglobal/pull/152) - @Santi22-7 (Coordinador / DevOps + Tester QA)
 - [feature/coord-devops-cuarta-entrega] Cierre del spec
   PR: [#176](https://github.com/hmarc953/cineglobal/pull/176) - @Santi22-7 (Coordinador / DevOps + Tester QA)
+
+- [feature/dev-poo-logica-negocio] Implementación del modelo de dominio y diagrama de clases
+  PR: [#158](https://github.com/hmarc953/cineglobal/pull/158) @hmarc953 (Desarrollador JS POO)
+
+- [feature/dev-poo-logica-negocio] Adaptación de clases del dominio para módulos ES6
+  PR: [#160](https://github.com/hmarc953/cineglobal/pull/160) @hmarc953 (Desarrollador JS POO)
+
+- [feature/dev-eventos-dom] Refactorización de js/script.js como controlador principal de Eventos + DOM.
+  PR: [#169](https://github.com/hmarc953/cineglobal/pull/169) - @abartomioli (Desarrollador JS Eventos + DOM)
+  
+- [feature/dev-poo-logica-negocio] Ajustes en filtros de películas e integración con Storage
+  PR: [#170](https://github.com/hmarc953/cineglobal/pull/170) @hmarc953 (Desarrollador JS POO)
 ---
 ### Fixed
 

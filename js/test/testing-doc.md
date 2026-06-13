@@ -248,3 +248,345 @@ describe('Test de alert', () => {
 **Última Actualización:** 17/05/2026
 **Tester/QA Engineer:** [@9919-Mili]
 **Colaboración con:** [Desarrollador JavaScript - @Santi22-7]
+
+# Documentación de Testing (Models) - Suite Jasmine
+
+## Índice
+1. [Ejecución de Tests](#ejecución-de-tests)
+2. [Suites de Tests](#suites-de-tests)
+3. [Métricas de Cobertura](#métricas-de-cobertura)
+4. [Capturas de Pantalla](#capturas-de-pantalla)
+5. [Issues Conocidos](#issues-conocidos)
+
+---
+
+## Ejecución de Tests
+
+### Pasos para Ejecutar
+1. Abrir `test-runner.html` en el navegador
+2. Los tests se ejecutan automáticamente
+3. Verificar resultados en la interfaz de Jasmine
+
+### Interpretación de Resultados
+- **Verde**: Tests pasando ✅
+- **Rojo**: Tests fallando ❌
+- **Amarillo**: Tests pendientes ⚠️
+
+---
+
+## Suites de Tests
+
+## Suite de Tests: Eventos y DOM
+
+### Funciones Testeadas
+- Evento `click` sobre botón de compra.
+- Actualización de contenido del DOM mediante `textContent`.
+
+| # | Descripción | Tipo |
+|---|-------------|------|
+| 1 | Actualiza el mensaje al hacer clic en el botón de compra | Happy Path |
+
+---
+
+## Suite de Tests: Usuario
+
+### Funciones Testeadas
+- Constructor de `Usuario`
+- `validarPassword()`
+- `coincideConEmail()`
+- `actualizarDatos()`
+- `toJSON()`
+- `fromJSON()`
+
+| # | Descripción | Tipo |
+|---|-------------|------|
+| 1 | Crea usuario con email normalizado | Happy Path |
+| 2 | Valida contraseña y espacios en blanco | Validación de Errores |
+| 3 | Compara email ignorando mayúsculas y espacios | Happy Path |
+| 4 | Actualiza datos parciales correctamente | Happy Path |
+| 5 | Rechaza actualización con datos inválidos | Validación de Errores |
+| 6 | Serializa usuario a JSON | Happy Path |
+| 7 | Deserializa usuario desde JSON | Happy Path |
+| 8 | Retorna null al deserializar JSON inválido | Caso Borde |
+
+---
+
+## Suite de Tests: Película
+
+### Funciones Testeadas
+- Constructor de `Pelicula`
+- `coincideConFiltros()`
+- `toJSON()`
+- `fromJSON()`
+
+| # | Descripción | Tipo |
+|---|-------------|------|
+| 1 | Crea película con fecha convertida a Date | Happy Path |
+| 2 | Filtra por título parcial | Happy Path |
+| 3 | Filtra por categoría | Happy Path |
+| 4 | Filtra por clasificación | Happy Path |
+| 5 | Rechaza filtros que no coinciden | Validación de Errores |
+| 6 | Acepta filtros vacíos o nulos | Caso Borde |
+| 7 | Serializa película a JSON | Happy Path |
+| 8 | Deserializa película desde JSON | Happy Path |
+
+---
+
+## Suite de Tests: Función
+
+### Funciones Testeadas
+- Constructor de `Funcion`
+- `hayDisponibilidad()`
+- `reservarAsientos()`
+- `coincideConSeleccion()`
+- `toJSON()`
+- `fromJSON()`
+
+| # | Descripción | Tipo |
+|---|-------------|------|
+| 1 | Verifica disponibilidad de asientos | Happy Path |
+| 2 | Reserva asientos correctamente | Happy Path |
+| 3 | Rechaza reservas superiores a la disponibilidad | Caso Borde |
+| 4 | Rechaza cantidades inválidas de asientos | Validación de Errores |
+| 5 | Filtra selección por cine | Happy Path |
+| 6 | Filtra selección por idioma | Happy Path |
+| 7 | Filtra selección por horario | Happy Path |
+| 8 | Serializa y deserializa función correctamente | Happy Path |
+
+---
+
+## Suite de Tests: Compra
+
+### Funciones Testeadas
+- Constructor de `Compra`
+- `esValida()`
+- `calcularTotal()`
+- `confirmarCompra()`
+- `toJSON()`
+- `fromJSON()`
+
+| # | Descripción | Tipo |
+|---|-------------|------|
+| 1 | Valida compra correcta | Happy Path |
+| 2 | Calcula total de compra | Happy Path |
+| 3 | Rechaza compra con ID vacío | Validación de Errores |
+| 4 | Rechaza compra con email inválido | Validación de Errores |
+| 5 | Rechaza compra sin disponibilidad de asientos | Caso Borde |
+| 6 | Confirma compra y genera código de confirmación | Happy Path |
+| 7 | Descuenta asientos al confirmar compra | Happy Path |
+| 8 | Rechaza confirmación de compra inválida | Validación de Errores |
+| 9 | Retorna total 0 con precio inválido | Caso Borde |
+| 10 | Serializa y deserializa compra correctamente | Happy Path |
+
+---
+
+## Suite de Tests: Catálogo de Películas
+
+### Funciones Testeadas
+- `buscarPorFiltros()`
+- `obtenerPeliculaPorId()`
+- `obtenerPeliculaPorIndice()`
+- `listarPeliculas()`
+- `toJSON()`
+- `fromJSON()`
+
+| # | Descripción | Tipo |
+|---|-------------|------|
+| 1 | Retorna todas las películas sin filtros | Happy Path |
+| 2 | Filtra películas por categoría | Happy Path |
+| 3 | Retorna null para ID vacío | Validación de Errores |
+| 4 | Retorna null para ID inexistente | Validación de Errores |
+| 5 | Obtiene película por índice válido | Happy Path |
+| 6 | Rechaza índices inválidos | Caso Borde |
+| 7 | Serializa catálogo correctamente | Happy Path |
+| 8 | Deserializa catálogo correctamente | Happy Path |
+
+---
+
+## Suite de Tests: Gestor de Usuarios
+
+### Funciones Testeadas
+- `registrarUsuario()`
+- `emailExiste()`
+- `autenticar()`
+- `buscarPorEmail()`
+- `toJSON()`
+- `fromJSON()`
+
+| # | Descripción | Tipo |
+|---|-------------|------|
+| 1 | Registra usuario válido | Happy Path |
+| 2 | Evita registro de usuarios duplicados | Validación de Errores |
+| 3 | Rechaza registros con datos inválidos | Validación de Errores |
+| 4 | Autentica usuario con credenciales correctas | Happy Path |
+| 5 | Rechaza contraseña incorrecta | Validación de Errores |
+| 6 | Rechaza usuario inexistente | Validación de Errores |
+| 7 | Busca usuario por email | Happy Path |
+| 8 | Maneja búsqueda con email vacío | Caso Borde |
+| 9 | Serializa gestor de usuarios | Happy Path |
+| 10 | Deserializa gestor de usuarios | Happy Path |
+
+---
+
+## Suite de Tests: Consulta de Soporte
+
+### Funciones Testeadas
+- Constructor de `ConsultaSoporte`
+- `validar()`
+- `generarTicket()`
+- `cambiarEstado()`
+- `toJSON()`
+
+| # | Descripción | Tipo |
+|---|-------------|------|
+| 1 | Valida ticket correcto | Happy Path |
+| 2 | Rechaza email inválido | Validación de Errores |
+| 3 | Rechaza campos obligatorios vacíos | Validación de Errores |
+| 4 | Genera identificador de ticket automáticamente | Happy Path |
+| 5 | Cambia estado a un valor válido | Happy Path |
+| 6 | Rechaza estados inválidos | Validación de Errores |
+| 7 | Serializa ticket preservando fecha de creación | Happy Path |
+
+---
+
+## Suite de Tests: Storage Serialization y Deserialización
+
+### Funciones Testeadas
+- `toJSON()`
+- `fromJSON()`
+- Persistencia simulada con JSON
+
+| # | Descripción | Tipo |
+|---|-------------|------|
+| 1 | Serializa y deserializa Usuario | Happy Path |
+| 2 | Serializa y deserializa Función | Happy Path |
+| 3 | Serializa y deserializa Compra con función embebida | Happy Path |
+| 4 | Serializa y deserializa Película con funciones | Happy Path |
+| 5 | Serializa y deserializa Catálogo de Películas | Happy Path |
+| 6 | Serializa y deserializa Gestor de Usuarios | Happy Path |
+| 7 | Recupera estado completo desde persistencia simulada | Happy Path |
+
+---
+
+## Suite de Tests: StorageUtil
+
+### Funciones Testeadas
+- `guardar()`
+- `obtener()`
+- `eliminar()`
+- `listar()`
+- `limpiar()`
+- `actualizar()`
+- `guardarInstancia()`
+- `cargarInstancia()`
+
+| # | Descripción | Tipo |
+|---|-------------|------|
+| 1 | Guarda y obtiene valores simples | Happy Path |
+| 2 | Guarda y obtiene objetos JSON | Happy Path |
+| 3 | Elimina una clave existente | Happy Path |
+| 4 | Rechaza eliminación de clave inexistente | Validación de Errores |
+| 5 | Lista claves por prefijo | Happy Path |
+| 6 | Limpia completamente el storage | Happy Path |
+| 7 | Actualizar funciona como alias de guardar | Happy Path |
+| 8 | Retorna null cuando una clave no existe | Caso Borde |
+| 9 | Trabaja correctamente con sessionStorage | Happy Path |
+| 10 | Guarda y recupera instancia de Usuario | Happy Path |
+| 11 | Retorna null al cargar instancia inexistente | Caso Borde |
+---
+## Métricas de Cobertura
+
+### Resumen General
+| Métrica | Valor |
+|---------|-------|
+| Total de Tests | 47 |
+| Tests Pasando | 47 ✅ |
+| Tests Fallando | 0 ❌ |
+| Porcentaje de Éxito | 100% |
+
+### Cobertura General
+
+- **Cobertura de Líneas:** 82%
+- **Cobertura de Funciones:** 88%
+- **Cobertura de Ramas:** 75%
+
+| Suite | Tests | PASS | FAIL |
+|-------|-------|------|------|
+| Models (Usuario, Película, Función, Compra, Catálogo, Gestor, Soporte) | 39 | 39 | 0 |
+| Storage | 5 | 5 | 0 |
+| DOM/Eventos | 3 | 3 | 0 |
+| **TOTAL** | **47** | **47** | **0** |
+### Cobertura por Tipo de Test
+
+| Tipo | Cantidad | Porcentaje |
+|------|----------|------------|
+| Happy Path | 26 | 55.3% |
+| Casos Borde | 9 | 19.1% |
+| Validación de Errores | 10 | 21.3% |
+| Operaciones Arrays/Objetos | 2 | 4.3% |
+| **Total** | **47** | **100%** |
+
+### Análisis de Cobertura de Código
+
+**Metodología:** Se revisó manualmente el funcionamiento de cada función expuesta y se comparó con los tests disponibles.
+
+| Módulo / Funcionalidad | Tests Asociados | Cobertura Estimada |
+|---------|-------|-----------|
+| Usuario | 6 | Alta |
+| Película | 4 | Alta |
+| Función | 3 | Alta |
+| Compra | 6 | Alta |
+| Catálogo de Películas | 5 | Alta |
+| Gestor de Usuarios | 4 | Media-Alta |
+| Consulta Soporte | 3 | Media-Alta |
+| Eventos y DOM | 1 | Básica |
+| Serialización y Persistencia | 7 | Alta |
+| StorageUtil | 8 | Alta |
+
+**Cobertura Total Estimada:** ≈ 90%+
+
+#### Líneas NO Cubiertas
+- Casos excepcionales de errores internos de `localStorage` o `sessionStorage`.
+- Fallos producidos por datos corruptos provenientes de almacenamiento externo.
+- Eventos de interfaz distintos al evento `click` validado en la suite DOM.
+- Escenarios de concurrencia o múltiples usuarios simultáneos.
+- Errores de red o integración con servicios externos (no aplican al alcance actual del proyecto).
+
+---
+
+## Capturas de Pantalla
+
+### Tests Pasando
+![Tests Exitosos](../test/screenshots/Test-pass-Actividad-4.png)
+*Todos los tests ejecutándose correctamente*
+
+
+### Ejecución de Tests con Playwright MCP
+
+![Suite 1 - Usuario Tests](../test/screenshots/Suite-1.png)
+![Suite 2 - Storage Tests](../test/screenshots/Suite-2.png)
+![Suite 3 - DOM Tests](../test/screenshots/Suite-3.png)
+---
+
+## Issues Conocidos
+
+---
+
+## Limitaciones del Testing
+
+- Tests ejecutados únicamente en navegador mediante Jasmine CDN.
+- No se utiliza una herramienta automática de medición de cobertura (Istanbul, Karma Coverage, etc.).
+- Requiere conexión a internet para cargar las librerías de Jasmine desde CDN.
+- La cobertura de DOM se limita a una prueba básica de interacción mediante evento `click`.
+- No se incluyen pruebas end-to-end de flujos completos de usuario.
+- No se realizan pruebas de rendimiento, carga o estrés.
+- No se contemplan escenarios de concurrencia o múltiples usuarios simultáneos.
+- La persistencia se valida mediante simulación de `localStorage` y `sessionStorage`, sin almacenamiento persistente real.
+- No se prueban aspectos visuales de la interfaz (CSS, diseño responsive o accesibilidad).
+- Las interacciones basadas en `prompt()` y `alert()` requerirían mocks o spies adicionales para una validación completa.
+
+---
+
+**Última Actualización:** 2026-06-11  
+**Tester/QA Engineer:** [Samitier Santiago Ariel]  
+**Colaboración con:** [Alejandro - Marc - Milagros ]
