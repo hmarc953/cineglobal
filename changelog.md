@@ -29,7 +29,7 @@
 ---
 ### Fixed
 
-[fix/correccion-dev-storage] Ajustes en localStorage y sessionStorage
+- [fix/correccion-dev-storage] Ajustes en localStorage y sessionStorage
   PR: #180 - @9919-Mili (Desarrollador JS Local y Session Storage)
 
 
