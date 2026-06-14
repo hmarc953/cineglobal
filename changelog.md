@@ -30,7 +30,7 @@
 ### Fixed
 
 - [fix/correccion-dev-storage] Ajustes en localStorage y sessionStorage
-  PR: #180 - @9919-Mili (Desarrollador JS Local y Session Storage)
+  PR: [#180](https://github.com/hmarc953/cineglobal/pull/180) - @9919-Mili (Desarrollador JS Local y Session Storage)
 
 
 
