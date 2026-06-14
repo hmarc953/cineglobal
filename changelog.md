@@ -29,6 +29,9 @@
 ---
 ### Fixed
 
+- [fix/dropdown-dinamico-compra] Ajustes en modal de compra y dropdowns dinámicos
+  PR: [#179](https://github.com/hmarc953/cineglobal/pull/179) @hmarc953 (Desarrollador JS POO)
+
 ## [Release Actividad Obligatoria N°3] - 2026-05-07
 
 ### Added
