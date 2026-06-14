@@ -32,6 +32,10 @@ const SELECTORES = {
   confirmRegistroTexto: '#confirmRegistroTexto',
   confirmCompraTexto: '#confirmCompraTexto',
   confirmConsultaTexto: '#confirmConsultaTexto',
+  selectCompraCine: '#compraCine',
+  selectCompraIdioma: '#compraIdioma',
+  selectCompraFuncion: '#compraFuncion',
+  selectCompraAsientos: '#compraAsientos',
 };
 
 const STORAGE_KEYS = {
@@ -149,6 +153,9 @@ function configurarEventos() {
   escuchar(SELECTORES.formularioCompra, 'submit', manejarSeleccionCompra);
   escuchar(SELECTORES.formularioPago, 'submit', manejarConfirmacionCompra);
   escuchar(SELECTORES.formularioConsulta, 'submit', manejarConsultaSoporte);
+  escuchar(SELECTORES.selectCompraCine, 'change', manejarCambioCineCompra);
+  escuchar(SELECTORES.selectCompraIdioma, 'change', manejarCambioIdiomaCompra);
+  escuchar(SELECTORES.selectCompraFuncion, 'change', manejarCambioFuncionCompra);
 
   document.addEventListener('input', manejarValidacionEnTiempoReal);
   document.addEventListener('change', manejarValidacionEnTiempoReal);
@@ -256,7 +263,7 @@ function manejarClickPelicula(event) {
   estadoApp.peliculaSeleccionada = pelicula;
   estadoApp.funcionSeleccionada = null;
   prepararModalCompra(pelicula);
-  abrirModal('modalCompraHoppers');
+  abrirModal('modalCompra');
 }
 
 function manejarSeleccionCompra(event) {
@@ -289,8 +296,8 @@ function manejarSeleccionCompra(event) {
   estadoApp.cantidadEntradas = Number(datos.cantidadEntradas);
   renderizarResumenCompra(estadoApp.peliculaSeleccionada, funcion, estadoApp.cantidadEntradas);
   mostrarExito(mensaje, 'Funcion seleccionada. Continuá con los datos de pago.');
-  cerrarModal('modalCompraHoppers');
-  abrirModal('modalPagoHoppers');
+  cerrarModal('modalCompra');
+  abrirModal('modalPago');
 }
 
 function manejarConfirmacionCompra(event) {
@@ -326,7 +333,7 @@ function manejarConfirmacionCompra(event) {
   mostrarExito(mensaje, 'Compra realizada con exito.');
   limpiarFormulario(formulario);
   limpiarMensaje(consultarElemento(SELECTORES.resumenCompra));
-  cerrarModal('modalPagoHoppers');
+  cerrarModal('modalPago');
   abrirModal('modalConfirmCompra');
 }
 
@@ -426,7 +433,8 @@ function renderizarPeliculas(peliculas) {
 }
 
 function prepararModalCompra(pelicula) {
-  actualizarTexto('#modalCompraHoppersLabel', pelicula.titulo);
+  actualizarTexto('#modalCompraLabel', pelicula.titulo);
+
   const poster = consultarElemento('.compra-poster');
   if (poster) {
     poster.src = pelicula.imagen;
@@ -436,17 +444,149 @@ function prepararModalCompra(pelicula) {
   const formulario = consultarElemento(SELECTORES.formularioCompra);
   limpiarFormulario(formulario);
   limpiarMensaje(consultarElemento(SELECTORES.mensajeCompra));
-  renderizarFunciones(pelicula.obtenerFuncionesDisponibles());
+
+  renderizarCinesCompra(pelicula.obtenerFuncionesDisponibles());
+  renderizarIdiomasCompra([]);
+  renderizarHorariosCompra([]);
+
   actualizarEstadoSubmit(formulario);
 }
 
-function renderizarFunciones(funciones) {
-  const select = consultarElemento('#compraFuncion');
+function renderizarCinesCompra(funciones) {
+  const select = consultarElemento(SELECTORES.selectCompraCine);
   if (!select) {
     return;
   }
 
-  select.innerHTML = '<option value="">Funcion</option>';
+  select.innerHTML = '<option value="" selected disabled hidden>Elija un cine</option>';
+
+  const cines = [...new Set(funciones.map((funcion) => funcion.cine))];
+
+  cines.forEach((cine) => {
+    const option = document.createElement('option');
+    option.value = cine;
+    option.textContent = cine;
+    select.appendChild(option);
+  });
+}
+
+function renderizarIdiomasCompra(funciones) {
+  const select = consultarElemento(SELECTORES.selectCompraIdioma);
+  if (!select) {
+    return;
+  }
+
+  select.innerHTML = '<option value="" selected disabled hidden>Elija un idioma</option>';
+
+  const idiomas = [...new Set(funciones.map((funcion) => funcion.idioma))];
+
+  idiomas.forEach((idioma) => {
+    const option = document.createElement('option');
+    option.value = idioma;
+    option.textContent = idioma;
+    select.appendChild(option);
+  });
+}
+
+function renderizarHorariosCompra(funciones) {
+  const select = consultarElemento(SELECTORES.selectCompraFuncion);
+  if (!select) {
+    return;
+  }
+
+  select.innerHTML = '<option value="" selected disabled hidden>Elija un horario</option>';
+
+  funciones.forEach((funcion) => {
+    const option = document.createElement('option');
+    option.value = funcion.id;
+    option.textContent = `${funcion.horario} (${funcion.asientosDisponibles} disponibles)`;
+    select.appendChild(option);
+  });
+}
+
+function manejarCambioCineCompra() {
+  if (!estadoApp.peliculaSeleccionada) {
+    return;
+  }
+
+  const cineSeleccionado = valorCampo(SELECTORES.selectCompraCine);
+
+  const funcionesFiltradas = estadoApp.peliculaSeleccionada
+    .obtenerFuncionesDisponibles()
+    .filter((funcion) => {
+      if (!cineSeleccionado) {
+        return true;
+      }
+
+      return funcion.cine.toLowerCase() === cineSeleccionado.toLowerCase();
+    });
+
+  renderizarIdiomasCompra(funcionesFiltradas);
+  renderizarHorariosCompra([]);
+
+  asignarValor(SELECTORES.selectCompraIdioma, '');
+  asignarValor(SELECTORES.selectCompraFuncion, '');
+  asignarValor(SELECTORES.selectCompraAsientos, '');
+
+  if (cineSeleccionado) {
+    habilitarControl(consultarElemento(SELECTORES.selectCompraIdioma));
+  } else {
+    deshabilitarControl(consultarElemento(SELECTORES.selectCompraIdioma));
+  }
+
+  deshabilitarControl(consultarElemento(SELECTORES.selectCompraFuncion));
+  deshabilitarControl(consultarElemento(SELECTORES.selectCompraAsientos));
+}
+
+function manejarCambioIdiomaCompra() {
+  if (!estadoApp.peliculaSeleccionada) {
+    return;
+  }
+
+  const cineSeleccionado = valorCampo(SELECTORES.selectCompraCine);
+  const idiomaSeleccionado = valorCampo(SELECTORES.selectCompraIdioma);
+
+  const funcionesFiltradas = estadoApp.peliculaSeleccionada
+    .obtenerFuncionesDisponibles()
+    .filter((funcion) => {
+      const coincideCine = !cineSeleccionado || funcion.cine.toLowerCase() === cineSeleccionado.toLowerCase();
+      const coincideIdioma = !idiomaSeleccionado || funcion.idioma.toLowerCase() === idiomaSeleccionado.toLowerCase();
+      return coincideCine && coincideIdioma;
+    });
+
+  renderizarHorariosCompra(funcionesFiltradas);
+
+  asignarValor(SELECTORES.selectCompraFuncion, '');
+  asignarValor(SELECTORES.selectCompraAsientos, '');
+
+  if (idiomaSeleccionado) {
+    habilitarControl(consultarElemento(SELECTORES.selectCompraFuncion));
+  } else {
+    deshabilitarControl(consultarElemento(SELECTORES.selectCompraFuncion));
+  }
+
+  deshabilitarControl(consultarElemento(SELECTORES.selectCompraAsientos));
+}
+
+function manejarCambioFuncionCompra() {
+  const funcionSeleccionada = valorCampo(SELECTORES.selectCompraFuncion);
+
+  asignarValor(SELECTORES.selectCompraAsientos, '');
+
+  if (funcionSeleccionada) {
+    habilitarControl(consultarElemento(SELECTORES.selectCompraAsientos));
+  } else {
+    deshabilitarControl(consultarElemento(SELECTORES.selectCompraAsientos));
+  }
+}
+
+function renderizarFunciones(funciones) {
+  const select = consultarElemento(SELECTORES.selectCompraFuncion);
+  if (!select) {
+    return;
+  }
+
+  select.innerHTML = '<option value="" selected disabled hidden>Elija un horario</option>';
   funciones.forEach((funcion) => {
     const option = document.createElement('option');
     option.value = funcion.id;
@@ -642,20 +782,20 @@ function obtenerDatosFormulario(formulario) {
 
   if (formulario.id === 'formPago') {
     return {
-      titular: valorCampo('#pagoTitularHoppers'),
-      tarjeta: valorCampo('#pagoTarjetaHoppers'),
-      vencimiento: valorCampo('#pagoVencimientoHoppers'),
-      cvv: valorCampo('#pagoCvvHoppers'),
-      emailComprador: valorCampo('#pagoEmailHoppers'),
+      titular: valorCampo('#pagoTitular'),
+      tarjeta: valorCampo('#pagoTarjeta'),
+      vencimiento: valorCampo('#pagoVencimiento'),
+      cvv: valorCampo('#pagoCvv'),
+      emailComprador: valorCampo('#pagoEmail'),
     };
   }
 
   if (formulario.id === 'formCompra') {
     return {
-      cine: valorCampo('#compraCineHoppers'),
-      idioma: valorCampo('#compraIdiomaHoppers'),
+      cine: valorCampo('#compraCine'),
+      idioma: valorCampo('#compraIdioma'),
       funcionId: valorCampo('#compraFuncion'),
-      cantidadEntradas: valorCampo('#compraAsientosHoppers'),
+      cantidadEntradas: valorCampo('#compraAsientos'),
     };
   }
 
@@ -688,7 +828,7 @@ function inferirTipoValidacion(campo) {
   const id = campo.id.toLowerCase();
 
   if (campo.tagName === 'SELECT') {
-    return campo.id === 'compraAsientosHoppers' ? 'number' : 'required';
+    return campo.id === 'compraAsientos' ? 'number' : 'required';
   }
 
   if (campo.type === 'email' || id.includes('email')) {
