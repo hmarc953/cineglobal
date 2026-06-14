@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', inicializarApp);
 
 function inicializarApp() {
   cargarStorage();
+  debugDumpStorage();
   cargarDatosIniciales();
   configurarEventos();
   restaurarFiltros();
@@ -68,17 +69,67 @@ function inicializarApp() {
   validarFormulariosIniciales();
 }
 
+// Helper de depuración: muestra un resumen de localStorage/sessionStorage en consola
+function debugDumpStorage() {
+  try {
+    console.group('DEBUG Storage - localStorage');
+    for (let i = 0; i < localStorage.length; i += 1) {
+      const key = localStorage.key(i);
+      console.log(key, localStorage.getItem(key));
+    }
+    console.groupEnd();
+  } catch (e) {
+    console.warn('localStorage no disponible:', e.message || e);
+  }
+
+  try {
+    console.group('DEBUG Storage - sessionStorage');
+    for (let i = 0; i < sessionStorage.length; i += 1) {
+      const key = sessionStorage.key(i);
+      console.log(key, sessionStorage.getItem(key));
+    }
+    console.groupEnd();
+  } catch (e) {
+    console.warn('sessionStorage no disponible:', e.message || e);
+  }
+}
+
 function cargarStorage() {
   estadoApp.storage = StorageUtil;
 }
 
 function cargarDatosIniciales() {
-  const usuariosGuardados = obtenerDato(STORAGE_KEYS.usuarioActivo, 'session');
-  const usuarios = [new Usuario('user_admin', usuarioInicial.nombre, usuarioInicial.email, usuarioInicial.password)];
+  // Restaura GestorUsuarios desde storage (clave serializada por GestorUsuarios.guardarEnStorage)
+  let gestor = null;
+  try {
+    gestor = GestorUsuarios.cargarDesdeStorage();
+  } catch (e) {
+    console.warn('Error al cargar GestorUsuarios desde storage:', e.message || e);
+  }
 
-  estadoApp.gestorUsuarios = new GestorUsuarios(usuarios);
-  estadoApp.usuarioActivo = usuariosGuardados ? Usuario.fromJSON(usuariosGuardados) : null;
-  estadoApp.catalogoPeliculas = new CatalogoPeliculas(crearPeliculasIniciales());
+  if (gestor) {
+    estadoApp.gestorUsuarios = gestor;
+  } else {
+    const usuarios = [new Usuario('user_admin', usuarioInicial.nombre, usuarioInicial.email, usuarioInicial.password)];
+    estadoApp.gestorUsuarios = new GestorUsuarios(usuarios);
+    try { estadoApp.gestorUsuarios.guardarEnStorage(); } catch (e) { /* noop */ }
+  }
+
+  // Recuperar usuario activo: preferir local (persistente) y luego session
+  const usuarioGuardadoLocal = obtenerDato(STORAGE_KEYS.usuarioActivo, 'local');
+  const usuarioGuardadoSession = obtenerDato(STORAGE_KEYS.usuarioActivo, 'session');
+  const usuarioJson = usuarioGuardadoLocal || usuarioGuardadoSession || null;
+  estadoApp.usuarioActivo = usuarioJson ? Usuario.fromJSON(usuarioJson) : null;
+
+  // Catalogo: restaura desde storage
+  let catalogo = null;
+  try { catalogo = CatalogoPeliculas.cargarDesdeStorage(); } catch (e) { /* noop */ }
+  if (catalogo) {
+    estadoApp.catalogoPeliculas = catalogo;
+  } else {
+    estadoApp.catalogoPeliculas = new CatalogoPeliculas(crearPeliculasIniciales());
+    try { estadoApp.catalogoPeliculas.guardarEnStorage(); } catch (e) { /* noop */ }
+  }
 }
 
 function crearPeliculasIniciales() {
@@ -232,6 +283,13 @@ function manejarRegistro(event) {
   if (!usuario) {
     mostrarError(mensaje, 'No se pudo registrar el usuario. Revisá email, contraseña o usuario existente.');
     return;
+  }
+
+  // Persistir GestorUsuarios para que el nuevo usuario quede guardado entre refesh
+  try {
+    estadoApp.gestorUsuarios.guardarEnStorage();
+  } catch (e) {
+    console.warn('No se pudo persistir GestorUsuarios:', e.message || e);
   }
 
   mostrarExito(mensaje, 'Cuenta creada correctamente.');
