@@ -29,6 +29,11 @@
 ---
 ### Fixed
 
+[fix/correccion-dev-storage] Ajustes en localStorage y sessionStorage
+  PR: #180 - @9919-Mili (Desarrollador JS Local y Session Storage)
+
+
+
 ## [Release Actividad Obligatoria N°3] - 2026-05-07
 
 ### Added
