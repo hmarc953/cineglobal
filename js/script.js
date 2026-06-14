@@ -99,7 +99,7 @@ function cargarStorage() {
 }
 
 function cargarDatosIniciales() {
-  // Intentar restaurar GestorUsuarios desde storage (clave serializada por GestorUsuarios.guardarEnStorage)
+  // Restaura GestorUsuarios desde storage (clave serializada por GestorUsuarios.guardarEnStorage)
   let gestor = null;
   try {
     gestor = GestorUsuarios.cargarDesdeStorage();
@@ -121,7 +121,7 @@ function cargarDatosIniciales() {
   const usuarioJson = usuarioGuardadoLocal || usuarioGuardadoSession || null;
   estadoApp.usuarioActivo = usuarioJson ? Usuario.fromJSON(usuarioJson) : null;
 
-  // Catalogo: intentar restaurar desde storage
+  // Catalogo: restaura desde storage
   let catalogo = null;
   try { catalogo = CatalogoPeliculas.cargarDesdeStorage(); } catch (e) { /* noop */ }
   if (catalogo) {
@@ -285,7 +285,7 @@ function manejarRegistro(event) {
     return;
   }
 
-  // Persistir GestorUsuarios para que el nuevo usuario quede guardado entre recargas
+  // Persistir GestorUsuarios para que el nuevo usuario quede guardado entre refesh
   try {
     estadoApp.gestorUsuarios.guardarEnStorage();
   } catch (e) {
