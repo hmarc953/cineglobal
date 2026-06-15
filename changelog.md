@@ -32,7 +32,8 @@
 - [fix/correccion-dev-storage] Ajustes en localStorage y sessionStorage
   PR: [#180](https://github.com/hmarc953/cineglobal/pull/180) - @9919-Mili (Desarrollador JS Local y Session Storage)
 
-
+- [fix/dropdown-dinamico-compra] Ajustes en modal de compra y dropdowns dinámicos
+  PR: [#179](https://github.com/hmarc953/cineglobal/pull/179) @hmarc953 (Desarrollador JS POO)
 
 ## [Release Actividad Obligatoria N°3] - 2026-05-07
 
