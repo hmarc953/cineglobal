@@ -626,7 +626,9 @@ test-results/
 ## AT CLOSE:
 
 ### Prompt :
-"bien en el archivo script.spec.js solo debe estar los test para eventos y dom. Y en el archivo models.spec.js deben estar los test solo para los modelos .Y para storage.spec.js solo los test para storage . Si tenes que crear nuevos test utiliza el archivo spec-tester-qa.md como contexto"
+```
+bien en el archivo script.spec.js solo debe estar los test para eventos y dom. Y en el archivo models.spec.js deben estar los test solo para los modelos .Y para storage.spec.js solo los test para storage . Si tenes que crear nuevos test utiliza el archivo spec-tester-qa.md como contexto
+```
 
 ### Screenshots del test runner:
 - Screenshots: [Screenshots](/js/test/screenshots/Captura_de_pantalla_del_promt.png)
