@@ -39,10 +39,10 @@ const SELECTORES = {
 };
 
 const STORAGE_KEYS = {
-  usuarioActivo: 'cineglobal.usuarioActivo',
-  compras: 'cineglobal.compras',
-  tickets: 'cineglobal.tickets',
-  filtros: 'cineglobal.filtrosPeliculas',
+  usuarioActivo: 'cine:usuario:activo',
+  compras: 'cine:historial:compras',
+  tickets: 'cine:soporte:tickets',
+  filtros: 'cine:cartelera:filtros',
 };
 
 const estadoApp = {

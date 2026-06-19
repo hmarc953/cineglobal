@@ -92,10 +92,10 @@ export class CatalogoPeliculas {
   }
 
   guardarEnStorage() {
-    return StorageUtil.guardarInstancia("catalogoPeliculas", this, "local");
+    return StorageUtil.guardarInstancia("cine:catalogo:peliculas", this, "local");
   }
 
   static cargarDesdeStorage() {
-    return StorageUtil.cargarInstancia("catalogoPeliculas", CatalogoPeliculas, "local");
+    return StorageUtil.cargarInstancia("cine:catalogo:peliculas", CatalogoPeliculas, "local");
   }
 }
