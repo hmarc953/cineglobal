@@ -47,6 +47,9 @@
 - [fix/RC13-comilla-invertida] Fix - RC13: Comillas invertidas
   PR: [#186](https://github.com/hmarc953/cineglobal/pull/186) @hmarc953 (Coordinador / DevOps)
 
+- [fix/RC12-remover-peliculas-estaticas] Fix - RC12: Remover peliculas estaticas
+  PR: [#187](https://github.com/hmarc953/cineglobal/pull/187) @hmarc953 (Coordinador / DevOps)
+
 ## [Release Actividad Obligatoria N°3] - 2026-05-07
 
 ### Added
