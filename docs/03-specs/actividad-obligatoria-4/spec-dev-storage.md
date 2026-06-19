@@ -196,7 +196,9 @@ app:cache:resultados
 
 ### Prompt exacto utilizado en Copilot Agent
 
+```
 Chat actua como un Desarrollador JS Local y Session Storaje y generame el siguiente archivo /js/utils/storage.js. El archivo el storage,js debe cumplir con la siguiente estructura (adjunte estructura enviada por el profesor)
+```
 
 ### Fragmento de código generado por Copilot
 
