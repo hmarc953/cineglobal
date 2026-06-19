@@ -44,6 +44,9 @@
 - [fix/RC3-documentacion-roles-README] Fix - RC3: Documentacion roles README
   PR: [#185](https://github.com/hmarc953/cineglobal/pull/185) @hmarc953 (Coordinador / DevOps)
 
+- [fix/RC13-comilla-invertida] Fix - RC13: Comillas invertidas
+  PR: [#186](https://github.com/hmarc953/cineglobal/pull/186) @hmarc953 (Coordinador / DevOps)
+
 ## [Release Actividad Obligatoria N°3] - 2026-05-07
 
 ### Added
