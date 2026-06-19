@@ -41,6 +41,9 @@
 - [fix/RC2-remover-backport-del-changelog] Fix - RC2: Remueve backport del changelog
   PR: [#184](https://github.com/hmarc953/cineglobal/pull/184) @hmarc953 (Coordinador / DevOps)
 
+- [fix/RC3-documentacion-roles-README] Fix - RC3: Documentacion roles README
+  PR: [#185](https://github.com/hmarc953/cineglobal/pull/185) @hmarc953 (Coordinador / DevOps)
+
 ## [Release Actividad Obligatoria N°3] - 2026-05-07
 
 ### Added
