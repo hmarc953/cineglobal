@@ -50,6 +50,9 @@
 - [fix/RC12-remover-peliculas-estaticas] Fix - RC12: Remover peliculas estaticas
   PR: [#187](https://github.com/hmarc953/cineglobal/pull/187) @hmarc953 (Coordinador / DevOps)
 
+- [fix/RC14-convencion-claves] Fix - RC14: Convencion de claves
+  PR: [#188](https://github.com/hmarc953/cineglobal/pull/188) @hmarc953 (Coordinador / DevOps)
+
 ## [Release Actividad Obligatoria N°3] - 2026-05-07
 
 ### Added
