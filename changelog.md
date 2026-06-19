@@ -69,9 +69,7 @@
 
 - [fix/correción-de-función] Corrección de un error que no permitía que se vea los flujos
   PR: [#150](https://github.com/hmarc953/cineglobal/pull/150) - @Santi22-7 (Coordinador / DevOps + Tester QA)
-
-- [backport/release-tercera-entrega] Se realiza backport de la 3 entrega con las correcciones
-  PR: [#151](https://github.com/hmarc953/cineglobal/pull/151) - @Santi22-7 (Coordinador / DevOps + Tester QA)
+  
 
 ## [Release Primer Parcial] - 2026-04-22
 
