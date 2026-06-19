@@ -35,6 +35,9 @@
 - [fix/dropdown-dinamico-compra] Ajustes en modal de compra y dropdowns dinámicos
   PR: [#179](https://github.com/hmarc953/cineglobal/pull/179) @hmarc953 (Desarrollador JS POO)
 
+- [fix/RC1-comilla-invertida] Fix - RC1: Comillas invertidas
+  PR: [#183](https://github.com/hmarc953/cineglobal/pull/183) @hmarc953 (Coordinador / DevOps)
+
 ## [Release Actividad Obligatoria N°3] - 2026-05-07
 
 ### Added
