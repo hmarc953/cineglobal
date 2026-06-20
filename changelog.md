@@ -68,6 +68,9 @@
 - [fix/RC11-modularizar-y-documentar-script] Fix RC11: Modularizacion y documentar script  
   PR: [#193](https://github.com/hmarc953/cineglobal/pull/193) @hmarc953 (Coordinador / DevOps)
 
+- [fix/RC10-estados-visuales] Fix RC10: Estados visuales
+  PR: [#194](https://github.com/hmarc953/cineglobal/pull/194) @hmarc953 (Coordinador / DevOps)
+
 ## [Release Actividad Obligatoria N°3] - 2026-05-07
 
 ### Added
