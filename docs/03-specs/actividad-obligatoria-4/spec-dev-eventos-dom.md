@@ -249,21 +249,21 @@ Tambien se deberan revisar escenarios de prueba asociados a:
 
 ### Criterios de aceptacion
 
-* [ ] Este archivo fue creado y commiteado antes de modificar `js/script.js`.
-* [ ] `js/script.js` queda como controlador principal.
-* [ ] No queda logica de negocio dentro de `js/script.js`.
-* [ ] No queda ningun `prompt()` en el proyecto.
-* [ ] No queda ningun `alert()` en el proyecto.
-* [ ] Hay listeners para login, registro, compra, filtros y soporte.
-* [ ] Se implementa validacion en tiempo real con feedback visual.
-* [ ] Se habilitan/deshabilitan controles segun el estado del formulario.
-* [ ] Se muestran resultados dinamicamente en el DOM.
-* [ ] Se crean, actualizan o eliminan elementos dinamicamente cuando corresponde.
-* [ ] Se aplican clases CSS para estados `loading`, `success`, `error` o equivalentes.
-* [ ] Se muestran/ocultan secciones segun el flujo.
-* [ ] Se invocan metodos de las clases del dominio sin duplicar logica de negocio.
-* [ ] Se persisten datos desde la UI usando la capa Storage cuando corresponda.
-* [ ] El codigo final queda documentado con comentarios claros.
+* [x] Este archivo fue creado y commiteado antes de modificar `js/script.js`.
+* [x] `js/script.js` queda como controlador principal.
+* [x] No queda logica de negocio dentro de `js/script.js`.
+* [x] No queda ningun `prompt()` en el proyecto.
+* [x] No queda ningun `alert()` en el proyecto.
+* [x] Hay listeners para login, registro, compra, filtros y soporte.
+* [x] Se implementa validacion en tiempo real con feedback visual.
+* [x] Se habilitan/deshabilitan controles segun el estado del formulario.
+* [x] Se muestran resultados dinamicamente en el DOM.
+* [x] Se crean, actualizan o eliminan elementos dinamicamente cuando corresponde.
+* [x] Se aplican clases CSS para estados `loading`, `success`, `error` o equivalentes.
+* [x] Se muestran/ocultan secciones segun el flujo.
+* [x] Se invocan metodos de las clases del dominio sin duplicar logica de negocio.
+* [x] Se persisten datos desde la UI usando la capa Storage cuando corresponda.
+* [x] El codigo final queda documentado con comentarios claros.
 
 ## AT CLOSE - Evidencia al cerrar la tarea
 
