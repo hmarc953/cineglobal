@@ -65,6 +65,9 @@
 - [fix/RC6-Actualizacion-fecha-test] Fix RC6: Actualizacion fecha test  
   PR: [#192](https://github.com/hmarc953/cineglobal/pull/192) @hmarc953 (Coordinador / DevOps)
 
+- [fix/RC11-modularizar-y-documentar-script] Fix RC11: Modularizacion y documentar script  
+  PR: [#193](https://github.com/hmarc953/cineglobal/pull/193) @hmarc953 (Coordinador / DevOps)
+
 ## [Release Actividad Obligatoria N°3] - 2026-05-07
 
 ### Added
