@@ -76,12 +76,18 @@ export function limpiarMensaje(elemento) {
   elemento.hidden = true;
 }
 
+const CLASES_MENSAJE = {
+  success: 'alert-success',
+  error: 'alert-danger',
+  loading: 'alert-info loading',
+};
+
 export function mostrarMensaje(elemento, mensaje, tipo = 'success') {
   if (!elemento) {
     return;
   }
 
-  const claseEstado = tipo === 'error' ? 'alert-danger' : 'alert-success';
+  const claseEstado = CLASES_MENSAJE[tipo] || CLASES_MENSAJE.success;
   elemento.textContent = mensaje;
   elemento.className = `cineglobal-ui-message alert ${claseEstado}`;
   elemento.hidden = false;
@@ -93,4 +99,16 @@ export function mostrarError(elemento, mensaje) {
 
 export function mostrarExito(elemento, mensaje) {
   mostrarMensaje(elemento, mensaje, 'success');
+}
+
+export function mostrarLoading(elemento, mensaje = 'Cargando...') {
+  mostrarMensaje(elemento, mensaje, 'loading');
+}
+
+export function ocultarLoading(elemento) {
+  if (!elemento) {
+    return;
+  }
+
+  elemento.classList.remove('loading');
 }

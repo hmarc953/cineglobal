@@ -22,6 +22,8 @@ import {
   mostrarError,
   mostrarExito,
   mostrarMensaje,
+  mostrarLoading,
+  ocultarLoading,
 } from './utils/dom.js';
 
 import {
@@ -257,8 +259,13 @@ function configurarEventos() {
 function manejarFiltroPeliculas(event) {
   event.preventDefault();
 
+  const estadoFiltros = consultarElemento(SELECTORES.estadoFiltros);
+  mostrarLoading(estadoFiltros, 'Buscando peliculas...');
+
   const filtros = obtenerFiltrosPeliculas();
   const resultados = estadoApp.catalogoPeliculas.buscarPorFiltros(filtros);
+
+  ocultarLoading(estadoFiltros);
 
   renderizarPeliculas(resultados, SELECTORES);
   mostrarMensaje(
