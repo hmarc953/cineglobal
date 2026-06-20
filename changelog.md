@@ -56,6 +56,9 @@
 - [fix/RC9-bloque-catch-vacio] Fix RC9: Bloque catch vacio
   PR: [#189](https://github.com/hmarc953/cineglobal/pull/189) @hmarc953 (Coordinador / DevOps)
 
+- [fix/RC8-checklist-incompleto] Fix RC8: Checklist incompleto 
+  PR: [#190](https://github.com/hmarc953/cineglobal/pull/190) @hmarc953 (Coordinador / DevOps)
+
 ## [Release Actividad Obligatoria N°3] - 2026-05-07
 
 ### Added
