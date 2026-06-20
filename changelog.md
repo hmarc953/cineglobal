@@ -59,6 +59,9 @@
 - [fix/RC8-checklist-incompleto] Fix RC8: Checklist incompleto 
   PR: [#190](https://github.com/hmarc953/cineglobal/pull/190) @hmarc953 (Coordinador / DevOps)
 
+- [fix/RC7-remover-prompt-alert-testing-doc] Fix RC7: Remover prompt alert testing doc  
+  PR: [#191](https://github.com/hmarc953/cineglobal/pull/191) @hmarc953 (Coordinador / DevOps)
+
 ## [Release Actividad Obligatoria N°3] - 2026-05-07
 
 ### Added
