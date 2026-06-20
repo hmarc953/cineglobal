@@ -7,6 +7,43 @@ import { Compra } from './models/Compra.js';
 import { ConsultaSoporte } from './models/ConsultaSoporte.js';
 import { StorageUtil } from './utils/storage.js';
 
+import {
+  consultarElemento,
+  valorCampo,
+  asignarValor,
+  actualizarTexto,
+  escuchar,
+  abrirModal,
+  cerrarModal,
+  habilitarControl,
+  deshabilitarControl,
+  limpiarFormulario,
+  limpiarMensaje,
+  mostrarError,
+  mostrarExito,
+  mostrarMensaje,
+} from './utils/dom.js';
+
+import {
+  validarFormulariosIniciales,
+  validarFormulario,
+  validarCampo,
+  validarCampoVisual,
+  actualizarEstadoSubmit,
+} from './utils/validaciones.js';
+
+import { renderizarPeliculas } from './utils/peliculasView.js';
+
+import {
+  prepararModalCompra,
+  renderizarIdiomasCompra,
+  renderizarHorariosCompra
+} from './utils/compraView.js';
+
+
+// ==============================
+// Configuración e estado global
+// ==============================
 const SELECTORES = {
   formularioFiltros: '#formFiltrosPeliculas',
   inputTitulo: '#filtroTitulo',
@@ -61,6 +98,9 @@ const usuarioInicial = {
   password: 'Admin123',
 };
 
+// ==============================
+// Inicialización de la aplicación
+// ==============================
 document.addEventListener('DOMContentLoaded', inicializarApp);
 
 function inicializarApp() {
@@ -68,17 +108,16 @@ function inicializarApp() {
   cargarDatosIniciales();
   configurarEventos();
   restaurarFiltros();
-  renderizarPeliculas(estadoApp.catalogoPeliculas.listarPeliculas());
+  renderizarPeliculas(estadoApp.catalogoPeliculas.listarPeliculas(), SELECTORES);
   validarFormulariosIniciales();
 }
-
 
 function cargarStorage() {
   estadoApp.storage = StorageUtil;
 }
 
 function cargarDatosIniciales() {
-  // Restaura GestorUsuarios desde storage (clave serializada por GestorUsuarios.guardarEnStorage)
+  // Intenta restaurar el gestor de usuarios persistido.
   let gestor = null;
   try {
     gestor = GestorUsuarios.cargarDesdeStorage();
@@ -86,6 +125,8 @@ function cargarDatosIniciales() {
     console.warn('Error al cargar GestorUsuarios desde storage:', e.message || e);
   }
 
+  // Si no hay datos previos, crea el usuario administrador inicial
+  // y deja persistida esa estructura base.
   if (gestor) {
     estadoApp.gestorUsuarios = gestor;
   } else {
@@ -98,15 +139,21 @@ function cargarDatosIniciales() {
     }
   }
 
-  // Recuperar usuario activo: preferir local (persistente) y luego session
+  // Recupera el usuario activo, priorizando datos persistentes.
   const usuarioGuardadoLocal = obtenerDato(STORAGE_KEYS.usuarioActivo, 'local');
   const usuarioGuardadoSession = obtenerDato(STORAGE_KEYS.usuarioActivo, 'session');
   const usuarioJson = usuarioGuardadoLocal || usuarioGuardadoSession || null;
   estadoApp.usuarioActivo = usuarioJson ? Usuario.fromJSON(usuarioJson) : null;
 
-  // Catalogo: restaura desde storage
+  // Intenta restaurar el catálogo persistido y, si no existe,
+  // carga la cartelera inicial de la aplicación.
   let catalogo = null;
-  try { catalogo = CatalogoPeliculas.cargarDesdeStorage(); } catch (e) { /* noop */ }
+  try {
+    catalogo = CatalogoPeliculas.cargarDesdeStorage();
+  } catch (e) {
+    console.warn('Error al cargar CatalogoPeliculas desde storage:', e.message || e);
+  }
+
   if (catalogo) {
     estadoApp.catalogoPeliculas = catalogo;
   } else {
@@ -119,6 +166,9 @@ function cargarDatosIniciales() {
   }
 }
 
+// ==============================
+// Datos iniciales de cartelera
+// ==============================
 function crearPeliculasIniciales() {
   return [
     new Pelicula(
@@ -174,7 +224,12 @@ function crearPeliculasIniciales() {
   ];
 }
 
+// ==============================
+// Configuración de eventos
+// ==============================
 function configurarEventos() {
+  // Registra los listeners principales de filtros, autenticación,
+  // compra, consulta y validación en tiempo real.
   escuchar(SELECTORES.formularioFiltros, 'submit', manejarFiltroPeliculas);
   escuchar(SELECTORES.inputTitulo, 'input', manejarFiltroPeliculas);
   escuchar(SELECTORES.selectCine, 'change', manejarFiltroPeliculas);
@@ -196,13 +251,16 @@ function configurarEventos() {
   escuchar(SELECTORES.listadoPeliculas, 'click', manejarClickPelicula);
 }
 
+// ==============================
+// Manejadores de filtros de cartelera
+// ==============================
 function manejarFiltroPeliculas(event) {
   event.preventDefault();
 
   const filtros = obtenerFiltrosPeliculas();
   const resultados = estadoApp.catalogoPeliculas.buscarPorFiltros(filtros);
 
-  renderizarPeliculas(resultados);
+  renderizarPeliculas(resultados, SELECTORES);
   mostrarMensaje(
     consultarElemento(SELECTORES.estadoFiltros),
     resultados.length ? `${resultados.length} pelicula(s) encontradas.` : 'No se encontraron peliculas con esos filtros.',
@@ -214,11 +272,15 @@ function manejarFiltroPeliculas(event) {
 function manejarLimpiarFiltros() {
   const formulario = consultarElemento(SELECTORES.formularioFiltros);
   limpiarFormulario(formulario);
+  actualizarEstadoSubmit(formulario);
   limpiarMensaje(consultarElemento(SELECTORES.estadoFiltros));
   eliminarDato(STORAGE_KEYS.filtros, 'session');
-  renderizarPeliculas(estadoApp.catalogoPeliculas.listarPeliculas());
+  renderizarPeliculas(estadoApp.catalogoPeliculas.listarPeliculas(), SELECTORES);
 }
 
+// ==============================
+// Manejadores de autenticación
+// ==============================
 function manejarLogin(event) {
   event.preventDefault();
 
@@ -242,6 +304,7 @@ function manejarLogin(event) {
   mostrarExito(mensaje, `Bienvenido/a, ${usuario.nombre}.`);
   actualizarConfirmacion(SELECTORES.confirmLoginTexto, `Inicio de sesion realizado correctamente para ${usuario.email}.`);
   limpiarFormulario(formulario);
+  actualizarEstadoSubmit(formulario);
   cerrarModal('modalLogin');
   abrirModal('modalConfirmLogin');
 }
@@ -285,10 +348,14 @@ function manejarRegistro(event) {
   mostrarExito(mensaje, 'Cuenta creada correctamente.');
   actualizarConfirmacion(SELECTORES.confirmRegistroTexto, `La cuenta ${usuario.email} fue creada correctamente.`);
   limpiarFormulario(formulario);
+  actualizarEstadoSubmit(formulario);
   cerrarModal('modalRegistro');
   abrirModal('modalConfirmRegistro');
 }
 
+// ==============================
+// Manejadores del flujo de compra
+// ==============================
 function manejarClickPelicula(event) {
   const botonCompra = event.target.closest('[data-movie-id]');
   if (!botonCompra) {
@@ -303,7 +370,8 @@ function manejarClickPelicula(event) {
 
   estadoApp.peliculaSeleccionada = pelicula;
   estadoApp.funcionSeleccionada = null;
-  prepararModalCompra(pelicula);
+  prepararModalCompra(pelicula, SELECTORES);
+  actualizarEstadoSubmit(formulario);
   abrirModal('modalCompra');
 }
 
@@ -320,6 +388,9 @@ function manejarSeleccionCompra(event) {
 
   const datos = obtenerDatosFormulario(formulario);
   const funciones = estadoApp.peliculaSeleccionada.obtenerFuncionesDisponibles();
+
+  // Busca la función exacta elegida y verifica que siga siendo
+  // consistente con el cine e idioma seleccionados en el formulario.
   const funcion = funciones.find((item) =>
     item.id === datos.funcionId &&
     item.coincideConSeleccion({
@@ -333,6 +404,8 @@ function manejarSeleccionCompra(event) {
     return;
   }
 
+  // Guarda en estado la función seleccionada para continuar
+  // con el flujo de pago y confirmación.
   estadoApp.funcionSeleccionada = funcion;
   estadoApp.cantidadEntradas = Number(datos.cantidadEntradas);
   renderizarResumenCompra(estadoApp.peliculaSeleccionada, funcion, estadoApp.cantidadEntradas);
@@ -353,6 +426,9 @@ function manejarConfirmacionCompra(event) {
   }
 
   const datos = obtenerDatosFormulario(formulario);
+
+  // La compra se construye a partir de la función ya validada
+  // en el paso anterior y del email ingresado en el pago.
   const compra = new Compra(
     `compra_${Date.now()}`,
     estadoApp.funcionSeleccionada,
@@ -366,6 +442,7 @@ function manejarConfirmacionCompra(event) {
     return;
   }
 
+  // Una vez confirmada, se persiste en storage como parte del historial.
   guardarEnListaStorage(STORAGE_KEYS.compras, compra.toJSON(), 'local');
   actualizarConfirmacion(
     SELECTORES.confirmCompraTexto,
@@ -373,11 +450,15 @@ function manejarConfirmacionCompra(event) {
   );
   mostrarExito(mensaje, 'Compra realizada con exito.');
   limpiarFormulario(formulario);
+  actualizarEstadoSubmit(formulario);
   limpiarMensaje(consultarElemento(SELECTORES.resumenCompra));
   cerrarModal('modalPago');
   abrirModal('modalConfirmCompra');
 }
 
+// ==============================
+// Manejador de consultas de soporte
+// ==============================
 function manejarConsultaSoporte(event) {
   event.preventDefault();
 
@@ -401,10 +482,14 @@ function manejarConsultaSoporte(event) {
   actualizarConfirmacion(SELECTORES.confirmConsultaTexto, `Tu consulta fue enviada correctamente. Ticket: ${ticket}.`);
   mostrarExito(mensaje, `Consulta enviada. Ticket: ${ticket}.`);
   limpiarFormulario(formulario);
+  actualizarEstadoSubmit(formulario);
   cerrarModal('modalConsulta');
   abrirModal('modalConfirmConsulta');
 }
 
+// ==============================
+// Validación en tiempo real y estado de filtros
+// ==============================
 function manejarValidacionEnTiempoReal(event) {
   const campo = event.target;
   if (!campo.matches('input, select, textarea')) {
@@ -442,114 +527,16 @@ function restaurarFiltros() {
   asignarValor(SELECTORES.selectClasificacion, filtros.clasificacion || '');
 }
 
-function renderizarPeliculas(peliculas) {
-  const contenedor = consultarElemento(SELECTORES.listadoPeliculas);
-  if (!contenedor) {
-    return;
-  }
-
-  contenedor.innerHTML = '';
-
-  if (!peliculas.length) {
-    contenedor.innerHTML = '<div class="col-12"><p class="cineglobal-ui-message alert alert-danger">No hay peliculas para mostrar.</p></div>';
-    return;
-  }
-
-  peliculas.forEach((pelicula) => {
-    const columna = document.createElement('div');
-    columna.className = 'col-12 col-md-6 col-lg-3';
-    columna.innerHTML = `
-      <article class="movie-card" data-state="success">
-        <img class="movie-image img-fluid" src="${pelicula.imagen}" alt="${pelicula.titulo}" width="300" height="350">
-        <h3 class="movie-title">${pelicula.titulo}</h3>
-        <data class="movie-date" value="${formatearFechaISO(pelicula.fechaEstreno)}">Fecha de estreno: ${formatearFechaVisible(pelicula.fechaEstreno)}</data>
-        <p class="movie-description">${pelicula.categoria} - ${pelicula.clasificacion}</p>
-        <button type="button" class="btn btn-primary buy-button" data-movie-id="${pelicula.id}">
-          Comprar boletos aqui
-        </button>
-      </article>
-    `;
-    contenedor.appendChild(columna);
-  });
-}
-
-function prepararModalCompra(pelicula) {
-  actualizarTexto('#modalCompraLabel', pelicula.titulo);
-
-  const poster = consultarElemento('.compra-poster');
-  if (poster) {
-    poster.src = pelicula.imagen;
-    poster.alt = `Poster de ${pelicula.titulo}`;
-  }
-
-  const formulario = consultarElemento(SELECTORES.formularioCompra);
-  limpiarFormulario(formulario);
-  limpiarMensaje(consultarElemento(SELECTORES.mensajeCompra));
-
-  renderizarCinesCompra(pelicula.obtenerFuncionesDisponibles());
-  renderizarIdiomasCompra([]);
-  renderizarHorariosCompra([]);
-
-  actualizarEstadoSubmit(formulario);
-}
-
-function renderizarCinesCompra(funciones) {
-  const select = consultarElemento(SELECTORES.selectCompraCine);
-  if (!select) {
-    return;
-  }
-
-  select.innerHTML = '<option value="" selected disabled hidden>Elija un cine</option>';
-
-  const cines = [...new Set(funciones.map((funcion) => funcion.cine))];
-
-  cines.forEach((cine) => {
-    const option = document.createElement('option');
-    option.value = cine;
-    option.textContent = cine;
-    select.appendChild(option);
-  });
-}
-
-function renderizarIdiomasCompra(funciones) {
-  const select = consultarElemento(SELECTORES.selectCompraIdioma);
-  if (!select) {
-    return;
-  }
-
-  select.innerHTML = '<option value="" selected disabled hidden>Elija un idioma</option>';
-
-  const idiomas = [...new Set(funciones.map((funcion) => funcion.idioma))];
-
-  idiomas.forEach((idioma) => {
-    const option = document.createElement('option');
-    option.value = idioma;
-    option.textContent = idioma;
-    select.appendChild(option);
-  });
-}
-
-function renderizarHorariosCompra(funciones) {
-  const select = consultarElemento(SELECTORES.selectCompraFuncion);
-  if (!select) {
-    return;
-  }
-
-  select.innerHTML = '<option value="" selected disabled hidden>Elija un horario</option>';
-
-  funciones.forEach((funcion) => {
-    const option = document.createElement('option');
-    option.value = funcion.id;
-    option.textContent = `${funcion.horario} (${funcion.asientosDisponibles} disponibles)`;
-    select.appendChild(option);
-  });
-}
-
+// ==============================
+// Manejadores de selección progresiva de compra
+// ==============================
 function manejarCambioCineCompra() {
   if (!estadoApp.peliculaSeleccionada) {
     return;
   }
 
+  // Al cambiar el cine, se recalculan los idiomas disponibles
+  // y se reinician las selecciones dependientes.
   const cineSeleccionado = valorCampo(SELECTORES.selectCompraCine);
 
   const funcionesFiltradas = estadoApp.peliculaSeleccionada
@@ -562,8 +549,8 @@ function manejarCambioCineCompra() {
       return funcion.cine.toLowerCase() === cineSeleccionado.toLowerCase();
     });
 
-  renderizarIdiomasCompra(funcionesFiltradas);
-  renderizarHorariosCompra([]);
+  renderizarIdiomasCompra(funcionesFiltradas, SELECTORES);
+  renderizarHorariosCompra([], SELECTORES);
 
   asignarValor(SELECTORES.selectCompraIdioma, '');
   asignarValor(SELECTORES.selectCompraFuncion, '');
@@ -584,6 +571,8 @@ function manejarCambioIdiomaCompra() {
     return;
   }
 
+  // Al elegir idioma, se filtran los horarios válidos para la combinación
+  // actual de cine + idioma.
   const cineSeleccionado = valorCampo(SELECTORES.selectCompraCine);
   const idiomaSeleccionado = valorCampo(SELECTORES.selectCompraIdioma);
 
@@ -595,7 +584,7 @@ function manejarCambioIdiomaCompra() {
       return coincideCine && coincideIdioma;
     });
 
-  renderizarHorariosCompra(funcionesFiltradas);
+  renderizarHorariosCompra(funcionesFiltradas, SELECTORES);
 
   asignarValor(SELECTORES.selectCompraFuncion, '');
   asignarValor(SELECTORES.selectCompraAsientos, '');
@@ -621,21 +610,6 @@ function manejarCambioFuncionCompra() {
   }
 }
 
-function renderizarFunciones(funciones) {
-  const select = consultarElemento(SELECTORES.selectCompraFuncion);
-  if (!select) {
-    return;
-  }
-
-  select.innerHTML = '<option value="" selected disabled hidden>Elija un horario</option>';
-  funciones.forEach((funcion) => {
-    const option = document.createElement('option');
-    option.value = funcion.id;
-    option.textContent = `${funcion.cine} - ${funcion.idioma} - ${funcion.horario} (${funcion.asientosDisponibles} disponibles)`;
-    select.appendChild(option);
-  });
-}
-
 function renderizarResumenCompra(pelicula, funcion, cantidadEntradas) {
   const resumen = consultarElemento(SELECTORES.resumenCompra);
   if (!resumen) {
@@ -652,118 +626,9 @@ function renderizarResumenCompra(pelicula, funcion, cantidadEntradas) {
   resumen.className = 'cineglobal-ui-message alert alert-success';
 }
 
-function validarFormulariosIniciales() {
-  document.querySelectorAll('form').forEach((formulario) => actualizarEstadoSubmit(formulario));
-}
-
-function validarFormulario(formulario) {
-  const campos = obtenerCamposValidacion(formulario);
-  const valido = campos.every((campo) => {
-    const campoValido = validarCampo(campo);
-    validarCampoVisual(campo, campoValido);
-    return campoValido;
-  });
-  actualizarEstadoSubmit(formulario);
-  return valido;
-}
-
-function validarCampo(campo) {
-  if (campo.disabled) {
-    return true;
-  }
-
-  const valor = campo.value.trim();
-  const tipo = campo.dataset.validate || inferirTipoValidacion(campo);
-
-  if (tipo === 'required') {
-    return valor !== '';
-  }
-
-  if (tipo === 'email') {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor);
-  }
-
-  if (tipo === 'password') {
-    return valor.length >= 6;
-  }
-
-  if (tipo === 'number') {
-    return Number.isInteger(Number(valor)) && Number(valor) > 0;
-  }
-
-  if (tipo === 'card') {
-    return /^\d{16}$/.test(valor.replace(/\s+/g, ''));
-  }
-
-  if (tipo === 'expiry') {
-    return /^\d{2}\/\d{2}$/.test(valor);
-  }
-
-  if (tipo === 'cvv') {
-    return /^\d{3,4}$/.test(valor);
-  }
-
-  return true;
-}
-
-function validarCampoVisual(campo, esValido) {
-  if (!campo || campo.value.trim() === '') {
-    campo.classList.remove('is-valid', 'is-invalid');
-    return;
-  }
-
-  campo.classList.toggle('is-valid', esValido);
-  campo.classList.toggle('is-invalid', !esValido);
-}
-
-function actualizarEstadoSubmit(formulario) {
-  if (!formulario) {
-    return;
-  }
-
-  const boton = formulario.querySelector('[type="submit"]');
-  if (!boton) {
-    return;
-  }
-
-  const campos = obtenerCamposValidacion(formulario);
-  const completo = campos.every((campo) => campo.value.trim() !== '' && validarCampo(campo));
-  if (completo) {
-    habilitarControl(boton);
-  } else {
-    deshabilitarControl(boton);
-  }
-}
-
-function mostrarMensaje(elemento, mensaje, tipo = 'success') {
-  if (!elemento) {
-    return;
-  }
-
-  const claseEstado = tipo === 'error' ? 'alert-danger' : 'alert-success';
-  elemento.textContent = mensaje;
-  elemento.className = `cineglobal-ui-message alert ${claseEstado}`;
-  elemento.hidden = false;
-}
-
-function mostrarError(elemento, mensaje) {
-  mostrarMensaje(elemento, mensaje, 'error');
-}
-
-function mostrarExito(elemento, mensaje) {
-  mostrarMensaje(elemento, mensaje, 'success');
-}
-
-function limpiarMensaje(elemento) {
-  if (!elemento) {
-    return;
-  }
-
-  elemento.textContent = '';
-  elemento.className = 'cineglobal-ui-message';
-  elemento.hidden = true;
-}
-
+// ==============================
+// Lectura de formularios y helpers de interfaz
+// ==============================
 function mostrarSeccion(elemento) {
   if (elemento) {
     elemento.hidden = false;
@@ -776,32 +641,9 @@ function ocultarSeccion(elemento) {
   }
 }
 
-function habilitarControl(control) {
-  if (control) {
-    control.disabled = false;
-    control.classList.remove('loading');
-  }
-}
-
-function deshabilitarControl(control) {
-  if (control) {
-    control.disabled = true;
-  }
-}
-
-function limpiarFormulario(formulario) {
-  if (!formulario) {
-    return;
-  }
-
-  formulario.reset();
-  formulario.querySelectorAll('.is-valid, .is-invalid').forEach((campo) => {
-    campo.classList.remove('is-valid', 'is-invalid');
-  });
-  actualizarEstadoSubmit(formulario);
-}
-
 function obtenerDatosFormulario(formulario) {
+  // Normaliza la lectura de datos según el formulario activo
+  // para devolver siempre un objeto simple y consistente.
   const formData = new FormData(formulario);
   const datos = Object.fromEntries(formData.entries());
 
@@ -851,50 +693,9 @@ function obtenerDatosFormulario(formulario) {
   return datos;
 }
 
-function obtenerCamposValidacion(formulario) {
-  if (!formulario) {
-    return [];
-  }
-
-  return Array.from(formulario.querySelectorAll('input, select, textarea')).filter((campo) => {
-    if (campo.type === 'search') {
-      return false;
-    }
-
-    return campo.id !== 'cine' && campo.id !== 'idioma';
-  });
-}
-
-function inferirTipoValidacion(campo) {
-  const id = campo.id.toLowerCase();
-
-  if (campo.tagName === 'SELECT') {
-    return campo.id === 'compraAsientos' ? 'number' : 'required';
-  }
-
-  if (campo.type === 'email' || id.includes('email')) {
-    return 'email';
-  }
-
-  if (id.includes('password') || id.includes('contraseña')) {
-    return campo.id === 'loginPassword' ? 'required' : 'password';
-  }
-
-  if (id.includes('tarjeta')) {
-    return 'card';
-  }
-
-  if (id.includes('vencimiento')) {
-    return 'expiry';
-  }
-
-  if (id.includes('cvv')) {
-    return 'cvv';
-  }
-
-  return 'required';
-}
-
+// ==============================
+// Persistencia en storage
+// ==============================
 function guardarEnListaStorage(clave, item, tipo) {
   const listaActual = obtenerDato(clave, tipo) || [];
   const lista = Array.isArray(listaActual) ? listaActual : [];
@@ -926,68 +727,11 @@ function eliminarDato(clave, tipo = 'local') {
   return estadoApp.storage.eliminar(clave, tipo);
 }
 
-function abrirModal(idModal) {
-  const modal = consultarElemento(`#${idModal}`);
-  if (modal && window.bootstrap) {
-    window.bootstrap.Modal.getOrCreateInstance(modal).show();
-  }
-}
-
-function cerrarModal(idModal) {
-  const modal = consultarElemento(`#${idModal}`);
-  if (modal && window.bootstrap) {
-    window.bootstrap.Modal.getOrCreateInstance(modal).hide();
-  }
-}
-
-function escuchar(selector, evento, handler) {
-  const elemento = consultarElemento(selector);
-  if (elemento) {
-    elemento.addEventListener(evento, handler);
-  }
-}
-
-function consultarElemento(selector) {
-  return document.querySelector(selector);
-}
-
-function valorCampo(selector) {
-  const campo = consultarElemento(selector);
-  return campo ? campo.value.trim() : '';
-}
-
-function asignarValor(selector, valor) {
-  const campo = consultarElemento(selector);
-  if (campo) {
-    campo.value = valor;
-  }
-}
-
-function actualizarTexto(selector, texto) {
-  const elemento = consultarElemento(selector);
-  if (elemento) {
-    elemento.textContent = texto;
-  }
-}
-
+// ==============================
+// Utilidades generales de DOM y formato
+// ==============================
 function actualizarConfirmacion(selector, texto) {
   actualizarTexto(selector, texto);
-}
-
-function formatearFechaISO(fecha) {
-  return fecha instanceof Date ? fecha.toISOString().slice(0, 10) : '';
-}
-
-function formatearFechaVisible(fecha) {
-  if (!(fecha instanceof Date) || Number.isNaN(fecha.getTime())) {
-    return 'Proximamente';
-  }
-
-  return fecha.toLocaleDateString('es-AR', {
-    day: '2-digit',
-    month: 'long',
-    year: 'numeric',
-  });
 }
 
 function normalizarFiltroCategoria(categoria) {
