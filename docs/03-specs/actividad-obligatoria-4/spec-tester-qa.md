@@ -625,16 +625,223 @@ test-results/
 
 ## AT CLOSE:
 
-### Prompt :
+### Prompt utilizado en Copilot Agent
+
+```txt
+bien en el archivo script.spec.js solo debe estar los test para eventos y dom. Y en el archivo models.spec.js deben estar los test solo para los modelos. Y para storage.spec.js solo los test para storage. Si tenes que crear nuevos test utiliza el archivo spec-tester-qa.md como contexto
 ```
-bien en el archivo script.spec.js solo debe estar los test para eventos y dom. Y en el archivo models.spec.js deben estar los test solo para los modelos .Y para storage.spec.js solo los test para storage . Si tenes que crear nuevos test utiliza el archivo spec-tester-qa.md como contexto
+
+---
+
+### Archivos trabajados
+
+Durante el cierre de la tarea QA se trabajó sobre los siguientes archivos:
+
+```txt
+js/test/test-runner.html
+js/test/models.spec.js
+js/test/storage.spec.js
+js/test/script.spec.js
+js/test/testing-doc.md
+js/utils/storage.js
 ```
 
-### Screenshots del test runner:
-- Screenshots: [Screenshots](/js/test/screenshots/Captura_de_pantalla_del_promt.png)
+---
 
-### Resumen:
-La ejecución de las pruebas con Jasmine resultó satisfactoria, obteniéndose un 100% de casos aprobados. No se registraron fallos durante la ejecución ni se identificaron defectos que requirieran la creación de issues. Las pruebas cubren los principales componentes del sistema, incluyendo modelos de negocio, persistencia de datos, almacenamiento local y eventos básicos del DOM.
+### Ejecución de suites Jasmine
 
-### Coordinación de los dessarrolladores:
-La coordinación con los desarrolladores fue buena y permitió resolver dudas, y facilitar la ejecución de las pruebas. La comunicación constante contribuyó a mejorar la testabilidad del código y a garantizar el correcto funcionamiento de las funcionalidades implementadas.
+Se ejecutó el runner de Jasmine desde:
+
+```txt
+js/test/test-runner.html
+```
+
+La ejecución se realizó en navegador real mediante Live Server.
+
+Suites ejecutadas:
+
+```txt
+js/test/models.spec.js
+js/test/storage.spec.js
+js/test/script.spec.js
+```
+
+---
+
+### Resultado de ejecución inicial
+
+Durante la primera ejecución luego de reorganizar las suites se detectaron fallos en la suite de Storage.
+
+Resultado inicial:
+
+```txt
+85 specs, 2 failures
+```
+
+La evidencia fue guardada en:
+
+```txt
+js/test/screenshots/test-fail-A4(v2).png
+```
+
+Los errores encontrados estaban vinculados al manejo de datos corruptos y claves inválidas en `StorageUtil`.
+
+---
+
+### Resultado de ejecución final
+
+Luego de aplicar las correcciones correspondientes en `js/utils/storage.js`, se volvió a ejecutar el runner.
+
+Resultado final:
+
+```txt
+85 specs, 0 failures
+```
+
+La evidencia final fue guardada en:
+
+```txt
+js/test/screenshots/test-pass-A4(v2).png
+```
+
+---
+
+### Screenshots del test runner
+
+#### Ejecución con fallos detectados
+
+![Jasmine FAIL](../../../js/test/screenshots/test-fail-A4-v2.png)
+
+#### Ejecución final exitosa
+
+![Jasmine PASS](../../../js/test/screenshots/test-pass-A4-v2.png)
+
+---
+
+### Bugs detectados y correcciones aplicadas
+
+Durante la ejecución de los tests automatizados se detectaron dos bugs en `js/utils/storage.js`.
+
+---
+
+#### Bug 1: `StorageUtil.obtener()` devolvía datos corruptos
+
+**Archivo afectado:** `js/utils/storage.js`
+**Función afectada:** `_deserialize()` / `obtener()`
+**Suite que detectó el problema:** `storage.spec.js`
+
+##### Comportamiento esperado
+
+Si un dato almacenado en `localStorage` no puede parsearse como JSON válido, `StorageUtil.obtener()` debe devolver `null`.
+
+##### Comportamiento obtenido
+
+El método devolvía el string corrupto almacenado.
+
+##### Test que fallaba
+
+```js
+it('retorna null si el dato almacenado no es JSON válido', function() {
+  localStorage.setItem('datoCorrupto', '{ json inválido');
+
+  expect(StorageUtil.obtener('datoCorrupto')).toBeNull();
+});
+```
+
+##### Corrección aplicada
+
+Se modificó `_deserialize()` para capturar errores de `JSON.parse`. Ante un dato corrupto o mal formateado, el método registra una advertencia y devuelve `null`.
+
+---
+
+#### Bug 2: `StorageUtil.guardar()` aceptaba claves inválidas
+
+**Archivo afectado:** `js/utils/storage.js`
+**Función afectada:** `_setItem()` / `guardar()`
+**Suite que detectó el problema:** `storage.spec.js`
+
+##### Comportamiento esperado
+
+Si se intenta guardar un valor con una clave vacía o inválida, `StorageUtil.guardar()` debe devolver `false`.
+
+##### Comportamiento obtenido
+
+El método permitía la operación y devolvía `true`.
+
+##### Test que fallaba
+
+```js
+it('retorna false si se intenta guardar con una clave inválida', function() {
+  expect(StorageUtil.guardar('', 'valor')).toBe(false);
+  expect(StorageUtil.guardar(null, 'valor')).toBe(false);
+});
+```
+
+##### Corrección aplicada
+
+Se agregaron validaciones defensivas en `_setItem()` para rechazar claves inválidas antes de operar sobre storage.
+
+También se aplicaron guard clauses equivalentes en:
+
+* `_getItem()`
+* `_removeItem()`
+
+Esto mantiene un comportamiento consistente entre escritura, lectura y eliminación.
+
+---
+
+### Ajustes manuales realizados en los tests
+
+Se realizaron los siguientes ajustes manuales:
+
+* Se reorganizó `models.spec.js` para cubrir las clases del dominio, métodos de negocio, validaciones internas y serialización/deserialización.
+* Se reorganizó `storage.spec.js` para probar operaciones CRUD, `localStorage`, `sessionStorage`, carga de instancias y manejo de errores.
+* Se refactorizó `script.spec.js` para testear el comportamiento real de `js/script.js`, en lugar de probar elementos ficticios del DOM.
+* Se corrigieron valores de email dentro de `script.spec.js` para evitar strings con formato Markdown.
+* Se configuró `test-runner.html` para cargar correctamente las suites Jasmine como módulos ES6.
+* Se utilizó un fixture de testing dentro de `script.spec.js` para no sobrescribir el reporter visual de Jasmine.
+* Se mockeó Bootstrap Modal para validar flujos de modales en entorno de test.
+* Se limpió `localStorage` y `sessionStorage` entre pruebas para evitar contaminación entre casos.
+* Se ajustó `StorageUtil` para manejar claves inválidas y datos corruptos de forma defensiva.
+
+---
+
+### Coordinación con desarrolladores
+
+Durante el proceso de QA se coordinó con los desarrolladores para mejorar la testabilidad del proyecto.
+
+Los principales ajustes coordinados fueron:
+
+* Separar responsabilidades entre `models.spec.js`, `storage.spec.js` y `script.spec.js`.
+* Alinear `script.spec.js` con el comportamiento real del controlador DOM/eventos.
+* Detectar errores reales en `StorageUtil` a partir de tests automatizados.
+* Aplicar correcciones defensivas sin modificar la interfaz pública de `StorageUtil`.
+* Validar nuevamente la ejecución completa de Jasmine hasta obtener resultado final sin fallos.
+
+---
+
+### Resumen final
+
+| Métrica                     | Resultado                                             |
+| --------------------------- | ----------------------------------------------------- |
+| Suites ejecutadas           | `models.spec.js`, `storage.spec.js`, `script.spec.js` |
+| Specs ejecutados            | 85                                                    |
+| Specs fallidos inicialmente | 2                                                     |
+| Specs fallidos al cierre    | 0                                                     |
+| Bugs detectados durante QA  | 2                                                     |
+| Bugs corregidos             | 2                                                     |
+| Resultado final             | PASS ✅                                                |
+
+---
+
+### Conclusión
+
+La ejecución final de las pruebas con Jasmine resultó satisfactoria. Se obtuvo un resultado final de:
+
+```txt
+85 specs, 0 failures
+```
+
+La suite actual valida los principales componentes del sistema, incluyendo modelos de negocio, persistencia mediante storage, manipulación del DOM, eventos de usuario, validaciones visuales y flujos principales de la aplicación.
+
+Los bugs detectados durante QA fueron corregidos y verificados mediante una nueva ejecución completa del test runner.
