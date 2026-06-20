@@ -371,7 +371,7 @@ function manejarClickPelicula(event) {
   estadoApp.peliculaSeleccionada = pelicula;
   estadoApp.funcionSeleccionada = null;
   prepararModalCompra(pelicula, SELECTORES);
-  actualizarEstadoSubmit(formulario);
+  actualizarEstadoSubmit(consultarElemento(SELECTORES.formularioCompra));
   abrirModal('modalCompra');
 }
 
@@ -629,18 +629,6 @@ function renderizarResumenCompra(pelicula, funcion, cantidadEntradas) {
 // ==============================
 // Lectura de formularios y helpers de interfaz
 // ==============================
-function mostrarSeccion(elemento) {
-  if (elemento) {
-    elemento.hidden = false;
-  }
-}
-
-function ocultarSeccion(elemento) {
-  if (elemento) {
-    elemento.hidden = true;
-  }
-}
-
 function obtenerDatosFormulario(formulario) {
   // Normaliza la lectura de datos según el formulario activo
   // para devolver siempre un objeto simple y consistente.

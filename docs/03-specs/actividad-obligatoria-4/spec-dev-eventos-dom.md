@@ -345,6 +345,20 @@ function configurarEventos() {
 * Se integro la capa Storage mediante import ES6 de `StorageUtil` desde `js/utils/storage.js`.
 * Se verifico con Playwright que la pagina cargue sin errores, renderice 4 peliculas y complete flujos de filtro, login, soporte y compra.
 
+* Se modularizaron responsabilidades reutilizables del controlador principal:
+  * `js/utils/dom.js` para utilidades de manipulación del DOM.
+  * `js/utils/validaciones.js` para validación visual y estado de formularios.
+  * `js/utils/peliculasView.js` para renderizado de cartelera.
+  * `js/utils/compraView.js` para renderizado del flujo progresivo de compra.
+
+* Se mantuvo `js/script.js` como orquestador principal de eventos y estado de la aplicación.
+
+* Se eliminó código muerto correspondiente a `renderizarFunciones()`.
+
+* Se agregaron encabezados y comentarios de intención para mejorar la mantenibilidad del controlador.
+
+* Se generalizó el flujo de compra para trabajar con cualquier película del catálogo, eliminando referencias fijas a títulos específicos.
+
 ### Decisiones finales sobre la estructura del controlador
 
 * `js/script.js` queda organizado como controlador principal con estado global minimo en `estadoApp`.
