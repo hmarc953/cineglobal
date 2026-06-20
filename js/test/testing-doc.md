@@ -1,5 +1,10 @@
 # Documentación de Testing - Suite Jasmine
 
+# Actividad Obligatoria 3
+- **Fecha:** 17/05/2026
+- **Tester/QA Engineer:** @9919-Mili
+- **Colaboración con:** Desarrollador JavaScript - @Santi22-7
+
 ## Índice
 1. [Ejecución de Tests](#ejecución-de-tests)
 2. [Suites de Tests](#suites-de-tests)
@@ -245,11 +250,10 @@ describe('Test de alert', () => {
 
 ---
 
-**Última Actualización:** 17/05/2026
-**Tester/QA Engineer:** [@9919-Mili]
-**Colaboración con:** [Desarrollador JavaScript - @Santi22-7]
-
-# Documentación de Testing (Models) - Suite Jasmine
+# Actividad Obligatoria 4
+- **Fecha:** 11/06/2026
+- **Tester/QA Engineer:** @Santi22-7
+- **Colaboración con:** [ @abartomioli - @9919-Mili - @hmarc953 ]
 
 ## Índice
 1. [Ejecución de Tests](#ejecución-de-tests)
@@ -587,6 +591,4 @@ describe('Test de alert', () => {
 
 ---
 
-**Última Actualización:** 2026-06-11  
-**Tester/QA Engineer:** [Samitier Santiago Ariel]  
-**Colaboración con:** [Alejandro - Marc - Milagros ]
+
