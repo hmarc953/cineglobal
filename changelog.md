@@ -44,6 +44,24 @@
 - [fix/RC3-documentacion-roles-README] Fix - RC3: Documentacion roles README
   PR: [#185](https://github.com/hmarc953/cineglobal/pull/185) @hmarc953 (Coordinador / DevOps)
 
+- [fix/RC13-comilla-invertida] Fix - RC13: Comillas invertidas
+  PR: [#186](https://github.com/hmarc953/cineglobal/pull/186) @hmarc953 (Coordinador / DevOps)
+
+- [fix/RC12-remover-peliculas-estaticas] Fix - RC12: Remover peliculas estaticas
+  PR: [#187](https://github.com/hmarc953/cineglobal/pull/187) @hmarc953 (Coordinador / DevOps)
+
+- [fix/RC14-convencion-claves] Fix - RC14: Convencion de claves
+  PR: [#188](https://github.com/hmarc953/cineglobal/pull/188) @hmarc953 (Coordinador / DevOps)
+
+- [fix/RC9-bloque-catch-vacio] Fix RC9: Bloque catch vacio
+  PR: [#189](https://github.com/hmarc953/cineglobal/pull/189) @hmarc953 (Coordinador / DevOps)
+
+- [fix/RC8-checklist-incompleto] Fix RC8: Checklist incompleto 
+  PR: [#190](https://github.com/hmarc953/cineglobal/pull/190) @hmarc953 (Coordinador / DevOps)
+
+- [fix/RC7-remover-prompt-alert-testing-doc] Fix RC7: Remover prompt alert testing doc  
+  PR: [#191](https://github.com/hmarc953/cineglobal/pull/191) @hmarc953 (Coordinador / DevOps)
+
 ## [Release Actividad Obligatoria N°3] - 2026-05-07
 
 ### Added

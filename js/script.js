@@ -39,10 +39,10 @@ const SELECTORES = {
 };
 
 const STORAGE_KEYS = {
-  usuarioActivo: 'cineglobal.usuarioActivo',
-  compras: 'cineglobal.compras',
-  tickets: 'cineglobal.tickets',
-  filtros: 'cineglobal.filtrosPeliculas',
+  usuarioActivo: 'cine:usuario:activo',
+  compras: 'cine:historial:compras',
+  tickets: 'cine:soporte:tickets',
+  filtros: 'cine:cartelera:filtros',
 };
 
 const estadoApp = {
@@ -91,7 +91,11 @@ function cargarDatosIniciales() {
   } else {
     const usuarios = [new Usuario('user_admin', usuarioInicial.nombre, usuarioInicial.email, usuarioInicial.password)];
     estadoApp.gestorUsuarios = new GestorUsuarios(usuarios);
-    try { estadoApp.gestorUsuarios.guardarEnStorage(); } catch (e) { /* noop */ }
+    try {
+      estadoApp.gestorUsuarios.guardarEnStorage();
+    } catch (e) {
+      console.warn('No se pudo guardar GestorUsuarios en storage:', e.message || e);
+    }
   }
 
   // Recuperar usuario activo: preferir local (persistente) y luego session
@@ -107,7 +111,11 @@ function cargarDatosIniciales() {
     estadoApp.catalogoPeliculas = catalogo;
   } else {
     estadoApp.catalogoPeliculas = new CatalogoPeliculas(crearPeliculasIniciales());
-    try { estadoApp.catalogoPeliculas.guardarEnStorage(); } catch (e) { /* noop */ }
+    try {
+      estadoApp.catalogoPeliculas.guardarEnStorage();
+    } catch (e) {
+      console.warn('No se pudo guardar CatalogoPeliculas en storage:', e.message || e);
+    }
   }
 }
 

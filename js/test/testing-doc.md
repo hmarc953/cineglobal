@@ -587,7 +587,6 @@ describe('Test de alert', () => {
 - No se contemplan escenarios de concurrencia o múltiples usuarios simultáneos.
 - La persistencia se valida mediante simulación de `localStorage` y `sessionStorage`, sin almacenamiento persistente real.
 - No se prueban aspectos visuales de la interfaz (CSS, diseño responsive o accesibilidad).
-- Las interacciones basadas en `prompt()` y `alert()` requerirían mocks o spies adicionales para una validación completa.
 
 ---
 
