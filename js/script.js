@@ -56,11 +56,31 @@ const SELECTORES = {
   botonLimpiarFiltros: '#btnLimpiarFiltros',
   listadoPeliculas: '#listaPeliculas',
   estadoFiltros: '#estadoFiltros',
+
   formularioLogin: '#formLogin',
   formularioRegistro: '#formRegistro',
   formularioCompra: '#formCompra',
   formularioPago: '#formPago',
   formularioConsulta: '#formConsulta',
+
+  loginEmail: '#loginEmail',
+  loginPassword: '#loginPassword',
+
+  registroNombre: '#registroNombre',
+  registroEmail: '#registroEmail',
+  registroPassword: '#registroPassword',
+  registroPasswordConfirm: '#registroPasswordConfirm',
+
+  pagoTitular: '#pagoTitular',
+  pagoTarjeta: '#pagoTarjeta',
+  pagoVencimiento: '#pagoVencimiento',
+  pagoCvv: '#pagoCvv',
+  pagoEmail: '#pagoEmail',
+
+  consultaEmail: '#consultaEmail',
+  consultaTitulo: '#consultaTitulo',
+  consultaDescripcion: '#consultaDescripcion',
+
   mensajeLogin: '#mensajeLogin',
   mensajeRegistro: '#mensajeRegistro',
   mensajeCompra: '#mensajeCompra',
@@ -73,7 +93,7 @@ const SELECTORES = {
   confirmConsultaTexto: '#confirmConsultaTexto',
   selectCompraCine: '#compraCine',
   selectCompraIdioma: '#compraIdioma',
-  selectCompraFuncion: '#compraFuncion',
+  selectCompraHorario: '#compraHorario',
   selectCompraAsientos: '#compraAsientos',
 };
 
@@ -246,7 +266,7 @@ function configurarEventos() {
   escuchar(SELECTORES.formularioConsulta, 'submit', manejarConsultaSoporte);
   escuchar(SELECTORES.selectCompraCine, 'change', manejarCambioCineCompra);
   escuchar(SELECTORES.selectCompraIdioma, 'change', manejarCambioIdiomaCompra);
-  escuchar(SELECTORES.selectCompraFuncion, 'change', manejarCambioFuncionCompra);
+  escuchar(SELECTORES.selectCompraHorario, 'change', manejarCambioHorarioCompra);
 
   document.addEventListener('input', manejarValidacionEnTiempoReal);
   document.addEventListener('change', manejarValidacionEnTiempoReal);
@@ -330,7 +350,7 @@ function manejarRegistro(event) {
 
   if (datos.password !== datos.passwordConfirm) {
     mostrarError(mensaje, 'Las contraseñas no coinciden.');
-    validarCampoVisual(consultarElemento('#registroPasswordConfirm'), false);
+    validarCampoVisual(consultarElemento(SELECTORES.registroPasswordConfirm), false);
     return;
   }
 
@@ -560,7 +580,7 @@ function manejarCambioCineCompra() {
   renderizarHorariosCompra([], SELECTORES);
 
   asignarValor(SELECTORES.selectCompraIdioma, '');
-  asignarValor(SELECTORES.selectCompraFuncion, '');
+  asignarValor(SELECTORES.selectCompraHorario, '');
   asignarValor(SELECTORES.selectCompraAsientos, '');
 
   if (cineSeleccionado) {
@@ -569,7 +589,7 @@ function manejarCambioCineCompra() {
     deshabilitarControl(consultarElemento(SELECTORES.selectCompraIdioma));
   }
 
-  deshabilitarControl(consultarElemento(SELECTORES.selectCompraFuncion));
+  deshabilitarControl(consultarElemento(SELECTORES.selectCompraHorario));
   deshabilitarControl(consultarElemento(SELECTORES.selectCompraAsientos));
 }
 
@@ -593,20 +613,20 @@ function manejarCambioIdiomaCompra() {
 
   renderizarHorariosCompra(funcionesFiltradas, SELECTORES);
 
-  asignarValor(SELECTORES.selectCompraFuncion, '');
+  asignarValor(SELECTORES.selectCompraHorario, '');
   asignarValor(SELECTORES.selectCompraAsientos, '');
 
   if (idiomaSeleccionado) {
-    habilitarControl(consultarElemento(SELECTORES.selectCompraFuncion));
+    habilitarControl(consultarElemento(SELECTORES.selectCompraHorario));
   } else {
-    deshabilitarControl(consultarElemento(SELECTORES.selectCompraFuncion));
+    deshabilitarControl(consultarElemento(SELECTORES.selectCompraHorario));
   }
 
   deshabilitarControl(consultarElemento(SELECTORES.selectCompraAsientos));
 }
 
-function manejarCambioFuncionCompra() {
-  const funcionSeleccionada = valorCampo(SELECTORES.selectCompraFuncion);
+function manejarCambioHorarioCompra() {
+  const funcionSeleccionada = valorCampo(SELECTORES.selectCompraHorario);
 
   asignarValor(SELECTORES.selectCompraAsientos, '');
 
@@ -644,44 +664,44 @@ function obtenerDatosFormulario(formulario) {
 
   if (formulario.id === 'formLogin') {
     return {
-      email: valorCampo('#loginEmail'),
-      password: valorCampo('#loginPassword'),
+      email: valorCampo(SELECTORES.loginEmail),
+      password: valorCampo(SELECTORES.loginPassword),
     };
   }
 
   if (formulario.id === 'formRegistro') {
     return {
-      nombre: valorCampo('#registroNombre'),
-      email: valorCampo('#registroEmail'),
-      password: valorCampo('#registroPassword'),
-      passwordConfirm: valorCampo('#registroPasswordConfirm'),
+      nombre: valorCampo(SELECTORES.registroNombre),
+      email: valorCampo(SELECTORES.registroEmail),
+      password: valorCampo(SELECTORES.registroPassword),
+      passwordConfirm: valorCampo(SELECTORES.registroPasswordConfirm),
     };
   }
 
   if (formulario.id === 'formPago') {
     return {
-      titular: valorCampo('#pagoTitular'),
-      tarjeta: valorCampo('#pagoTarjeta'),
-      vencimiento: valorCampo('#pagoVencimiento'),
-      cvv: valorCampo('#pagoCvv'),
-      emailComprador: valorCampo('#pagoEmail'),
+      titular: valorCampo(SELECTORES.pagoTitular),
+      tarjeta: valorCampo(SELECTORES.pagoTarjeta),
+      vencimiento: valorCampo(SELECTORES.pagoVencimiento),
+      cvv: valorCampo(SELECTORES.pagoCvv),
+      emailComprador: valorCampo(SELECTORES.pagoEmail),
     };
   }
 
   if (formulario.id === 'formCompra') {
     return {
-      cine: valorCampo('#compraCine'),
-      idioma: valorCampo('#compraIdioma'),
-      funcionId: valorCampo('#compraFuncion'),
-      cantidadEntradas: valorCampo('#compraAsientos'),
+      cine: valorCampo(SELECTORES.selectCompraCine),
+      idioma: valorCampo(SELECTORES.selectCompraIdioma),
+      funcionId: valorCampo(SELECTORES.selectCompraHorario),
+      cantidadEntradas: valorCampo(SELECTORES.selectCompraAsientos),
     };
   }
 
   if (formulario.id === 'formConsulta') {
     return {
-      email: valorCampo('#consultaEmail'),
-      titulo: valorCampo('#consultaTitulo'),
-      descripcion: valorCampo('#consultaDescripcion'),
+      email: valorCampo(SELECTORES.consultaEmail),
+      titulo: valorCampo(SELECTORES.consultaTitulo),
+      descripcion: valorCampo(SELECTORES.consultaDescripcion),
     };
   }
 
