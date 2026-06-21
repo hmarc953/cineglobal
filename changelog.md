@@ -77,6 +77,9 @@
 - [fix/accesibilidad-label-horario-compra] Fix: Correcion label horario compra
   PR: [#199](https://github.com/hmarc953/cineglobal/pull/199) @hmarc953 (Coordinador / DevOps)
 
+- [fix/RC6-Actualizacion-test-fecha] Fix RC6: Actualizo fecha test
+  PR: [#200](https://github.com/hmarc953/cineglobal/pull/200) @hmarc953 (Coordinador / DevOps)
+
 ## [Release Actividad Obligatoria N°3] - 2026-05-07
 
 ### Added
