@@ -26,7 +26,7 @@ export function prepararModalCompra(pelicula, SELECTORES) {
   renderizarHorariosCompra([], SELECTORES);
 
   deshabilitarControl(consultarElemento(SELECTORES.selectCompraIdioma));
-  deshabilitarControl(consultarElemento(SELECTORES.selectCompraFuncion));
+  deshabilitarControl(consultarElemento(SELECTORES.selectCompraHorario));
   deshabilitarControl(consultarElemento(SELECTORES.selectCompraAsientos));
 }
 
@@ -67,7 +67,7 @@ export function renderizarIdiomasCompra(funciones, SELECTORES) {
 }
 
 export function renderizarHorariosCompra(funciones, SELECTORES) {
-  const select = consultarElemento(SELECTORES.selectCompraFuncion);
+  const select = consultarElemento(SELECTORES.selectCompraHorario);
   if (!select) {
     return;
   }
