@@ -56,11 +56,31 @@ const SELECTORES = {
   botonLimpiarFiltros: '#btnLimpiarFiltros',
   listadoPeliculas: '#listaPeliculas',
   estadoFiltros: '#estadoFiltros',
+
   formularioLogin: '#formLogin',
   formularioRegistro: '#formRegistro',
   formularioCompra: '#formCompra',
   formularioPago: '#formPago',
   formularioConsulta: '#formConsulta',
+
+  loginEmail: '#loginEmail',
+  loginPassword: '#loginPassword',
+
+  registroNombre: '#registroNombre',
+  registroEmail: '#registroEmail',
+  registroPassword: '#registroPassword',
+  registroPasswordConfirm: '#registroPasswordConfirm',
+
+  pagoTitular: '#pagoTitular',
+  pagoTarjeta: '#pagoTarjeta',
+  pagoVencimiento: '#pagoVencimiento',
+  pagoCvv: '#pagoCvv',
+  pagoEmail: '#pagoEmail',
+
+  consultaEmail: '#consultaEmail',
+  consultaTitulo: '#consultaTitulo',
+  consultaDescripcion: '#consultaDescripcion',
+
   mensajeLogin: '#mensajeLogin',
   mensajeRegistro: '#mensajeRegistro',
   mensajeCompra: '#mensajeCompra',
