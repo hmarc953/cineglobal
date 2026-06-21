@@ -1,26 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+  <meta charset="UTF-8">
   <title>Jasmine Test Runner - CineGlobal</title>
+
   <link rel="shortcut icon" type="image/png"
     href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/5.10.0/jasmine_favicon.png">
+
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/5.10.0/jasmine.min.css">
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/5.10.0/jasmine.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/5.10.0/jasmine-html.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/5.10.0/boot0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/5.10.0/boot1.min.js"></script>
 </head>
 <body>
-  <script type="module" src="../../js/script.js"></script>
-  <script type="module" src="./models.spec.js"></script>
-  <script type="module" src="./storage.spec.js"></script>
-  
-  <!-- Guard clause: No invocar runMainMenu() cuando se está en testing con Jasmine -->
-  <script>
-    // No invocar runMainMenu() directamente para permitir testing con Jasmine
-    if (typeof jasmine === 'undefined') {
-      runMainMenu();
+  <script type="module">
+    try {
+      await import('./models.spec.js');
+      await import('./storage.spec.js');
+      await import('./script.spec.js');
+
+      const boot = document.createElement('script');
+      boot.src = 'https://cdnjs.cloudflare.com/ajax/libs/jasmine/5.10.0/boot1.min.js';
+      boot.onload = function() {
+        console.log('Jasmine boot1 cargado correctamente');
+
+        window.dispatchEvent(new Event('load'));
+      };
+      boot.onerror = function() {
+        document.body.innerHTML = '<h1>Error cargando boot1.js de Jasmine</h1>';
+      };
+
+      document.body.appendChild(boot);
+    } catch (error) {
+      console.error('Error cargando specs:', error);
+
+      document.body.innerHTML = `
+        <h1>Error cargando specs de Jasmine</h1>
+        <pre style="white-space: pre-wrap; color: red;">${error.stack || error.message || error}</pre>
+      `;
     }
   </script>
 </body>

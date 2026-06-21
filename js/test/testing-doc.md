@@ -251,343 +251,438 @@ describe('Test de alert', () => {
 ---
 
 # Actividad Obligatoria 4
-- **Fecha:** 11/06/2026
-- **Tester/QA Engineer:** @Santi22-7
-- **Colaboración con:** [ @abartomioli - @9919-Mili - @hmarc953 ]
+
+* **Fecha:** 11/06/2026
+* **Tester/QA Engineer:** @Santi22-7
+* **Colaboración con:** [ @abartomioli - @9919-Mili - @hmarc953 ]
 
 ## Índice
+
 1. [Ejecución de Tests](#ejecución-de-tests)
 2. [Suites de Tests](#suites-de-tests)
 3. [Métricas de Cobertura](#métricas-de-cobertura)
-4. [Capturas de Pantalla](#capturas-de-pantalla)
-5. [Issues Conocidos](#issues-conocidos)
+4. [Bugs Detectados Durante QA](#bugs-detectados-durante-qa)
+5. [Capturas de Pantalla](#capturas-de-pantalla)
+6. [Ajustes Realizados en los Specs](#ajustes-realizados-en-los-specs)
+7. [Limitaciones del Testing](#limitaciones-del-testing)
 
 ---
 
 ## Ejecución de Tests
 
+Para la Actividad Obligatoria N°4 se refactorizó la suite de testing automatizado del proyecto CineGlobal, incorporando pruebas orientadas a la nueva arquitectura basada en:
+
+* Programación Orientada a Objetos.
+* Manipulación del DOM.
+* Eventos del usuario.
+* Validación visual.
+* Persistencia con `localStorage` y `sessionStorage`.
+* Capa de abstracción `StorageUtil`.
+
+La ejecución de los tests se realizó desde:
+
+```txt
+js/test/test-runner.html
+```
+
+El runner utiliza Jasmine en navegador y carga las siguientes suites:
+
+```txt
+js/test/models.spec.js
+js/test/storage.spec.js
+js/test/script.spec.js
+```
+
 ### Pasos para Ejecutar
-1. Abrir `test-runner.html` en el navegador
-2. Los tests se ejecutan automáticamente
-3. Verificar resultados en la interfaz de Jasmine
+
+1. Abrir el proyecto en Visual Studio Code.
+2. Ejecutar el proyecto con Live Server.
+3. Abrir la siguiente ruta en el navegador:
+
+```txt
+http://127.0.0.1:3000/js/test/test-runner.html
+```
+
+4. Verificar que Jasmine cargue correctamente.
+5. Confirmar que se ejecuten las suites `models.spec.js`, `storage.spec.js` y `script.spec.js`.
+6. Revisar el resultado general del runner.
 
 ### Interpretación de Resultados
-- **Verde**: Tests pasando ✅
-- **Rojo**: Tests fallando ❌
-- **Amarillo**: Tests pendientes ⚠️
+
+* **Verde**: Tests pasando ✅
+* **Rojo**: Tests fallando ❌
+* **Amarillo**: Tests pendientes ⚠️
 
 ---
 
 ## Suites de Tests
 
-## Suite de Tests: Eventos y DOM
+### Suite 1: Modelos POO
 
-### Funciones Testeadas
-- Evento `click` sobre botón de compra.
-- Actualización de contenido del DOM mediante `textContent`.
+**Archivo:** `js/test/models.spec.js`
 
-| # | Descripción | Tipo |
-|---|-------------|------|
-| 1 | Actualiza el mensaje al hacer clic en el botón de compra | Happy Path |
+Esta suite valida las clases del dominio ubicadas en `js/models/`.
 
----
+### Clases testeadas
 
-## Suite de Tests: Usuario
+* `Usuario`
+* `Pelicula`
+* `Funcion`
+* `Compra`
+* `CatalogoPeliculas`
+* `GestorUsuarios`
+* `ConsultaSoporte`
 
-### Funciones Testeadas
-- Constructor de `Usuario`
-- `validarPassword()`
-- `coincideConEmail()`
-- `actualizarDatos()`
-- `toJSON()`
-- `fromJSON()`
+### Aspectos testeados
 
-| # | Descripción | Tipo |
-|---|-------------|------|
-| 1 | Crea usuario con email normalizado | Happy Path |
-| 2 | Valida contraseña y espacios en blanco | Validación de Errores |
-| 3 | Compara email ignorando mayúsculas y espacios | Happy Path |
-| 4 | Actualiza datos parciales correctamente | Happy Path |
-| 5 | Rechaza actualización con datos inválidos | Validación de Errores |
-| 6 | Serializa usuario a JSON | Happy Path |
-| 7 | Deserializa usuario desde JSON | Happy Path |
-| 8 | Retorna null al deserializar JSON inválido | Caso Borde |
+| Aspecto               | Descripción                                                    |
+| --------------------- | -------------------------------------------------------------- |
+| Constructores         | Creación de instancias con datos válidos.                      |
+| Métodos de negocio    | Operaciones propias de cada clase.                             |
+| Validaciones internas | Rechazo de datos inválidos o incompletos.                      |
+| Serialización         | Conversión de instancias a objetos planos mediante `toJSON()`. |
+| Deserialización       | Reconstrucción de instancias mediante `fromJSON()`.            |
+| Edge cases            | Valores nulos, vacíos, inválidos o fuera de rango.             |
 
----
+### Casos destacados
 
-## Suite de Tests: Película
-
-### Funciones Testeadas
-- Constructor de `Pelicula`
-- `coincideConFiltros()`
-- `toJSON()`
-- `fromJSON()`
-
-| # | Descripción | Tipo |
-|---|-------------|------|
-| 1 | Crea película con fecha convertida a Date | Happy Path |
-| 2 | Filtra por título parcial | Happy Path |
-| 3 | Filtra por categoría | Happy Path |
-| 4 | Filtra por clasificación | Happy Path |
-| 5 | Rechaza filtros que no coinciden | Validación de Errores |
-| 6 | Acepta filtros vacíos o nulos | Caso Borde |
-| 7 | Serializa película a JSON | Happy Path |
-| 8 | Deserializa película desde JSON | Happy Path |
+| Clase               | Casos cubiertos                                                                                          |
+| ------------------- | -------------------------------------------------------------------------------------------------------- |
+| `Usuario`           | Normalización de email, validación de password, actualización de datos, serialización y deserialización. |
+| `Pelicula`          | Filtros por título, categoría, clasificación, cine e idioma; manejo de funciones asociadas.              |
+| `Funcion`           | Disponibilidad de asientos, reserva de entradas y coincidencia con selección de cine, idioma y horario.  |
+| `Compra`            | Validación integral, cálculo de total, confirmación, descuento de asientos y código de confirmación.     |
+| `CatalogoPeliculas` | Búsqueda por filtros, obtención por ID, obtención por índice y serialización.                            |
+| `GestorUsuarios`    | Registro, autenticación, búsqueda por email, actualización y prevención de duplicados.                   |
+| `ConsultaSoporte`   | Validación de ticket, generación de ID, cambio de estado y serialización.                                |
 
 ---
 
-## Suite de Tests: Función
+### Suite 2: Storage
 
-### Funciones Testeadas
-- Constructor de `Funcion`
-- `hayDisponibilidad()`
-- `reservarAsientos()`
-- `coincideConSeleccion()`
-- `toJSON()`
-- `fromJSON()`
+**Archivo:** `js/test/storage.spec.js`
 
-| # | Descripción | Tipo |
-|---|-------------|------|
-| 1 | Verifica disponibilidad de asientos | Happy Path |
-| 2 | Reserva asientos correctamente | Happy Path |
-| 3 | Rechaza reservas superiores a la disponibilidad | Caso Borde |
-| 4 | Rechaza cantidades inválidas de asientos | Validación de Errores |
-| 5 | Filtra selección por cine | Happy Path |
-| 6 | Filtra selección por idioma | Happy Path |
-| 7 | Filtra selección por horario | Happy Path |
-| 8 | Serializa y deserializa función correctamente | Happy Path |
+Esta suite valida la capa de abstracción `StorageUtil`, ubicada en:
 
----
+```txt
+js/utils/storage.js
+```
 
-## Suite de Tests: Compra
+### Funciones testeadas
 
-### Funciones Testeadas
-- Constructor de `Compra`
-- `esValida()`
-- `calcularTotal()`
-- `confirmarCompra()`
-- `toJSON()`
-- `fromJSON()`
+* `guardar()`
+* `obtener()`
+* `actualizar()`
+* `eliminar()`
+* `listar()`
+* `limpiar()`
+* `guardarInstancia()`
+* `cargarInstancia()`
 
-| # | Descripción | Tipo |
-|---|-------------|------|
-| 1 | Valida compra correcta | Happy Path |
-| 2 | Calcula total de compra | Happy Path |
-| 3 | Rechaza compra con ID vacío | Validación de Errores |
-| 4 | Rechaza compra con email inválido | Validación de Errores |
-| 5 | Rechaza compra sin disponibilidad de asientos | Caso Borde |
-| 6 | Confirma compra y genera código de confirmación | Happy Path |
-| 7 | Descuenta asientos al confirmar compra | Happy Path |
-| 8 | Rechaza confirmación de compra inválida | Validación de Errores |
-| 9 | Retorna total 0 con precio inválido | Caso Borde |
-| 10 | Serializa y deserializa compra correctamente | Happy Path |
+### Aspectos testeados
 
----
+| Aspecto             | Descripción                                                        |
+| ------------------- | ------------------------------------------------------------------ |
+| CRUD básico         | Guardado, lectura, actualización y eliminación de datos.           |
+| `localStorage`      | Persistencia de datos locales.                                     |
+| `sessionStorage`    | Persistencia temporal de datos de sesión.                          |
+| Listado por prefijo | Recuperación de claves según convención.                           |
+| Limpieza de storage | Eliminación completa de datos por tipo de storage.                 |
+| Instancias POO      | Guardado y recuperación de objetos reconstruidos con `fromJSON()`. |
+| Manejo de errores   | Claves inválidas, datos corruptos y tipos de storage inválidos.    |
 
-## Suite de Tests: Catálogo de Películas
+### Casos destacados
 
-### Funciones Testeadas
-- `buscarPorFiltros()`
-- `obtenerPeliculaPorId()`
-- `obtenerPeliculaPorIndice()`
-- `listarPeliculas()`
-- `toJSON()`
-- `fromJSON()`
-
-| # | Descripción | Tipo |
-|---|-------------|------|
-| 1 | Retorna todas las películas sin filtros | Happy Path |
-| 2 | Filtra películas por categoría | Happy Path |
-| 3 | Retorna null para ID vacío | Validación de Errores |
-| 4 | Retorna null para ID inexistente | Validación de Errores |
-| 5 | Obtiene película por índice válido | Happy Path |
-| 6 | Rechaza índices inválidos | Caso Borde |
-| 7 | Serializa catálogo correctamente | Happy Path |
-| 8 | Deserializa catálogo correctamente | Happy Path |
+| Caso                              | Resultado esperado                                  |
+| --------------------------------- | --------------------------------------------------- |
+| Guardar y obtener valores simples | El valor recuperado coincide con el guardado.       |
+| Guardar y obtener objetos         | El objeto se serializa y deserializa correctamente. |
+| Actualizar dato existente         | `actualizar()` funciona como alias de `guardar()`.  |
+| Eliminar clave existente          | La clave se elimina y luego retorna `null`.         |
+| Eliminar clave inexistente        | La operación retorna `false`.                       |
+| Listar claves por prefijo         | Solo se devuelven claves coincidentes.              |
+| Limpiar storage                   | El storage correspondiente queda vacío.             |
+| Guardar y cargar instancias       | Se reconstruyen instancias de clases del dominio.   |
+| Dato corrupto                     | `obtener()` retorna `null`.                         |
+| Clave inválida                    | `guardar()` retorna `false`.                        |
 
 ---
 
-## Suite de Tests: Gestor de Usuarios
+### Suite 3: Controlador DOM/Eventos
 
-### Funciones Testeadas
-- `registrarUsuario()`
-- `emailExiste()`
-- `autenticar()`
-- `buscarPorEmail()`
-- `toJSON()`
-- `fromJSON()`
+**Archivo:** `js/test/script.spec.js`
 
-| # | Descripción | Tipo |
-|---|-------------|------|
-| 1 | Registra usuario válido | Happy Path |
-| 2 | Evita registro de usuarios duplicados | Validación de Errores |
-| 3 | Rechaza registros con datos inválidos | Validación de Errores |
-| 4 | Autentica usuario con credenciales correctas | Happy Path |
-| 5 | Rechaza contraseña incorrecta | Validación de Errores |
-| 6 | Rechaza usuario inexistente | Validación de Errores |
-| 7 | Busca usuario por email | Happy Path |
-| 8 | Maneja búsqueda con email vacío | Caso Borde |
-| 9 | Serializa gestor de usuarios | Happy Path |
-| 10 | Deserializa gestor de usuarios | Happy Path |
+Esta suite valida el comportamiento real del controlador principal:
 
----
+```txt
+js/script.js
+```
 
-## Suite de Tests: Consulta de Soporte
+A diferencia de la versión anterior, los tests ya no prueban elementos ficticios del DOM. En esta versión se monta un fixture mínimo con los IDs reales utilizados por la aplicación y se disparan eventos reales sobre esos elementos.
 
-### Funciones Testeadas
-- Constructor de `ConsultaSoporte`
-- `validar()`
-- `generarTicket()`
-- `cambiarEstado()`
-- `toJSON()`
+### Flujos testeados
 
-| # | Descripción | Tipo |
-|---|-------------|------|
-| 1 | Valida ticket correcto | Happy Path |
-| 2 | Rechaza email inválido | Validación de Errores |
-| 3 | Rechaza campos obligatorios vacíos | Validación de Errores |
-| 4 | Genera identificador de ticket automáticamente | Happy Path |
-| 5 | Cambia estado a un valor válido | Happy Path |
-| 6 | Rechaza estados inválidos | Validación de Errores |
-| 7 | Serializa ticket preservando fecha de creación | Happy Path |
+| Flujo                    | Comportamiento validado                                                              |
+| ------------------------ | ------------------------------------------------------------------------------------ |
+| Renderizado de cartelera | Se renderizan dinámicamente las cards de películas iniciales.                        |
+| Filtros de películas     | El input de búsqueda actualiza el DOM y muestra mensajes de éxito/error.             |
+| Limpieza de filtros      | Se restauran los filtros y se vuelve a mostrar el catálogo completo.                 |
+| Compra de entradas       | Se abre el modal, se cargan cines, idiomas, horarios y asientos de forma progresiva. |
+| Validación de compra     | Se muestra error si la compra está incompleta.                                       |
+| Resumen de compra        | Se genera el resumen y se abre el modal de pago.                                     |
+| Login                    | Se valida login exitoso y credenciales inválidas.                                    |
+| Registro                 | Se valida registro exitoso y error por contraseñas distintas.                        |
+| Consulta de soporte      | Se genera ticket para consulta válida y error para datos incompletos.                |
+| Validación visual        | Se aplican clases `is-valid` e `is-invalid` según el formato del email.              |
+
+### Técnicas aplicadas
+
+* Montaje de fixture dentro de `div#fixture`.
+* Limpieza de fixture en `afterEach`.
+* Limpieza de `localStorage` y `sessionStorage` entre tests.
+* Mock de Bootstrap Modal.
+* Disparo manual de eventos `input`, `change`, `submit` y `click`.
+* Inicialización manual de `DOMContentLoaded`.
 
 ---
 
-## Suite de Tests: Storage Serialization y Deserialización
-
-### Funciones Testeadas
-- `toJSON()`
-- `fromJSON()`
-- Persistencia simulada con JSON
-
-| # | Descripción | Tipo |
-|---|-------------|------|
-| 1 | Serializa y deserializa Usuario | Happy Path |
-| 2 | Serializa y deserializa Función | Happy Path |
-| 3 | Serializa y deserializa Compra con función embebida | Happy Path |
-| 4 | Serializa y deserializa Película con funciones | Happy Path |
-| 5 | Serializa y deserializa Catálogo de Películas | Happy Path |
-| 6 | Serializa y deserializa Gestor de Usuarios | Happy Path |
-| 7 | Recupera estado completo desde persistencia simulada | Happy Path |
-
----
-
-## Suite de Tests: StorageUtil
-
-### Funciones Testeadas
-- `guardar()`
-- `obtener()`
-- `eliminar()`
-- `listar()`
-- `limpiar()`
-- `actualizar()`
-- `guardarInstancia()`
-- `cargarInstancia()`
-
-| # | Descripción | Tipo |
-|---|-------------|------|
-| 1 | Guarda y obtiene valores simples | Happy Path |
-| 2 | Guarda y obtiene objetos JSON | Happy Path |
-| 3 | Elimina una clave existente | Happy Path |
-| 4 | Rechaza eliminación de clave inexistente | Validación de Errores |
-| 5 | Lista claves por prefijo | Happy Path |
-| 6 | Limpia completamente el storage | Happy Path |
-| 7 | Actualizar funciona como alias de guardar | Happy Path |
-| 8 | Retorna null cuando una clave no existe | Caso Borde |
-| 9 | Trabaja correctamente con sessionStorage | Happy Path |
-| 10 | Guarda y recupera instancia de Usuario | Happy Path |
-| 11 | Retorna null al cargar instancia inexistente | Caso Borde |
----
 ## Métricas de Cobertura
 
 ### Resumen General
-| Métrica | Valor |
-|---------|-------|
-| Total de Tests | 47 |
-| Tests Pasando | 47 ✅ |
-| Tests Fallando | 0 ❌ |
-| Porcentaje de Éxito | 100% |
 
-### Cobertura General
+| Métrica                   | Valor                     |
+| ------------------------- | ------------------------- |
+| Total de specs ejecutados | 85                        |
+| Specs pasando             | 85 ✅                      |
+| Specs fallando al cierre  | 0 ❌                       |
+| Porcentaje de éxito final | 100%                      |
+| Framework                 | Jasmine 5.10.0            |
+| Ejecución                 | Navegador con Live Server |
 
-- **Cobertura de Líneas:** 82%
-- **Cobertura de Funciones:** 88%
-- **Cobertura de Ramas:** 75%
+### Resultado Inicial con Fallos
 
-| Suite | Tests | PASS | FAIL |
-|-------|-------|------|------|
-| Models (Usuario, Película, Función, Compra, Catálogo, Gestor, Soporte) | 39 | 39 | 0 |
-| Storage | 5 | 5 | 0 |
-| DOM/Eventos | 3 | 3 | 0 |
-| **TOTAL** | **47** | **47** | **0** |
+Durante la ejecución inicial de la suite refactorizada se detectaron errores en `StorageUtil`.
+
+| Métrica           | Valor                 |
+| ----------------- | --------------------- |
+| Specs ejecutados  | 85                    |
+| Fallos detectados | 2                     |
+| Suite afectada    | `storage.spec.js`     |
+| Módulo afectado   | `js/utils/storage.js` |
+
+### Resultado Final
+
+Luego de aplicar las correcciones, se volvió a ejecutar el runner de Jasmine.
+
+| Métrica          | Valor  |
+| ---------------- | ------ |
+| Specs ejecutados | 85     |
+| Specs pasando    | 85     |
+| Specs fallando   | 0      |
+| Resultado final  | PASS ✅ |
+
+### Cobertura por Archivo
+
+| Archivo           | Objetivo                                                              | Resultado |
+| ----------------- | --------------------------------------------------------------------- | --------- |
+| `models.spec.js`  | Tests de clases POO, métodos de negocio, validaciones y serialización | PASS      |
+| `storage.spec.js` | Tests de CRUD, storage local/session, instancias y errores            | PASS      |
+| `script.spec.js`  | Tests del controlador, DOM, eventos y feedback visual                 | PASS      |
+
 ### Cobertura por Tipo de Test
 
-| Tipo | Cantidad | Porcentaje |
-|------|----------|------------|
-| Happy Path | 26 | 55.3% |
-| Casos Borde | 9 | 19.1% |
-| Validación de Errores | 10 | 21.3% |
-| Operaciones Arrays/Objetos | 2 | 4.3% |
-| **Total** | **47** | **100%** |
+| Tipo                  | Ejemplos                                                                   |
+| --------------------- | -------------------------------------------------------------------------- |
+| Happy Path            | Registro válido, compra válida, guardado correcto, filtros con resultados. |
+| Casos borde           | Filtros vacíos, IDs inexistentes, claves inexistentes, JSON inválido.      |
+| Validación de errores | Email inválido, contraseña incorrecta, datos incompletos, clave inválida.  |
+| Integración liviana   | Relación entre DOM, eventos, clases del dominio y storage.                 |
 
-### Análisis de Cobertura de Código
+---
 
-**Metodología:** Se revisó manualmente el funcionamiento de cada función expuesta y se comparó con los tests disponibles.
+## Bugs Detectados Durante QA
 
-| Módulo / Funcionalidad | Tests Asociados | Cobertura Estimada |
-|---------|-------|-----------|
-| Usuario | 6 | Alta |
-| Película | 4 | Alta |
-| Función | 3 | Alta |
-| Compra | 6 | Alta |
-| Catálogo de Películas | 5 | Alta |
-| Gestor de Usuarios | 4 | Media-Alta |
-| Consulta Soporte | 3 | Media-Alta |
-| Eventos y DOM | 1 | Básica |
-| Serialización y Persistencia | 7 | Alta |
-| StorageUtil | 8 | Alta |
+Durante la ejecución de `storage.spec.js` se detectaron dos comportamientos incorrectos en `js/utils/storage.js`.
 
-**Cobertura Total Estimada:** ≈ 90%+
+---
 
-#### Líneas NO Cubiertas
-- Casos excepcionales de errores internos de `localStorage` o `sessionStorage`.
-- Fallos producidos por datos corruptos provenientes de almacenamiento externo.
-- Eventos de interfaz distintos al evento `click` validado en la suite DOM.
-- Escenarios de concurrencia o múltiples usuarios simultáneos.
-- Errores de red o integración con servicios externos (no aplican al alcance actual del proyecto).
+### Bug 1: Dato corrupto en storage
+
+**Módulo afectado:** `js/utils/storage.js`
+**Función afectada:** `_deserialize()` / `obtener()`
+**Suite afectada:** `storage.spec.js`
+
+#### Comportamiento esperado
+
+Si un dato almacenado manualmente en `localStorage` no puede deserializarse como JSON válido, `StorageUtil.obtener()` debe devolver `null` y no propagar un valor corrupto.
+
+#### Comportamiento obtenido
+
+El método devolvía el string corrupto almacenado.
+
+#### Test que detectó el problema
+
+```js
+it('retorna null si el dato almacenado no es JSON válido', function() {
+  localStorage.setItem('datoCorrupto', '{ json inválido');
+
+  expect(StorageUtil.obtener('datoCorrupto')).toBeNull();
+});
+```
+
+#### Causa
+
+La función `_deserialize()` capturaba el error de `JSON.parse`, pero devolvía el valor original en lugar de retornar `null`.
+
+#### Corrección aplicada
+
+Se ajustó `_deserialize()` para que, ante un error de `JSON.parse`, registre una advertencia y devuelva `null`.
+
+---
+
+### Bug 2: Clave inválida en operaciones de storage
+
+**Módulo afectado:** `js/utils/storage.js`
+**Función afectada:** `_setItem()` / `guardar()`
+**Suite afectada:** `storage.spec.js`
+
+#### Comportamiento esperado
+
+Si se intenta guardar un valor con una clave vacía o inválida, `StorageUtil.guardar()` debe devolver `false`.
+
+#### Comportamiento obtenido
+
+El método permitía la operación y devolvía `true`.
+
+#### Test que detectó el problema
+
+```js
+it('retorna false si se intenta guardar con una clave inválida', function() {
+  expect(StorageUtil.guardar('', 'valor')).toBe(false);
+  expect(StorageUtil.guardar(null, 'valor')).toBe(false);
+});
+```
+
+#### Causa
+
+La función `_setItem()` no validaba la clave antes de operar sobre `localStorage` o `sessionStorage`.
+
+#### Corrección aplicada
+
+Se agregaron guard clauses para validar claves antes de operar sobre storage.
+
+También se aplicó el mismo criterio defensivo en:
+
+* `_getItem()`
+* `_removeItem()`
+
+Esto mantiene consistencia entre las operaciones internas de lectura, escritura y eliminación.
 
 ---
 
 ## Capturas de Pantalla
 
-### Tests Pasando
-![Tests Exitosos](../test/screenshots/Test-pass-Actividad-4.png)
-*Todos los tests ejecutándose correctamente*
+### Ejecución con fallos detectados
 
+La primera ejecución permitió detectar errores en `StorageUtil`, vinculados al manejo de datos corruptos y claves inválidas.
 
-### Ejecución de Tests con Playwright MCP
+![Ejecución Jasmine con fallos](./screenshots/test-fail-A4-v2.png)
 
-![Suite 1 - Usuario Tests](../test/screenshots/Suite-1.png)
-![Suite 2 - Storage Tests](../test/screenshots/Suite-2.png)
-![Suite 3 - DOM Tests](../test/screenshots/Suite-3.png)
+---
+
+### Ejecución final exitosa
+
+Luego de aplicar las correcciones, se volvió a ejecutar el runner y todas las pruebas pasaron correctamente.
+
+![Ejecución Jasmine PASS](./screenshots/test-pass-A4-v2.png)
+
+---
+
+## Ajustes Realizados en los Specs
+
+### `models.spec.js`
+
+Se reorganizó y amplió la suite de modelos para validar:
+
+* Constructores.
+* Métodos de negocio.
+* Validaciones internas.
+* Serialización con `toJSON()`.
+* Deserialización con `fromJSON()`.
+* Casos nulos o inválidos.
+* Edge cases propios de cada clase.
+
+---
+
+### `storage.spec.js`
+
+Se reorganizó la suite para enfocarla específicamente en la capa de storage.
+
+Se agregaron tests para validar:
+
+* Operaciones CRUD.
+* Uso de `localStorage`.
+* Uso de `sessionStorage`.
+* Actualización de valores.
+* Eliminación de claves.
+* Listado por prefijo.
+* Limpieza de storage.
+* Guardado y recuperación de instancias.
+* Manejo de datos corruptos.
+* Manejo de claves inválidas.
+* Tipo de storage inválido.
+
+---
+
+### `script.spec.js`
+
+Se refactorizó la suite para probar el comportamiento real del controlador `js/script.js`.
+
+Cambios principales:
+
+* Se dejó de testear un DOM ficticio con elementos no pertenecientes al proyecto.
+* Se montó un fixture mínimo con IDs reales de la aplicación.
+* Se importó el controlador real `js/script.js`.
+* Se disparó manualmente `DOMContentLoaded` para inicializar la aplicación.
+* Se mockeó Bootstrap Modal para evitar depender de Bootstrap real en los tests.
+* Se probaron flujos reales de filtros, compra, login, registro, soporte y validación visual.
+* Se limpió el fixture en `afterEach` sin eliminar el reporter visual de Jasmine.
+
 ---
 
 ## Issues Conocidos
+
+### Issue QA: Manejo de datos corruptos en `StorageUtil`
+
+* **Severidad:** Media
+* **Suite Afectada:** `storage.spec.js`
+* **Módulo Afectado:** `js/utils/storage.js`
+* **Comportamiento Esperado:** `StorageUtil.obtener()` debe devolver `null` ante datos corruptos.
+* **Comportamiento Obtenido:** Se devolvía el string corrupto.
+* **Resolución:** Se corrigió `_deserialize()` para devolver `null` ante error de parseo.
+* **Estado:** Resuelto ✅
+
+---
+
+### Issue QA: Clave inválida aceptada en `StorageUtil.guardar()`
+
+* **Severidad:** Media
+* **Suite Afectada:** `storage.spec.js`
+* **Módulo Afectado:** `js/utils/storage.js`
+* **Comportamiento Esperado:** `StorageUtil.guardar()` debe devolver `false` con claves inválidas.
+* **Comportamiento Obtenido:** La operación devolvía `true`.
+* **Resolución:** Se agregaron validaciones defensivas en `_setItem()`, `_getItem()` y `_removeItem()`.
+* **Estado:** Resuelto ✅
 
 ---
 
 ## Limitaciones del Testing
 
-- Tests ejecutados únicamente en navegador mediante Jasmine CDN.
-- No se utiliza una herramienta automática de medición de cobertura (Istanbul, Karma Coverage, etc.).
-- Requiere conexión a internet para cargar las librerías de Jasmine desde CDN.
-- La cobertura de DOM se limita a una prueba básica de interacción mediante evento `click`.
-- No se incluyen pruebas end-to-end de flujos completos de usuario.
-- No se realizan pruebas de rendimiento, carga o estrés.
-- No se contemplan escenarios de concurrencia o múltiples usuarios simultáneos.
-- La persistencia se valida mediante simulación de `localStorage` y `sessionStorage`, sin almacenamiento persistente real.
-- No se prueban aspectos visuales de la interfaz (CSS, diseño responsive o accesibilidad).
-
----
-
-
+* Los tests se ejecutan en navegador mediante Jasmine CDN.
+* No se utiliza una herramienta automática de medición de cobertura como Istanbul.
+* La cobertura se estima a partir de los casos implementados y las funciones públicas testeadas.
+* Requiere conexión a internet para cargar Jasmine desde CDN.
+* Los tests de DOM usan fixtures mínimos, no la página completa renderizada desde `index.html`.
+* No se realizan pruebas de rendimiento, carga o estrés.
+* No se contemplan escenarios de concurrencia o múltiples usuarios simultáneos.
+* No se prueban aspectos visuales avanzados como CSS responsive, accesibilidad o compatibilidad entre navegadores.
