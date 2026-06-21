@@ -252,9 +252,10 @@ describe('Test de alert', () => {
 
 # Actividad Obligatoria 4
 
-* **Fecha:** 11/06/2026
+* **Fecha:** 21/06/2026
 * **Tester/QA Engineer:** @Santi22-7
 * **Colaboración con:** [ @abartomioli - @9919-Mili - @hmarc953 ]
+* **Correcciones por:** @hmarc953
 
 ## Índice
 
