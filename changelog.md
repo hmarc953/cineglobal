@@ -1,6 +1,16 @@
 # Changelog
 
 ## [Unreleased]
+
+## [Release Segundo Parcial] - 2026-06-24
+
+### Added
+
+- [feature/coord-devops-segundo-parcial] Planificación inicial y actualizacion
+  PR: [#206](https://github.com/hmarc953/cineglobal/pull/206) @hmarc953 (Coordinador / DevOps)
+
+### Fixed
+
 ## [Release Actividad Obligatoria N°4] - 2026-05-18
 
 ### Added
