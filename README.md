@@ -15,44 +15,54 @@ Tecnologías utilizadas:
 - HTML
 - CSS
 - Bootstrap 5.3.3 (CDN vía jsDelivr)
-- JavaScript (ES6+)
-- Jasmine 5.10.0 (testing via CDN)
+- JavaScript (ES6+) y ES Modules
+- DOM API y Event Listeners
+- Web Storage API (`localStorage` y `sessionStorage`)
+- Jasmine 5.10.0 (testing vía CDN)
 - PlantUML (diagramas de actividades)
+- GitHub Projects, Issues y Pull Requests
 
 ### Objetivo del entregable
-Esta entrega corresponde a la Actividad Obligatoria 4, que continúa desde la A3 
-eliminando completamente el uso de prompt() y alert() para implementar una 
-interfaz web moderna. Se implementa interactividad completa mediante eventos 
-del usuario y manipulación del DOM, se refactoriza el código con Programación 
-Orientada a Objetos, se agrega persistencia de datos con localStorage y 
-sessionStorage, y se extiende la cobertura de testing automatizado usando 
-Jasmine.
+Esta entrega corresponde al Segundo Parcial y busca extender CineGlobal mediante
+el consumo asíncrono de datos con `fetch`, promises y JSON/API, la integración de
+una librería externa de JavaScript y testing avanzado con Jasmine. También
+incorpora auditorías Lighthouse de performance y accesibilidad, junto con el
+mantenimiento de la documentación, el changelog y el flujo de trabajo en GitHub.
 
 
 
 ### Funcionalidades del Proyecto (Histórico)
 
-#### Completadas en entregas previas (A1, A2, PP, A3)
+#### Completadas en entregas previas (A1, A2, PP, A3, A4)
 - [x] Estructura de página con listado de películas
 - [x] Vista de detalle de película con información básica y horarios de funciones
 - [x] Estilos CSS aplicados para mejorar la apariencia visual y soporte responsive
 - [x] Integración de Bootstrap 5 con componentes avanzados (navbar, modal, carousel)
 - [x] Diseño responsive validado en desktop, tablet y móvil
-- [x] Menú de navegación interactivo mediante `prompt()` con acceso a los 4 flujos
 - [x] Flujo 1 - Inicio de sesión: valida credenciales del usuario
 - [x] Flujo 2 - Compra de entrada: permite seleccionar película, función y cantidad
 - [x] Flujo 3 - Filtros: filtra el catálogo según criterios
 - [x] Flujo 4 - Consultar soporte: permite describir problemas
 - [x] Validación de entradas en todos los flujos
-- [x] Testing automatizado con Jasmine
 - [x] Diagramas de actividades en PlantUML
-
-#### En desarrollo para esta entrega (A4)
 - [x] Eliminar completamente el uso de prompt() y alert() para migrar a una interfaz web moderna
 - [x] Implementar interactividad completa mediante eventos del usuario y manipulación del DOM
 - [x] Refactorizar el código aplicando Programación Orientada a Objetos (POO)
-- [x] Implementar persistencia de datos usando localStorage y/o sessionStorage
-- [x] Mantener y extender la cobertura de testing automatizado
+- [x] Implementar persistencia de datos usando `localStorage` y `sessionStorage`
+- [x] Modularizar el código JavaScript mediante ES Modules
+- [x] Ampliar la cobertura de testing automatizado con Jasmine
+
+#### En desarrollo para esta entrega (Segundo Parcial)
+- [ ] Implementar consumo asíncrono de datos con `fetch`
+- [ ] Obtener datos desde una API externa o un archivo JSON
+- [ ] Manejar estados de carga, éxito y error
+- [ ] Procesar colecciones con `map`, `filter` y `reduce`
+- [ ] Integrar una librería externa de JavaScript mediante CDN
+- [ ] Sumar tests Jasmine para funciones asíncronas
+- [ ] Sumar tests Jasmine para la librería externa
+- [ ] Realizar auditorías Lighthouse baseline, post-fetch y post-librería
+- [ ] Actualizar la documentación técnica, el README y el changelog
+- [ ] Preparar la rama `release/segundo-parcial`
 
 ## Documentación
 
@@ -100,11 +110,14 @@ Jasmine.
 - [Desarrollador JS Local y Session Storage](docs/03-specs/actividad-obligatoria-4/spec-dev-storage.md) 
 - [Tester QA](docs/03-specs/actividad-obligatoria-4/spec-tester-qa.md) 
 
+#### Segundo Parcial
+- [DevOps](docs/03-specs/segundo-parcial/spec-coord-devops-segundo-parcial.md)
+
 ## Integrantes del Grupo
 
-| Nombre completo          | N° de Matrícula | Usuario GitHub | Rol en esta entrega                        |
-|--------------------------|-----------------|----------------|--------------------------------------------|
-| Santiago Ariel Samitier  | 148249          | @Santi22-7     | Coordinador / DevOps + Tester QA           |
-| Alejandro Bartomioli     | 153041          | @abartomioli   | Desarrollador JS Eventos + DOM             |
-| Milagros Magali Araujo   | 148197          | @9919-Mili     | Desarrollador JS Local y Session Storage   |
-| Marc Holste              | 160313          | @hmarc953      | Desarrollador JS POO                       |
+| Nombre completo          | N° de Matrícula | Usuario GitHub | Rol en esta entrega                         |
+|--------------------------|-----------------|----------------|---------------------------------------------|
+| Santiago Ariel Samitier  | 148249          | @Santi22-7     | Desarrollador JS Asincrono - Fetch & APIs   |
+| Alejandro Bartomioli     | 153041          | @abartomioli   | Desarrollador JS Librerias Externas         |
+| Milagros Magali Araujo   | 148197          | @9919-Mili     | Tester QA/JS - Testing Avanzado             |
+| Marc Holste              | 160313          | @hmarc953      | Coordinador / DevOps - Gestion y Resolucion |

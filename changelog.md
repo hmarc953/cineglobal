@@ -1,6 +1,13 @@
 # Changelog
 
 ## [Unreleased]
+
+## [Release Segundo Parcial] - 2026-06-24
+
+### Added
+
+### Fixed
+
 ## [Release Actividad Obligatoria N°4] - 2026-05-18
 
 ### Added
