@@ -249,21 +249,21 @@ Tambien se deberan revisar escenarios de prueba asociados a:
 
 ### Criterios de aceptacion
 
-* [ ] Este archivo fue creado y commiteado antes de modificar `js/script.js`.
-* [ ] `js/script.js` queda como controlador principal.
-* [ ] No queda logica de negocio dentro de `js/script.js`.
-* [ ] No queda ningun `prompt()` en el proyecto.
-* [ ] No queda ningun `alert()` en el proyecto.
-* [ ] Hay listeners para login, registro, compra, filtros y soporte.
-* [ ] Se implementa validacion en tiempo real con feedback visual.
-* [ ] Se habilitan/deshabilitan controles segun el estado del formulario.
-* [ ] Se muestran resultados dinamicamente en el DOM.
-* [ ] Se crean, actualizan o eliminan elementos dinamicamente cuando corresponde.
-* [ ] Se aplican clases CSS para estados `loading`, `success`, `error` o equivalentes.
-* [ ] Se muestran/ocultan secciones segun el flujo.
-* [ ] Se invocan metodos de las clases del dominio sin duplicar logica de negocio.
-* [ ] Se persisten datos desde la UI usando la capa Storage cuando corresponda.
-* [ ] El codigo final queda documentado con comentarios claros.
+* [x] Este archivo fue creado y commiteado antes de modificar `js/script.js`.
+* [x] `js/script.js` queda como controlador principal.
+* [x] No queda logica de negocio dentro de `js/script.js`.
+* [x] No queda ningun `prompt()` en el proyecto.
+* [x] No queda ningun `alert()` en el proyecto.
+* [x] Hay listeners para login, registro, compra, filtros y soporte.
+* [x] Se implementa validacion en tiempo real con feedback visual.
+* [x] Se habilitan/deshabilitan controles segun el estado del formulario.
+* [x] Se muestran resultados dinamicamente en el DOM.
+* [x] Se crean, actualizan o eliminan elementos dinamicamente cuando corresponde.
+* [x] Se aplican clases CSS para estados `loading`, `success`, `error` o equivalentes.
+* [x] Se muestran/ocultan secciones segun el flujo.
+* [x] Se invocan metodos de las clases del dominio sin duplicar logica de negocio.
+* [x] Se persisten datos desde la UI usando la capa Storage cuando corresponda.
+* [x] El codigo final queda documentado con comentarios claros.
 
 ## AT CLOSE - Evidencia al cerrar la tarea
 
@@ -344,6 +344,20 @@ function configurarEventos() {
 * Se adapto el controlador para leer campos por `id` cuando el HTML existente no tenia `name` o `data-validate`.
 * Se integro la capa Storage mediante import ES6 de `StorageUtil` desde `js/utils/storage.js`.
 * Se verifico con Playwright que la pagina cargue sin errores, renderice 4 peliculas y complete flujos de filtro, login, soporte y compra.
+
+* Se modularizaron responsabilidades reutilizables del controlador principal:
+  * `js/utils/dom.js` para utilidades de manipulación del DOM.
+  * `js/utils/validaciones.js` para validación visual y estado de formularios.
+  * `js/utils/peliculasView.js` para renderizado de cartelera.
+  * `js/utils/compraView.js` para renderizado del flujo progresivo de compra.
+
+* Se mantuvo `js/script.js` como orquestador principal de eventos y estado de la aplicación.
+
+* Se eliminó código muerto correspondiente a `renderizarFunciones()`.
+
+* Se agregaron encabezados y comentarios de intención para mejorar la mantenibilidad del controlador.
+
+* Se generalizó el flujo de compra para trabajar con cualquier película del catálogo, eliminando referencias fijas a títulos específicos.
 
 ### Decisiones finales sobre la estructura del controlador
 

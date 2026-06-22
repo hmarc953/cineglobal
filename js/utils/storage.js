@@ -122,7 +122,8 @@ const StorageUtil = {
     try {
       return JSON.parse(valor);
     } catch (error) {
-      return valor;
+      console.warn('[StorageUtil] Dato corrupto o mal formateado:', error.message);
+      return null;
     }
   },
 
@@ -131,6 +132,10 @@ const StorageUtil = {
    */
   _setItem(clave, valor, tipo) {
     try {
+      if (!clave || typeof clave !== 'string') {
+        return false;
+      }
+
       const storage = this._getStorage(tipo);
       storage.setItem(clave, this._serialize(valor));
       return true;
@@ -149,6 +154,10 @@ const StorageUtil = {
    */
   _getItem(clave, tipo) {
     try {
+      if (!clave || typeof clave !== 'string') {
+        return null;
+      }
+
       const storage = this._getStorage(tipo);
       const rawValue = storage.getItem(clave);
       return this._deserialize(rawValue);
@@ -163,6 +172,10 @@ const StorageUtil = {
    */
   _removeItem(clave, tipo) {
     try {
+      if (!clave || typeof clave !== 'string') {
+        return false;
+      }
+
       const storage = this._getStorage(tipo);
       if (storage.getItem(clave) === null) {
         console.warn(`[StorageUtil] La clave '${clave}' no existe en ${tipo}.`);

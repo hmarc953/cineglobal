@@ -112,46 +112,9 @@
                     <p class="cineglobal-ui-message mt-3" id="estadoFiltros" hidden></p>
                 </section>
 
-                <div class="row g-4 movies-list" id="listaPeliculas">
-                    <div class="col-12 col-md-6 col-lg-3">
-                        <article class="movie-card">
-                            <img class="movie-image img-fluid" src="assets/images/hoppers.jpeg" alt="Hoppers Operacion Castor" width="300" height="350">
-                            <h3 class="movie-title">Hoppers Operación Castor</h3>
-                            <data class="movie-date" value="2024-03-06">Fecha de estreno: 03 de Marzo de 2024</data>
-                            <a href="#" class="btn btn-primary buy-button" data-bs-toggle="modal" data-bs-target="#modalCompraHoppers">
-                                Compra boletos aqui
-                            </a>
-                        </article>
-                    </div>
-
-                    <div class="col-12 col-md-6 col-lg-3">
-                        <article class="movie-card">
-                            <img class="movie-image img-fluid" src="assets/images/scream-7.jpg" alt="Scream" width="300" height="350">
-                            <h3 class="movie-title">Scream 7</h3>
-                            <data class="movie-date" value="PROXIMAMENTE">Fecha de estreno: PROXIMAMENTE</data>
-                            <a href="#" class="btn btn-primary buy-button">Compra boletos aqui</a>
-                        </article>
-                    </div>
-
-                    <div class="col-12 col-md-6 col-lg-3">
-                        <article class="movie-card">
-                            <img class="movie-image img-fluid" src="assets/images/el-agente-secreto.jpg" alt="El Agente Secreto" width="300" height="350">
-                            <h3 class="movie-title">El Agente Secreto</h3>
-                            <data class="movie-date" value="2024-02-26">Fecha de estreno: 26 de febrero de 2026</data>
-                            <a href="#" class="btn btn-primary buy-button">Compra boletos aqui</a>
-                        </article>
-                    </div>
-
-                    <div class="col-12 col-md-6 col-lg-3">
-                        <article class="movie-card">
-                            <!-- Nota: Asegúrate de que esta imagen exista en tu carpeta assets/images/ -->
-                            <img class="movie-image img-fluid" src="assets/images/mario-galaxy.jpg" alt="Super Mario Galaxy: The Movie" width="300" height="350">
-                            <h3 class="movie-title">Super Mario Galaxy: The Movie</h3>
-                            <data class="movie-date" value="2026-04-01">Fecha de estreno: 01 de Abril de 2026</data>
-                            <a href="#" class="btn btn-primary buy-button">Compra boletos aqui</a>
-                        </article>
-                    </div>
-                </div>
+                <!-- Las películas se cargarán dinámicamente aquí -->   
+                <div class="row g-4 movies-list" id="listaPeliculas"></div>
+                            
             </section>
 
             <section id="horarios" class="mb-2">
@@ -394,7 +357,7 @@
 
                                     <div class="mb-4">
                                         <label for="compraHorario" class="form-label compra-label">Horarios</label>
-                                        <select class="form-select filter-select compra-select" id="compraFuncion" name="funcionId" aria-label="Seleccionar funcion" data-validate="required" disabled>
+                                        <select class="form-select filter-select compra-select" id="compraHorario" name="funcionId" aria-label="Seleccionar horario" data-validate="required" disabled>
                                             <option value="" selected disabled hidden>Elija un horario</option>
                                         </select>
                                     </div>

@@ -61,12 +61,44 @@ Jasmine.
 - Mockup PP: [Ver diseño bootstrap](docs/01-mockup/primer-parcial/diseño-bootstrap.png) · [Abrir en Figma](https://www.figma.com/proto/iFkK0k0pcsUrl8ZD1FvE8E/Cineglobal-Primer-Parcial?node-id=83-178&p=f&t=Gy7wEVFcQtWgGqQg-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=83%3A178)
 - Mockup A3: [Ver diseño](docs/01-mockup/actividad-obligatoria-3/diseño-con-flujos.png) · [Abrir en Figma](https://www.figma.com/proto/Xk7vwqJNdLzY66x0859tXS/Cineglobal-A3?node-id=83-178&p=f&t=uBPoXwkkepZQlUlm-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=83%3A178)
 - Diagramas de Actividades: [Ver índice de diagramas](docs/05-diagramas/01-diagrama-de-actividades/diagramas-doc.md)
-- Especificaciones de Rol (A3): [Arquitecto](docs/03-specs/actividad-obligatoria-3/spec-arq-diagramas.md) · [Desarrollo JS](docs/03-specs/actividad-obligatoria-3/spec-dev-javascript.md) · [Testing](docs/03-specs/actividad-obligatoria-3/spec-tester.md) · [DevOps](docs/03-specs/actividad-obligatoria-3/spec-devops.md)
 - Documentación JavaScript: [Ver especificación técnica](docs/03-specs/actividad-obligatoria-3/spec-dev-javascript.md)
 - Testing JS: [Reporte de Jasmine](js/test/testing-doc.md) · [Plan de Pruebas](docs/03-specs/actividad-obligatoria-3/spec-tester.md)
 - Testing HTML/CSS: [Índice de test cases](docs/04-testing/testing-doc.md)
 - Índice de Prompts: [Índice de prompts](docs/02-prompts/prompts.md)
 - Changelog: [Ver changelog](changelog.md)
+
+### Especificacion de Roles
+
+#### Actividad Obligatoria 1
+- [DevOps](docs/03-specs/actividad-obligatoria-1/spec-devops.md)
+- [Desarrollador Frontend](docs/03-specs/actividad-obligatoria-1/spec-frontend.md)  
+- [Diseñador UX](docs/03-specs/actividad-obligatoria-1/spec-ux.md) 
+- [Especialista en IA](docs/03-specs/actividad-obligatoria-1/spec-ia.md) 
+
+#### Actividad Obligatoria 2
+- [DevOps](docs/03-specs/actividad-obligatoria-2/spec-devops.md)
+- [Desarrollador Frontend/CSS](docs/03-specs/actividad-obligatoria-2/spec-frontend.md) 
+- [Especialista en Responsive Design](docs/03-specs/actividad-obligatoria-2/spec-responsive.md) 
+- [QA Tester](docs/03-specs/actividad-obligatoria-2/spec-qa.md) 
+
+#### Primer Parcial
+- [DevOps](docs/03-specs/primer-parcial/spec-devops.md)
+- [Desarrollador Frontend/Bootstrap](docs/03-specs/primer-parcial/spec-frontend-bootstrap.md) 
+- [Especialista en Componentes Bootstrap](docs/03-specs/primer-parcial/spec-componentes-bootstrap.md) 
+- [Desarrollador de Componentes HTML Avanzados](docs/03-specs/primer-parcial/spec-html-avanzados.md) 
+
+#### Actividad Obligatoria 3
+- [DevOps](docs/03-specs/actividad-obligatoria-3/spec-devops.md)
+- [Arquitecto de diagrama de actividades](docs/03-specs/actividad-obligatoria-3/spec-arq-diagramas.md) 
+- [Desarrollo JS](docs/03-specs/actividad-obligatoria-3/spec-dev-javascript.md) 
+- [Tester JS/QA Engineer](docs/03-specs/actividad-obligatoria-3/spec-tester.md) 
+
+#### Actividad Obligatoria 4
+- [DevOps](docs/03-specs/actividad-obligatoria-4/spec-devops.md)
+- [Desarrollador JS Eventos + DOM](docs/03-specs/actividad-obligatoria-4/spec-dev-eventos-dom.md) 
+- [Desarrollador JS POO](docs/03-specs/actividad-obligatoria-4/spec-dev-poo.md) 
+- [Desarrollador JS Local y Session Storage](docs/03-specs/actividad-obligatoria-4/spec-dev-storage.md) 
+- [Tester QA](docs/03-specs/actividad-obligatoria-4/spec-tester-qa.md) 
 
 ## Integrantes del Grupo
 

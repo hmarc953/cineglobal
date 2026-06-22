@@ -191,10 +191,10 @@ export class GestorUsuarios {
   }
 
   guardarEnStorage() {
-    return StorageUtil.guardarInstancia("usuarios", this, "local");
+    return StorageUtil.guardarInstancia("cine:usuario:datos", this, "local");
   }
 
   static cargarDesdeStorage() {
-    return StorageUtil.cargarInstancia("usuarios", GestorUsuarios, "local");
+    return StorageUtil.cargarInstancia("cine:usuario:datos", GestorUsuarios, "local");
   }
 }
