@@ -1,6 +1,84 @@
 # Changelog
 
 ## [Unreleased]
+## [Release Actividad Obligatoria N°4] - 2026-05-18
+
+### Added
+
+- [feature/tester-qa-specs] Realizacion de los test 
+  PR: [#174](https://github.com/hmarc953/cineglobal/pull/174) - @Santi22-7 (Coordinador / DevOps + Tester QA)
+-  [feature/dev-storage] Creacion de archivos storage.js strorage-doc.md y spec-dev-storrage.md, actualizacion de changelog.md
+  PR: [#161](https://github.com/hmarc953/cineglobal/pull/161) - @9919-Mili (Desarrollador JS Local y Session Storage)
+
+- [feature/coord-devops-cuarta-entrega] Creacion del spec , actualizacion del changelog y del Readme.md
+  PR: [#152](https://github.com/hmarc953/cineglobal/pull/152) - @Santi22-7 (Coordinador / DevOps + Tester QA)
+- [feature/coord-devops-cuarta-entrega] Cierre del spec
+  PR: [#176](https://github.com/hmarc953/cineglobal/pull/176) - @Santi22-7 (Coordinador / DevOps + Tester QA)
+
+- [feature/dev-poo-logica-negocio] Implementación del modelo de dominio y diagrama de clases
+  PR: [#158](https://github.com/hmarc953/cineglobal/pull/158) @hmarc953 (Desarrollador JS POO)
+
+- [feature/dev-poo-logica-negocio] Adaptación de clases del dominio para módulos ES6
+  PR: [#160](https://github.com/hmarc953/cineglobal/pull/160) @hmarc953 (Desarrollador JS POO)
+
+- [feature/dev-eventos-dom] Refactorización de js/script.js como controlador principal de Eventos + DOM.
+  PR: [#169](https://github.com/hmarc953/cineglobal/pull/169) - @abartomioli (Desarrollador JS Eventos + DOM)
+  
+- [feature/dev-poo-logica-negocio] Ajustes en filtros de películas e integración con Storage
+  PR: [#170](https://github.com/hmarc953/cineglobal/pull/170) @hmarc953 (Desarrollador JS POO)
+---
+### Fixed
+
+- [fix/correccion-dev-storage] Ajustes en localStorage y sessionStorage
+  PR: [#180](https://github.com/hmarc953/cineglobal/pull/180) - @9919-Mili (Desarrollador JS Local y Session Storage)
+
+- [fix/dropdown-dinamico-compra] Ajustes en modal de compra y dropdowns dinámicos
+  PR: [#179](https://github.com/hmarc953/cineglobal/pull/179) @hmarc953 (Desarrollador JS POO)
+
+- [fix/RC1-comilla-invertida] Fix - RC1: Comillas invertidas
+  PR: [#183](https://github.com/hmarc953/cineglobal/pull/183) @hmarc953 (Coordinador / DevOps)
+
+- [fix/RC2-remover-backport-del-changelog] Fix - RC2: Remueve backport del changelog
+  PR: [#184](https://github.com/hmarc953/cineglobal/pull/184) @hmarc953 (Coordinador / DevOps)
+
+- [fix/RC3-documentacion-roles-README] Fix - RC3: Documentacion roles README
+  PR: [#185](https://github.com/hmarc953/cineglobal/pull/185) @hmarc953 (Coordinador / DevOps)
+
+- [fix/RC13-comilla-invertida] Fix - RC13: Comillas invertidas
+  PR: [#186](https://github.com/hmarc953/cineglobal/pull/186) @hmarc953 (Coordinador / DevOps)
+
+- [fix/RC12-remover-peliculas-estaticas] Fix - RC12: Remover peliculas estaticas
+  PR: [#187](https://github.com/hmarc953/cineglobal/pull/187) @hmarc953 (Coordinador / DevOps)
+
+- [fix/RC14-convencion-claves] Fix - RC14: Convencion de claves
+  PR: [#188](https://github.com/hmarc953/cineglobal/pull/188) @hmarc953 (Coordinador / DevOps)
+
+- [fix/RC9-bloque-catch-vacio] Fix RC9: Bloque catch vacio
+  PR: [#189](https://github.com/hmarc953/cineglobal/pull/189) @hmarc953 (Coordinador / DevOps)
+
+- [fix/RC8-checklist-incompleto] Fix RC8: Checklist incompleto 
+  PR: [#190](https://github.com/hmarc953/cineglobal/pull/190) @hmarc953 (Coordinador / DevOps)
+
+- [fix/RC7-remover-prompt-alert-testing-doc] Fix RC7: Remover prompt alert testing doc  
+  PR: [#191](https://github.com/hmarc953/cineglobal/pull/191) @hmarc953 (Coordinador / DevOps)
+
+- [fix/RC6-Actualizacion-fecha-test] Fix RC6: Actualizacion fecha test  
+  PR: [#192](https://github.com/hmarc953/cineglobal/pull/192) @hmarc953 (Coordinador / DevOps)
+
+- [fix/RC11-modularizar-y-documentar-script] Fix RC11: Modularizacion y documentar script  
+  PR: [#193](https://github.com/hmarc953/cineglobal/pull/193) @hmarc953 (Coordinador / DevOps)
+
+- [fix/RC10-estados-visuales] Fix RC10: Estados visuales
+  PR: [#194](https://github.com/hmarc953/cineglobal/pull/194) @hmarc953 (Coordinador / DevOps)
+
+- [fix/RC4-reescritura-script.spec.js] Fix RC4: Reescritura test QA
+  PR: [#197](https://github.com/hmarc953/cineglobal/pull/197) @hmarc953 (Coordinador / DevOps)
+
+- [fix/accesibilidad-label-horario-compra] Fix: Correcion label horario compra
+  PR: [#199](https://github.com/hmarc953/cineglobal/pull/199) @hmarc953 (Coordinador / DevOps)
+
+- [fix/RC6-Actualizacion-test-fecha] Fix RC6: Actualizo fecha test
+  PR: [#200](https://github.com/hmarc953/cineglobal/pull/200) @hmarc953 (Coordinador / DevOps)
 
 ## [Release Actividad Obligatoria N°3] - 2026-05-07
 
@@ -33,6 +111,7 @@
 
 - [fix/correción-de-función] Corrección de un error que no permitía que se vea los flujos
   PR: [#150](https://github.com/hmarc953/cineglobal/pull/150) - @Santi22-7 (Coordinador / DevOps + Tester QA)
+
 
 ## [Release Primer Parcial] - 2026-04-22
 
