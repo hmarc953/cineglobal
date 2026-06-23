@@ -6,6 +6,11 @@ import { CatalogoPeliculas } from './models/CatalogoPeliculas.js';
 import { Compra } from './models/Compra.js';
 import { ConsultaSoporte } from './models/ConsultaSoporte.js';
 import { StorageUtil } from './utils/storage.js';
+import {
+  showInfoToast,
+  showSuccessToast,
+  showWarningToast,
+} from './utils/toast.js';
 
 import {
   consultarElemento,
@@ -288,11 +293,24 @@ function manejarFiltroPeliculas(event) {
   ocultarLoading(estadoFiltros);
 
   renderizarPeliculas(resultados, SELECTORES);
+  const mensajeFiltros = resultados.length
+    ? `${resultados.length} pelicula(s) encontradas.`
+    : 'No se encontraron peliculas con esos filtros.';
+
   mostrarMensaje(
     consultarElemento(SELECTORES.estadoFiltros),
-    resultados.length ? `${resultados.length} pelicula(s) encontradas.` : 'No se encontraron peliculas con esos filtros.',
+    mensajeFiltros,
     resultados.length ? 'success' : 'error'
   );
+
+  if (debeNotificarFiltro(event)) {
+    if (resultados.length) {
+      showInfoToast(mensajeFiltros);
+    } else {
+      showWarningToast(mensajeFiltros);
+    }
+  }
+
   persistirDato(STORAGE_KEYS.filtros, filtros, 'session');
 }
 
@@ -303,6 +321,10 @@ function manejarLimpiarFiltros() {
   limpiarMensaje(consultarElemento(SELECTORES.estadoFiltros));
   eliminarDato(STORAGE_KEYS.filtros, 'session');
   renderizarPeliculas(estadoApp.catalogoPeliculas.listarPeliculas(), SELECTORES);
+}
+
+function debeNotificarFiltro(event) {
+  return event.type !== 'input';
 }
 
 // ==============================
@@ -329,6 +351,7 @@ function manejarLogin(event) {
   estadoApp.usuarioActivo = usuario;
   persistirDato(STORAGE_KEYS.usuarioActivo, usuario.toJSON(), 'session');
   mostrarExito(mensaje, `Bienvenido/a, ${usuario.nombre}.`);
+  showSuccessToast(`Sesion iniciada: ${usuario.nombre}.`);
   actualizarConfirmacion(SELECTORES.confirmLoginTexto, `Inicio de sesion realizado correctamente para ${usuario.email}.`);
   limpiarFormulario(formulario);
   actualizarEstadoSubmit(formulario);
@@ -373,6 +396,7 @@ function manejarRegistro(event) {
   }
 
   mostrarExito(mensaje, 'Cuenta creada correctamente.');
+  showSuccessToast('Cuenta creada correctamente.');
   actualizarConfirmacion(SELECTORES.confirmRegistroTexto, `La cuenta ${usuario.email} fue creada correctamente.`);
   limpiarFormulario(formulario);
   actualizarEstadoSubmit(formulario);
@@ -437,6 +461,7 @@ function manejarSeleccionCompra(event) {
   estadoApp.cantidadEntradas = Number(datos.cantidadEntradas);
   renderizarResumenCompra(estadoApp.peliculaSeleccionada, funcion, estadoApp.cantidadEntradas);
   mostrarExito(mensaje, 'Funcion seleccionada. Continuá con los datos de pago.');
+  showInfoToast('Funcion seleccionada. Continua con el pago.');
   cerrarModal('modalCompra');
   abrirModal('modalPago');
 }
@@ -471,6 +496,7 @@ function manejarConfirmacionCompra(event) {
 
   // Una vez confirmada, se persiste en storage como parte del historial.
   guardarEnListaStorage(STORAGE_KEYS.compras, compra.toJSON(), 'local');
+  showSuccessToast('Compra guardada en el historial.');
   actualizarConfirmacion(
     SELECTORES.confirmCompraTexto,
     `Compra confirmada para ${estadoApp.peliculaSeleccionada.titulo}. Codigo: ${compra.codigoConfirmacion}. Total: $${compra.total}.`
@@ -506,6 +532,7 @@ function manejarConsultaSoporte(event) {
 
   const ticket = consulta.generarTicket();
   guardarEnListaStorage(STORAGE_KEYS.tickets, consulta.toJSON(), 'local');
+  showSuccessToast(`Consulta enviada y ticket guardado: ${ticket}.`);
   actualizarConfirmacion(SELECTORES.confirmConsultaTexto, `Tu consulta fue enviada correctamente. Ticket: ${ticket}.`);
   mostrarExito(mensaje, `Consulta enviada. Ticket: ${ticket}.`);
   limpiarFormulario(formulario);
