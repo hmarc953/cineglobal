@@ -50,8 +50,8 @@
 
 ## Issues Generadas
 
-- [pendiente - solo si el detalle expandido revela algo a corregir;
-  con estos puntajes no hay issues críticas obligatorias por umbral]
+- #209 - Agregar meta descripcion al index.html
+- #208 - Corregir contraste de color insuficiente (Accessibility)
 
 ## Conclusiones
 
