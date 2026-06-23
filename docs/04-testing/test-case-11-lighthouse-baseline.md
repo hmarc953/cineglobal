@@ -28,25 +28,26 @@
 - Render-blocking requests detectados
 - Page prevented back/forward cache restoration (1 razón de falla)
 
-![Captura Performance](./screenshots/lighthouse-baseline-performance.png)(./screenshots/lighthouse-baseline-performance-2.png)
+![Captura Performance 1](../../js/test/screenshots/lighthouse-baseline-performance.png)
+![Captura Performance 2](../../js/test/screenshots/lighthouse-baseline-performance-2.png)
 
 ### Accessibility: 96 ✅
 - - **Contraste insuficiente:** "Background and foreground colors do not have a sufficient contrast ratio" en al menos un elemento de la página.
 - 22 auditorías pasadas correctamente; 10 ítems adicionales requieren revisión manual (no automatizable por Lighthouse).
 
 
-![Captura Accessibility](./screenshots/lighthouse-baseline-accessibility.png)
+![Captura Accessibility](../../js/test/screenshots/lighthouse-baseline-accesibility.png)
 
 ### Best Practices: 100 ✅
 - Sin observaciones; puntaje máximo. 13 auditorías pasadas, 2 no aplicables al proyecto (HSTS, COOP, CSP avanzado son checks de servidor que no aplican a un sitio estático en este entorno)
 
-![Captura Best Practices](./screenshots/lighthouse-baseline-best-practices.png)
+![Captura Best Practices](../../js/test/screenshots/lighthouse-baseline-best-practices.png)
 
 ### SEO: 91 ✅
 - - **Falta meta description:** "Document does not have a meta description" en el `<head>` del HTML.
 - 7 auditorías pasadas, 1 ítem adicional de revisión manual, 2 no aplicables..
 
-![Captura Seo](./screenshots/lighthouse-baseline-seo.png)
+![Captura SEO](../../js/test/screenshots/lighthouse-baseline-seo.jpg)
 
 ## Issues Generadas
 

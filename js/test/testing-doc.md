@@ -1,5 +1,42 @@
 # Documentación de Testing - Suite Jasmine
 
+## Actualización Segundo Parcial (23/06/2026)
+
+### Alcance implementado
+
+- Se agregó la suite `js/test/api.spec.js` con cobertura de:
+  - fetch exitoso
+  - error HTTP
+  - error de red
+  - procesamiento con map/filter/reduce
+  - integración básica con DOM
+- Se agregó la suite `js/test/library.spec.js` con cobertura de:
+  - inicialización de librería
+  - configuración
+  - funcionalidad principal
+  - manejo de errores
+  - interacción con DOM
+- Se refactorizó `js/test/script.spec.js` para alinear el flujo de compra con el selector real `#compraHorario`.
+- Se actualizó `js/test/models.spec.js` para cubrir persistencia en `CatalogoPeliculas` y `GestorUsuarios` (`guardarEnStorage`/`cargarDesdeStorage`).
+
+### Runner y ejecución
+
+- `js/test/test-runner.html` mantiene las suites núcleo (`models`, `storage`, `script`) y carga `api`/`library` como suites opcionales.
+- Si faltan `api.spec.js` o `library.spec.js`, el runner no se detiene; registra warning y continúa con el resto.
+
+### Cobertura funcional añadida
+
+| Archivo nuevo/actualizado | Objetivo | Estado |
+|---|---|---|
+| `js/test/api.spec.js` | Testing funcional asíncrono con fetch y procesamiento de datos | Implementado |
+| `js/test/library.spec.js` | Testing de librería externa e integración | Implementado |
+| `js/test/script.spec.js` | Refactor de flujo de compra (`#compraHorario`) | Implementado |
+| `js/test/models.spec.js` | Cobertura de persistencia en clases POO | Implementado |
+
+### Evidencia complementaria de QA
+
+- Baseline Lighthouse documentado en `docs/04-testing/test-case-11-lighthouse-baseline.md` con capturas y hallazgos.
+
 # Actividad Obligatoria 3
 - **Fecha:** 17/05/2026
 - **Tester/QA Engineer:** @9919-Mili
