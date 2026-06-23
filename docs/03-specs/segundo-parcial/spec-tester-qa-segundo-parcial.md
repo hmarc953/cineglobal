@@ -19,6 +19,8 @@ Garantizar la calidad del Segundo Parcial mediante pruebas funcionales avanzadas
 
 ### `js/test/api.spec.js`
 
+API/fuente de datos a testear: TheMovieDB (ej. endpoint de películas populares `/movie/popular` o similar, según defina el Dev Async). Requiere API Key — los tests deben mockear `fetch` y no depender de la key real ni de la red.
+
 Se cubrirán los siguientes casos:
 
 - **Caso de éxito**: `fetchData()` devuelve los datos esperados cuando la API responde `ok: true`.
@@ -35,6 +37,10 @@ Se cubrirán los siguientes casos:
 - validar el valor retornado y cualquier actualización de DOM asociada.
 
 ### `js/test/library.spec.js`
+
+
+Librería a testear: Toastify (https://github.com/apvarun/toastify-js) —
+notificaciones tipo "toast" en pantalla.
 
 Se cubrirán los siguientes casos:
 
@@ -124,19 +130,19 @@ COMPLETAR
 
 ## AT CLOSE - Completar como evidencia al cerrar la tarea
 
-> Esta sección se completa una vez finalizado el trabajo.
+> Esta sección se completa una vez finalizado el trabajo, con datos reales.
 
 - **Prompt(s) exacto(s) utilizado(s) en Copilot Agent:** `[pendiente]`
 - **Archivos adjuntados como contexto en cada generación:** `[pendiente]`
 - **Resumen de resultados de api.spec.js:** `[pendiente - cuántos tests pasaron/fallaron]`
-- [ ] `library.spec.js` completo con inicialización, configuración, funcionalidad principal y manejo de errores.
-- [ ] `test-case-11-lighthouse-baseline.md` documentado.
-- [ ] `test-case-12-lighthouse-post-fetch.md` documentado.
-- [ ] `test-case-13-lighthouse-post-library.md` documentado.
-- [ ] Los tres informes Lighthouse incluyen comparaciones.
-- [ ] Issues creadas y asignadas a los roles correspondientes.
-- [ ] `js/test/testing-doc.md` y `docs/03-testing/testing-doc.md` actualizados con los nuevos test cases.
-- [ ] `changelog.md` actualizado con PR e issues enlazadas.
+- **Resumen de resultados de library.spec.js:** `[pendiente - cuántos tests pasaron/fallaron]`
+- **Resultados Lighthouse - Baseline:** 97 / 96 / 100 / 91 (ver test-case-11)
+- **Resultados Lighthouse - Post-Fetch:** `[pendiente]`
+- **Resultados Lighthouse - Post-Librería:** `[pendiente]`
+- **Cantidad de issues reportadas y su estado:** 2 issues abiertas por hallazgos
+  baseline (#208 meta description, #209 contraste) — `[completar a medida
+  que surjan más]`
+- **Ajustes manuales realizados sobre los tests generados por IA:** `[pendiente]`
 
 ---
 
