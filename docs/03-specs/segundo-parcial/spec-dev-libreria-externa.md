@@ -4,7 +4,7 @@
 
 * Rol: Desarrollador JS Librerias Externas
 * Responsable: Alejandro Bartomioli
-* Rama local: feature/dev-libreria-externa-sweetalert2
+* Rama local: feature/dev-libreria-externa-toastify
 * Libreria seleccionada: Toastify
 * Metodo de integracion: CDN
 * Proyecto: CineGlobal
