@@ -45,8 +45,8 @@ Implementar un sistema propio de toasts implicaria resolver creacion dinamica de
 La libreria se integrara por CDN en `index.html` mediante su CSS y su script JavaScript:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.css">
+<script src="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0"></script>
 ```
 
 El CSS se ubicara en el `head`, despues de Bootstrap y antes de los estilos propios si se requiere ajustar especificidad visual. El script se ubicara antes de `js/script.js` para que el wrapper pueda acceder a `window.Toastify`.
@@ -114,14 +114,117 @@ Toastify no se usara para:
 
 ### Criterios de aceptacion
 
-* [ ] Toastify integrada por CDN en `index.html`.
-* [ ] Wrapper `js/utils/toast.js` creado con funciones reutilizables.
-* [ ] La libreria se usa como minimo en 2 puntos de la aplicacion.
-* [ ] La libreria se integra en filtros, login/registro exitoso, seleccion de funcion, consulta enviada y persistencia de compra/ticket.
-* [ ] No se reemplazan modales Bootstrap existentes.
-* [ ] No se reemplazan mensajes inline de validacion.
-* [ ] La logica de negocio existente no se rompe.
-* [ ] La integracion mantiene consistencia visual.
-* [ ] Se documenta la libreria en `docs/07-librerias/libreria-doc.md`.
-* [ ] Se deja preparada la integracion para pruebas del Tester QA/JS.
+* [x] Toastify integrada por CDN en `index.html`.
+* [x] Wrapper `js/utils/toast.js` creado con funciones reutilizables.
+* [x] La libreria se usa como minimo en 2 puntos de la aplicacion.
+* [x] La libreria se integra en filtros, login/registro exitoso, seleccion de funcion, consulta enviada y persistencia de compra/ticket.
+* [x] No se reemplazan modales Bootstrap existentes.
+* [x] No se reemplazan mensajes inline de validacion.
+* [x] La logica de negocio existente no se rompe.
+* [x] La integracion mantiene consistencia visual.
+* [x] Se documenta la libreria en `docs/07-librerias/libreria-doc.md`.
+* [x] Se deja preparada la integracion para pruebas del Tester QA/JS.
 * [ ] Se actualiza `changelog.md`.
+
+## Momento 2: Al cerrar la tarea
+
+### Prompt exacto utilizado
+
+```text
+Actua como un desarrollador JavaScript Senior especializado en arquitectura frontend, ES Modules, integracion de librerias externas por CDN, buenas practicas de Git Flow y documentacion tecnica academica.
+
+Implementar Toastify en CineGlobal como libreria externa por CDN. La libreria debe usarse como capa complementaria de notificaciones no bloqueantes, sin reemplazar modales Bootstrap, mensajes inline, validaciones ni logica de negocio existente.
+
+Integrar Toastify en filtros, login/registro exitoso, seleccion de funcion, consulta enviada y persistencia de compra/ticket. Crear wrapper en js/utils/toast.js, documentar en docs/07-librerias/libreria-doc.md, actualizar changelog.md y completar el cierre del spec.
+```
+
+### Fragmento del codigo de integracion final
+
+CDN en `index.html`:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.css">
+<script src="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0"></script>
+```
+
+Wrapper en `js/utils/toast.js`:
+
+```javascript
+export function showSuccessToast(message) {
+  return showToast(message, 'success');
+}
+
+export function showInfoToast(message) {
+  return showToast(message, 'info');
+}
+
+export function showWarningToast(message) {
+  return showToast(message, 'warning');
+}
+```
+
+Uso real en filtros:
+
+```javascript
+if (debeNotificarFiltro(event)) {
+  if (resultados.length) {
+    showInfoToast(mensajeFiltros);
+  } else {
+    showWarningToast(mensajeFiltros);
+  }
+}
+```
+
+Uso real en persistencia de compra:
+
+```javascript
+guardarEnListaStorage(STORAGE_KEYS.compras, compra.toJSON(), 'local');
+showSuccessToast('Compra guardada en el historial.');
+```
+
+### Ajustes manuales realizados
+
+* Se agrego Toastify por CDN en `index.html`.
+* Se creo `js/utils/toast.js` como wrapper centralizado.
+* Se agregaron notificaciones en filtros, login exitoso, registro exitoso, seleccion de funcion, compra guardada y consulta/ticket guardado.
+* Se mantuvieron los mensajes inline existentes.
+* Se mantuvieron los modales Bootstrap existentes.
+* Se evito disparar toasts en cada tecla del filtro de titulo para no saturar al usuario.
+* No se modificaron modelos POO, Storage, Fetch/API ni tests avanzados.
+* Quedo pendiente actualizar `changelog.md` porque el parche sobre ese archivo fue rechazado durante la edicion.
+
+### Resumen de integracion
+
+Toastify quedo integrado en:
+
+* resultados de filtros de cartelera;
+* login exitoso;
+* registro exitoso;
+* seleccion de funcion antes del pago;
+* persistencia de compra en historial;
+* consulta enviada y ticket persistido.
+
+### Mejora en experiencia de usuario
+
+La mejora consiste en brindar feedback breve y contextual sin interrumpir la navegacion. Toastify acompana acciones exitosas e informativas, mientras el sitio conserva sus modales, mensajes inline y validaciones.
+
+### Coordinacion con Tester QA/JS
+
+El Tester QA/JS deberia validar en `library.spec.js`:
+
+* carga de Toastify por CDN;
+* funciones exportadas por `js/utils/toast.js`;
+* fallback cuando `window.Toastify` no existe;
+* notificacion en filtros;
+* notificacion en login y registro exitosos;
+* notificacion en seleccion de funcion;
+* notificacion de compra guardada;
+* notificacion de consulta enviada y ticket guardado;
+* que no se hayan reemplazado modales Bootstrap ni mensajes inline.
+
+### Issues respondidas o pendientes
+
+* Issue asociada: pendiente de completar.
+* PR asociada: pendiente de completar.
+* Estado: pendiente de revision.
+* Changelog: pendiente de completar.

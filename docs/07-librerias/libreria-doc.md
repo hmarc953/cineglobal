@@ -1,0 +1,133 @@
+# Documentacion de Libreria Externa - Toastify
+
+## Informacion General
+
+- **Nombre:** Toastify
+- **Version:** 1.12.0 via CDN
+- **Repositorio:** https://github.com/apvarun/toastify-js
+- **Documentacion oficial:** https://apvarun.github.io/toastify-js/
+- **Metodo de integracion:** CDN
+- **Rol:** Desarrollador JS Librerias Externas
+- **Rama:** `feature/dev-libreria-externa-toastify`
+
+## Proposito y Justificacion
+
+Toastify se eligio para CineGlobal porque permite mostrar notificaciones breves, no bloqueantes y visualmente consistentes sin reemplazar funcionalidades ya existentes del proyecto.
+
+El sitio ya cuenta con mensajes inline, validaciones propias y modales Bootstrap para confirmaciones importantes. Por eso, Toastify no se utiliza para reemplazar esas funcionalidades, sino como una capa complementaria de feedback para reforzar acciones exitosas o estados informativos.
+
+La libreria aporta valor en situaciones donde un toast mejora la experiencia sin interrumpir el flujo del usuario, por ejemplo: resultados de filtros, login exitoso, registro exitoso, seleccion de funcion, compra guardada y consulta enviada.
+
+## Instalacion e Integracion
+
+### Metodo utilizado: CDN
+
+Toastify se integra en `index.html` mediante su hoja de estilos y su script JavaScript:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.css">
+<script src="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0"></script>
+```
+
+El CSS se carga en el `head` y el script se carga antes de `js/script.js`, para que el wrapper del proyecto pueda acceder a `window.Toastify`.
+
+## Arquitectura de Integracion
+
+La integracion se centraliza en el archivo:
+
+```text
+js/utils/toast.js
+```
+
+El wrapper evita llamadas directas a `Toastify()` desde los controladores principales y mantiene una configuracion comun de duracion, posicion, colores y fallback.
+
+Funciones previstas:
+
+```javascript
+showSuccessToast(message);
+showInfoToast(message);
+showWarningToast(message);
+```
+
+## Uso en el Proyecto
+
+### Caso de Uso 1: Filtros de cartelera
+
+Toastify se utiliza para informar rapidamente el resultado de una busqueda en cartelera, sin reemplazar el mensaje inline `estadoFiltros`.
+
+```javascript
+if (debeNotificarFiltro(event)) {
+  if (resultados.length) {
+    showInfoToast(mensajeFiltros);
+  } else {
+    showWarningToast(mensajeFiltros);
+  }
+}
+```
+
+### Caso de Uso 2: Login y registro exitosos
+
+Cuando el usuario inicia sesion o crea una cuenta correctamente, Toastify refuerza el feedback de exito sin reemplazar el modal Bootstrap ni los mensajes existentes.
+
+```javascript
+showSuccessToast(`Sesion iniciada: ${usuario.nombre}.`);
+```
+
+```javascript
+showSuccessToast('Cuenta creada correctamente.');
+```
+
+### Caso de Uso 3: Seleccion de funcion
+
+Al seleccionar correctamente cine, idioma, horario y cantidad de entradas, Toastify informa que el usuario puede continuar con el pago.
+
+```javascript
+showInfoToast('Funcion seleccionada. Continua con el pago.');
+```
+
+### Caso de Uso 4: Persistencia de compra
+
+Luego de confirmar una compra, Toastify informa que la operacion fue guardada en el historial. El modal Bootstrap final se mantiene como confirmacion principal.
+
+```javascript
+guardarEnListaStorage(STORAGE_KEYS.compras, compra.toJSON(), 'local');
+showSuccessToast('Compra guardada en el historial.');
+```
+
+### Caso de Uso 5: Consulta enviada y ticket guardado
+
+Cuando el usuario envia una consulta, Toastify informa que el ticket fue generado y guardado.
+
+```javascript
+showSuccessToast(`Consulta enviada y ticket guardado: ${ticket}.`);
+```
+
+## Capturas de Pantalla
+
+![Toast de filtro con resultados](./screenshots/feature-1.png)
+
+![Toast de compra guardada](./screenshots/feature-2.png)
+
+## Consideraciones Tecnicas
+
+- Toastify no reemplaza modales Bootstrap existentes.
+- Toastify no reemplaza mensajes inline de validacion.
+- Toastify no modifica logica de negocio.
+- Toastify no modifica modelos POO, Storage ni Fetch/API.
+- El wrapper valida si `window.Toastify` existe antes de intentar mostrar una notificacion.
+- Si la libreria no carga, el flujo principal sigue funcionando.
+
+## Testing Sugerido para Tester QA/JS
+
+Se recomienda validar:
+
+- carga de Toastify por CDN;
+- existencia del wrapper `js/utils/toast.js`;
+- fallback si `window.Toastify` no existe;
+- notificacion en filtros;
+- notificacion en login exitoso;
+- notificacion en registro exitoso;
+- notificacion al seleccionar funcion;
+- notificacion al guardar compra;
+- notificacion al enviar consulta y guardar ticket;
+- que no se hayan reemplazado modales Bootstrap ni mensajes inline.
