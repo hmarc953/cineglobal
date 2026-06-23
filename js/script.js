@@ -6,7 +6,7 @@ import { CatalogoPeliculas } from './models/CatalogoPeliculas.js';
 import { Compra } from './models/Compra.js';
 import { ConsultaSoporte } from './models/ConsultaSoporte.js';
 import { StorageUtil } from './utils/storage.js';
-
+import ApiService from './services/api.service.js';
 import {
   consultarElemento,
   valorCampo,
@@ -125,6 +125,22 @@ const usuarioInicial = {
 // ==============================
 document.addEventListener('DOMContentLoaded', inicializarApp);
 
+async function inicializarApp() {
+  cargarStorage();
+
+  await cargarDatosIniciales();
+
+  configurarEventos();
+  restaurarFiltros();
+
+  renderizarPeliculas(
+    estadoApp.catalogoPeliculas.listarPeliculas(),
+    SELECTORES
+  );
+
+  validarFormulariosIniciales();
+}
+
 function inicializarApp() {
   cargarStorage();
   cargarDatosIniciales();
@@ -138,52 +154,131 @@ function cargarStorage() {
   estadoApp.storage = StorageUtil;
 }
 
-function cargarDatosIniciales() {
-  // Intenta restaurar el gestor de usuarios persistido.
+async function cargarDatosIniciales() {
   let gestor = null;
+
   try {
     gestor = GestorUsuarios.cargarDesdeStorage();
   } catch (e) {
-    console.warn('Error al cargar GestorUsuarios desde storage:', e.message || e);
+    console.warn(
+      'Error al cargar GestorUsuarios desde storage:',
+      e.message || e
+    );
   }
 
-  // Si no hay datos previos, crea el usuario administrador inicial
-  // y deja persistida esa estructura base.
   if (gestor) {
     estadoApp.gestorUsuarios = gestor;
   } else {
-    const usuarios = [new Usuario('user_admin', usuarioInicial.nombre, usuarioInicial.email, usuarioInicial.password)];
-    estadoApp.gestorUsuarios = new GestorUsuarios(usuarios);
+    const usuarios = [
+      new Usuario(
+        'user_admin',
+        usuarioInicial.nombre,
+        usuarioInicial.email,
+        usuarioInicial.password
+      )
+    ];
+
+    estadoApp.gestorUsuarios =
+      new GestorUsuarios(usuarios);
+
     try {
       estadoApp.gestorUsuarios.guardarEnStorage();
     } catch (e) {
-      console.warn('No se pudo guardar GestorUsuarios en storage:', e.message || e);
+      console.warn(
+        'No se pudo guardar GestorUsuarios en storage:',
+        e.message || e
+      );
     }
   }
 
-  // Recupera el usuario activo, priorizando datos persistentes.
-  const usuarioGuardadoLocal = obtenerDato(STORAGE_KEYS.usuarioActivo, 'local');
-  const usuarioGuardadoSession = obtenerDato(STORAGE_KEYS.usuarioActivo, 'session');
-  const usuarioJson = usuarioGuardadoLocal || usuarioGuardadoSession || null;
-  estadoApp.usuarioActivo = usuarioJson ? Usuario.fromJSON(usuarioJson) : null;
+  const usuarioGuardadoLocal =
+    obtenerDato(STORAGE_KEYS.usuarioActivo, 'local');
 
-  // Intenta restaurar el catálogo persistido y, si no existe,
-  // carga la cartelera inicial de la aplicación.
+  const usuarioGuardadoSession =
+    obtenerDato(STORAGE_KEYS.usuarioActivo, 'session');
+
+  const usuarioJson =
+    usuarioGuardadoLocal ||
+    usuarioGuardadoSession ||
+    null;
+
+  estadoApp.usuarioActivo =
+    usuarioJson
+      ? Usuario.fromJSON(usuarioJson)
+      : null;
+
   let catalogo = null;
+
   try {
     catalogo = CatalogoPeliculas.cargarDesdeStorage();
   } catch (e) {
-    console.warn('Error al cargar CatalogoPeliculas desde storage:', e.message || e);
+    console.warn(
+      'Error al cargar CatalogoPeliculas desde storage:',
+      e.message || e
+    );
   }
 
   if (catalogo) {
     estadoApp.catalogoPeliculas = catalogo;
   } else {
-    estadoApp.catalogoPeliculas = new CatalogoPeliculas(crearPeliculasIniciales());
     try {
-      estadoApp.catalogoPeliculas.guardarEnStorage();
-    } catch (e) {
-      console.warn('No se pudo guardar CatalogoPeliculas en storage:', e.message || e);
+      const mensajeApi =
+        consultarElemento('#mensaje-api');
+
+      const datosApi =
+        await ApiService.fetchData(
+          './api/peliculas.json',
+          mensajeApi
+        );
+
+      const peliculas =
+        datosApi.map(
+          (pelicula) =>
+            new Pelicula(
+              pelicula.id,
+              pelicula.title,
+              pelicula.categoria,
+              pelicula.clasificacion,
+              pelicula.fechaEstreno,
+              pelicula.imagen,
+              (pelicula.funciones || []).map(
+                (funcion) =>
+                  new Funcion(
+                    funcion.id,
+                    funcion.cine,
+                    funcion.idioma,
+                    funcion.horario,
+                    funcion.asientosDisponibles,
+                    funcion.precio
+                  )
+              )
+            )
+        );
+
+      estadoApp.catalogoPeliculas =
+        new CatalogoPeliculas(
+          peliculas
+        );
+
+      try {
+        estadoApp.catalogoPeliculas.guardarEnStorage();
+      } catch (e) {
+        console.warn(
+          'No se pudo guardar CatalogoPeliculas en storage:',
+          e.message || e
+        );
+      }
+
+    } catch (error) {
+      console.warn(
+        'Error al cargar API. Se utilizará catálogo local.',
+        error
+      );
+
+      estadoApp.catalogoPeliculas =
+        new CatalogoPeliculas(
+          crearPeliculasIniciales()
+        );
     }
   }
 }
