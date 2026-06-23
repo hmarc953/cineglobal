@@ -50,8 +50,8 @@
 
 ## Issues Generadas
 
-- #209 - Agregar meta descripcion al index.html
-- #208 - Corregir contraste de color insuficiente (Accessibility)
+- [#209] - Agregar meta descripcion al index.html
+- [#208] - Corregir contraste de color insuficiente (Accessibility)
 
 ## Conclusiones
 
