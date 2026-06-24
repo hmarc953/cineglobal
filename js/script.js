@@ -7,6 +7,7 @@ import { Compra } from './models/Compra.js';
 import { ConsultaSoporte } from './models/ConsultaSoporte.js';
 import { StorageUtil } from './utils/storage.js';
 import {
+  showErrorToast,
   showInfoToast,
   showSuccessToast,
   showWarningToast,
@@ -92,7 +93,6 @@ const SELECTORES = {
   mensajePago: '#mensajePago',
   mensajeConsulta: '#mensajeConsulta',
   resumenCompra: '#resumenCompra',
-  confirmLoginTexto: '#confirmLoginTexto',
   confirmRegistroTexto: '#confirmRegistroTexto',
   confirmCompraTexto: '#confirmCompraTexto',
   confirmConsultaTexto: '#confirmConsultaTexto',
@@ -320,7 +320,11 @@ function manejarLimpiarFiltros() {
 }
 
 function debeNotificarFiltro(event) {
-  return Boolean(event);
+  if (event?.type === 'input') {
+    return false;
+  }
+
+  return true;
 }
 
 // ==============================
@@ -348,7 +352,6 @@ function manejarLogin(event) {
   persistirDato(STORAGE_KEYS.usuarioActivo, usuario.toJSON(), 'session');
   mostrarExito(mensaje, `Bienvenido/a, ${usuario.nombre}.`);
   showSuccessToast(`Sesion iniciada: ${usuario.nombre}.`);
-  actualizarConfirmacion(SELECTORES.confirmLoginTexto, `Inicio de sesion realizado correctamente para ${usuario.email}.`);
   limpiarFormulario(formulario);
   actualizarEstadoSubmit(formulario);
   cerrarModal('modalLogin');
@@ -390,13 +393,10 @@ function manejarRegistro(event) {
     console.warn('No se pudo persistir GestorUsuarios:', e.message || e);
   }
 
-  mostrarExito(mensaje, 'Cuenta creada correctamente.');
   showSuccessToast('Cuenta creada correctamente.');
-  actualizarConfirmacion(SELECTORES.confirmRegistroTexto, `La cuenta ${usuario.email} fue creada correctamente.`);
   limpiarFormulario(formulario);
   actualizarEstadoSubmit(formulario);
   cerrarModal('modalRegistro');
-  abrirModal('modalConfirmRegistro');
 }
 
 // ==============================
@@ -490,8 +490,12 @@ function manejarConfirmacionCompra(event) {
   }
 
   // Una vez confirmada, se persiste en storage como parte del historial.
-  guardarEnListaStorage(STORAGE_KEYS.compras, compra.toJSON(), 'local');
-  showSuccessToast('Compra guardada en el historial.');
+  const compraGuardada = guardarEnListaStorage(STORAGE_KEYS.compras, compra.toJSON(), 'local');
+  if (compraGuardada) {
+    showSuccessToast('Compra guardada en el historial.');
+  } else {
+    showErrorToast('No se pudo guardar la compra en el historial.');
+  }
   actualizarConfirmacion(
     SELECTORES.confirmCompraTexto,
     `Compra confirmada para ${estadoApp.peliculaSeleccionada.titulo}. Codigo: ${compra.codigoConfirmacion}. Total: $${compra.total}.`
@@ -526,8 +530,10 @@ function manejarConsultaSoporte(event) {
   }
 
   const ticket = consulta.generarTicket();
-  guardarEnListaStorage(STORAGE_KEYS.tickets, consulta.toJSON(), 'local');
-  showSuccessToast(`Consulta enviada y ticket guardado: ${ticket}.`);
+  const ticketGuardado = guardarEnListaStorage(STORAGE_KEYS.tickets, consulta.toJSON(), 'local');
+  if (!ticketGuardado) {
+    showErrorToast(`Consulta enviada, pero no se pudo guardar el ticket: ${ticket}.`);
+  }
   actualizarConfirmacion(SELECTORES.confirmConsultaTexto, `Tu consulta fue enviada correctamente. Ticket: ${ticket}.`);
   mostrarExito(mensaje, `Consulta enviada. Ticket: ${ticket}.`);
   limpiarFormulario(formulario);
@@ -737,7 +743,7 @@ function guardarEnListaStorage(clave, item, tipo) {
   const listaActual = obtenerDato(clave, tipo) || [];
   const lista = Array.isArray(listaActual) ? listaActual : [];
   lista.push(item);
-  persistirDato(clave, lista, tipo);
+  return persistirDato(clave, lista, tipo);
 }
 
 function persistirDato(clave, valor, tipo = 'local') {

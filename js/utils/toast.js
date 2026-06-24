@@ -2,12 +2,17 @@ const TOAST_DURATION = 3000;
 const POSITION = {
   gravity: 'top',
   position: 'right',
+  offset: {
+    x: 16,
+    y: 80,
+  },
 };
 
 const COLORS = {
   success: '#198754',
   info: '#0d6efd',
   warning: '#ffc107',
+  error: '#dc3545',
 };
 
 let fallbackWarningShown = false;
@@ -33,22 +38,27 @@ function showToast(message, type = 'info') {
     return false;
   }
 
-  window.Toastify({
-    text: message,
-    duration: TOAST_DURATION,
-    close: true,
-    stopOnFocus: true,
-    ...POSITION,
-    style: {
-      background: COLORS[type] || COLORS.info,
-      color: type === 'warning' ? '#212529' : '#ffffff',
-      borderRadius: '6px',
-      boxShadow: '0 8px 24px rgba(0, 0, 0, 0.25)',
-      fontWeight: '600',
-    },
-  }).showToast();
+  try {
+    window.Toastify({
+      text: message,
+      duration: TOAST_DURATION,
+      close: true,
+      stopOnFocus: true,
+      ...POSITION,
+      style: {
+        background: COLORS[type] || COLORS.info,
+        color: type === 'warning' ? '#212529' : '#ffffff',
+        borderRadius: '6px',
+        boxShadow: '0 8px 24px rgba(0, 0, 0, 0.25)',
+        fontWeight: '600',
+      },
+    }).showToast();
 
-  return true;
+    return true;
+  } catch (error) {
+    console.warn('No se pudo mostrar la notificacion:', error.message);
+    return false;
+  }
 }
 
 /**
@@ -79,4 +89,14 @@ export function showInfoToast(message) {
  */
 export function showWarningToast(message) {
   return showToast(message, 'warning');
+}
+
+/**
+ * Muestra una notificacion breve de error sin reemplazar validaciones inline.
+ *
+ * @param {string} message - Mensaje a mostrar.
+ * @returns {boolean} true si Toastify pudo mostrar la notificacion.
+ */
+export function showErrorToast(message) {
+  return showToast(message, 'error');
 }

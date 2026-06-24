@@ -59,8 +59,8 @@ Toastify se usara en puntos donde una notificacion breve aporta valor sin duplic
 2. **Login exitoso**: informar el inicio de sesion correcto sin mostrar un modal adicional.
 3. **Registro exitoso**: informar que la cuenta fue creada correctamente, manteniendo las validaciones existentes.
 4. **Seleccion de funcion**: avisar que la funcion fue seleccionada y que el usuario puede continuar al pago.
-5. **Consulta enviada**: reforzar que se genero un ticket de soporte.
-6. **Persistencia de compra/ticket**: notificar que la compra o consulta fue guardada correctamente en storage.
+5. **Persistencia de compra**: notificar si la compra fue guardada correctamente en storage.
+6. **Persistencia de ticket**: notificar solo si el ticket no pudo guardarse, manteniendo el modal de soporte como confirmacion principal.
 
 No se usara Toastify para confirmaciones criticas ni para reemplazar errores de validacion que ya se muestran inline. Si existe feedback redundante o meramente informativo, se unificara en Toastify.
 
@@ -77,15 +77,15 @@ El objetivo del wrapper es:
 * centralizar el uso de Toastify;
 * evitar llamadas directas a `Toastify()` distribuidas por todo el proyecto;
 * facilitar testing por parte del rol Tester QA/JS;
-* permitir fallback seguro si la libreria no carga;
+* permitir fallback seguro si la libreria no carga o falla en tiempo de ejecucion;
 * mantener duracion, posicion, textos y estilos consistentes;
 * asegurar que la libreria no reemplace logica de negocio, validaciones ni confirmaciones criticas.
 
-El wrapper exportara funciones reutilizables para notificaciones de exito, informacion y advertencia leve. No se crearan funciones de confirmacion porque el proyecto ya usa modales Bootstrap para confirmaciones relevantes.
+El wrapper exportara funciones reutilizables para notificaciones de exito, informacion, advertencia leve y error tecnico no bloqueante. No se crearan funciones de confirmacion porque el proyecto ya usa modales Bootstrap para confirmaciones relevantes.
 
 ### Consistencia visual
 
-Las notificaciones usaran textos breves, posicion fija no invasiva y colores compatibles con la identidad visual de CineGlobal. La integracion no cambiara el diseno general del sitio ni reemplazara validaciones inline o modales criticos. Los avisos redundantes o informativos se unificaran en Toastify para evitar doble feedback.
+Las notificaciones usaran textos breves, posicion fija no invasiva, offset para no tapar el encabezado y colores compatibles con la identidad visual de CineGlobal. La integracion no cambiara el diseno general del sitio ni reemplazara validaciones inline o modales criticos. Los avisos redundantes o informativos se unificaran en Toastify para evitar doble feedback.
 
 ### Diagnostico tecnico inicial
 
@@ -117,7 +117,7 @@ Toastify no se usara para:
 * [x] Toastify integrada por CDN en `index.html`.
 * [x] Wrapper `js/utils/toast.js` creado con funciones reutilizables.
 * [x] La libreria se usa como minimo en 2 puntos de la aplicacion.
-* [x] La libreria se integra en filtros, login/registro exitoso, seleccion de funcion, consulta enviada y persistencia de compra/ticket.
+* [x] La libreria se integra en filtros, login/registro exitoso, seleccion de funcion, persistencia de compra y error de persistencia de ticket.
 * [x] No se reemplazan modales Bootstrap criticos ni validaciones inline.
 * [x] Se reemplazan avisos redundantes o informativos por Toastify.
 * [x] La logica de negocio existente no se rompe.
@@ -135,7 +135,7 @@ Actua como un desarrollador JavaScript Senior especializado en arquitectura fron
 
 Implementar Toastify en CineGlobal como libreria externa por CDN. La libreria debe usarse como capa de notificaciones no bloqueantes, sin reemplazar validaciones, logica de negocio ni confirmaciones criticas existentes.
 
-Integrar Toastify en filtros, login/registro exitoso, seleccion de funcion, consulta enviada y persistencia de compra/ticket. Crear wrapper en js/utils/toast.js, documentar en docs/07-librerias/libreria-doc.md, actualizar changelog.md y completar el cierre del spec.
+Integrar Toastify en filtros, login/registro exitoso, seleccion de funcion, persistencia de compra y error de persistencia de ticket. Crear wrapper en js/utils/toast.js, documentar en docs/07-librerias/libreria-doc.md, actualizar changelog.md y completar el cierre del spec.
 ```
 
 ### Fragmento del codigo de integracion final
@@ -161,6 +161,10 @@ export function showInfoToast(message) {
 export function showWarningToast(message) {
   return showToast(message, 'warning');
 }
+
+export function showErrorToast(message) {
+  return showToast(message, 'error');
+}
 ```
 
 Uso real en filtros:
@@ -178,19 +182,25 @@ if (debeNotificarFiltro(event)) {
 Uso real en persistencia de compra:
 
 ```javascript
-guardarEnListaStorage(STORAGE_KEYS.compras, compra.toJSON(), 'local');
-showSuccessToast('Compra guardada en el historial.');
+const compraGuardada = guardarEnListaStorage(STORAGE_KEYS.compras, compra.toJSON(), 'local');
+if (compraGuardada) {
+  showSuccessToast('Compra guardada en el historial.');
+} else {
+  showErrorToast('No se pudo guardar la compra en el historial.');
+}
 ```
 
 ### Ajustes manuales realizados
 
 * Se agrego Toastify por CDN en `index.html`.
 * Se creo `js/utils/toast.js` como wrapper centralizado.
-* Se agregaron notificaciones en filtros, login exitoso, registro exitoso, seleccion de funcion, compra guardada y consulta/ticket guardado.
+* Se agregaron notificaciones en filtros, login exitoso, registro exitoso, seleccion de funcion, compra guardada y error de persistencia de ticket.
 * Se mantuvieron los mensajes inline de validacion y error.
-* Se mantuvieron los modales Bootstrap criticos, como la confirmacion de compra.
+* Se mantuvieron los modales Bootstrap criticos, como la confirmacion de compra y el ticket de soporte.
 * Se reemplazo el modal redundante de login exitoso por Toastify.
+* Se elimino el modal redundante de registro exitoso para dejar Toastify como feedback breve.
 * Se reemplazo el mensaje inline informativo de filtros por Toastify.
+* Se agrego manejo defensivo con `try/catch` para que una falla de Toastify no interrumpa los flujos principales.
 * No se modificaron modelos POO, Storage, Fetch/API ni tests avanzados.
 * Se actualizo `changelog.md` con la entrada del rol y el PR asociado.
 
@@ -203,7 +213,7 @@ Toastify quedo integrado en:
 * registro exitoso;
 * seleccion de funcion antes del pago;
 * persistencia de compra en historial;
-* consulta enviada y ticket persistido.
+* error de persistencia de ticket de soporte.
 
 ### Mejora en experiencia de usuario
 
@@ -217,10 +227,10 @@ El Tester QA/JS deberia validar en `library.spec.js`:
 * funciones exportadas por `js/utils/toast.js`;
 * fallback cuando `window.Toastify` no existe;
 * notificacion en filtros;
-* notificacion en login y registro exitosos;
+* notificacion en login y registro exitosos, verificando que registro no abra un modal redundante;
 * notificacion en seleccion de funcion;
 * notificacion de compra guardada;
-* notificacion de consulta enviada y ticket guardado;
+* modal de consulta enviada con ticket y toast de error solo si falla la persistencia;
 * que no se hayan reemplazado modales Bootstrap criticos ni mensajes inline de validacion.
 
 ### Issues respondidas o pendientes

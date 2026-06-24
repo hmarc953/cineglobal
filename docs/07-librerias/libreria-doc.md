@@ -16,7 +16,7 @@ Toastify se eligio para CineGlobal porque permite mostrar notificaciones breves,
 
 El sitio ya cuenta con mensajes inline, validaciones propias y modales Bootstrap para confirmaciones importantes. Por eso, Toastify se utiliza para acciones exitosas o estados informativos, y tambien para evitar feedback duplicado cuando el aviso existente era redundante o no critico.
 
-La libreria aporta valor en situaciones donde un toast mejora la experiencia sin interrumpir el flujo del usuario, por ejemplo: resultados de filtros, login exitoso, registro exitoso, seleccion de funcion, compra guardada y consulta enviada.
+La libreria aporta valor en situaciones donde un toast mejora la experiencia sin interrumpir el flujo del usuario, por ejemplo: resultados de filtros, login exitoso, registro exitoso, seleccion de funcion, compra guardada y errores no bloqueantes de persistencia.
 
 ## Instalacion e Integracion
 
@@ -39,7 +39,7 @@ La integracion se centraliza en el archivo:
 js/utils/toast.js
 ```
 
-El wrapper evita llamadas directas a `Toastify()` desde los controladores principales y mantiene una configuracion comun de duracion, posicion, colores y fallback.
+El wrapper evita llamadas directas a `Toastify()` desde los controladores principales y mantiene una configuracion comun de duracion, posicion con offset para no tapar el encabezado, colores, fallback y manejo defensivo de errores.
 
 Funciones previstas:
 
@@ -47,6 +47,7 @@ Funciones previstas:
 showSuccessToast(message);
 showInfoToast(message);
 showWarningToast(message);
+showErrorToast(message);
 ```
 
 ## Uso en el Proyecto
@@ -67,7 +68,7 @@ if (debeNotificarFiltro(event)) {
 
 ### Caso de Uso 2: Login y registro exitosos
 
-Cuando el usuario inicia sesion correctamente, Toastify muestra el feedback de exito sin abrir un modal adicional. En registro, se usa como confirmacion liviana y se conservan las validaciones existentes.
+Cuando el usuario inicia sesion correctamente, Toastify muestra el feedback de exito sin abrir un modal adicional. En registro, se usa como confirmacion liviana y reemplaza el modal redundante de exito, conservando las validaciones existentes.
 
 ```javascript
 showSuccessToast(`Sesion iniciada: ${usuario.nombre}.`);
@@ -87,19 +88,26 @@ showInfoToast('Funcion seleccionada. Continua con el pago.');
 
 ### Caso de Uso 4: Persistencia de compra
 
-Luego de confirmar una compra, Toastify informa que la operacion fue guardada en el historial. El modal Bootstrap final se mantiene como confirmacion principal.
+Luego de confirmar una compra, Toastify informa el resultado real de la persistencia en historial. El modal Bootstrap final se mantiene como confirmacion principal.
 
 ```javascript
-guardarEnListaStorage(STORAGE_KEYS.compras, compra.toJSON(), 'local');
-showSuccessToast('Compra guardada en el historial.');
+const compraGuardada = guardarEnListaStorage(STORAGE_KEYS.compras, compra.toJSON(), 'local');
+if (compraGuardada) {
+  showSuccessToast('Compra guardada en el historial.');
+} else {
+  showErrorToast('No se pudo guardar la compra en el historial.');
+}
 ```
 
-### Caso de Uso 5: Consulta enviada y ticket guardado
+### Caso de Uso 5: Error de persistencia de ticket
 
-Cuando el usuario envia una consulta, Toastify informa que el ticket fue generado y guardado.
+Cuando el usuario envia una consulta, el modal Bootstrap muestra el numero de ticket como confirmacion principal. Toastify solo se usa si el ticket no pudo guardarse en storage.
 
 ```javascript
-showSuccessToast(`Consulta enviada y ticket guardado: ${ticket}.`);
+const ticketGuardado = guardarEnListaStorage(STORAGE_KEYS.tickets, consulta.toJSON(), 'local');
+if (!ticketGuardado) {
+  showErrorToast(`Consulta enviada, pero no se pudo guardar el ticket: ${ticket}.`);
+}
 ```
 
 ## Capturas de Pantalla
@@ -118,6 +126,7 @@ showSuccessToast(`Consulta enviada y ticket guardado: ${ticket}.`);
 - Toastify no modifica logica de negocio.
 - Toastify no modifica modelos POO, Storage ni Fetch/API.
 - El wrapper valida si `window.Toastify` existe antes de intentar mostrar una notificacion.
+- El wrapper captura errores al ejecutar la libreria para que una falla externa no interrumpa el flujo principal.
 - Si la libreria no carga, el flujo principal sigue funcionando.
 
 ## Testing Sugerido para Tester QA/JS
@@ -129,8 +138,8 @@ Se recomienda validar:
 - fallback si `window.Toastify` no existe;
 - notificacion en filtros;
 - notificacion en login exitoso;
-- notificacion en registro exitoso;
+- notificacion en registro exitoso sin modal redundante;
 - notificacion al seleccionar funcion;
 - notificacion al guardar compra;
-- notificacion al enviar consulta y guardar ticket;
+- modal de consulta enviada con ticket y toast de error solo si falla la persistencia;
 - que no se hayan reemplazado modales Bootstrap ni mensajes inline.
