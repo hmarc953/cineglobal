@@ -114,10 +114,7 @@ mostrarExito(
   `Cartelera cargada correctamente. ${totalPeliculas} película(s) disponibles.`
 );
     ;
-contarResultados(datos = []) {
-  if (!Array.isArray(datos)) {
-    return 0;
-  }
+
 
   return datos.reduce(
     (total, pelicula) =>
@@ -125,7 +122,7 @@ contarResultados(datos = []) {
     0
   );
 }  
-}
+
 };
 
 export default ApiService;

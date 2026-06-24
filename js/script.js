@@ -935,4 +935,4 @@ function normalizarClasificacion(clasificacion) {
   };
 
   return mapaClasificacion[clasificacion] || clasificacion;
-}
+}}}
