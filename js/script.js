@@ -55,6 +55,7 @@ const SELECTORES = {
   selectClasificacion: '#clasificacion',
   botonLimpiarFiltros: '#btnLimpiarFiltros',
   listadoPeliculas: '#listaPeliculas',
+  mensajeApi: '#mensajeApi',
   estadoFiltros: '#estadoFiltros',
 
   formularioLogin: '#formLogin',
@@ -141,15 +142,6 @@ async function inicializarApp() {
   validarFormulariosIniciales();
 }
 
-function inicializarApp() {
-  cargarStorage();
-  cargarDatosIniciales();
-  configurarEventos();
-  restaurarFiltros();
-  renderizarPeliculas(estadoApp.catalogoPeliculas.listarPeliculas(), SELECTORES);
-  validarFormulariosIniciales();
-}
-
 function cargarStorage() {
   estadoApp.storage = StorageUtil;
 }
@@ -223,13 +215,29 @@ async function cargarDatosIniciales() {
   } else {
     try {
       const mensajeApi =
-        consultarElemento('#mensaje-api');
+        consultarElemento(SELECTORES.mensajeApi);
 
       const datosApi =
-        await ApiService.fetchData(
+        await obtenerDatosApiConReintento(
           './api/peliculas.json',
           mensajeApi
         );
+
+      const metricasApi =
+        ApiService.calcularMetricasCatalogo(datosApi);
+
+      if (mensajeApi) {
+        const detalleCategoria =
+          metricasApi.categoriaPrincipal
+            ? ` Categoría predominante: ${metricasApi.categoriaPrincipal}.`
+            : '';
+
+        mostrarMensaje(
+          mensajeApi,
+          `API procesada: ${metricasApi.total} película(s).${detalleCategoria}`,
+          'success'
+        );
+      }
 
       const peliculas =
         datosApi.map(
@@ -239,7 +247,7 @@ async function cargarDatosIniciales() {
               pelicula.title,
               pelicula.categoria,
               pelicula.clasificacion,
-              pelicula.fechaEstreno,
+              normalizarFechaEstrenoParaModelo(pelicula.fechaEstreno),
               pelicula.imagen,
               (pelicula.funciones || []).map(
                 (funcion) =>
@@ -281,6 +289,61 @@ async function cargarDatosIniciales() {
         );
     }
   }
+}
+
+/**
+ * Intenta obtener datos de API con un reintento acotado.
+ * Si se agotan intentos, delega en el fallback local desde el caller.
+ *
+ * @param {string} endpoint
+ * @param {HTMLElement|null} mensajeApi
+ * @param {number} maxIntentos
+ * @returns {Promise<Array|Object>}
+ */
+async function obtenerDatosApiConReintento(
+  endpoint,
+  mensajeApi,
+  maxIntentos = 2
+) {
+  let ultimoError = null;
+
+  for (let intento = 1; intento <= maxIntentos; intento += 1) {
+    try {
+      return await ApiService.fetchData(endpoint, mensajeApi);
+    } catch (error) {
+      ultimoError = error;
+
+      if (intento < maxIntentos && mensajeApi) {
+        mostrarMensaje(
+          mensajeApi,
+          `Reintentando carga de cartelera (${intento + 1}/${maxIntentos})...`,
+          'loading'
+        );
+      }
+    }
+  }
+
+  throw ultimoError;
+}
+
+/**
+ * Normaliza fecha para evitar Date inválida al construir Pelicula.
+ *
+ * @param {string|null|undefined} fechaCruda
+ * @returns {string}
+ */
+function normalizarFechaEstrenoParaModelo(fechaCruda) {
+  if (typeof fechaCruda !== 'string' || !fechaCruda.trim()) {
+    return '2099-12-31';
+  }
+
+  const fecha = new Date(fechaCruda);
+
+  if (Number.isNaN(fecha.getTime())) {
+    return '2099-12-31';
+  }
+
+  return fecha.toISOString().slice(0, 10);
 }
 
 // ==============================
