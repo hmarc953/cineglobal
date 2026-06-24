@@ -12,9 +12,9 @@
 
 ## Proposito y Justificacion
 
-Toastify se eligio para CineGlobal porque permite mostrar notificaciones breves, no bloqueantes y visualmente consistentes sin reemplazar funcionalidades ya existentes del proyecto.
+Toastify se eligio para CineGlobal porque permite mostrar notificaciones breves, no bloqueantes y visualmente consistentes sin reemplazar logica de negocio, validaciones ni confirmaciones criticas ya existentes del proyecto.
 
-El sitio ya cuenta con mensajes inline, validaciones propias y modales Bootstrap para confirmaciones importantes. Por eso, Toastify no se utiliza para reemplazar esas funcionalidades, sino como una capa complementaria de feedback para reforzar acciones exitosas o estados informativos.
+El sitio ya cuenta con mensajes inline, validaciones propias y modales Bootstrap para confirmaciones importantes. Por eso, Toastify se utiliza para acciones exitosas o estados informativos, y tambien para evitar feedback duplicado cuando el aviso existente era redundante o no critico.
 
 La libreria aporta valor en situaciones donde un toast mejora la experiencia sin interrumpir el flujo del usuario, por ejemplo: resultados de filtros, login exitoso, registro exitoso, seleccion de funcion, compra guardada y consulta enviada.
 
@@ -53,7 +53,7 @@ showWarningToast(message);
 
 ### Caso de Uso 1: Filtros de cartelera
 
-Toastify se utiliza para informar rapidamente el resultado de una busqueda en cartelera, sin reemplazar el mensaje inline `estadoFiltros`.
+Toastify se utiliza para informar rapidamente el resultado de una busqueda en cartelera, reemplazando el mensaje inline informativo `estadoFiltros` para evitar feedback duplicado. No reemplaza validaciones ni errores de formulario.
 
 ```javascript
 if (debeNotificarFiltro(event)) {
@@ -67,7 +67,7 @@ if (debeNotificarFiltro(event)) {
 
 ### Caso de Uso 2: Login y registro exitosos
 
-Cuando el usuario inicia sesion o crea una cuenta correctamente, Toastify refuerza el feedback de exito sin reemplazar el modal Bootstrap ni los mensajes existentes.
+Cuando el usuario inicia sesion correctamente, Toastify muestra el feedback de exito sin abrir un modal adicional. En registro, se usa como confirmacion liviana y se conservan las validaciones existentes.
 
 ```javascript
 showSuccessToast(`Sesion iniciada: ${usuario.nombre}.`);
@@ -108,10 +108,13 @@ showSuccessToast(`Consulta enviada y ticket guardado: ${ticket}.`);
 
 ![Toast de compra guardada](./screenshots/feature-2.png)
 
+![Toast de login exitoso](./screenshots/feature-3.png)
+
 ## Consideraciones Tecnicas
 
-- Toastify no reemplaza modales Bootstrap existentes.
-- Toastify no reemplaza mensajes inline de validacion.
+- Toastify no reemplaza modales Bootstrap criticos ni con contenido estructurado.
+- Toastify no reemplaza mensajes inline de validacion o error.
+- Toastify reemplaza avisos redundantes o informativos, como login exitoso y estado de filtros.
 - Toastify no modifica logica de negocio.
 - Toastify no modifica modelos POO, Storage ni Fetch/API.
 - El wrapper valida si `window.Toastify` existe antes de intentar mostrar una notificacion.

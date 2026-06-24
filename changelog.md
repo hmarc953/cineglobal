@@ -9,6 +9,9 @@
 - [feature/coord-devops-segundo-parcial] Planificación inicial y actualizacion
   PR: [#206](https://github.com/hmarc953/cineglobal/pull/206) @hmarc953 (Coordinador / DevOps)
 
+- [feature/dev-libreria-externa-toastify] Integración de Toastify como librería externa
+  PR: [#215](https://github.com/hmarc953/cineglobal/pull/215) @abartomioli (Desarrollador JS Librerías Externas)
+
 ### Fixed
 
 ## [Release Actividad Obligatoria N°4] - 2026-05-18

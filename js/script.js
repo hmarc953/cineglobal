@@ -297,11 +297,7 @@ function manejarFiltroPeliculas(event) {
     ? `${resultados.length} pelicula(s) encontradas.`
     : 'No se encontraron peliculas con esos filtros.';
 
-  mostrarMensaje(
-    consultarElemento(SELECTORES.estadoFiltros),
-    mensajeFiltros,
-    resultados.length ? 'success' : 'error'
-  );
+  limpiarMensaje(estadoFiltros);
 
   if (debeNotificarFiltro(event)) {
     if (resultados.length) {
@@ -324,7 +320,7 @@ function manejarLimpiarFiltros() {
 }
 
 function debeNotificarFiltro(event) {
-  return event.type !== 'input';
+  return Boolean(event);
 }
 
 // ==============================
@@ -356,7 +352,6 @@ function manejarLogin(event) {
   limpiarFormulario(formulario);
   actualizarEstadoSubmit(formulario);
   cerrarModal('modalLogin');
-  abrirModal('modalConfirmLogin');
 }
 
 function manejarRegistro(event) {

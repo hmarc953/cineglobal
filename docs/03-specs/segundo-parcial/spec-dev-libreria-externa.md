@@ -53,16 +53,16 @@ El CSS se ubicara en el `head`, despues de Bootstrap y antes de los estilos prop
 
 ### Puntos de integracion previstos
 
-Toastify se usara como capa complementaria en puntos donde una notificacion breve aporta valor sin reemplazar componentes actuales:
+Toastify se usara en puntos donde una notificacion breve aporta valor sin duplicar componentes actuales:
 
 1. **Filtros de cartelera**: notificar cantidad de peliculas encontradas o ausencia de resultados.
-2. **Login exitoso**: reforzar el inicio de sesion correcto sin reemplazar el modal o mensaje actual.
-3. **Registro exitoso**: informar que la cuenta fue creada correctamente.
+2. **Login exitoso**: informar el inicio de sesion correcto sin mostrar un modal adicional.
+3. **Registro exitoso**: informar que la cuenta fue creada correctamente, manteniendo las validaciones existentes.
 4. **Seleccion de funcion**: avisar que la funcion fue seleccionada y que el usuario puede continuar al pago.
 5. **Consulta enviada**: reforzar que se genero un ticket de soporte.
 6. **Persistencia de compra/ticket**: notificar que la compra o consulta fue guardada correctamente en storage.
 
-No se usara Toastify para confirmaciones criticas ni para reemplazar errores de validacion que ya se muestran inline.
+No se usara Toastify para confirmaciones criticas ni para reemplazar errores de validacion que ya se muestran inline. Si existe feedback redundante o meramente informativo, se unificara en Toastify.
 
 ### Decisiones de arquitectura
 
@@ -79,13 +79,13 @@ El objetivo del wrapper es:
 * facilitar testing por parte del rol Tester QA/JS;
 * permitir fallback seguro si la libreria no carga;
 * mantener duracion, posicion, textos y estilos consistentes;
-* asegurar que la libreria sea complementaria y no reemplace funcionalidades existentes.
+* asegurar que la libreria no reemplace logica de negocio, validaciones ni confirmaciones criticas.
 
 El wrapper exportara funciones reutilizables para notificaciones de exito, informacion y advertencia leve. No se crearan funciones de confirmacion porque el proyecto ya usa modales Bootstrap para confirmaciones relevantes.
 
 ### Consistencia visual
 
-Las notificaciones usaran textos breves, posicion fija no invasiva y colores compatibles con la identidad visual de CineGlobal. La integracion no cambiara el diseno general del sitio, no eliminara modales Bootstrap y no reemplazara mensajes inline existentes. Toastify funcionara como refuerzo visual secundario.
+Las notificaciones usaran textos breves, posicion fija no invasiva y colores compatibles con la identidad visual de CineGlobal. La integracion no cambiara el diseno general del sitio ni reemplazara validaciones inline o modales criticos. Los avisos redundantes o informativos se unificaran en Toastify para evitar doble feedback.
 
 ### Diagnostico tecnico inicial
 
@@ -104,9 +104,9 @@ Durante el analisis del proyecto se detectaron estos puntos relevantes:
 
 Toastify no se usara para:
 
-* reemplazar modales Bootstrap existentes;
+* reemplazar modales Bootstrap criticos o con contenido estructurado;
 * reemplazar validaciones de formularios;
-* reemplazar mensajes inline de error;
+* reemplazar mensajes inline de error o validacion;
 * implementar confirmaciones criticas;
 * modificar logica de negocio;
 * modificar Fetch/API;
@@ -118,13 +118,13 @@ Toastify no se usara para:
 * [x] Wrapper `js/utils/toast.js` creado con funciones reutilizables.
 * [x] La libreria se usa como minimo en 2 puntos de la aplicacion.
 * [x] La libreria se integra en filtros, login/registro exitoso, seleccion de funcion, consulta enviada y persistencia de compra/ticket.
-* [x] No se reemplazan modales Bootstrap existentes.
-* [x] No se reemplazan mensajes inline de validacion.
+* [x] No se reemplazan modales Bootstrap criticos ni validaciones inline.
+* [x] Se reemplazan avisos redundantes o informativos por Toastify.
 * [x] La logica de negocio existente no se rompe.
 * [x] La integracion mantiene consistencia visual.
 * [x] Se documenta la libreria en `docs/07-librerias/libreria-doc.md`.
 * [x] Se deja preparada la integracion para pruebas del Tester QA/JS.
-* [ ] Se actualiza `changelog.md`.
+* [x] Se actualiza `changelog.md`.
 
 ## Momento 2: Al cerrar la tarea
 
@@ -133,7 +133,7 @@ Toastify no se usara para:
 ```text
 Actua como un desarrollador JavaScript Senior especializado en arquitectura frontend, ES Modules, integracion de librerias externas por CDN, buenas practicas de Git Flow y documentacion tecnica academica.
 
-Implementar Toastify en CineGlobal como libreria externa por CDN. La libreria debe usarse como capa complementaria de notificaciones no bloqueantes, sin reemplazar modales Bootstrap, mensajes inline, validaciones ni logica de negocio existente.
+Implementar Toastify en CineGlobal como libreria externa por CDN. La libreria debe usarse como capa de notificaciones no bloqueantes, sin reemplazar validaciones, logica de negocio ni confirmaciones criticas existentes.
 
 Integrar Toastify en filtros, login/registro exitoso, seleccion de funcion, consulta enviada y persistencia de compra/ticket. Crear wrapper en js/utils/toast.js, documentar en docs/07-librerias/libreria-doc.md, actualizar changelog.md y completar el cierre del spec.
 ```
@@ -187,11 +187,12 @@ showSuccessToast('Compra guardada en el historial.');
 * Se agrego Toastify por CDN en `index.html`.
 * Se creo `js/utils/toast.js` como wrapper centralizado.
 * Se agregaron notificaciones en filtros, login exitoso, registro exitoso, seleccion de funcion, compra guardada y consulta/ticket guardado.
-* Se mantuvieron los mensajes inline existentes.
-* Se mantuvieron los modales Bootstrap existentes.
-* Se evito disparar toasts en cada tecla del filtro de titulo para no saturar al usuario.
+* Se mantuvieron los mensajes inline de validacion y error.
+* Se mantuvieron los modales Bootstrap criticos, como la confirmacion de compra.
+* Se reemplazo el modal redundante de login exitoso por Toastify.
+* Se reemplazo el mensaje inline informativo de filtros por Toastify.
 * No se modificaron modelos POO, Storage, Fetch/API ni tests avanzados.
-* Quedo pendiente actualizar `changelog.md` porque el parche sobre ese archivo fue rechazado durante la edicion.
+* Se actualizo `changelog.md` con la entrada del rol y el PR asociado.
 
 ### Resumen de integracion
 
@@ -206,7 +207,7 @@ Toastify quedo integrado en:
 
 ### Mejora en experiencia de usuario
 
-La mejora consiste en brindar feedback breve y contextual sin interrumpir la navegacion. Toastify acompana acciones exitosas e informativas, mientras el sitio conserva sus modales, mensajes inline y validaciones.
+La mejora consiste en brindar feedback breve y contextual sin interrumpir la navegacion. Toastify acompana acciones exitosas e informativas, evita dobles avisos en flujos simples y conserva modales criticos, mensajes inline de error y validaciones.
 
 ### Coordinacion con Tester QA/JS
 
@@ -220,11 +221,11 @@ El Tester QA/JS deberia validar en `library.spec.js`:
 * notificacion en seleccion de funcion;
 * notificacion de compra guardada;
 * notificacion de consulta enviada y ticket guardado;
-* que no se hayan reemplazado modales Bootstrap ni mensajes inline.
+* que no se hayan reemplazado modales Bootstrap criticos ni mensajes inline de validacion.
 
 ### Issues respondidas o pendientes
 
-* Issue asociada: pendiente de completar.
-* PR asociada: pendiente de completar.
-* Estado: pendiente de revision.
-* Changelog: pendiente de completar.
+* Issue asociada: No se reportaron issues sobre la libreria al momento del cierre.
+* PR asociada: [#215](https://github.com/hmarc953/cineglobal/pull/215).
+* Estado: pendiente de review del Coordinador.
+* Changelog: actualizado.
