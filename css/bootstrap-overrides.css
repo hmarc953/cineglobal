@@ -96,14 +96,27 @@ body {
    5. Tablas (.table)
    Se adapta el fondo, borde y color de texto para modo oscuro.
 ================================================== */
-.table {
+.table,
+.table.table-dark {
   --bs-table-bg: var(--color-card);
   --bs-table-color: var(--color-text-main);
   --bs-table-border-color: var(--bs-border-color);
+  --bs-table-striped-bg: #282828;
+  --bs-table-striped-color: var(--color-text-main);
 
   background-color: var(--color-card) !important;
   color: var(--color-text-main) !important;
   border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.table > :not(caption) > * > * {
+  background-color: var(--color-card) !important;
+  color: var(--color-text-main) !important;
+}
+
+.table caption {
+  background-color: var(--color-bg-main);
+  color: var(--color-text-secondary);
 }
 
 .table thead th {
@@ -118,6 +131,7 @@ body {
 .table-striped > tbody > tr:nth-of-type(odd) {
   --bs-table-accent-bg: #282828;
   background-color: #282828 !important;
+  color: var(--color-text-main) !important;
 }
 
 /* ==================================================
