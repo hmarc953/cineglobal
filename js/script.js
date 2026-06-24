@@ -56,6 +56,7 @@ const SELECTORES = {
   botonLimpiarFiltros: '#btnLimpiarFiltros',
   listadoPeliculas: '#listaPeliculas',
   mensajeApi: '#mensajeApi',
+  estadoApiCartelera: '#estadoApiCartelera',
   estadoFiltros: '#estadoFiltros',
 
   formularioLogin: '#formLogin',
@@ -217,7 +218,9 @@ async function cargarDatosIniciales() {
     `https://api.themoviedb.org/3/movie/popular` +
     `?api_key=${API_KEY}&language=es-ES&page=1`;
 
-  const estadoApi = consultarElemento(SELECTORES.estadoFiltros);
+  const estadoApi =
+    consultarElemento(SELECTORES.estadoApiCartelera) ||
+    consultarElemento(SELECTORES.estadoFiltros);
   const mensajeApi = consultarElemento(SELECTORES.mensajeApi);
 
   try {
