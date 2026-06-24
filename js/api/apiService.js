@@ -1,10 +1,3 @@
-import {
-  mostrarLoading,
-  mostrarError,
-  mostrarExito,
-  ocultarLoading
-} from '../utils/dom.js';
-
 /**
  * Servicio para consumo de API externa
  */
@@ -13,14 +6,11 @@ const ApiService = {
    * Obtiene datos desde un endpoint.
    *
    * @param {string} endpoint URL o ruta del recurso.
-   * @param {HTMLElement|null} elementoEstado Elemento donde mostrar mensajes.
-   * @returns {Promise<Array|Object>}
+   * @returns {Promise<Array>}
    * @throws {Error}
    */
-  async fetchData(endpoint, elementoEstado = null) {
+  async fetchData(endpoint) {
     try {
-      this.showLoading(elementoEstado);
-
       const response = await fetch(endpoint);
 
       if (!response.ok) {
@@ -29,123 +19,103 @@ const ApiService = {
 
       const json = await response.json();
 
-      const datos = this.sanitizarDatos(json);
+      // Validación y sanitización obligatoria
+      const datosSanitizados =
+        this.sanitizarDatos(json);
 
-      this.hideLoading(elementoEstado);
+      return datosSanitizados;
 
-      this.showSuccess(
-        elementoEstado,
-        `${this.contarResultados(datos)} registro(s) cargado(s)`
-      );
-
-      return datos;
     } catch (error) {
-      this.hideLoading(elementoEstado);
-
       if (error.message.startsWith('HTTP_')) {
-        this.showError(
-          elementoEstado,
-          'El servidor respondió con un error.'
-        );
+        error.userMessage =
+          'El servidor respondió con un error.';
+      } else if (error instanceof SyntaxError) {
+        error.userMessage =
+          'Los datos recibidos tienen un formato inválido.';
+      } else if (error instanceof TypeError) {
+        error.userMessage =
+          'No fue posible establecer conexión con el servidor.';
       } else {
-        this.showError(
-          elementoEstado,
-          'No fue posible obtener los datos. Intente nuevamente.'
-        );
+        error.userMessage =
+          'Ocurrió un error inesperado.';
       }
 
       throw error;
     }
   },
 
-  /**
-   * Valida, filtra y transforma datos.
-   *
-   * Utiliza:
-   * - filter()
-   * - map()
-   *
-   * @param {Array|Object} datos
-   * @returns {Array}
-   */
-  sanitizarDatos(datos = []) {
-    const lista = Array.isArray(datos)
-      ? datos
-      : datos.results || [];
+/**
+ * Valida, filtra y transforma datos.
+ *
+ * Utiliza:
+ * - filter()
+ * - map()
+ *
+ * @param {Array|Object} datos
+ * @returns {Array}
+ */
+sanitizarDatos(datos = []) {
+  let lista = [];
 
-    return lista
-      .filter((item) => item && item.id)
-      .map((item) => ({
-        ...item,
-        title: item.title
-          ? String(item.title).trim()
-          : 'Sin título'
-      }));
-  },
+  if (Array.isArray(datos)) {
+    lista = datos;
+  } else if (
+    datos &&
+    Array.isArray(datos.results)
+  ) {
+    lista = datos.results;
+  }
+
+  return lista
+    .filter(
+      (item) =>
+        item &&
+        item.id &&
+        (item.titulo || item.title)
+    )
+    .map((item) => ({
+      id: item.id,
+
+      titulo: String(
+        item.titulo ||
+        item.title ||
+        'Sin título'
+      ).trim(),
+
+      categoria:
+        item.categoria || 'Sin categoría',
+
+      clasificacion:
+        item.clasificacion || 'ATP',
+
+      fechaEstreno:
+        item.fechaEstreno || '',
+
+      imagen:
+        item.imagen || '',
+
+      funciones: Array.isArray(
+        item.funciones
+      )
+        ? item.funciones
+        : []
+    }));
+},
 
   /**
-   * Cuenta elementos utilizando reduce().
+   * Calcula la cantidad total de funciones
+   * utilizando reduce().
    *
    * @param {Array} datos
    * @returns {number}
    */
   contarResultados(datos = []) {
     return datos.reduce(
-      (total) => total + 1,
+      (total, pelicula) =>
+        total + (pelicula.funciones?.length || 0),
       0
     );
-  },
-
-  showLoading(elemento) {
-    if (elemento) {
-      mostrarLoading(
-        elemento,
-        'Cargando información...'
-      );
-    }
-  },
-
-  hideLoading(elemento) {
-    if (elemento) {
-      ocultarLoading(elemento);
-    }
-  },
-
-  showSuccess(elemento, mensaje) {
-    if (elemento) {
-      mostrarExito(elemento, mensaje);
-    }
-  },
-
-  showError(elemento, mensaje) {
-    if (elemento) {
-      mostrarError(elemento, mensaje);
-    }
   }
 };
-async function cargarPeliculasDesdeApi() {
-  try {
-    const datosApi = await ApiService.fetchData(
-      './api/peliculas.json'
-    );
 
-    const peliculasSanitizadas =
-      ApiService.sanitizarDatos(datosApi);
-
-    const cantidad =
-      ApiService.contarResultados(
-        peliculasSanitizadas
-      );
-
-    console.log(
-      `Se cargaron ${cantidad} películas desde la API`
-    );
-
-  } catch (error) {
-    console.error(
-      'Error al cargar películas:',
-      error
-    );
-  }
-}
 export default ApiService;

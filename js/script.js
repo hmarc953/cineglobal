@@ -127,17 +127,9 @@ document.addEventListener('DOMContentLoaded', inicializarApp);
 
 async function inicializarApp() {
   cargarStorage();
-
   await cargarDatosIniciales();
-
   configurarEventos();
   restaurarFiltros();
-
-  renderizarPeliculas(
-    estadoApp.catalogoPeliculas.listarPeliculas(),
-    SELECTORES
-  );
-
   validarFormulariosIniciales();
 }
 
@@ -208,7 +200,7 @@ async function cargarDatosIniciales() {
       : null;
 
   let catalogo = null;
-
+const datos = await ApiService.fetchData('./api/peliculas.json');
   try {
     catalogo = CatalogoPeliculas.cargarDesdeStorage();
   } catch (e) {
@@ -218,68 +210,63 @@ async function cargarDatosIniciales() {
     );
   }
 
-  if (catalogo) {
-    estadoApp.catalogoPeliculas = catalogo;
-  } else {
-    try {
-      const mensajeApi =
-        consultarElemento('#mensaje-api');
-
-      const datosApi =
-        await ApiService.fetchData(
-          './api/peliculas.json',
-          mensajeApi
-        );
-
-      const peliculas =
-        datosApi.map(
-          (pelicula) =>
-            new Pelicula(
-              pelicula.id,
-              pelicula.title,
-              pelicula.categoria,
-              pelicula.clasificacion,
-              pelicula.fechaEstreno,
-              pelicula.imagen,
-              (pelicula.funciones || []).map(
-                (funcion) =>
-                  new Funcion(
-                    funcion.id,
-                    funcion.cine,
-                    funcion.idioma,
-                    funcion.horario,
-                    funcion.asientosDisponibles,
-                    funcion.precio
-                  )
-              )
-            )
-        );
-
-      estadoApp.catalogoPeliculas =
-        new CatalogoPeliculas(
-          peliculas
-        );
-
-      try {
-        estadoApp.catalogoPeliculas.guardarEnStorage();
-      } catch (e) {
-        console.warn(
-          'No se pudo guardar CatalogoPeliculas en storage:',
-          e.message || e
-        );
-      }
-
-    } catch (error) {
-      console.warn(
-        'Error al cargar API. Se utilizará catálogo local.',
-        error
+if (catalogo) {
+  estadoApp.catalogoPeliculas = catalogo;
+} else {
+  try {
+    const datosApi =
+      await ApiService.fetchData(
+        './api/peliculas.json'
       );
 
-      estadoApp.catalogoPeliculas =
-        new CatalogoPeliculas(
-          crearPeliculasIniciales()
-        );
+    const peliculas =
+      datosApi.map(
+        (pelicula) =>
+          new Pelicula(
+            pelicula.id,
+            pelicula.title,
+            pelicula.categoria,
+            pelicula.clasificacion,
+            pelicula.fechaEstreno,
+            pelicula.imagen,
+            (pelicula.funciones || []).map(
+              (funcion) =>
+                new Funcion(
+                  funcion.id,
+                  funcion.cine,
+                  funcion.idioma,
+                  funcion.horario,
+                  funcion.asientosDisponibles,
+                  funcion.precio
+                )
+            )
+          )
+      );
+
+    estadoApp.catalogoPeliculas =
+      new CatalogoPeliculas(
+        peliculas
+      );
+
+    try {
+      estadoApp.catalogoPeliculas.guardarEnStorage();
+    } catch (e) {
+      console.warn(
+        'No se pudo guardar CatalogoPeliculas en storage:',
+        e.message || e
+      );
     }
+
+  } catch (error) {
+    console.warn(
+      'Error al cargar API. Se utilizará catálogo local.',
+      error
+    );
+
+    estadoApp.catalogoPeliculas =
+      new CatalogoPeliculas(
+        crearPeliculasIniciales()
+      );
   }
 }
 
