@@ -6,7 +6,7 @@ import { CatalogoPeliculas } from './models/CatalogoPeliculas.js';
 import { Compra } from './models/Compra.js';
 import { ConsultaSoporte } from './models/ConsultaSoporte.js';
 import { StorageUtil } from './utils/storage.js';
-import ApiService from './services/api.service.js';
+import ApiService from './api/apiService.js';
 import {
   consultarElemento,
   valorCampo,
@@ -133,12 +133,10 @@ async function inicializarApp() {
 
   configurarEventos();
   restaurarFiltros();
-
   renderizarPeliculas(
     estadoApp.catalogoPeliculas.listarPeliculas(),
     SELECTORES
   );
-
   validarFormulariosIniciales();
 }
 
@@ -200,7 +198,6 @@ async function cargarDatosIniciales() {
       : null;
 
   let catalogo = null;
-
   try {
     catalogo = CatalogoPeliculas.cargarDesdeStorage();
   } catch (e) {
@@ -212,82 +209,100 @@ async function cargarDatosIniciales() {
 
   if (catalogo) {
     estadoApp.catalogoPeliculas = catalogo;
-  } else {
-    try {
-      const mensajeApi =
-        consultarElemento(SELECTORES.mensajeApi);
+    return;
+  }
 
-      const datosApi =
-        await obtenerDatosApiConReintento(
-          './api/peliculas.json',
-          mensajeApi
-        );
+  const API_KEY = 'TU_API_KEY';
+  const API_PELICULAS_URL =
+    `https://api.themoviedb.org/3/movie/popular` +
+    `?api_key=${API_KEY}&language=es-ES&page=1`;
 
-      const metricasApi =
-        ApiService.calcularMetricasCatalogo(datosApi);
+  const estadoApi = consultarElemento(SELECTORES.estadoFiltros);
+  const mensajeApi = consultarElemento(SELECTORES.mensajeApi);
 
-      if (mensajeApi) {
-        const detalleCategoria =
-          metricasApi.categoriaPrincipal
-            ? ` Categoría predominante: ${metricasApi.categoriaPrincipal}.`
-            : '';
+  try {
+    mostrarLoading(estadoApi, 'Cargando cartelera...');
 
-        mostrarMensaje(
-          mensajeApi,
-          `API procesada: ${metricasApi.total} película(s).${detalleCategoria}`,
-          'success'
-        );
-      }
+    const datosApi =
+      await obtenerDatosApiConReintento(API_PELICULAS_URL, mensajeApi);
 
-      const peliculas =
-        datosApi.map(
-          (pelicula) =>
-            new Pelicula(
-              pelicula.id,
-              pelicula.title,
-              pelicula.categoria,
-              pelicula.clasificacion,
-              normalizarFechaEstrenoParaModelo(pelicula.fechaEstreno),
-              pelicula.imagen,
-              (pelicula.funciones || []).map(
-                (funcion) =>
-                  new Funcion(
-                    funcion.id,
-                    funcion.cine,
-                    funcion.idioma,
-                    funcion.horario,
-                    funcion.asientosDisponibles,
-                    funcion.precio
-                  )
-              )
-            )
-        );
+    const metricasApi =
+      ApiService.calcularMetricasCatalogo(datosApi);
 
-      estadoApp.catalogoPeliculas =
-        new CatalogoPeliculas(
-          peliculas
-        );
+    if (mensajeApi) {
+      const detalleCategoria =
+        metricasApi.categoriaPrincipal
+          ? ` Categoría predominante: ${metricasApi.categoriaPrincipal}.`
+          : '';
 
-      try {
-        estadoApp.catalogoPeliculas.guardarEnStorage();
-      } catch (e) {
-        console.warn(
-          'No se pudo guardar CatalogoPeliculas en storage:',
-          e.message || e
-        );
-      }
-
-    } catch (error) {
-      console.warn(
-        'Error al cargar API. Se utilizará catálogo local.',
-        error
+      mostrarMensaje(
+        mensajeApi,
+        `API procesada: ${metricasApi.total} película(s).${detalleCategoria}`,
+        'success'
       );
-
-      estadoApp.catalogoPeliculas =
-        new CatalogoPeliculas(
-          crearPeliculasIniciales()
-        );
     }
+
+    const peliculas = datosApi.map(
+      (pelicula) =>
+        new Pelicula(
+          String(pelicula.id),
+          pelicula.title || pelicula.titulo,
+          pelicula.categoria,
+          pelicula.clasificacion,
+          normalizarFechaEstrenoParaModelo(
+            pelicula.fechaEstreno || pelicula.release_date
+          ),
+          pelicula.imagen,
+          (pelicula.funciones || []).map(
+            (funcion) =>
+              new Funcion(
+                funcion.id,
+                funcion.cine,
+                funcion.idioma,
+                funcion.horario,
+                funcion.asientosDisponibles,
+                funcion.precio
+              )
+          )
+        )
+    );
+
+    estadoApp.catalogoPeliculas =
+      new CatalogoPeliculas(peliculas);
+
+    try {
+      estadoApp.catalogoPeliculas.guardarEnStorage();
+    } catch (e) {
+      console.warn(
+        'No se pudo guardar CatalogoPeliculas en storage:',
+        e.message || e
+      );
+    }
+
+    const totalPeliculas =
+      ApiService.contarResultados(datosApi);
+
+    mostrarExito(
+      estadoApi,
+      `Cartelera cargada correctamente. ${totalPeliculas} película(s) disponibles.`
+    );
+  } catch (error) {
+    mostrarError(
+      estadoApi,
+      error.userMessage ||
+      'No se pudo cargar la cartelera externa. Se usará el catálogo local.'
+    );
+
+    console.warn(
+      'Error al cargar API. Se utilizará catálogo local.',
+      error
+    );
+
+    estadoApp.catalogoPeliculas = new CatalogoPeliculas(
+      crearPeliculasIniciales()
+    );
+  } finally {
+    ocultarLoading(estadoApi);
   }
 }
 
@@ -309,7 +324,7 @@ async function obtenerDatosApiConReintento(
 
   for (let intento = 1; intento <= maxIntentos; intento += 1) {
     try {
-      return await ApiService.fetchData(endpoint, mensajeApi);
+      return await ApiService.fetchData(endpoint);
     } catch (error) {
       ultimoError = error;
 
@@ -345,7 +360,6 @@ function normalizarFechaEstrenoParaModelo(fechaCruda) {
 
   return fecha.toISOString().slice(0, 10);
 }
-
 // ==============================
 // Datos iniciales de cartelera
 // ==============================
@@ -930,13 +944,16 @@ function normalizarTextoSeleccion(valor) {
 
   return mapa[sinAcentos] || valor;
 }
-
+}
 function normalizarClasificacion(clasificacion) {
+  // Si clasificacion es null o undefined, usamos un string vacio o 'atp' por defecto
+  const valorLimpio = String(clasificacion || '').trim().toLowerCase();
+
   const mapaClasificacion = {
     atp: 'ATP',
     '13': '+13',
     '16': '+16',
   };
 
-  return mapaClasificacion[clasificacion] || clasificacion;
+  return mapaClasificacion[valorLimpio] || clasificacion || 'ATP';
 }

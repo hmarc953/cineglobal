@@ -1,10 +1,3 @@
-import {
-  mostrarLoading,
-  mostrarError,
-  mostrarExito,
-  ocultarLoading
-} from '../utils/dom.js';
-
 /**
  * Servicio para consumo de API externa
  */
@@ -13,14 +6,11 @@ const ApiService = {
    * Obtiene datos desde un endpoint.
    *
    * @param {string} endpoint URL o ruta del recurso.
-   * @param {HTMLElement|null} elementoEstado Elemento donde mostrar mensajes.
-   * @returns {Promise<Array|Object>}
+   * @returns {Promise<Array>}
    * @throws {Error}
    */
-  async fetchData(endpoint, elementoEstado = null) {
+  async fetchData(endpoint) {
     try {
-      this.showLoading(elementoEstado);
-
       const response = await fetch(endpoint);
 
       if (!response.ok) {
@@ -28,31 +18,23 @@ const ApiService = {
       }
 
       const json = await response.json();
+      const datosSanitizados =
+        this.sanitizarDatos(json);
 
-      const datos = this.sanitizarDatos(json);
-      const metricas = this.calcularMetricasCatalogo(datos);
-
-      this.hideLoading(elementoEstado);
-
-      this.showSuccess(
-        elementoEstado,
-        `${metricas.total} registro(s) cargado(s)`
-      );
-
-      return datos;
+      return datosSanitizados;
     } catch (error) {
-      this.hideLoading(elementoEstado);
-
       if (error.message.startsWith('HTTP_')) {
-        this.showError(
-          elementoEstado,
-          'El servidor respondió con un error.'
-        );
+        error.userMessage =
+          'El servidor respondió con un error.';
+      } else if (error instanceof SyntaxError) {
+        error.userMessage =
+          'Los datos recibidos tienen un formato inválido.';
+      } else if (error instanceof TypeError) {
+        error.userMessage =
+          'No fue posible establecer conexión con el servidor.';
       } else {
-        this.showError(
-          elementoEstado,
-          'No fue posible obtener los datos. Intente nuevamente.'
-        );
+        error.userMessage =
+          'Ocurrió un error inesperado.';
       }
 
       throw error;
@@ -70,19 +52,28 @@ const ApiService = {
    * @returns {Array}
    */
   sanitizarDatos(datos = []) {
-    const lista = Array.isArray(datos)
-      ? datos
-      : datos.results || [];
+    let lista = [];
+
+    if (Array.isArray(datos)) {
+      lista = datos;
+    } else if (datos && Array.isArray(datos.results)) {
+      lista = datos.results;
+    }
 
     return lista
       .filter((item) => item && item.id)
       .map((item) => ({
         ...item,
-        categoria: this.obtenerCategoriaCompatible(item),
-        fechaEstreno: this.obtenerFechaEstrenoSegura(item),
         title: item.title
           ? String(item.title).trim()
-          : 'Sin título'
+          : String(item.name || 'Sin título').trim(),
+        categoria: this.obtenerCategoriaCompatible(item),
+        clasificacion: item.clasificacion || 'ATP',
+        fechaEstreno: this.obtenerFechaEstrenoSegura(item),
+        imagen: item.imagen || (item.poster_path
+          ? `https://image.tmdb.org/t/p/w500${item.poster_path}`
+          : ''),
+        funciones: Array.isArray(item.funciones) ? item.funciones : []
       }));
   },
 
@@ -120,7 +111,6 @@ const ApiService = {
         ? item.categoria.trim()
         : '';
 
-    // Si ya existe una categoría legible, se respeta tal cual.
     if (
       categoriaCruda &&
       !/^\d+(\s*,\s*\d+)*$/.test(categoriaCruda)
@@ -227,58 +217,6 @@ const ApiService = {
       porCategoria,
       categoriaPrincipal
     };
-  },
-
-  showLoading(elemento) {
-    if (elemento) {
-      mostrarLoading(
-        elemento,
-        'Cargando información...'
-      );
-    }
-  },
-
-  hideLoading(elemento) {
-    if (elemento) {
-      ocultarLoading(elemento);
-    }
-  },
-
-  showSuccess(elemento, mensaje) {
-    if (elemento) {
-      mostrarExito(elemento, mensaje);
-    }
-  },
-
-  showError(elemento, mensaje) {
-    if (elemento) {
-      mostrarError(elemento, mensaje);
-    }
   }
 };
-async function cargarPeliculasDesdeApi() {
-  try {
-    const datosApi = await ApiService.fetchData(
-      './api/peliculas.json'
-    );
-
-    const peliculasSanitizadas =
-      ApiService.sanitizarDatos(datosApi);
-
-    const cantidad =
-      ApiService.contarResultados(
-        peliculasSanitizadas
-      );
-
-    console.log(
-      `Se cargaron ${cantidad} películas desde la API`
-    );
-
-  } catch (error) {
-    console.error(
-      'Error al cargar películas:',
-      error
-    );
-  }
-}
 export default ApiService;
