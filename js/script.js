@@ -944,7 +944,6 @@ function normalizarTextoSeleccion(valor) {
 
   return mapa[sinAcentos] || valor;
 }
-}
 function normalizarClasificacion(clasificacion) {
   // Si clasificacion es null o undefined, usamos un string vacio o 'atp' por defecto
   const valorLimpio = String(clasificacion || '').trim().toLowerCase();
