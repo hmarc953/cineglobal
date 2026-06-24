@@ -127,6 +127,22 @@ Estas funciones permiten escribir código más declarativo, legible y mantenible
 
 ## AT CLOSE
 
+### Ajuste de configuración y manejo seguro de la credencial de TheMovieDB
+
+Durante la revisión final se detectó que la implementación utilizaba el valor placeholder `TU_API_KEY`. Esto impedía consumir realmente TheMovieDB y hacía que el fallback se activara como consecuencia de una solicitud inválida, en lugar de responder a una situación identificada y controlada.
+
+Para corregirlo sin publicar una credencial real, la aplicación pasó a consultar la clave desde `window.CINEGLOBAL_CONFIG.TMDB_API_KEY`. La configuración puede definirse localmente, antes de cargar el módulo principal, en un archivo que no debe versionarse:
+
+```js
+window.CINEGLOBAL_CONFIG = {
+  TMDB_API_KEY: 'clave_personal'
+};
+```
+
+Este cambio se realizó para mantener TheMovieDB como fuente externa, proteger la credencial y distinguir claramente la ausencia de configuración de otros errores HTTP, de red o de formato. Cuando la clave no está disponible, la aplicación muestra un mensaje específico y utiliza el catálogo local como fallback, garantizando que `estadoApp.catalogoPeliculas` quede inicializado y que la carga principal continúe funcionando.
+
+La solución conserva el consumo asíncrono con `fetch`, el uso de `async/await`, los estados `loading`, `success` y `error`, el reintento ante fallos de la solicitud y la recuperación mediante el catálogo local. En un entorno productivo, la credencial debería administrarse desde un backend o una función serverless, ya que una aplicación frontend estática no puede garantizar el secreto de una clave entregada al navegador.
+
 ## Prompt exacto utilizado y ajustes manuales realizados. 
 ```
 modificame esto: /** * Servicio para consumo de API externa */ const ApiService = { /** * Obtiene datos de la API * @param {string} endpoint - Endpoint a consultar * @returns {Promise<Object>} Datos obtenidos */ async fetchData(endpoint) { try { // Mostrar estado de carga this.showLoading(); const response = await fetch(endpoint); if (!response.ok) { throw new Error(HTTP error! status: ${response.status}); } const data = await response.json(); this.hideLoading(); return data; } catch (error) { this.hideLoading(); this.showError(error.message); throw error; } }, showLoading() { // Actualizar UI con estado de carga }, hideLoading() { // Ocultar estado de carga }, showError(message) { // Mostrar error en UI } }; export default ApiService;

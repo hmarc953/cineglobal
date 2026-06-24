@@ -212,16 +212,23 @@ async function cargarDatosIniciales() {
     return;
   }
 
-  const API_KEY = 'TU_API_KEY';
-  const API_PELICULAS_URL =
-    `https://api.themoviedb.org/3/movie/popular` +
-    `?api_key=${API_KEY}&language=es-ES&page=1`;
+  const TMDB_API_KEY =
+    window.CINEGLOBAL_CONFIG?.TMDB_API_KEY || '';
+  const TMDB_BASE_URL =
+    'https://api.themoviedb.org/3/movie/popular';
+  const API_PELICULAS_URL = TMDB_API_KEY.trim()
+    ? `${TMDB_BASE_URL}?api_key=${encodeURIComponent(TMDB_API_KEY.trim())}&language=es-ES&page=1`
+    : null;
 
   const estadoApi = consultarElemento(SELECTORES.estadoFiltros);
   const mensajeApi = consultarElemento(SELECTORES.mensajeApi);
 
   try {
     mostrarLoading(estadoApi, 'Cargando cartelera...');
+
+    if (!API_PELICULAS_URL) {
+      throw new Error('TMDB_API_KEY_NO_CONFIGURADA');
+    }
 
     const datosApi =
       await obtenerDatosApiConReintento(API_PELICULAS_URL, mensajeApi);
@@ -287,11 +294,13 @@ async function cargarDatosIniciales() {
       `Cartelera cargada correctamente. ${totalPeliculas} película(s) disponibles.`
     );
   } catch (error) {
-    mostrarError(
-      estadoApi,
-      error.userMessage ||
-      'No se pudo cargar la cartelera externa. Se usará el catálogo local.'
-    );
+    const mensajeError =
+      error.message === 'TMDB_API_KEY_NO_CONFIGURADA'
+        ? 'No se configuró la API key de TheMovieDB. Se usará el catálogo local.'
+        : error.userMessage ||
+          'No se pudo cargar la cartelera externa. Se usará el catálogo local.';
+
+    mostrarError(estadoApi, mensajeError);
 
     console.warn(
       'Error al cargar API. Se utilizará catálogo local.',
