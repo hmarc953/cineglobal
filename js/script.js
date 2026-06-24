@@ -56,6 +56,7 @@ const SELECTORES = {
   botonLimpiarFiltros: '#btnLimpiarFiltros',
   listadoPeliculas: '#listaPeliculas',
   mensajeApi: '#mensajeApi',
+  estadoApiCartelera: '#estadoApiCartelera',
   estadoFiltros: '#estadoFiltros',
 
   formularioLogin: '#formLogin',
@@ -220,7 +221,9 @@ async function cargarDatosIniciales() {
     ? `${TMDB_BASE_URL}?api_key=${encodeURIComponent(TMDB_API_KEY.trim())}&language=es-ES&page=1`
     : null;
 
-  const estadoApi = consultarElemento(SELECTORES.estadoFiltros);
+  const estadoApi =
+    consultarElemento(SELECTORES.estadoApiCartelera) ||
+    consultarElemento(SELECTORES.estadoFiltros);
   const mensajeApi = consultarElemento(SELECTORES.mensajeApi);
 
   try {
