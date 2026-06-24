@@ -6,7 +6,7 @@ import { CatalogoPeliculas } from './models/CatalogoPeliculas.js';
 import { Compra } from './models/Compra.js';
 import { ConsultaSoporte } from './models/ConsultaSoporte.js';
 import { StorageUtil } from './utils/storage.js';
-import ApiService from './services/api.service.js';
+import ApiService from './api/apiService.js';
 import {
   consultarElemento,
   valorCampo,
@@ -127,18 +127,11 @@ document.addEventListener('DOMContentLoaded', inicializarApp);
 
 async function inicializarApp() {
   cargarStorage();
-  await cargarDatosIniciales();
-  configurarEventos();
-  restaurarFiltros();
-  validarFormulariosIniciales();
-}
 
-function inicializarApp() {
-  cargarStorage();
-  cargarDatosIniciales();
+  await cargarDatosIniciales();
+
   configurarEventos();
   restaurarFiltros();
-  renderizarPeliculas(estadoApp.catalogoPeliculas.listarPeliculas(), SELECTORES);
   validarFormulariosIniciales();
 }
 
@@ -200,47 +193,121 @@ async function cargarDatosIniciales() {
       : null;
 
   let catalogo = null;
-const datos = await ApiService.fetchData('./api/peliculas.json');
-  try {
-    catalogo = CatalogoPeliculas.cargarDesdeStorage();
-  } catch (e) {
-    console.warn(
-      'Error al cargar CatalogoPeliculas desde storage:',
-      e.message || e
-    );
-  }
+const API_KEY = 'TU_API_KEY';
 
-if (catalogo) {
+const API_PELICULAS_URL =
+  `https://api.themoviedb.org/3/movie/popular` +
+  `?api_key=${API_KEY}` +
+  `&language=es-ES&page=1`;
+
+const datos = await ApiService.fetchData(
+  API_PELICULAS_URL
+);
+ if (catalogo) {
   estadoApp.catalogoPeliculas = catalogo;
 } else {
   try {
     const datosApi =
       await ApiService.fetchData(
-        './api/peliculas.json'
+        API_PELICULAS_URL
       );
+
+    const peliculas = datosApi.map(
+      (pelicula) =>
+        new Pelicula(
+          pelicula.id,
+          pelicula.titulo,
+          pelicula.categoria,
+          pelicula.clasificacion,
+          pelicula.fechaEstreno,
+          pelicula.imagen,
+          (pelicula.funciones || []).map(
+            (funcion) =>
+              new Funcion(
+                funcion.id,
+                funcion.cine,
+                funcion.idioma,
+                funcion.horario,
+                funcion.asientosDisponibles,
+                funcion.precio
+              )
+          )
+        )
+    );
+
+    estadoApp.catalogoPeliculas =
+      new CatalogoPeliculas(
+        peliculas
+      );
+
+    estadoApp.catalogoPeliculas
+      .guardarEnStorage();
+
+  } catch (error) {
+    console.warn(
+      'No se pudo cargar el catálogo externo:',
+      error.message || error
+    );
+
+    estadoApp.catalogoPeliculas =
+      new CatalogoPeliculas(
+        crearPeliculasIniciales()
+      );
+  }
+}
+
+if (catalogo) {
+  estadoApp.catalogoPeliculas = catalogo;
+} else {
+  try {
+    const API_KEY = 'TU_API_KEY';
+
+const API_PELICULAS_URL =
+  `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=es-ES&page=1`;
+
+const estadoApi = consultarElemento(SELECTORES.estadoFiltros);
+
+try {
+  mostrarLoading(estadoApi, 'Cargando cartelera...');
+
+  const datosApi = await ApiService.fetchData(API_PELICULAS_URL);
+
+  mostrarExito(estadoApi, 'Cartelera cargada correctamente.');
+} catch (error) {
+  mostrarError(
+    estadoApi,
+    error.userMessage || 'No se pudo cargar la cartelera externa. Se usará el catálogo local.'
+  );
+
+  estadoApp.catalogoPeliculas = new CatalogoPeliculas(
+    crearPeliculasIniciales()
+  );
+} finally {
+  ocultarLoading(estadoApi);
+}
 
     const peliculas =
       datosApi.map(
         (pelicula) =>
           new Pelicula(
-            pelicula.id,
-            pelicula.title,
-            pelicula.categoria,
-            pelicula.clasificacion,
-            pelicula.fechaEstreno,
-            pelicula.imagen,
-            (pelicula.funciones || []).map(
-              (funcion) =>
-                new Funcion(
-                  funcion.id,
-                  funcion.cine,
-                  funcion.idioma,
-                  funcion.horario,
-                  funcion.asientosDisponibles,
-                  funcion.precio
-                )
-            )
-          )
+           pelicula.id,
+           pelicula.titulo,
+           pelicula.categoria,
+           pelicula.clasificacion,
+           pelicula.fechaEstreno,
+           pelicula.imagen,
+           (pelicula.funciones || []).map(
+          (funcion) =>
+           new Funcion(
+           funcion.id,
+           funcion.cine,
+           funcion.idioma,
+           funcion.horario,
+           funcion.asientosDisponibles,
+           funcion.precio
+      )
+  )
+)
       );
 
     estadoApp.catalogoPeliculas =
@@ -258,16 +325,21 @@ if (catalogo) {
     }
 
   } catch (error) {
-    console.warn(
-      'Error al cargar API. Se utilizará catálogo local.',
-      error
-    );
+  const estadoApi = consultarElemento(SELECTORES.estadoFiltros);
 
-    estadoApp.catalogoPeliculas =
-      new CatalogoPeliculas(
-        crearPeliculasIniciales()
-      );
-  }
+  mostrarError(
+    estadoApi,
+    error.userMessage || 'No se pudo cargar la cartelera externa. Se usará el catálogo local.'
+  );
+
+  console.warn(
+    'Error al cargar API. Se utilizará catálogo local.',
+    error
+  );
+
+  estadoApp.catalogoPeliculas = new CatalogoPeliculas(
+    crearPeliculasIniciales()
+  );
 }
 
 // ==============================
