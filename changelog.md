@@ -14,6 +14,9 @@
 
 ### Fixed
 
+- [fix/209-contraste-accesibilidad] Corregir contraste de colores
+  PR: [#209](https://github.com/hmarc953/cineglobal/pull/209) @hmarc953 (Coordinador / DevOps)
+  
 - [fix/meta-description-index] Agregar meta description en index
   PR: [#208](https://github.com/hmarc953/cineglobal/pull/208) @hmarc953 (Coordinador / DevOps)
 
