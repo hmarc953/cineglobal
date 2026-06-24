@@ -142,4 +142,6 @@ Se recomienda validar:
 - notificacion al seleccionar funcion;
 - notificacion al guardar compra;
 - modal de consulta enviada con ticket y toast de error solo si falla la persistencia;
-- que no se hayan reemplazado modales Bootstrap ni mensajes inline.
+- que los modales de compra y consulta con ticket se mantengan cuando aportan detalle relevante al usuario;
+- que se conserven los modales Bootstrap criticos y los mensajes inline de validacion o error;
+- que los avisos reemplazados por Toastify sean solamente informativos o redundantes.

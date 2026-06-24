@@ -93,7 +93,6 @@ const SELECTORES = {
   mensajePago: '#mensajePago',
   mensajeConsulta: '#mensajeConsulta',
   resumenCompra: '#resumenCompra',
-  confirmRegistroTexto: '#confirmRegistroTexto',
   confirmCompraTexto: '#confirmCompraTexto',
   confirmConsultaTexto: '#confirmConsultaTexto',
   selectCompraCine: '#compraCine',
@@ -350,7 +349,6 @@ function manejarLogin(event) {
 
   estadoApp.usuarioActivo = usuario;
   persistirDato(STORAGE_KEYS.usuarioActivo, usuario.toJSON(), 'session');
-  mostrarExito(mensaje, `Bienvenido/a, ${usuario.nombre}.`);
   showSuccessToast(`Sesion iniciada: ${usuario.nombre}.`);
   limpiarFormulario(formulario);
   actualizarEstadoSubmit(formulario);
@@ -455,7 +453,6 @@ function manejarSeleccionCompra(event) {
   estadoApp.funcionSeleccionada = funcion;
   estadoApp.cantidadEntradas = Number(datos.cantidadEntradas);
   renderizarResumenCompra(estadoApp.peliculaSeleccionada, funcion, estadoApp.cantidadEntradas);
-  mostrarExito(mensaje, 'Funcion seleccionada. Continuá con los datos de pago.');
   showInfoToast('Funcion seleccionada. Continua con el pago.');
   cerrarModal('modalCompra');
   abrirModal('modalPago');
