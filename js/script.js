@@ -200,68 +200,14 @@ const API_PELICULAS_URL =
   `?api_key=${API_KEY}` +
   `&language=es-ES&page=1`;
 
-const datos = await ApiService.fetchData(
-  API_PELICULAS_URL
-);
- if (catalogo) {
-  estadoApp.catalogoPeliculas = catalogo;
-} else {
-  try {
-    const datosApi =
-      await ApiService.fetchData(
-        API_PELICULAS_URL
-      );
 
-    const peliculas = datosApi.map(
-      (pelicula) =>
-        new Pelicula(
-          pelicula.id,
-          pelicula.titulo,
-          pelicula.categoria,
-          pelicula.clasificacion,
-          pelicula.fechaEstreno,
-          pelicula.imagen,
-          (pelicula.funciones || []).map(
-            (funcion) =>
-              new Funcion(
-                funcion.id,
-                funcion.cine,
-                funcion.idioma,
-                funcion.horario,
-                funcion.asientosDisponibles,
-                funcion.precio
-              )
-          )
-        )
-    );
-
-    estadoApp.catalogoPeliculas =
-      new CatalogoPeliculas(
-        peliculas
-      );
-
-    estadoApp.catalogoPeliculas
-      .guardarEnStorage();
-
-  } catch (error) {
-    console.warn(
-      'No se pudo cargar el catálogo externo:',
-      error.message || error
-    );
-
-    estadoApp.catalogoPeliculas =
-      new CatalogoPeliculas(
-        crearPeliculasIniciales()
-      );
-  }
-}
 
 if (catalogo) {
   estadoApp.catalogoPeliculas = catalogo;
 } else {
   try {
     const API_KEY = 'TU_API_KEY';
-
+  
 const API_PELICULAS_URL =
   `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=es-ES&page=1`;
 
@@ -272,12 +218,21 @@ try {
 
   const datosApi = await ApiService.fetchData(API_PELICULAS_URL);
 
-  mostrarExito(estadoApi, 'Cartelera cargada correctamente.');
+  const totalPeliculas =
+    ApiService.contarResultados(datosApi);
+
+  mostrarExito(
+    estadoApi,
+    `Cartelera cargada correctamente. ${totalPeliculas} película(s) disponibles.`
+  );
+
 } catch (error) {
   mostrarError(
     estadoApi,
-    error.userMessage || 'No se pudo cargar la cartelera externa. Se usará el catálogo local.'
+    error.userMessage ||
+    'No se pudo cargar la cartelera externa. Se usará el catálogo local.'
   );
+
 
   estadoApp.catalogoPeliculas = new CatalogoPeliculas(
     crearPeliculasIniciales()
@@ -341,7 +296,7 @@ try {
     crearPeliculasIniciales()
   );
 }
-
+}
 // ==============================
 // Datos iniciales de cartelera
 // ==============================
@@ -926,13 +881,16 @@ function normalizarTextoSeleccion(valor) {
 
   return mapa[sinAcentos] || valor;
 }
-
+}
 function normalizarClasificacion(clasificacion) {
+  // Si clasificacion es null o undefined, usamos un string vacio o 'atp' por defecto
+  const valorLimpio = String(clasificacion || '').trim().toLowerCase();
+
   const mapaClasificacion = {
     atp: 'ATP',
     '13': '+13',
     '16': '+16',
   };
 
-  return mapaClasificacion[clasificacion] || clasificacion;
-}}}
+  return mapaClasificacion[valorLimpio] || clasificacion || 'ATP';
+}

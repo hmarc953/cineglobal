@@ -126,3 +126,85 @@ Estas funciones permiten escribir código más declarativo, legible y mantenible
 ---
 
 ## AT CLOSE
+
+## Prompt exacto utilizado y ajustes manuales realizados. 
+```
+modificame esto: /** * Servicio para consumo de API externa */ const ApiService = { /** * Obtiene datos de la API * @param {string} endpoint - Endpoint a consultar * @returns {Promise<Object>} Datos obtenidos */ async fetchData(endpoint) { try { // Mostrar estado de carga this.showLoading(); const response = await fetch(endpoint); if (!response.ok) { throw new Error(HTTP error! status: ${response.status}); } const data = await response.json(); this.hideLoading(); return data; } catch (error) { this.hideLoading(); this.showError(error.message); throw error; } }, showLoading() { // Actualizar UI con estado de carga }, hideLoading() { // Ocultar estado de carga }, showError(message) { // Mostrar error en UI } }; export default ApiService;
+```
+### ajustes manuales realizados 
+Los ajustes manuales fueron muchos Mayoritariamente por erorres entre lo que se pedia y lo que entregaba la ia tambien hubo mucho problemas para la integracion de esta api porque la ia no terminaba de entender que el codigo devia integrar la api que se estaba utilizando y seguia creando codigo no adaptado a la api.
+
+### Resumen de la integración con clases POO y con Storage.
+Hubo muchos problemas en la integracion de la api con las clases y el storage .
+
+## Issues respondidas y su resolución.
+No hubo como tal una issues pero hubo un monton de correciones en la pull reques que tuvimos que solucionar para entregar esta actividad .Finalmente, se logró una integración funcional mediante la transformación de datos en el servicio API y la estandarización del modelo interno. Agradesco a mis compañeros por ayudarme con las correciones. 
+
+### Aplicación de alguna funcion de orden superior
+#### map:
+``` java 
+datosApi.map(
+        (pelicula) =>
+          new Pelicula(
+           pelicula.id,
+           pelicula.titulo,
+           pelicula.categoria,
+           pelicula.clasificacion,
+           pelicula.fechaEstreno,
+           pelicula.imagen,
+``` 
+#### filter:
+``` java
+.filter(
+      (item) =>
+        item &&
+        item.id &&
+        (item.title || item.name)
+    )
+``` 
+#### Reduce:
+``` java
+return datos.reduce(
+    (total, pelicula) =>
+      total + (pelicula.funciones?.length || 0),
+    0
+  );
+``` 
+#### Validar y sanitizar datos recibidos de la API: 
+``` java
+sanitizarDatos(datos = []) {
+  let lista = [];
+
+  if (Array.isArray(datos)) {
+    lista = datos;
+  } else if (
+    datos &&
+    Array.isArray(datos.results)
+  ) {
+    lista = datos.results;
+  }
+```
+### Manejo de errores: 
+#### Implementar try-catch en operaciones asíncronas: 
+``` java
+catch (error) {
+      if (error.message.startsWith('HTTP_')) {
+        error.userMessage =
+          'El servidor respondió con un error.';
+      } else if (error instanceof SyntaxError) {
+        error.userMessage =
+          'Los datos recibidos tienen un formato inválido.';
+      } else if (error instanceof TypeError) {
+        error.userMessage =
+          'No fue posible establecer conexión con el servidor.';
+      } else {
+        error.userMessage =
+          'Ocurrió un error inesperado.';
+      }
+```
+#### Mostrar mensajes de error amigables al usuario : 
+``` java
+else {
+        error.userMessage =
+          'Ocurrió un error inesperado.'
+```
