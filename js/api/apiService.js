@@ -18,27 +18,86 @@ const ApiService = {
       }
 
       const json = await response.json();
+
+      if (!Array.isArray(json) && !Array.isArray(json?.results)) {
+        const error = new SyntaxError('FORMATO_API_INVALIDO');
+        error.userMessage =
+          'La API devolvió un formato inesperado. Se usará la cartelera almacenada o local.';
+        throw error;
+      }
+
       const datosSanitizados =
         this.sanitizarDatos(json);
 
+      if (datosSanitizados.length === 0) {
+        const error = new Error('API_SIN_RESULTADOS');
+        error.userMessage =
+          'TheMovieDB no devolvió películas. Se usará la cartelera almacenada o local.';
+        throw error;
+      }
+
       return datosSanitizados;
     } catch (error) {
-      if (error.message.startsWith('HTTP_')) {
-        error.userMessage =
-          'El servidor respondió con un error.';
-      } else if (error instanceof SyntaxError) {
-        error.userMessage =
-          'Los datos recibidos tienen un formato inválido.';
-      } else if (error instanceof TypeError) {
-        error.userMessage =
-          'No fue posible establecer conexión con el servidor.';
-      } else {
-        error.userMessage =
-          'Ocurrió un error inesperado.';
+      if (!error.userMessage) {
+        if (error.message.startsWith('HTTP_')) {
+          error.userMessage =
+            'El servidor respondió con un error.';
+        } else if (error instanceof SyntaxError) {
+          error.userMessage =
+            'Los datos recibidos tienen un formato inválido.';
+        } else if (error instanceof TypeError) {
+          error.userMessage =
+            'No fue posible establecer conexión con el servidor.';
+        } else {
+          error.userMessage =
+            'Ocurrió un error inesperado.';
+        }
       }
 
       throw error;
     }
+  },
+
+  /**
+   * Obtiene datos con una cantidad acotada de intentos.
+   * Permite inyectar el fetcher y notificar reintentos sin depender del DOM.
+   *
+   * @param {string} endpoint
+   * @param {{maxIntentos?: number, onRetry?: Function|null, fetcher?: Function}} opciones
+   * @returns {Promise<Array|Object>}
+   * @throws {*} Último error recibido al agotar los intentos.
+   */
+  async fetchDataConReintento(endpoint, opciones = {}) {
+    const {
+      maxIntentos = 2,
+      onRetry = null,
+      fetcher = this.fetchData.bind(this)
+    } = opciones;
+    const cantidadIntentos =
+      Number.isInteger(maxIntentos) && maxIntentos > 0
+        ? maxIntentos
+        : 1;
+
+    let ultimoError = null;
+
+    for (let intento = 1; intento <= cantidadIntentos; intento += 1) {
+      try {
+        return await fetcher(endpoint);
+      } catch (error) {
+        ultimoError = error;
+
+        if (intento < cantidadIntentos && typeof onRetry === 'function') {
+          onRetry({
+            intentoActual: intento,
+            proximoIntento: intento + 1,
+            maxIntentos: cantidadIntentos,
+            error
+          });
+        }
+      }
+    }
+
+    throw ultimoError;
   },
 
   /**
@@ -61,20 +120,103 @@ const ApiService = {
     }
 
     return lista
-      .filter((item) => item && item.id)
-      .map((item) => ({
-        ...item,
-        title: item.title
-          ? String(item.title).trim()
-          : String(item.name || 'Sin título').trim(),
-        categoria: this.obtenerCategoriaCompatible(item),
-        clasificacion: item.clasificacion || 'ATP',
-        fechaEstreno: this.obtenerFechaEstrenoSegura(item),
-        imagen: item.imagen || (item.poster_path
+      .filter(
+        (item) =>
+          item &&
+          Boolean(this.sanitizarTexto(item.id))
+      )
+      .map((item) => {
+        const imagenTmdb = item.poster_path
           ? `https://image.tmdb.org/t/p/w500${item.poster_path}`
-          : ''),
-        funciones: Array.isArray(item.funciones) ? item.funciones : []
-      }));
+          : item.imagen;
+
+        return {
+          id: this.sanitizarTexto(item.id),
+          title: this.sanitizarTexto(
+            item.title || item.name,
+            'Sin título'
+          ),
+          titulo: this.sanitizarTexto(
+            item.titulo || item.title || item.name,
+            'Sin título'
+          ),
+          categoria: this.sanitizarTexto(
+            this.obtenerCategoriaCompatible(item),
+            'Drama'
+          ),
+          clasificacion: this.sanitizarTexto(
+            item.clasificacion,
+            'ATP'
+          ),
+          fechaEstreno: this.obtenerFechaEstrenoSegura(item),
+          imagen: this.validarUrlImagen(imagenTmdb),
+          funciones: Array.isArray(item.funciones)
+            ? item.funciones
+                .map((funcion) => ({
+                  id: this.sanitizarTexto(funcion?.id),
+                  cine: this.sanitizarTexto(funcion?.cine),
+                  idioma: this.sanitizarTexto(funcion?.idioma),
+                  horario: this.sanitizarTexto(funcion?.horario),
+                  asientosDisponibles:
+                    Number(funcion?.asientosDisponibles) || 0,
+                  precio: Number(funcion?.precio) || 0
+                }))
+                .filter(
+                  (funcion) =>
+                    funcion.id &&
+                    funcion.cine &&
+                    funcion.idioma &&
+                    funcion.horario &&
+                    funcion.asientosDisponibles > 0 &&
+                    funcion.precio > 0
+                )
+            : []
+        };
+      });
+  },
+
+  /**
+   * Normaliza texto externo antes de incorporarlo al modelo interno.
+   *
+   * @param {*} valor
+   * @param {string} fallback
+   * @returns {string}
+   */
+  sanitizarTexto(valor, fallback = '') {
+    return String(valor || fallback)
+      .trim()
+      .replace(/[<>"'`]/g, '');
+  },
+
+  /**
+   * Acepta imágenes locales controladas o recursos HTTPS de TMDB.
+   *
+   * @param {*} valor
+   * @returns {string}
+   */
+  validarUrlImagen(valor) {
+    const url = String(valor || '').trim();
+
+    if (!url) {
+      return '';
+    }
+
+    if (/^assets\/images\/[a-zA-Z0-9._-]+$/.test(url)) {
+      return url;
+    }
+
+    try {
+      const urlNormalizada = new URL(url);
+      const protocoloSeguro = urlNormalizada.protocol === 'https:';
+      const dominioPermitido =
+        urlNormalizada.hostname === 'image.tmdb.org';
+
+      return protocoloSeguro && dominioPermitido
+        ? urlNormalizada.href
+        : '';
+    } catch (error) {
+      return '';
+    }
   },
 
   /**

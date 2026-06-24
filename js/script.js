@@ -145,6 +145,23 @@ function cargarStorage() {
   estadoApp.storage = StorageUtil;
 }
 
+function obtenerTmdbApiKey() {
+  const claveConfig =
+    window.CINEGLOBAL_CONFIG?.TMDB_API_KEY || '';
+
+  const esEntornoLocal =
+    window.location.hostname === 'localhost' ||
+    window.location.hostname === '127.0.0.1' ||
+    window.location.hostname === '';
+
+  const claveSession =
+    esEntornoLocal
+      ? sessionStorage.getItem('cineglobal:tmdb-api-key') || ''
+      : '';
+
+  return claveConfig.trim() || claveSession.trim();
+}
+
 async function cargarDatosIniciales() {
   let gestor = null;
 
@@ -198,9 +215,9 @@ async function cargarDatosIniciales() {
       ? Usuario.fromJSON(usuarioJson)
       : null;
 
-  let catalogo = null;
+  let catalogoCache = null;
   try {
-    catalogo = CatalogoPeliculas.cargarDesdeStorage();
+    catalogoCache = CatalogoPeliculas.cargarDesdeStorage();
   } catch (e) {
     console.warn(
       'Error al cargar CatalogoPeliculas desde storage:',
@@ -208,13 +225,7 @@ async function cargarDatosIniciales() {
     );
   }
 
-  if (catalogo) {
-    estadoApp.catalogoPeliculas = catalogo;
-    return;
-  }
-
-  const TMDB_API_KEY =
-    window.CINEGLOBAL_CONFIG?.TMDB_API_KEY || '';
+  const TMDB_API_KEY = obtenerTmdbApiKey();
   const TMDB_BASE_URL =
     'https://api.themoviedb.org/3/movie/popular';
   const API_PELICULAS_URL = TMDB_API_KEY.trim()
@@ -233,8 +244,28 @@ async function cargarDatosIniciales() {
       throw new Error('TMDB_API_KEY_NO_CONFIGURADA');
     }
 
-    const datosApi =
-      await obtenerDatosApiConReintento(API_PELICULAS_URL, mensajeApi);
+    const datosApi = await ApiService.fetchDataConReintento(
+      API_PELICULAS_URL,
+      {
+        maxIntentos: 2,
+        onRetry: ({ proximoIntento, maxIntentos }) => {
+          if (mensajeApi) {
+            mostrarMensaje(
+              mensajeApi,
+              `Reintentando carga de cartelera (${proximoIntento}/${maxIntentos})...`,
+              'loading'
+            );
+          }
+        }
+      }
+    );
+
+    if (!Array.isArray(datosApi) || datosApi.length === 0) {
+      const error = new Error('API_SIN_RESULTADOS');
+      error.userMessage =
+        'TheMovieDB no devolvió películas. Se usará la cartelera almacenada o local.';
+      throw error;
+    }
 
     const metricasApi =
       ApiService.calcularMetricasCatalogo(datosApi);
@@ -252,30 +283,34 @@ async function cargarDatosIniciales() {
       );
     }
 
-    const peliculas = datosApi.map(
-      (pelicula) =>
-        new Pelicula(
-          String(pelicula.id),
-          pelicula.title || pelicula.titulo,
-          pelicula.categoria,
-          pelicula.clasificacion,
-          normalizarFechaEstrenoParaModelo(
-            pelicula.fechaEstreno || pelicula.release_date
-          ),
-          pelicula.imagen,
-          (pelicula.funciones || []).map(
-            (funcion) =>
-              new Funcion(
-                funcion.id,
-                funcion.cine,
-                funcion.idioma,
-                funcion.horario,
-                funcion.asientosDisponibles,
-                funcion.precio
-              )
-          )
-        )
-    );
+    const peliculas = datosApi.map((pelicula) => {
+      const funcionesApi =
+        Array.isArray(pelicula.funciones) && pelicula.funciones.length > 0
+          ? pelicula.funciones.map(
+              (funcion) =>
+                new Funcion(
+                  funcion.id,
+                  funcion.cine,
+                  funcion.idioma,
+                  funcion.horario,
+                  funcion.asientosDisponibles,
+                  funcion.precio
+                )
+            )
+          : crearFuncionesParaPeliculaExterna(pelicula.id);
+
+      return new Pelicula(
+        String(pelicula.id),
+        pelicula.title || pelicula.titulo,
+        pelicula.categoria,
+        pelicula.clasificacion,
+        normalizarFechaEstrenoParaModelo(
+          pelicula.fechaEstreno || pelicula.release_date
+        ),
+        pelicula.imagen,
+        funcionesApi
+      );
+    });
 
     estadoApp.catalogoPeliculas =
       new CatalogoPeliculas(peliculas);
@@ -297,60 +332,67 @@ async function cargarDatosIniciales() {
       `Cartelera cargada correctamente. ${totalPeliculas} película(s) disponibles.`
     );
   } catch (error) {
-    const mensajeError =
-      error.message === 'TMDB_API_KEY_NO_CONFIGURADA'
-        ? 'No se configuró la API key de TheMovieDB. Se usará el catálogo local.'
-        : error.userMessage ||
-          'No se pudo cargar la cartelera externa. Se usará el catálogo local.';
+    const esFaltaApiKey =
+      error.message === 'TMDB_API_KEY_NO_CONFIGURADA';
 
-    mostrarError(estadoApi, mensajeError);
+    if (!esFaltaApiKey) {
+      const mensajeError =
+      error.userMessage ||
+        'No se pudo cargar la cartelera externa. Se usará la cartelera almacenada o local.';
+
+      mostrarError(estadoApi, mensajeError);
+    } else {
+      limpiarMensaje(estadoApi);
+    }
 
     console.warn(
-      'Error al cargar API. Se utilizará catálogo local.',
+      'Error al cargar API. Se utilizará fallback local/cache.',
       error
     );
 
-    estadoApp.catalogoPeliculas = new CatalogoPeliculas(
-      crearPeliculasIniciales()
-    );
+    estadoApp.catalogoPeliculas =
+      catalogoCache ||
+      new CatalogoPeliculas(crearPeliculasIniciales());
   } finally {
     ocultarLoading(estadoApi);
   }
 }
 
 /**
- * Intenta obtener datos de API con un reintento acotado.
- * Si se agotan intentos, delega en el fallback local desde el caller.
+ * Genera funciones compatibles con CineGlobal para películas externas.
  *
- * @param {string} endpoint
- * @param {HTMLElement|null} mensajeApi
- * @param {number} maxIntentos
- * @returns {Promise<Array|Object>}
+ * @param {string|number} peliculaId
+ * @returns {Array<Funcion>}
  */
-async function obtenerDatosApiConReintento(
-  endpoint,
-  mensajeApi,
-  maxIntentos = 2
-) {
-  let ultimoError = null;
+function crearFuncionesParaPeliculaExterna(peliculaId) {
+  const idBase = String(peliculaId || 'externa');
 
-  for (let intento = 1; intento <= maxIntentos; intento += 1) {
-    try {
-      return await ApiService.fetchData(endpoint);
-    } catch (error) {
-      ultimoError = error;
-
-      if (intento < maxIntentos && mensajeApi) {
-        mostrarMensaje(
-          mensajeApi,
-          `Reintentando carga de cartelera (${intento + 1}/${maxIntentos})...`,
-          'loading'
-        );
-      }
-    }
-  }
-
-  throw ultimoError;
+  return [
+    new Funcion(
+      `${idBase}-pal-es-1800`,
+      'Palermo',
+      'Espanol',
+      '18:00',
+      40,
+      120
+    ),
+    new Funcion(
+      `${idBase}-aba-sub-2030`,
+      'Abasto',
+      'Subtitulada',
+      '20:30',
+      35,
+      130
+    ),
+    new Funcion(
+      `${idBase}-pue-en-2200`,
+      'Puerto Madero',
+      'Ingles',
+      '22:00',
+      30,
+      140
+    )
+  ];
 }
 
 /**

@@ -127,100 +127,77 @@ Estas funciones permiten escribir código más declarativo, legible y mantenible
 
 ## AT CLOSE
 
-### Ajuste de configuración y manejo seguro de la credencial de TheMovieDB
+### Resultado final de la integración asíncrona
 
-Durante la revisión final se detectó que la implementación utilizaba el valor placeholder `TU_API_KEY`. Esto impedía consumir realmente TheMovieDB y hacía que el fallback se activara como consecuencia de una solicitud inválida, en lugar de responder a una situación identificada y controlada.
+Se mantuvo TheMovieDB como API externa principal por su relación directa con la temática de CineGlobal. La integración utiliza `fetch` y `async/await`, valida la respuesta HTTP, convierte los datos recibidos desde JSON y contempla estados visuales de carga, éxito y error.
 
-Para corregirlo sin publicar una credencial real, la aplicación pasó a consultar la clave desde `window.CINEGLOBAL_CONFIG.TMDB_API_KEY`. La configuración puede definirse localmente, antes de cargar el módulo principal, en un archivo que no debe versionarse:
+La credencial de TheMovieDB no se publica en el repositorio. La aplicación intenta leerla desde `window.CINEGLOBAL_CONFIG?.TMDB_API_KEY` o, solo en entorno local, desde `sessionStorage`. Si la clave no está configurada, se informa la situación al usuario y se utiliza la cartelera almacenada o local como fallback. En un entorno productivo, esta credencial debería gestionarse desde un backend o una función serverless.
+
+Se evitó cargar obligatoriamente `config.local.js` desde `index.html`, ya que ese archivo está ignorado y no existe en despliegues públicos como GitHub Pages. La aplicación asume la ausencia de `window.CINEGLOBAL_CONFIG` como un caso esperado y utiliza el fallback local/cache cuando no hay una credencial configurada. `js/config.local.example.js` se conserva únicamente como referencia para entornos que inyecten explícitamente la configuración antes de cargar el módulo principal, sin publicar la clave en el repositorio.
+
+Para evitar 404 en GitHub Pages, `index.html` no carga obligatoriamente `config.local.js`. La aplicación puede leer una credencial desde `window.CINEGLOBAL_CONFIG?.TMDB_API_KEY` si fue definida antes de cargar `script.js`. Para pruebas locales sin publicar credenciales, también se permite configurar temporalmente la API key en `sessionStorage` únicamente en entorno local:
 
 ```js
-window.CINEGLOBAL_CONFIG = {
-  TMDB_API_KEY: 'clave_personal'
-};
+sessionStorage.setItem('cineglobal:tmdb-api-key', 'TU_CLAVE_TMDB');
+location.reload();
 ```
 
-Este cambio se realizó para mantener TheMovieDB como fuente externa, proteger la credencial y distinguir claramente la ausencia de configuración de otros errores HTTP, de red o de formato. Cuando la clave no está disponible, la aplicación muestra un mensaje específico y utiliza el catálogo local como fallback, garantizando que `estadoApp.catalogoPeliculas` quede inicializado y que la carga principal continúe funcionando.
+Este mecanismo no se utiliza en GitHub Pages ni reemplaza la recomendación productiva de gestionar credenciales desde un backend o función serverless. Si no hay credencial configurada, la aplicación usa la cartelera almacenada o local como fallback.
 
-La solución conserva el consumo asíncrono con `fetch`, el uso de `async/await`, los estados `loading`, `success` y `error`, el reintento ante fallos de la solicitud y la recuperación mediante el catálogo local. En un entorno productivo, la credencial debería administrarse desde un backend o una función serverless, ya que una aplicación frontend estática no puede garantizar el secreto de una clave entregada al navegador.
+### Estrategia de caché y fallback
 
-## Prompt exacto utilizado y ajustes manuales realizados. 
+El catálogo almacenado en Storage se utiliza como caché y fallback, pero no bloquea el intento de carga desde TheMovieDB. En cada inicialización, la aplicación intenta consumir la API externa cuando hay una credencial configurada. Si la API responde correctamente, los datos se transforman al modelo interno, el catálogo actualizado se asigna al estado de la aplicación y se guarda en Storage.
+
+Si la petición falla o la credencial no está disponible, se utiliza el catálogo previamente almacenado o, si tampoco existe esa caché, el catálogo local creado por `crearPeliculasIniciales()`. Este fallback garantiza que `estadoApp.catalogoPeliculas` quede inicializado y evita que la aplicación resulte inutilizable.
+
+### Integración con POO
+
+Los datos recibidos desde TheMovieDB se adaptan al modelo interno mediante instancias de `Pelicula`, `Funcion` y `CatalogoPeliculas`. Como TheMovieDB no provee funciones de cine, horarios ni precios, se generan funciones compatibles cuando una película externa no incluye esa información. Si la fuente ya proporciona funciones válidas, estas se transforman en instancias de `Funcion`.
+
+Esta adaptación mantiene operativo el flujo de compra y permite seleccionar cine, idioma, horario y cantidad de entradas para las películas incorporadas desde la API.
+
+### Estados visuales y manejo de errores
+
+- `loading` informa que la cartelera externa se está cargando.
+- `success` confirma que los datos externos fueron procesados correctamente.
+- `error` informa si falta la API key o si la petición falla.
+- El reintento acotado se gestiona desde `ApiService.fetchDataConReintento()` y notifica visualmente cada nuevo intento mediante un callback provisto por `script.js`.
+- El fallback local o almacenado permite continuar utilizando la aplicación después del error.
+
+### Procesamiento de datos
+
+La implementación utiliza funciones de orden superior con los siguientes propósitos:
+
+- `filter()` descarta registros inválidos, por ejemplo elementos que no tienen identificador, y funciones externas incompletas.
+- `map()` transforma los datos externos a una lista blanca compatible con CineGlobal y posteriormente crea las instancias del modelo interno.
+- `reduce()` calcula métricas del catálogo, incluyendo la cantidad de películas por categoría y la categoría predominante.
+
+### Sanitización y validación
+
+La función `sanitizarDatos()` dejó de conservar el objeto externo completo y devuelve únicamente las propiedades utilizadas por CineGlobal. Los textos, categorías, fechas, imágenes y datos de funciones se validan antes de incorporarse al modelo interno. Las URLs se limitan a recursos locales controlados o imágenes HTTPS del dominio permitido de TMDB.
+
+Como defensa adicional, los valores utilizados por las cards se escapan antes de interpolarse en `innerHTML`.
+
+Se reforzó la validación de respuestas externas para evitar que una respuesta HTTP exitosa pero vacía o con formato inesperado reemplace una caché válida. Si TheMovieDB no devuelve una estructura compatible o no retorna películas, la aplicación trata el caso como un error recuperable y utiliza la cartelera almacenada o local como fallback.
+
+### Preparación para testing
+
+La lógica de reintento se desacopló de `script.js` y se incorporó como método reutilizable dentro de `ApiService`. Esto permite validar el flujo sin importar el controlador principal ni ejecutar `DOMContentLoaded`, la configuración del DOM o la inicialización completa de la aplicación.
+
+Esta rama no incorpora ni modifica `api.spec.js` ni presenta evidencia de pruebas automatizadas específicas para la API. La implementación queda preparada para que el rol Tester QA/JS valide en su rama los escenarios de carga exitosa, error HTTP, error de red, reintento, fallback, sanitización y transformación de datos.
+
+Los criterios de testing incluidos en la planificación inicial no constituyen evidencia de ejecución en esta rama. El estado final verificable es que las pruebas específicas de API quedan pendientes para el rol Tester QA/JS.
+
+### Prompt inicial y ajustes manuales
 ```
 modificame esto: /** * Servicio para consumo de API externa */ const ApiService = { /** * Obtiene datos de la API * @param {string} endpoint - Endpoint a consultar * @returns {Promise<Object>} Datos obtenidos */ async fetchData(endpoint) { try { // Mostrar estado de carga this.showLoading(); const response = await fetch(endpoint); if (!response.ok) { throw new Error(HTTP error! status: ${response.status}); } const data = await response.json(); this.hideLoading(); return data; } catch (error) { this.hideLoading(); this.showError(error.message); throw error; } }, showLoading() { // Actualizar UI con estado de carga }, hideLoading() { // Ocultar estado de carga }, showError(message) { // Mostrar error en UI } }; export default ApiService;
 ```
-### ajustes manuales realizados 
-Los ajustes manuales fueron muchos Mayoritariamente por erorres entre lo que se pedia y lo que entregaba la ia tambien hubo mucho problemas para la integracion de esta api porque la ia no terminaba de entender que el codigo devia integrar la api que se estaba utilizando y seguia creando codigo no adaptado a la api.
 
-### Resumen de la integración con clases POO y con Storage.
-Hubo muchos problemas en la integracion de la api con las clases y el storage .
 
-## Issues respondidas y su resolución.
-No hubo como tal una issues pero hubo un monton de correciones en la pull reques que tuvimos que solucionar para entregar esta actividad .Finalmente, se logró una integración funcional mediante la transformación de datos en el servicio API y la estandarización del modelo interno. Agradesco a mis compañeros por ayudarme con las correciones. 
+El prompt inicial solicitó incorporar `fetch`, validación de `response.ok`, conversión mediante `.json()`, manejo con `try/catch` y estados visuales de carga y error dentro de un servicio de API.
 
-### Aplicación de alguna funcion de orden superior
-#### map:
-``` java 
-datosApi.map(
-        (pelicula) =>
-          new Pelicula(
-           pelicula.id,
-           pelicula.titulo,
-           pelicula.categoria,
-           pelicula.clasificacion,
-           pelicula.fechaEstreno,
-           pelicula.imagen,
-``` 
-#### filter:
-``` java
-.filter(
-      (item) =>
-        item &&
-        item.id &&
-        (item.title || item.name)
-    )
-``` 
-#### Reduce:
-``` java
-return datos.reduce(
-    (total, pelicula) =>
-      total + (pelicula.funciones?.length || 0),
-    0
-  );
-``` 
-#### Validar y sanitizar datos recibidos de la API: 
-``` java
-sanitizarDatos(datos = []) {
-  let lista = [];
+A partir de las revisiones del PR se realizaron ajustes manuales para configurar la credencial sin publicarla, convertir Storage en caché/fallback, adaptar los datos a las clases POO, generar funciones de cine para películas externas, reforzar la sanitización y desacoplar el mecanismo de reintento. Estos cambios conforman la solución final documentada en esta sección.
 
-  if (Array.isArray(datos)) {
-    lista = datos;
-  } else if (
-    datos &&
-    Array.isArray(datos.results)
-  ) {
-    lista = datos.results;
-  }
-```
-### Manejo de errores: 
-#### Implementar try-catch en operaciones asíncronas: 
-``` java
-catch (error) {
-      if (error.message.startsWith('HTTP_')) {
-        error.userMessage =
-          'El servidor respondió con un error.';
-      } else if (error instanceof SyntaxError) {
-        error.userMessage =
-          'Los datos recibidos tienen un formato inválido.';
-      } else if (error instanceof TypeError) {
-        error.userMessage =
-          'No fue posible establecer conexión con el servidor.';
-      } else {
-        error.userMessage =
-          'Ocurrió un error inesperado.';
-      }
-```
-#### Mostrar mensajes de error amigables al usuario : 
-``` java
-else {
-        error.userMessage =
-          'Ocurrió un error inesperado.'
-```
+### Request Changes respondidos
+
+No se crearon issues adicionales para estas correcciones. Se atendieron los Request Changes del PR #211 relacionados con configuración segura de la credencial, estrategia de caché/fallback, funciones de cine para datos externos, sanitización previa al DOM, desacoplamiento del reintento y consistencia documental. Cada punto quedó resuelto mediante los cambios técnicos y documentales descritos en este `AT CLOSE`.
