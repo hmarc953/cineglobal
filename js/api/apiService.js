@@ -71,34 +71,31 @@ sanitizarDatos(datos = []) {
       (item) =>
         item &&
         item.id &&
-        (item.titulo || item.title)
+        (item.title || item.name)
     )
     .map((item) => ({
       id: item.id,
 
       titulo: String(
-        item.titulo ||
         item.title ||
+        item.name ||
         'Sin título'
       ).trim(),
 
-      categoria:
-        item.categoria || 'Sin categoría',
+      categoria: Array.isArray(item.genre_ids)
+        ? item.genre_ids.join(', ')
+        : 'Sin categoría',
 
-      clasificacion:
-        item.clasificacion || 'ATP',
+      clasificacion: 'ATP',
 
       fechaEstreno:
-        item.fechaEstreno || '',
+        item.release_date || '',
 
-      imagen:
-        item.imagen || '',
+      imagen: item.poster_path
+        ? `https://image.tmdb.org/t/p/w500${item.poster_path}`
+        : '',
 
-      funciones: Array.isArray(
-        item.funciones
-      )
-        ? item.funciones
-        : []
+      funciones: []
     }));
 },
 
@@ -110,12 +107,25 @@ sanitizarDatos(datos = []) {
    * @returns {number}
    */
   contarResultados(datos = []) {
-    return datos.reduce(
-      (total, pelicula) =>
-        total + (pelicula.funciones?.length || 0),
-      0
-    );
+    const totalPeliculas = datosApi.length;
+
+mostrarExito(
+  estadoApi,
+  `Cartelera cargada correctamente. ${totalPeliculas} película(s) disponibles.`
+);
+    ;
+contarResultados(datos = []) {
+  if (!Array.isArray(datos)) {
+    return 0;
   }
+
+  return datos.reduce(
+    (total, pelicula) =>
+      total + (pelicula.funciones?.length || 0),
+    0
+  );
+}  
+}
 };
 
 export default ApiService;

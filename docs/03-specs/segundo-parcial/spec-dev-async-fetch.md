@@ -1,14 +1,32 @@
 # Integración de Datos Externos mediante API
 
+## BEFORE
+
 ## Selección y justificación de la API o JSON estático a utilizar
 
-Para la implementación de la funcionalidad de obtención de datos externos se seleccionó una API REST de películas (**TheMovieDB**) debido a su relación directa con la temática del sistema CineGlobal. Esta API permite acceder a información actualizada sobre películas, incluyendo títulos, descripciones, géneros, imágenes y valoraciones.
+## Selección y justificación de la API
 
-Como alternativa para pruebas controladas y desarrollo local, se contempla el uso de archivos JSON estáticos que simulan las respuestas de la API. Esta estrategia permite validar la lógica de integración sin depender de la disponibilidad de servicios externos.
+Para la implementación de la funcionalidad de obtención de datos externos se seleccionó **TheMovieDB (TMDB)** como fuente principal de información, debido a que proporciona datos actualizados sobre películas y se encuentra alineada con la temática del sistema CineGlobal.
 
-La elección de una API externa permite aplicar conceptos de consumo de servicios REST mediante `fetch`, procesamiento de respuestas asíncronas y actualización dinámica de la interfaz de usuario.
+La integración se realiza mediante consultas HTTP utilizando `fetch` a los endpoints oficiales de TMDB, obteniendo información como títulos, géneros, fechas de estreno, imágenes y otros datos relevantes para la construcción dinámica del catálogo de películas.
 
+Durante el procesamiento de la respuesta, los datos recibidos son adaptados al modelo interno de la aplicación mediante funciones de transformación y sanitización, permitiendo su integración con las clases POO existentes (`Pelicula`, `Funcion` y `CatalogoPeliculas`).
+
+Para garantizar la disponibilidad del sistema ante posibles fallos externos, se implementó un mecanismo de contingencia que utiliza la cartelera local definida en `crearPeliculasIniciales()` cuando la API no puede ser consumida correctamente. De esta forma, la aplicación continúa funcionando aun cuando el servicio externo no esté disponible.
+
+La elección de TheMovieDB permitió aplicar conceptos de consumo de servicios REST mediante `fetch`, manejo de promesas, procesamiento de respuestas asíncronas, validación y transformación de datos, actualización dinámica de la interfaz y manejo controlado de errores.
+
+### Configuración del endpoint de TheMovieDB
+
+La URL utilizada para el consumo de datos se configuró apuntando al endpoint de películas populares de TheMovieDB. La implementación define una constante denominada `API_PELICULAS_URL`, que referencia el recurso:
+
+`https://api.themoviedb.org/3/movie/popular`
+
+Las solicitudes se realizan mediante `fetch`, incorporando la autenticación requerida por TheMovieDB a través de API Key o Bearer Token según la configuración del entorno.
+
+Posteriormente, los datos obtenidos son sanitizados y transformados para adaptarlos al modelo interno de CineGlobal antes de crear las instancias de las clases `Pelicula`, `Funcion` y `CatalogoPeliculas`.
 ---
+
 
 ## Diseño de los estados de carga (loading/success/error)
 
@@ -93,15 +111,18 @@ Estas funciones permiten escribir código más declarativo, legible y mantenible
 
 ### Checklist
 
-* [ ] Solicitud de datos implementada mediante `fetch`.
-* [ ] Manejo de errores mediante bloques `try/catch`.
-* [ ] Estado de carga visualizado correctamente durante la petición.
-* [ ] Estado de éxito mostrado al finalizar la operación.
-* [ ] Estado de error mostrado ante fallos de red o respuestas inválidas.
-* [ ] Datos obtenidos integrados dinámicamente al DOM.
-* [ ] Uso de funciones de orden superior (`map`, `filter`, `find`, `forEach`, `sort`) para procesar los datos.
-* [ ] Validación de la respuesta antes de utilizar la información recibida.
-* [ ] Casos de prueba definidos en conjunto con el equipo Tester QA.
-* [ ] Pruebas realizadas para escenarios exitosos.
-* [ ] Pruebas realizadas para escenarios de error.
-* [ ] Verificación de la correcta visualización de los datos en la interfaz.
+* [x] Solicitud de datos implementada mediante `fetch`.
+* [x] Manejo de errores mediante bloques `try/catch`.
+* [x] Estado de carga visualizado correctamente durante la petición.
+* [x] Estado de éxito mostrado al finalizar la operación.
+* [x] Estado de error mostrado ante fallos de red o respuestas inválidas.
+* [x] Datos obtenidos integrados dinámicamente al DOM.
+* [x] Uso de funciones de orden superior (`map`, `filter`, `find`, `forEach`, `sort`) para procesar los datos.
+* [x] Validación de la respuesta antes de utilizar la información recibida.
+* [x] Casos de prueba definidos en conjunto con el equipo Tester QA.
+* [x] Pruebas realizadas para escenarios exitosos.
+* [x] Pruebas realizadas para escenarios de error.
+* [x] Verificación de la correcta visualización de los datos en la interfaz.
+---
+
+## AT CLOSE
