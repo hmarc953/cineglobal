@@ -8,6 +8,10 @@
 - [Test Case 5 - Estructura HTML semantica y validacion](test-case-5.md)[← Volver al índice de testing](testing-doc.md)
 - [Test Case 7 - Navbar Bootstrap Mobile (Playwright MCP)](test-case-7.md)[← Volver al índice de testing](testing-doc.md)
 - [Test Case 8 - Modal Bootstrap Desktop + Mobile (Playwright MCP)](test-case-8.md) ✅ **PASS** [← Volver al índice de testing](testing-doc.md)
+- [Test Case 11 - Auditoría Lighthouse Baseline Inicial](test-case-11-lighthouse-baseline.md) ✅ **PASS**
+- [Test Case 12 - Auditoría Lighthouse Post Fetch/API](test-case-12-lighthouse-post-fetch.md) ✅ **PASS**
+- [Test Case 13 - Auditoría Lighthouse Post Librería Externa](test-case-13-lighthouse-post-library.md) ✅ **PASS**
+
 
 
 ## Resumen de Issues por Momento
@@ -45,5 +49,13 @@
     - #82 - TC7 - Contraste en Navbar toggler
     - #83 - TC8 - Padding Modal Mobile
 - **RC-11**: Corregido (Documentación y capturas de TC-8 completadas).
+
+## Resumen de Issues QA - Segundo Parcial
+
+- [#207] [Tester QA/JS] Suite de testing avanzado + auditorías Lighthouse
+- [#208] Corregir contraste de color insuficiente (Accessibility)
+- [#209] Agregar meta description al index.html
+- [#218] [Performance] Resolver render-blocking requests (CDN de Bootstrap)
+- [#219] [Performance] Tareas largas detectadas en el hilo principal (long tasks)
 
 **Resultado Final:** ✅ **LGTM - Listo para Merge a develop**
