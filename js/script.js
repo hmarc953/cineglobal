@@ -12,7 +12,7 @@ import {
   showSuccessToast,
   showWarningToast,
 } from './utils/toast.js';
-
+import ApiService from './api/apiService.js';
 import {
   consultarElemento,
   valorCampo,
@@ -61,6 +61,8 @@ const SELECTORES = {
   selectClasificacion: '#clasificacion',
   botonLimpiarFiltros: '#btnLimpiarFiltros',
   listadoPeliculas: '#listaPeliculas',
+  mensajeApi: '#mensajeApi',
+  estadoApiCartelera: '#estadoApiCartelera',
   estadoFiltros: '#estadoFiltros',
 
   formularioLogin: '#formLogin',
@@ -129,12 +131,17 @@ const usuarioInicial = {
 // ==============================
 document.addEventListener('DOMContentLoaded', inicializarApp);
 
-function inicializarApp() {
+async function inicializarApp() {
   cargarStorage();
-  cargarDatosIniciales();
+
+  await cargarDatosIniciales();
+
   configurarEventos();
   restaurarFiltros();
-  renderizarPeliculas(estadoApp.catalogoPeliculas.listarPeliculas(), SELECTORES);
+  renderizarPeliculas(
+    estadoApp.catalogoPeliculas.listarPeliculas(),
+    SELECTORES
+  );
   validarFormulariosIniciales();
 }
 
@@ -142,56 +149,275 @@ function cargarStorage() {
   estadoApp.storage = StorageUtil;
 }
 
-function cargarDatosIniciales() {
-  // Intenta restaurar el gestor de usuarios persistido.
+function obtenerTmdbApiKey() {
+  const claveConfig =
+    window.CINEGLOBAL_CONFIG?.TMDB_API_KEY || '';
+
+  const esEntornoLocal =
+    window.location.hostname === 'localhost' ||
+    window.location.hostname === '127.0.0.1' ||
+    window.location.hostname === '';
+
+  const claveSession =
+    esEntornoLocal
+      ? sessionStorage.getItem('cineglobal:tmdb-api-key') || ''
+      : '';
+
+  return claveConfig.trim() || claveSession.trim();
+}
+
+async function cargarDatosIniciales() {
   let gestor = null;
+
   try {
     gestor = GestorUsuarios.cargarDesdeStorage();
   } catch (e) {
-    console.warn('Error al cargar GestorUsuarios desde storage:', e.message || e);
+    console.warn(
+      'Error al cargar GestorUsuarios desde storage:',
+      e.message || e
+    );
   }
 
-  // Si no hay datos previos, crea el usuario administrador inicial
-  // y deja persistida esa estructura base.
   if (gestor) {
     estadoApp.gestorUsuarios = gestor;
   } else {
-    const usuarios = [new Usuario('user_admin', usuarioInicial.nombre, usuarioInicial.email, usuarioInicial.password)];
-    estadoApp.gestorUsuarios = new GestorUsuarios(usuarios);
+    const usuarios = [
+      new Usuario(
+        'user_admin',
+        usuarioInicial.nombre,
+        usuarioInicial.email,
+        usuarioInicial.password
+      )
+    ];
+
+    estadoApp.gestorUsuarios =
+      new GestorUsuarios(usuarios);
+
     try {
       estadoApp.gestorUsuarios.guardarEnStorage();
     } catch (e) {
-      console.warn('No se pudo guardar GestorUsuarios en storage:', e.message || e);
+      console.warn(
+        'No se pudo guardar GestorUsuarios en storage:',
+        e.message || e
+      );
     }
   }
 
-  // Recupera el usuario activo, priorizando datos persistentes.
-  const usuarioGuardadoLocal = obtenerDato(STORAGE_KEYS.usuarioActivo, 'local');
-  const usuarioGuardadoSession = obtenerDato(STORAGE_KEYS.usuarioActivo, 'session');
-  const usuarioJson = usuarioGuardadoLocal || usuarioGuardadoSession || null;
-  estadoApp.usuarioActivo = usuarioJson ? Usuario.fromJSON(usuarioJson) : null;
+  const usuarioGuardadoLocal =
+    obtenerDato(STORAGE_KEYS.usuarioActivo, 'local');
 
-  // Intenta restaurar el catálogo persistido y, si no existe,
-  // carga la cartelera inicial de la aplicación.
-  let catalogo = null;
+  const usuarioGuardadoSession =
+    obtenerDato(STORAGE_KEYS.usuarioActivo, 'session');
+
+  const usuarioJson =
+    usuarioGuardadoLocal ||
+    usuarioGuardadoSession ||
+    null;
+
+  estadoApp.usuarioActivo =
+    usuarioJson
+      ? Usuario.fromJSON(usuarioJson)
+      : null;
+
+  let catalogoCache = null;
   try {
-    catalogo = CatalogoPeliculas.cargarDesdeStorage();
+    catalogoCache = CatalogoPeliculas.cargarDesdeStorage();
   } catch (e) {
-    console.warn('Error al cargar CatalogoPeliculas desde storage:', e.message || e);
+    console.warn(
+      'Error al cargar CatalogoPeliculas desde storage:',
+      e.message || e
+    );
   }
 
-  if (catalogo) {
-    estadoApp.catalogoPeliculas = catalogo;
-  } else {
-    estadoApp.catalogoPeliculas = new CatalogoPeliculas(crearPeliculasIniciales());
+  const TMDB_API_KEY = obtenerTmdbApiKey();
+  const TMDB_BASE_URL =
+    'https://api.themoviedb.org/3/movie/popular';
+  const API_PELICULAS_URL = TMDB_API_KEY.trim()
+    ? `${TMDB_BASE_URL}?api_key=${encodeURIComponent(TMDB_API_KEY.trim())}&language=es-ES&page=1`
+    : null;
+
+  const estadoApi =
+    consultarElemento(SELECTORES.estadoApiCartelera) ||
+    consultarElemento(SELECTORES.estadoFiltros);
+  const mensajeApi = consultarElemento(SELECTORES.mensajeApi);
+
+  try {
+    mostrarLoading(estadoApi, 'Cargando cartelera...');
+
+    if (!API_PELICULAS_URL) {
+      throw new Error('TMDB_API_KEY_NO_CONFIGURADA');
+    }
+
+    const datosApi = await ApiService.fetchDataConReintento(
+      API_PELICULAS_URL,
+      {
+        maxIntentos: 2,
+        onRetry: ({ proximoIntento, maxIntentos }) => {
+          if (mensajeApi) {
+            mostrarMensaje(
+              mensajeApi,
+              `Reintentando carga de cartelera (${proximoIntento}/${maxIntentos})...`,
+              'loading'
+            );
+          }
+        }
+      }
+    );
+
+    if (!Array.isArray(datosApi) || datosApi.length === 0) {
+      const error = new Error('API_SIN_RESULTADOS');
+      error.userMessage =
+        'TheMovieDB no devolvió películas. Se usará la cartelera almacenada o local.';
+      throw error;
+    }
+
+    const metricasApi =
+      ApiService.calcularMetricasCatalogo(datosApi);
+
+    if (mensajeApi) {
+      const detalleCategoria =
+        metricasApi.categoriaPrincipal
+          ? ` Categoría predominante: ${metricasApi.categoriaPrincipal}.`
+          : '';
+
+      mostrarMensaje(
+        mensajeApi,
+        `API procesada: ${metricasApi.total} película(s).${detalleCategoria}`,
+        'success'
+      );
+    }
+
+    const peliculas = datosApi.map((pelicula) => {
+      const funcionesApi =
+        Array.isArray(pelicula.funciones) && pelicula.funciones.length > 0
+          ? pelicula.funciones.map(
+              (funcion) =>
+                new Funcion(
+                  funcion.id,
+                  funcion.cine,
+                  funcion.idioma,
+                  funcion.horario,
+                  funcion.asientosDisponibles,
+                  funcion.precio
+                )
+            )
+          : crearFuncionesParaPeliculaExterna(pelicula.id);
+
+      return new Pelicula(
+        String(pelicula.id),
+        pelicula.title || pelicula.titulo,
+        pelicula.categoria,
+        pelicula.clasificacion,
+        normalizarFechaEstrenoParaModelo(
+          pelicula.fechaEstreno || pelicula.release_date
+        ),
+        pelicula.imagen,
+        funcionesApi
+      );
+    });
+
+    estadoApp.catalogoPeliculas =
+      new CatalogoPeliculas(peliculas);
+
     try {
       estadoApp.catalogoPeliculas.guardarEnStorage();
     } catch (e) {
-      console.warn('No se pudo guardar CatalogoPeliculas en storage:', e.message || e);
+      console.warn(
+        'No se pudo guardar CatalogoPeliculas en storage:',
+        e.message || e
+      );
     }
+
+    const totalPeliculas =
+      ApiService.contarResultados(datosApi);
+
+    mostrarExito(
+      estadoApi,
+      `Cartelera cargada correctamente. ${totalPeliculas} película(s) disponibles.`
+    );
+  } catch (error) {
+    const esFaltaApiKey =
+      error.message === 'TMDB_API_KEY_NO_CONFIGURADA';
+
+    if (!esFaltaApiKey) {
+      const mensajeError =
+      error.userMessage ||
+        'No se pudo cargar la cartelera externa. Se usará la cartelera almacenada o local.';
+
+      mostrarError(estadoApi, mensajeError);
+    } else {
+      limpiarMensaje(estadoApi);
+    }
+
+    console.warn(
+      'Error al cargar API. Se utilizará fallback local/cache.',
+      error
+    );
+
+    estadoApp.catalogoPeliculas =
+      catalogoCache ||
+      new CatalogoPeliculas(crearPeliculasIniciales());
+  } finally {
+    ocultarLoading(estadoApi);
   }
 }
 
+/**
+ * Genera funciones compatibles con CineGlobal para películas externas.
+ *
+ * @param {string|number} peliculaId
+ * @returns {Array<Funcion>}
+ */
+function crearFuncionesParaPeliculaExterna(peliculaId) {
+  const idBase = String(peliculaId || 'externa');
+
+  return [
+    new Funcion(
+      `${idBase}-pal-es-1800`,
+      'Palermo',
+      'Espanol',
+      '18:00',
+      40,
+      120
+    ),
+    new Funcion(
+      `${idBase}-aba-sub-2030`,
+      'Abasto',
+      'Subtitulada',
+      '20:30',
+      35,
+      130
+    ),
+    new Funcion(
+      `${idBase}-pue-en-2200`,
+      'Puerto Madero',
+      'Ingles',
+      '22:00',
+      30,
+      140
+    )
+  ];
+}
+
+/**
+ * Normaliza fecha para evitar Date inválida al construir Pelicula.
+ *
+ * @param {string|null|undefined} fechaCruda
+ * @returns {string}
+ */
+function normalizarFechaEstrenoParaModelo(fechaCruda) {
+  if (typeof fechaCruda !== 'string' || !fechaCruda.trim()) {
+    return '2099-12-31';
+  }
+
+  const fecha = new Date(fechaCruda);
+
+  if (Number.isNaN(fecha.getTime())) {
+    return '2099-12-31';
+  }
+
+  return fecha.toISOString().slice(0, 10);
+}
 // ==============================
 // Datos iniciales de cartelera
 // ==============================
@@ -797,13 +1023,15 @@ function normalizarTextoSeleccion(valor) {
 
   return mapa[sinAcentos] || valor;
 }
-
 function normalizarClasificacion(clasificacion) {
+  // Si clasificacion es null o undefined, usamos un string vacio o 'atp' por defecto
+  const valorLimpio = String(clasificacion || '').trim().toLowerCase();
+
   const mapaClasificacion = {
     atp: 'ATP',
     '13': '+13',
     '16': '+16',
   };
 
-  return mapaClasificacion[clasificacion] || clasificacion;
+  return mapaClasificacion[valorLimpio] || clasificacion || 'ATP';
 }

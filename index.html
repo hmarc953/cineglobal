@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CineGlobal permite consultar películas, horarios y cines, filtrar la cartelera y simular la compra de entradas desde una interfaz web responsive.">
     <title>CineGlobal - Compra boletos online</title>
     <!-- 1. Bootstrap base -->
     <link
@@ -111,6 +112,8 @@
                             <button type="button" class="btn btn-secondary filter-button w-100" id="btnLimpiarFiltros">Limpiar</button>
                         </div>
                     </form>
+                    <p class="cineglobal-ui-message mt-3" id="mensajeApi" hidden></p>
+                    <p class="cineglobal-ui-message mt-3" id="estadoApiCartelera" hidden></p>
                     <p class="cineglobal-ui-message mt-3" id="estadoFiltros" hidden></p>
                 </section>
 
