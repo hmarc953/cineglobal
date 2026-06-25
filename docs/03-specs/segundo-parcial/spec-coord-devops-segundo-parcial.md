@@ -970,6 +970,223 @@ Importante:
 * La respuesta que sea en formato Markdown.
 ```
 
+#### Prompt 7
+```
+Actuá como Coordinador/DevOps del proyecto CineGlobal para Programación Web I.
+
+Necesito que analices el PR del rol **Tester QA/JS - Testing Avanzado** del Segundo Parcial y revises si cumple con la consigna.
+
+Modo de trabajo:
+
+* Trabajá en modo revisión/code review.
+* No modifiques archivos.
+* No generes código nuevo salvo que sea necesario para ejemplificar una corrección puntual.
+* Revisá solo problemas reales, inconsistencias, incumplimientos o puntos débiles.
+* Si algo está bien, no hace falta desarrollarlo demasiado.
+* Quiero una salida útil para dejar comentarios de review en GitHub.
+* No inventes archivos, capturas, resultados, líneas, issues ni PRs.
+* Si algo no puede verificarse con los archivos adjuntos, indicá “No verificable con los archivos adjuntos”.
+
+Archivos de contexto a revisar:
+
+* Consigna `PWI2026_2DO_PARCIAL.pdf`
+* `docs/03-specs/segundo-parcial/spec-tester-qa.md`
+* `testing-doc.md` o documentación equivalente de testing
+* `test-runner.html`
+* `js/test/api.spec.js` o archivo equivalente
+* `js/test/library.spec.js` o archivo equivalente
+* `js/test/script.spec.js`, `models.spec.js`, `storage.spec.js` si están vinculados
+* Capturas de tests fallidos/exitosos
+* Capturas Lighthouse baseline, post-fetch y post-librería
+* `README.md`
+* `changelog.md`
+* Código relacionado con Async Fetch/API
+* Código relacionado con librería externa Toastify
+
+Consigna a validar:
+El rol Tester QA/JS debe:
+
+* Crear o actualizar pruebas Jasmine para funciones asíncronas/API.
+* Crear o actualizar pruebas Jasmine para la librería externa.
+* Verificar casos de éxito y error.
+* Probar o dejar cubiertos escenarios relacionados con `fetch`, errores HTTP, errores de red, parseo JSON, fallback y reintento.
+* Validar procesamiento con `map`, `filter` y `reduce` si corresponde.
+* Validar sanitización de datos externos si corresponde.
+* Validar integración de Toastify o la librería externa elegida.
+* Usar mocks o datos controlados cuando sea necesario para evitar depender de una API real.
+* Mantener pruebas deterministas y reproducibles.
+* Ejecutar y documentar resultados del runner de Jasmine.
+* Realizar auditorías Lighthouse:
+
+  * baseline;
+  * post-fetch;
+  * post-librería.
+* Documentar resultados, capturas y hallazgos.
+* Crear issues para defectos detectados, con prioridad y responsable.
+* Completar el spec del rol con BEFORE y AT CLOSE.
+* Actualizar changelog si corresponde.
+
+Puntos críticos a revisar:
+
+1. Spec del rol Tester QA/JS
+
+* Verificar que el BEFORE exista y haya sido completado antes de la implementación.
+* Verificar que el AT CLOSE refleje el resultado real.
+* Verificar que no se marquen como completadas pruebas o auditorías sin evidencia.
+* Verificar que el spec mencione qué se probó, qué quedó pendiente y qué limitaciones hubo.
+* Verificar que los criterios de aceptación estén actualizados con el estado real.
+
+2. Estructura de testing
+
+* Verificar que exista un runner funcional.
+* Verificar que los archivos de spec estén correctamente incluidos.
+* Verificar que el orden de carga de scripts sea correcto.
+* Verificar que no haya dependencias rotas o rutas incorrectas.
+* Verificar que los tests puedan ejecutarse desde navegador sin pasos ocultos.
+* Verificar que no se mezclen responsabilidades del Tester con implementación de features.
+
+3. Tests de Async Fetch/API
+
+* Verificar si existe `api.spec.js` o equivalente.
+* Verificar si prueba respuesta exitosa.
+* Verificar si prueba error HTTP.
+* Verificar si prueba error de red.
+* Verificar si prueba JSON inválido o formato inesperado.
+* Verificar si prueba respuesta vacía.
+* Verificar si prueba fallback o reintento, si la implementación lo permite.
+* Verificar si mockea `fetch` correctamente.
+* Verificar si restaura mocks después de cada test.
+* Verificar si no depende de TheMovieDB real ni de una API key real.
+* Verificar si cubre sanitización y transformación de datos externos.
+
+4. Tests de librería externa
+
+* Verificar si existe `library.spec.js` o equivalente.
+* Verificar si prueba el wrapper de Toastify o la librería externa elegida.
+* Verificar si mockea `window.Toastify`.
+* Verificar si prueba que la app no se rompa cuando Toastify no está disponible.
+* Verificar si prueba tipos de notificación: éxito, error, advertencia o información, según lo implementado.
+* Verificar si prueba que el wrapper devuelva un resultado controlado.
+* Verificar si no depende del CDN real para pasar.
+
+5. Tests existentes de funcionalidades previas
+
+* Verificar si `script.spec.js`, `models.spec.js` o `storage.spec.js` siguen alineados con el código actual.
+* Verificar si quedaron tests esperando IDs antiguos, por ejemplo `compraFuncion` en vez de `compraHorario`.
+* Verificar si quedaron tests esperando modales que fueron reemplazados por Toastify.
+* Verificar si se rompieron tests existentes por cambios de flujo.
+* Verificar si las expectativas validan comportamiento real y no detalles obsoletos.
+
+6. Calidad de los tests
+
+* Verificar que los tests tengan nombres claros.
+* Verificar que cada test pruebe una sola responsabilidad.
+* Verificar que haya `beforeEach` / `afterEach` cuando corresponda.
+* Verificar que se limpien `localStorage`, `sessionStorage`, DOM y mocks.
+* Verificar que no queden datos contaminando otros tests.
+* Verificar que no haya tests frágiles dependientes del orden, del tiempo o de servicios externos.
+* Verificar que no haya `console.log` innecesarios.
+* Verificar que no haya tests comentados sin justificación.
+
+7. Evidencias de ejecución
+
+* Verificar si hay capturas de tests fallidos y exitosos.
+* Verificar si las capturas corresponden al runner real.
+* Verificar si se documentó qué error se detectó y cómo se corrigió.
+* Verificar si la documentación diferencia pruebas de A4 y pruebas del Segundo Parcial.
+* Verificar si se documentó fecha/momento o contexto de cada evidencia.
+
+8. Lighthouse
+
+* Verificar si existen auditorías baseline, post-fetch y post-librería.
+* Verificar si las capturas son legibles.
+* Verificar si se indican métricas principales: Performance, Accessibility, Best Practices y SEO.
+* Verificar si se documentan los hallazgos detectados.
+* Verificar si los hallazgos importantes fueron convertidos en issues.
+* Verificar si se respetan los umbrales declarados por la consigna o el equipo.
+* Verificar si hay evidencia de corrección para problemas como contraste, SEO o performance.
+
+9. Issues y trazabilidad
+
+* Verificar si los defectos detectados por QA tienen issue asociada.
+* Verificar si cada issue tiene prioridad, descripción, pasos para reproducir, resultado esperado y responsable.
+* Verificar si se relacionan issues con PRs y commits.
+* Verificar si el changelog registra aportes del rol Tester QA/JS.
+* Verificar si README o documentación principal enlaza a la documentación de testing cuando corresponde.
+
+10. Alcance del rol
+
+* Verificar si el Tester QA/JS se mantuvo dentro de su rol.
+* Si modificó código productivo, revisar si estaba justificado.
+* Si agregó correcciones funcionales grandes, marcarlo como posible fuera de alcance.
+* Si solo documentó sin validar, marcarlo como incumplimiento parcial.
+* Si detectó errores pero no dejó issue/evidencia, marcarlo como trazabilidad incompleta.
+
+Formato de salida esperado:
+
+## REVISIÓN DE CÓDIGO – PR #XXX - Tester QA/JS
+
+### Resultado general
+
+Elegir una opción:
+
+* Cumple correctamente
+* Cumple parcialmente
+* No cumple todavía
+
+Justificar en 3 a 5 líneas.
+
+---
+
+### Hallazgos detectados
+
+Listar solo problemas reales. Para cada problema usar este formato:
+
+#### Hallazgo X [Prioridad: Crítico/Alto/Medio/Bajo] Título breve
+
+**Archivo/línea aproximada:**
+Indicar archivo y línea aproximada si se puede.
+
+**Problema:**
+Explicar qué está mal, incompleto o inconsistente.
+
+**Por qué importa:**
+Relacionarlo con la consigna, la trazabilidad o la calidad de la entrega.
+
+**Solución sugerida:**
+Indicar qué debería corregirse. Si hace falta, incluir ejemplo breve.
+
+---
+
+### Request Changes sugeridos para GitHub
+
+Redactar comentarios concretos para dejar en la PR. Separar:
+
+* Request Changes bloqueantes.
+* Observaciones menores no bloqueantes.
+
+---
+
+### Veredicto final
+
+Elegir una opción:
+
+* Solicitar cambios antes de aprobar.
+* Aprobar con observaciones menores.
+* Aprobar.
+
+Justificar brevemente.
+
+Importante:
+
+* No inventes evidencia.
+* No apruebes si faltan tests centrales de API o librería.
+* No apruebes si no hay evidencia de ejecución.
+* No apruebes si Lighthouse está documentado sin capturas o resultados verificables.
+* Si hay pendientes menores pero la consigna central está cumplida, indicar “Aprobar con observaciones menores”.
+```
+
+
 ### Reviews realizadas
 
 #### PR `#211` - Desarrollador JS Asíncrono - Fetch & APIs
