@@ -5,6 +5,7 @@ import { Compra } from '../models/Compra.js';
 import { CatalogoPeliculas } from '../models/CatalogoPeliculas.js';
 import { GestorUsuarios } from '../models/GestorUsuarios.js';
 import { ConsultaSoporte } from '../models/ConsultaSoporte.js';
+import { StorageUtil } from '../utils/storage.js';
 
 describe('Usuario', function() {
   it('crea un usuario con email normalizado y propiedades válidas', function() {
@@ -307,6 +308,25 @@ describe('CatalogoPeliculas', function() {
   it('devuelve null al deserializar JSON inválido', function() {
     expect(CatalogoPeliculas.fromJSON(null)).toBeNull();
   });
+
+  it('guarda el catálogo en storage usando la clave esperada', function() {
+    const spyGuardar = spyOn(StorageUtil, 'guardarInstancia').and.returnValue(true);
+
+    const resultado = catalogo.guardarEnStorage();
+
+    expect(resultado).toBeTrue();
+    expect(spyGuardar).toHaveBeenCalledWith('cine:catalogo:peliculas', catalogo, 'local');
+  });
+
+  it('carga el catálogo desde storage usando el constructor correcto', function() {
+    const catalogoMock = new CatalogoPeliculas([]);
+    const spyCargar = spyOn(StorageUtil, 'cargarInstancia').and.returnValue(catalogoMock);
+
+    const resultado = CatalogoPeliculas.cargarDesdeStorage();
+
+    expect(resultado).toBe(catalogoMock);
+    expect(spyCargar).toHaveBeenCalledWith('cine:catalogo:peliculas', CatalogoPeliculas, 'local');
+  });
 });
 
 describe('GestorUsuarios', function() {
@@ -405,6 +425,25 @@ describe('GestorUsuarios', function() {
 
   it('devuelve null al deserializar JSON inválido', function() {
     expect(GestorUsuarios.fromJSON(null)).toBeNull();
+  });
+
+  it('guarda los usuarios en storage usando la clave esperada', function() {
+    const spyGuardar = spyOn(StorageUtil, 'guardarInstancia').and.returnValue(true);
+
+    const resultado = gestor.guardarEnStorage();
+
+    expect(resultado).toBeTrue();
+    expect(spyGuardar).toHaveBeenCalledWith('cine:usuario:datos', gestor, 'local');
+  });
+
+  it('carga usuarios desde storage usando el constructor correcto', function() {
+    const gestorMock = new GestorUsuarios([]);
+    const spyCargar = spyOn(StorageUtil, 'cargarInstancia').and.returnValue(gestorMock);
+
+    const resultado = GestorUsuarios.cargarDesdeStorage();
+
+    expect(resultado).toBe(gestorMock);
+    expect(spyCargar).toHaveBeenCalledWith('cine:usuario:datos', GestorUsuarios, 'local');
   });
 });
 
