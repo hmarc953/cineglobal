@@ -107,7 +107,7 @@ describe('Controlador - Eventos y DOM', function() {
             <option value="" selected disabled hidden>Elija un idioma</option>
           </select>
 
-          <select id="compraFuncion" name="funcionId" data-validate="required" disabled>
+          <select id="compraHorario" name="funcionId" data-validate="required" disabled>
             <option value="" selected disabled hidden>Elija un horario</option>
           </select>
 
@@ -240,8 +240,8 @@ describe('Controlador - Eventos y DOM', function() {
     const idioma = obtenerPrimerValorSeleccionable('#compraIdioma');
     dispararChange('#compraIdioma', idioma);
 
-    const funcion = obtenerPrimerValorSeleccionable('#compraFuncion');
-    dispararChange('#compraFuncion', funcion);
+    const funcion = obtenerPrimerValorSeleccionable('#compraHorario');
+    dispararChange('#compraHorario', funcion);
 
     dispararChange('#compraAsientos', '2');
   }
@@ -337,12 +337,12 @@ describe('Controlador - Eventos y DOM', function() {
       const idioma = obtenerPrimerValorSeleccionable('#compraIdioma');
       dispararChange('#compraIdioma', idioma);
 
-      const selectFuncion = document.querySelector('#compraFuncion');
+      const selectFuncion = document.querySelector('#compraHorario');
       expect(selectFuncion.disabled).toBeFalse();
       expect(selectFuncion.options.length).toBeGreaterThan(1);
 
-      const funcion = obtenerPrimerValorSeleccionable('#compraFuncion');
-      dispararChange('#compraFuncion', funcion);
+      const funcion = obtenerPrimerValorSeleccionable('#compraHorario');
+      dispararChange('#compraHorario', funcion);
 
       const selectAsientos = document.querySelector('#compraAsientos');
       expect(selectAsientos.disabled).toBeFalse();
