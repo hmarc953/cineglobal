@@ -1222,6 +1222,20 @@ Se revisó la integración de Toastify como librería externa del Segundo Parcia
 
 La revisión se enfocó especialmente en distinguir integración real de demo visual aislada.
 
+#### PR `#220` - Tester QA/JS - Testing Avanzado
+
+Se revisó el PR del rol Tester QA/JS comparando la suite propuesta contra la consigna del Segundo Parcial. La revisión se centró en:
+
+- Existencia y alcance de `api.spec.js` para cubrir consumo asíncrono, errores HTTP, errores de red, reintento, fallback, sanitización y procesamiento con `map`, `filter` y `reduce`.
+- Existencia y alcance de `library.spec.js` para validar la integración real de Toastify y su wrapper.
+- Verificación de que los tests usaran mocks y datos controlados, sin depender de TheMovieDB real, una API key real ni el CDN de Toastify.
+- Revisión del runner Jasmine y del orden de carga de las suites.
+- Revisión de evidencias de ejecución del runner y documentación de resultados.
+- Revisión de auditorías Lighthouse baseline, post-fetch y post-librería, incluyendo capturas, métricas e issues asociados.
+- Coherencia entre `spec-tester-qa-segundo-parcial.md`, `testing-doc.md`, README, changelog y los archivos reales del repositorio.
+
+La revisión detectó incumplimientos bloqueantes en los tests centrales de API y librería, por lo que el criterio final para este PR fue **solicitar cambios antes de aprobar**.
+
 #### PRs de soporte del Coordinador/DevOps
 
 También se revisaron PRs transversales del rol Coordinador/DevOps vinculadas con documentación, accesibilidad y preparación de la entrega:
@@ -1261,6 +1275,20 @@ Se gestionaron observaciones sobre la integración de Toastify relacionadas con:
 - Mantener encapsulación mediante wrapper cuando correspondiera.
 - Alinear documentación, capturas y código real.
 - Separar los pendientes de testing del alcance propio del rol de librerías externas.
+
+#### Request Changes sobre PR `#220` - Tester QA/JS
+
+Se gestionaron Request Changes y observaciones sobre el PR Tester QA/JS relacionados con:
+
+- Ajustar `api.spec.js` para que importe y pruebe el módulo real `js/api/apiService.js`, en lugar de definir un `ApiService` local dentro del test.
+- Ajustar `library.spec.js` para que pruebe el wrapper real `js/utils/toast.js` y mockee `window.Toastify`, en lugar de usar una librería ficticia.
+- Cubrir escenarios centrales de API: respuesta exitosa, error HTTP, error de red, formato inválido, respuesta vacía, sanitización, reintento/fallback y mensajes de error controlados.
+- Tratar `api.spec.js` y `library.spec.js` como suites obligatorias del runner, no como specs opcionales.
+- Agregar evidencia verificable de ejecución del runner Jasmine para las suites nuevas.
+- Corregir rutas documentales que apuntaban a `docs/03-testing` cuando los archivos reales se encuentran en `docs/04-testing`.
+- Alinear checklist, changelog y README con el estado real del rol Tester QA/JS.
+
+Estos pedidos se consideraron bloqueantes porque la consigna exige pruebas reales de API y librería externa, además de evidencia de ejecución verificable.
 
 #### Request Changes de accesibilidad
 
