@@ -35,7 +35,9 @@
 
 ### Evidencia complementaria de QA
 
-- Baseline Lighthouse documentado en `docs/04-testing/test-case-11-lighthouse-baseline.md` con capturas y hallazgos.
+- Baseline Lighthouse documentado en `docs/03-testing/test-case-11-lighthouse-baseline.md` con capturas y hallazgos.
+- Post-Fetch Lighthouse documentado en `docs/03-testing/test-case-12-lighthouse-post-fetch.md` con capturas, comparación e issues de performance.
+- Post-Librería Lighthouse documentado en `docs/03-testing/test-case-13-lighthouse-post-library.md` con capturas, comparación e issues vigentes.
 
 # Actividad Obligatoria 3
 - **Fecha:** 17/05/2026

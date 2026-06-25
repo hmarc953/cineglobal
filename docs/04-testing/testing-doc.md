@@ -8,7 +8,7 @@
 - [Test Case 5 - Estructura HTML semantica y validacion](test-case-5.md)[← Volver al índice de testing](testing-doc.md)
 - [Test Case 7 - Navbar Bootstrap Mobile (Playwright MCP)](test-case-7.md)[← Volver al índice de testing](testing-doc.md)
 - [Test Case 8 - Modal Bootstrap Desktop + Mobile (Playwright MCP)](test-case-8.md) ✅ **PASS** [← Volver al índice de testing](testing-doc.md)
-- [Test Case 11 - Auditoría Lighthouse Baseline Inicial](test-case-11-lighthouse-baseline.md) ✅ **PASS** [← Volver al índice de testing](testing-doc.md)
+
 
 ## Resumen de Issues por Momento
 

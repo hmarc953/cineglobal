@@ -15,6 +15,9 @@
 - [feature/dev-async-fetch-api] Se incorpora la integración con la API.
   PR: [#211](https://github.com/hmarc953/cineglobal/pull/211) - @Santi22-7 (Desarrollador JS Asíncrono - Fetch&APIs)
 
+- [feature/tester-qa-js-testing-suite] Suite QA avanzada y auditorías Lighthouse del Segundo Parcial.
+ 
+
 ### Fixed
 
 - [fix/209-contraste-accesibilidad] Corregir contraste de colores
