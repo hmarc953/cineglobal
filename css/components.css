@@ -86,6 +86,12 @@ details > *:not(.details-summary) {
   border-collapse: collapse;
   width: 100%;
   margin: var(--spacing-md) 0;
+  background: var(--color-card);
+  color: var(--color-text-main);
+}
+.tabla-cartelera caption {
+  background: var(--color-bg-main);
+  color: var(--color-text-secondary);
 }
 .tabla-cartelera th,
 .tabla-cartelera td {
@@ -417,6 +423,7 @@ details > *:not(.details-summary) {
    ========================= */
 .info-box {
     background-color: #2a2a2a; 
+    color: var(--color-text-secondary);
     border-radius: 12px;       
     padding: var(--spacing-lg); 
     /* Reducimos el margen para que las cajas estén más juntas */
@@ -467,21 +474,27 @@ details > *:not(.details-summary) {
 }
 
 .contacto-texto {
-  color: var(--color-text-main);
+  color: var(--color-text-secondary);
   font-size: 0.95rem;
   line-height: 1.5;
 }
 
 .info-box .contacto-link {
-  color: #ff4d57 !important;
+  display: inline-block;
+  background-color: var(--color-accent);
+  color: var(--color-text-main) !important;
   font-weight: 700;
-  text-decoration: underline;
+  text-decoration: none;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
   margin-left: 0.5rem;
 }
 
 .info-box .contacto-link:hover,
 .info-box .contacto-link:focus {
-  color: #ff6b73 !important;
+  background-color: var(--color-accent-hover);
+  color: var(--color-text-main) !important;
+  text-decoration: underline;
 }
 
 /* =========================
