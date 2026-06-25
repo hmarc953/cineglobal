@@ -6,6 +6,12 @@ import { CatalogoPeliculas } from './models/CatalogoPeliculas.js';
 import { Compra } from './models/Compra.js';
 import { ConsultaSoporte } from './models/ConsultaSoporte.js';
 import { StorageUtil } from './utils/storage.js';
+import {
+  showErrorToast,
+  showInfoToast,
+  showSuccessToast,
+  showWarningToast,
+} from './utils/toast.js';
 import ApiService from './api/apiService.js';
 import {
   consultarElemento,
@@ -89,8 +95,6 @@ const SELECTORES = {
   mensajePago: '#mensajePago',
   mensajeConsulta: '#mensajeConsulta',
   resumenCompra: '#resumenCompra',
-  confirmLoginTexto: '#confirmLoginTexto',
-  confirmRegistroTexto: '#confirmRegistroTexto',
   confirmCompraTexto: '#confirmCompraTexto',
   confirmConsultaTexto: '#confirmConsultaTexto',
   selectCompraCine: '#compraCine',
@@ -514,11 +518,20 @@ function manejarFiltroPeliculas(event) {
   ocultarLoading(estadoFiltros);
 
   renderizarPeliculas(resultados, SELECTORES);
-  mostrarMensaje(
-    consultarElemento(SELECTORES.estadoFiltros),
-    resultados.length ? `${resultados.length} pelicula(s) encontradas.` : 'No se encontraron peliculas con esos filtros.',
-    resultados.length ? 'success' : 'error'
-  );
+  const mensajeFiltros = resultados.length
+    ? `${resultados.length} pelicula(s) encontradas.`
+    : 'No se encontraron peliculas con esos filtros.';
+
+  limpiarMensaje(estadoFiltros);
+
+  if (debeNotificarFiltro(event)) {
+    if (resultados.length) {
+      showInfoToast(mensajeFiltros);
+    } else {
+      showWarningToast(mensajeFiltros);
+    }
+  }
+
   persistirDato(STORAGE_KEYS.filtros, filtros, 'session');
 }
 
@@ -529,6 +542,14 @@ function manejarLimpiarFiltros() {
   limpiarMensaje(consultarElemento(SELECTORES.estadoFiltros));
   eliminarDato(STORAGE_KEYS.filtros, 'session');
   renderizarPeliculas(estadoApp.catalogoPeliculas.listarPeliculas(), SELECTORES);
+}
+
+function debeNotificarFiltro(event) {
+  if (event?.type === 'input') {
+    return false;
+  }
+
+  return true;
 }
 
 // ==============================
@@ -554,12 +575,10 @@ function manejarLogin(event) {
 
   estadoApp.usuarioActivo = usuario;
   persistirDato(STORAGE_KEYS.usuarioActivo, usuario.toJSON(), 'session');
-  mostrarExito(mensaje, `Bienvenido/a, ${usuario.nombre}.`);
-  actualizarConfirmacion(SELECTORES.confirmLoginTexto, `Inicio de sesion realizado correctamente para ${usuario.email}.`);
+  showSuccessToast(`Sesion iniciada: ${usuario.nombre}.`);
   limpiarFormulario(formulario);
   actualizarEstadoSubmit(formulario);
   cerrarModal('modalLogin');
-  abrirModal('modalConfirmLogin');
 }
 
 function manejarRegistro(event) {
@@ -598,12 +617,10 @@ function manejarRegistro(event) {
     console.warn('No se pudo persistir GestorUsuarios:', e.message || e);
   }
 
-  mostrarExito(mensaje, 'Cuenta creada correctamente.');
-  actualizarConfirmacion(SELECTORES.confirmRegistroTexto, `La cuenta ${usuario.email} fue creada correctamente.`);
+  showSuccessToast('Cuenta creada correctamente.');
   limpiarFormulario(formulario);
   actualizarEstadoSubmit(formulario);
   cerrarModal('modalRegistro');
-  abrirModal('modalConfirmRegistro');
 }
 
 // ==============================
@@ -662,7 +679,7 @@ function manejarSeleccionCompra(event) {
   estadoApp.funcionSeleccionada = funcion;
   estadoApp.cantidadEntradas = Number(datos.cantidadEntradas);
   renderizarResumenCompra(estadoApp.peliculaSeleccionada, funcion, estadoApp.cantidadEntradas);
-  mostrarExito(mensaje, 'Funcion seleccionada. Continuá con los datos de pago.');
+  showInfoToast('Funcion seleccionada. Continua con el pago.');
   cerrarModal('modalCompra');
   abrirModal('modalPago');
 }
@@ -696,7 +713,12 @@ function manejarConfirmacionCompra(event) {
   }
 
   // Una vez confirmada, se persiste en storage como parte del historial.
-  guardarEnListaStorage(STORAGE_KEYS.compras, compra.toJSON(), 'local');
+  const compraGuardada = guardarEnListaStorage(STORAGE_KEYS.compras, compra.toJSON(), 'local');
+  if (compraGuardada) {
+    showSuccessToast('Compra guardada en el historial.');
+  } else {
+    showErrorToast('No se pudo guardar la compra en el historial.');
+  }
   actualizarConfirmacion(
     SELECTORES.confirmCompraTexto,
     `Compra confirmada para ${estadoApp.peliculaSeleccionada.titulo}. Codigo: ${compra.codigoConfirmacion}. Total: $${compra.total}.`
@@ -731,7 +753,10 @@ function manejarConsultaSoporte(event) {
   }
 
   const ticket = consulta.generarTicket();
-  guardarEnListaStorage(STORAGE_KEYS.tickets, consulta.toJSON(), 'local');
+  const ticketGuardado = guardarEnListaStorage(STORAGE_KEYS.tickets, consulta.toJSON(), 'local');
+  if (!ticketGuardado) {
+    showErrorToast(`Consulta enviada, pero no se pudo guardar el ticket: ${ticket}.`);
+  }
   actualizarConfirmacion(SELECTORES.confirmConsultaTexto, `Tu consulta fue enviada correctamente. Ticket: ${ticket}.`);
   mostrarExito(mensaje, `Consulta enviada. Ticket: ${ticket}.`);
   limpiarFormulario(formulario);
@@ -941,7 +966,7 @@ function guardarEnListaStorage(clave, item, tipo) {
   const listaActual = obtenerDato(clave, tipo) || [];
   const lista = Array.isArray(listaActual) ? listaActual : [];
   lista.push(item);
-  persistirDato(clave, lista, tipo);
+  return persistirDato(clave, lista, tipo);
 }
 
 function persistirDato(clave, valor, tipo = 'local') {
