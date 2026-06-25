@@ -70,7 +70,7 @@ Se cubrirán los siguientes casos:
 
 - **Baseline**: sobre `develop` antes de integrar `apiService` y la librería externa.
 - **Post-Fetch**: después de mergear `feature/dev-async-fetch-api` a `develop`.
-- **Post-Librería**: después de mergear `feature/dev-libreria-externa-[nombre]` a `develop`.
+- **Post-Librería**: después de mergear `feature/dev-libreria-externa-toastify` a `develop`.
 
 ### Umbrales mínimos definidos
 
@@ -90,7 +90,10 @@ Cada informe debe incluir:
 
 ### Archivos de documentación
 
-COMPLETAR
+- `docs/03-testing/test-case-11-lighthouse-baseline.md`
+- `docs/03-testing/test-case-12-lighthouse-post-fetch.md`
+- `docs/03-testing/test-case-13-lighthouse-post-library.md`
+- `docs/03-testing/testing-doc.md`
 
 ---
 
@@ -113,16 +116,16 @@ COMPLETAR
 
 ## Criterios de aceptación (checklist)
 
-- [ ] `api.spec.js` completo con casos de éxito, error HTTP, error de red y procesamiento con map/filter/reduce.
-- [ ] `library.spec.js` completo con inicialización, configuración, funcionalidad principal y manejo de errores.
-- [ ] Los tests son deterministas y no dependen de API real.
-- [ ] `test-case-11-lighthouse-baseline.md` documentado.
-- [ ] `test-case-12-lighthouse-post-fetch.md` documentado.
-- [ ] `test-case-13-lighthouse-post-library.md` documentado.
-- [ ] Los tres informes Lighthouse incluyen comparaciones.
+- [x] `api.spec.js` completo con casos de éxito, error HTTP, error de red y procesamiento con map/filter/reduce.
+- [x] `library.spec.js` completo con inicialización, configuración, funcionalidad principal y manejo de errores.
+- [x] Los tests son deterministas y no dependen de API real.
+- [x] `test-case-11-lighthouse-baseline.md` documentado.
+- [x] `test-case-12-lighthouse-post-fetch.md` documentado.
+- [x] `test-case-13-lighthouse-post-library.md` documentado.
+- [x] Los tres informes Lighthouse incluyen comparaciones.
 - [ ] Issues creadas y asignadas a los roles correspondientes.
-- [ ] `js/test/testing-doc.md` y `docs/03-testing/testing-doc.md` actualizados con los nuevos test cases.
-- [ ] `changelog.md` actualizado con PR e issues enlazadas.
+- [x] `js/test/testing-doc.md` y `docs/03-testing/testing-doc.md` actualizados con los nuevos test cases.
+- [x] `changelog.md` actualizado con PR e issues enlazadas.
 
 ---
 
@@ -130,32 +133,65 @@ COMPLETAR
 
 ## AT CLOSE - Completar como evidencia al cerrar la tarea
 
-> Esta sección se completa una vez finalizado el trabajo, con datos reales.
 
-- **Prompt(s) exacto(s) utilizado(s) en Copilot Agent:** `[pendiente]`
-- **Archivos adjuntados como contexto en cada generación:** `[pendiente]`
-- **Resumen de resultados de api.spec.js:** `[pendiente - cuántos tests pasaron/fallaron]`
-- **Resumen de resultados de library.spec.js:** `[pendiente - cuántos tests pasaron/fallaron]`
+- **Prompt(s) exacto(s) utilizado(s) en Copilot Agent:**
+  - `Actua como un TESTER QA/JS - TESTING AVANZADO y genera el siguiente test case, sin salirte del rol, tal cual lo solicita: Test Case 2: Post-Integración de Fetch...`
+  - `Test Case 3: Post-Integración de Librería Externa...`
+  - `completame el archivo de acuerdo a las capturas nuevas`
+  - `genere la issues 219 y 218, completar el archivo correspondiente`
+
+- **Archivos adjuntados como contexto en cada generación:**
+  - `docs/04-testing/test-case-11-lighthouse-baseline.md`
+
+  - capturas en `js/test/screenshots/`:
+    - `lighthouse-post-fetch-performance-1.png`
+    - `lighthouse-post-fetch-performance-2.png`
+    - `lighthouse-post-fetch-accessibility.png`
+    - `lighthouse-post-fetch-best-practices.png`
+    - `lighthouse-post-fetch-seo.png`
+    - `lighthouse-post-librerias-performance 1.png`
+    - `lighthouse-post-librerias-performance 2.png`
+    - `lighthouse-post-librerias-accessibility.png`
+    - `lighthouse-post-librerias-best-practices.png`
+    - `lighthouse-post-librerias-seo.png`
+
+  - issues de GitHub visibles: `#207`, `#218`, `#219`, `#208`,`#209`
+
+- **Resumen de resultados de api.spec.js:** 7 casos implementados. Cobertura definida para éxito, error HTTP, error de red, `map`, `filter`, `reduce` e integración con DOM. No se dejó evidencia exportada de corrida numérica en esta sesión.
+
+- **Resumen de resultados de library.spec.js:** 5 casos implementados. Cobertura definida para inicialización, configuración, funcionalidad principal, manejo de errores e interacción con DOM. No se dejó evidencia exportada de corrida numérica en esta sesión.
+
 - **Resultados Lighthouse - Baseline:** 97 / 96 / 100 / 91 (ver test-case-11)
-- **Resultados Lighthouse - Post-Fetch:** `[pendiente]`
-- **Resultados Lighthouse - Post-Librería:** `[pendiente]`
-- **Cantidad de issues reportadas y su estado:** 2 issues abiertas por hallazgos
-  baseline (#208 meta description, #209 contraste) — `[completar a medida
-  que surjan más]`
-- **Ajustes manuales realizados sobre los tests generados por IA:** `[pendiente]`
+
+- **Resultados Lighthouse - Post-Fetch:** 98 / 100 / 100 / 100 (ver test-case-12)
+
+- **Resultados Lighthouse - Post-Librería:** 99 / 100 / 100 / 100 (ver test-case-13)
+
+- **Cantidad de issues reportadas y su estado:** 5 issues relevantes al rol/documentación del entregable:
+  - `#207` abierta: issue del rol Tester QA/JS.
+  - `#218` abierta: render-blocking requests.
+  - `#219` abierta: long tasks en hilo principal.
+  - `#208` cerrada/resuelta: contraste de color insuficiente.
+  - `#209` cerrada/resuelta: meta description faltante.
+  
+- **Ajustes manuales realizados sobre los tests generados por IA:**
+  - alineación de `js/test/script.spec.js` con el selector real `#compraHorario`.
+  - ampliación de `js/test/models.spec.js` para persistencia (`guardarEnStorage` / `cargarDesdeStorage`).
+  - corrección y completitud documental de los tres test cases Lighthouse.
+  - normalización de rutas hacia `docs/03-testing/` y actualización de índices en `testing-doc`.
 
 ---
 
 ## Checklist de aceptación del rol Tester QA/JS
 
-- [ ] Issue del rol creada y asociada a la PR (`#XX`).
-- [ ] `api.spec.js` creado y completo.
-- [ ] `library.spec.js` creado y completo.
-- [ ] `test-case-11-lighthouse-baseline.md` documentado.
-- [ ] `test-case-12-lighthouse-post-fetch.md` documentado.
-- [ ] `test-case-13-lighthouse-post-library.md` documentado.
+- [x] Issue del rol creada y asociada a la PR (`#207`).
+- [x] `api.spec.js` creado y completo.
+- [x] `library.spec.js` creado y completo.
+- [x] `test-case-11-lighthouse-baseline.md` documentado.
+- [x] `test-case-12-lighthouse-post-fetch.md` documentado.
+- [x] `test-case-13-lighthouse-post-library.md` documentado.
 - [ ] Todas las issues de hallazgos creadas y asignadas correctamente.
-- [ ] `testing-doc.md` (js/test y docs/03-testing) actualizados.
-- [ ] `changelog.md` actualizado con PR e issues enlazadas.
+- [x] `testing-doc.md` (js/test y docs/03-testing) actualizados.
+- [x] `changelog.md` actualizado con PR e issues enlazadas.
 - [ ] PR `feature/tester-qa-js-testing-suite -> develop` revisada y aprobada.
-- [ ] Sección `AT CLOSE` completada con evidencia real.
+- [x] Sección `AT CLOSE` completada con evidencia real.
