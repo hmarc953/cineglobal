@@ -16,6 +16,10 @@
   PR: [#211](https://github.com/hmarc953/cineglobal/pull/211) - @Santi22-7 (Desarrollador JS Asíncrono - Fetch&APIs)
 
 - [feature/tester-qa-js-testing-suite] Suite QA avanzada y auditorías Lighthouse del Segundo Parcial.
+  PR: [#220](https://github.com/hmarc953/cineglobal/pull/220) @9919-Mili (Tester QA/JS - Testing Avanzado)
+
+- [feature/coord-devops-cierre-spec-sp] [DevOps] Cierre del spec-devops
+  PR: [#221](https://github.com/hmarc953/cineglobal/pull/221) @hmarc953 (Coordinador / DevOps)
  
 
 ### Fixed

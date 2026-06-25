@@ -53,16 +53,16 @@ mantenimiento de la documentación, el changelog y el flujo de trabajo en GitHub
 - [x] Ampliar la cobertura de testing automatizado con Jasmine
 
 #### En desarrollo para esta entrega (Segundo Parcial)
-- [ ] Implementar consumo asíncrono de datos con `fetch`
-- [ ] Obtener datos desde una API externa o un archivo JSON
-- [ ] Manejar estados de carga, éxito y error
-- [ ] Procesar colecciones con `map`, `filter` y `reduce`
-- [ ] Integrar una librería externa de JavaScript mediante CDN
-- [ ] Sumar tests Jasmine para funciones asíncronas
-- [ ] Sumar tests Jasmine para la librería externa
-- [ ] Realizar auditorías Lighthouse baseline, post-fetch y post-librería
-- [ ] Actualizar la documentación técnica, el README y el changelog
-- [ ] Preparar la rama `release/segundo-parcial`
+- [x] Implementar consumo asíncrono de datos con `fetch`
+- [x] Obtener datos desde una API externa o un archivo JSON
+- [x] Manejar estados de carga, éxito y error
+- [x] Procesar colecciones con `map`, `filter` y `reduce`
+- [x] Integrar una librería externa de JavaScript mediante CDN
+- [x] Sumar tests Jasmine para funciones asíncronas
+- [x] Sumar tests Jasmine para la librería externa
+- [x] Realizar auditorías Lighthouse baseline, post-fetch y post-librería
+- [x] Actualizar la documentación técnica, el README y el changelog
+- [x] Preparar la rama `release/segundo-parcial`
 
 ## Documentación
 
@@ -72,6 +72,7 @@ mantenimiento de la documentación, el changelog y el flujo de trabajo en GitHub
 - Mockup A3: [Ver diseño](docs/01-mockup/actividad-obligatoria-3/diseño-con-flujos.png) · [Abrir en Figma](https://www.figma.com/proto/Xk7vwqJNdLzY66x0859tXS/Cineglobal-A3?node-id=83-178&p=f&t=uBPoXwkkepZQlUlm-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=83%3A178)
 - Diagramas de Actividades: [Ver índice de diagramas](docs/05-diagramas/01-diagrama-de-actividades/diagramas-doc.md)
 - Documentación JavaScript: [Ver especificación técnica](docs/03-specs/actividad-obligatoria-3/spec-dev-javascript.md)
+- Documentacion Libreria: [Ver documentacion - Toastify](docs/07-librerias/libreria-doc.md)
 - Testing JS: [Reporte de Jasmine](js/test/testing-doc.md) · [Plan de Pruebas](docs/03-specs/actividad-obligatoria-3/spec-tester.md)
 - Testing HTML/CSS: [Índice de test cases](docs/04-testing/testing-doc.md)
 - Índice de Prompts: [Índice de prompts](docs/02-prompts/prompts.md)
@@ -112,6 +113,9 @@ mantenimiento de la documentación, el changelog y el flujo de trabajo en GitHub
 
 #### Segundo Parcial
 - [DevOps](docs/03-specs/segundo-parcial/spec-coord-devops-segundo-parcial.md)
+- [Desarrollador JS Librerías Externas](docs/03-specs/segundo-parcial/spec-dev-libreria-externa.md)
+- [Desarrollador JS Asíncrono - Fetch&APIs](docs/03-specs/segundo-parcial/spec-dev-async-fetch.md)
+- [Tester QA/JS - Testing Avanzado](docs/03-specs/segundo-parcial/spec-tester-qa-segundo-parcial.md)
 
 ## Integrantes del Grupo
 
