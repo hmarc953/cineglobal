@@ -1,8 +1,16 @@
 import { consultarElemento } from './dom.js';
 
 export function renderizarPeliculas(peliculas, SELECTORES) {
+  performance?.mark?.('render-peliculas-start');
+
   const contenedor = consultarElemento(SELECTORES.listadoPeliculas);
   if (!contenedor) {
+    performance?.mark?.('render-peliculas-end');
+    performance?.measure?.(
+      'render-peliculas',
+      'render-peliculas-start',
+      'render-peliculas-end'
+    );
     return;
   }
 
@@ -10,8 +18,16 @@ export function renderizarPeliculas(peliculas, SELECTORES) {
 
   if (!peliculas.length) {
     contenedor.innerHTML = '<div class="col-12"><p class="cineglobal-ui-message alert alert-danger">No hay peliculas para mostrar.</p></div>';
+    performance?.mark?.('render-peliculas-end');
+    performance?.measure?.(
+      'render-peliculas',
+      'render-peliculas-start',
+      'render-peliculas-end'
+    );
     return;
   }
+
+  const fragmento = document.createDocumentFragment();
 
   peliculas.forEach((pelicula, indice) => {
     const tituloSeguro = escaparHTML(pelicula.titulo);
@@ -40,8 +56,17 @@ export function renderizarPeliculas(peliculas, SELECTORES) {
         </button>
       </article>
     `;
-    contenedor.appendChild(columna);
+    fragmento.appendChild(columna);
   });
+
+  contenedor.appendChild(fragmento);
+
+  performance?.mark?.('render-peliculas-end');
+  performance?.measure?.(
+    'render-peliculas',
+    'render-peliculas-start',
+    'render-peliculas-end'
+  );
 }
 
 function escaparHTML(valor) {

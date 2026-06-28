@@ -295,8 +295,15 @@ async function cargarDatosIniciales() {
       );
     }
 
+    performance?.mark?.('build-catalogo-start');
     const peliculas =
-      construirPeliculasDesdeApi(datosApi);
+      await construirPeliculasDesdeApi(datosApi);
+    performance?.mark?.('build-catalogo-end');
+    performance?.measure?.(
+      'build-catalogo',
+      'build-catalogo-start',
+      'build-catalogo-end'
+    );
 
     estadoApp.catalogoPeliculas =
       new CatalogoPeliculas(peliculas);
@@ -352,12 +359,31 @@ async function cargarDatosIniciales() {
  * @param {Array<Object>} datosApi
  * @returns {Array<Pelicula>}
  */
-function construirPeliculasDesdeApi(datosApi = []) {
+function cederAlMainThread() {
+  return new Promise((resolve) => {
+    if (typeof window !== 'undefined' && typeof window.requestIdleCallback === 'function') {
+      window.requestIdleCallback(
+        () => resolve(),
+        { timeout: 50 }
+      );
+      return;
+    }
+
+    setTimeout(resolve, 0);
+  });
+}
+
+async function construirPeliculasDesdeApi(datosApi = []) {
   if (!Array.isArray(datosApi)) {
     return [];
   }
 
-  return datosApi.map((pelicula) => {
+  const peliculas = [];
+  const TAMANO_LOTE = 8;
+
+  for (let indice = 0; indice < datosApi.length; indice += 1) {
+    const pelicula = datosApi[indice];
+
     const funcionesApi =
       Array.isArray(pelicula.funciones) && pelicula.funciones.length > 0
         ? pelicula.funciones.map(
@@ -373,18 +399,26 @@ function construirPeliculasDesdeApi(datosApi = []) {
           )
         : crearFuncionesParaPeliculaExterna(pelicula.id);
 
-    return new Pelicula(
-      String(pelicula.id),
-      pelicula.title || pelicula.titulo,
-      pelicula.categoria,
-      pelicula.clasificacion,
-      normalizarFechaEstrenoParaModelo(
-        pelicula.fechaEstreno || pelicula.release_date
-      ),
-      pelicula.imagen,
-      funcionesApi
+    peliculas.push(
+      new Pelicula(
+        String(pelicula.id),
+        pelicula.title || pelicula.titulo,
+        pelicula.categoria,
+        pelicula.clasificacion,
+        normalizarFechaEstrenoParaModelo(
+          pelicula.fechaEstreno || pelicula.release_date
+        ),
+        pelicula.imagen,
+        funcionesApi
+      )
     );
-  });
+
+    if ((indice + 1) % TAMANO_LOTE === 0) {
+      await cederAlMainThread();
+    }
+  }
+
+  return peliculas;
 }
 
 /**

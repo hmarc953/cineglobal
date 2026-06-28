@@ -19,12 +19,13 @@
     <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.css"></noscript>
     <!-- 2. Estilos propios: styles.css -->
     <link rel="stylesheet" href="css/styles.css">
-    <!-- 3. Estilos propios: components.css -->
-    <link rel="stylesheet" href="css/components.css">
-    <!-- 4. Estilos propios: responsive.css -->
-    <link rel="stylesheet" href="css/responsive.css">
-    <!-- 5. Overrides: sobreescriben Bootstrap manteniendo identidad visual -->
-    <link rel="stylesheet" href="css/bootstrap-overrides.css">
+    <!-- 3. Estilos no críticos: carga diferida para reducir render-blocking -->
+    <link rel="preload" href="css/components.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="css/bootstrap-overrides.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="css/components.css"></noscript>
+    <noscript><link rel="stylesheet" href="css/responsive.css"></noscript>
+    <noscript><link rel="stylesheet" href="css/bootstrap-overrides.css"></noscript>
 </head>
 <body>
     <header class="header">
@@ -531,7 +532,7 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"
     ></script>
-    <script src="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0"></script>
     <script type="module" src="js/script.js"></script>
 </body>
 </html>
