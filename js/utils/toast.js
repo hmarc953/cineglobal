@@ -2,17 +2,19 @@ const TOAST_DURATION = 3000;
 const POSITION = {
   gravity: 'top',
   position: 'right',
-  offset: {
-    x: 16,
-    y: 80,
-  },
 };
 
-const COLORS = {
+const TOAST_CLASSNAME = 'cineglobal-toast';
+
+// Fallback de colores Bootstrap v5 del proyecto por si no estan expuestas
+// las CSS custom properties (por ejemplo, durante tests aislados).
+const BOOTSTRAP_COLOR_FALLBACK = {
   success: '#198754',
   info: '#0d6efd',
   warning: '#ffc107',
   error: '#dc3545',
+  warningText: '#212529',
+  defaultText: '#ffffff',
 };
 
 let fallbackWarningShown = false;
@@ -28,6 +30,30 @@ function warnFallback() {
   }
 }
 
+function getCssVar(nombreVariable, fallback) {
+  if (typeof window === 'undefined' || !window.getComputedStyle) {
+    return fallback;
+  }
+
+  const valor = window
+    .getComputedStyle(document.documentElement)
+    .getPropertyValue(nombreVariable)
+    .trim();
+
+  return valor || fallback;
+}
+
+function obtenerColoresToast() {
+  return {
+    success: getCssVar('--bs-success', BOOTSTRAP_COLOR_FALLBACK.success),
+    info: getCssVar('--bs-primary', BOOTSTRAP_COLOR_FALLBACK.info),
+    warning: getCssVar('--bs-warning', BOOTSTRAP_COLOR_FALLBACK.warning),
+    error: getCssVar('--bs-danger', BOOTSTRAP_COLOR_FALLBACK.error),
+    warningText: getCssVar('--bs-dark', BOOTSTRAP_COLOR_FALLBACK.warningText),
+    defaultText: getCssVar('--bs-white', BOOTSTRAP_COLOR_FALLBACK.defaultText),
+  };
+}
+
 function showToast(message, type = 'info') {
   if (!message) {
     return false;
@@ -39,15 +65,18 @@ function showToast(message, type = 'info') {
   }
 
   try {
+    const colors = obtenerColoresToast();
+
     window.Toastify({
       text: message,
       duration: TOAST_DURATION,
       close: true,
       stopOnFocus: true,
+      className: TOAST_CLASSNAME,
       ...POSITION,
       style: {
-        background: COLORS[type] || COLORS.info,
-        color: type === 'warning' ? '#212529' : '#ffffff',
+        background: colors[type] || colors.info,
+        color: type === 'warning' ? colors.warningText : colors.defaultText,
         borderRadius: '6px',
         boxShadow: '0 8px 24px rgba(0, 0, 0, 0.25)',
         fontWeight: '600',

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="CineGlobal permite consultar películas, horarios y cines, filtrar la cartelera y simular la compra de entradas desde una interfaz web responsive.">
     <title>CineGlobal - Compra boletos online</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
     <!-- 1. Bootstrap base -->
     <link
         rel="stylesheet"
@@ -13,7 +15,8 @@
         crossorigin="anonymous"
     />
     <!-- Toastify: notificaciones complementarias no bloqueantes -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.css">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/src/toastify.min.css"></noscript>
     <!-- 2. Estilos propios: styles.css -->
     <link rel="stylesheet" href="css/styles.css">
     <!-- 3. Estilos propios: components.css -->

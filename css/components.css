@@ -230,6 +230,18 @@ details > *:not(.details-summary) {
 .filter-select:hover {
   background: var(--color-button-hover);
 }
+
+/* Posiciona Toastify por debajo del header sin depender de offset en JS. */
+.toastify.cineglobal-toast {
+  margin-top: 80px;
+}
+
+@media (max-width: 576px) {
+  .toastify.cineglobal-toast {
+    margin-top: 72px;
+  }
+}
+
 /* =========================
    FOOTER LINKS
    ========================= */
@@ -296,6 +308,8 @@ details > *:not(.details-summary) {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   margin: 0 auto;
+  content-visibility: auto;
+  contain-intrinsic-size: 420px;
 }
 
 /*

@@ -1,141 +1,69 @@
-describe('LibraryService', function() {
-  const ExternalLibrary = {
-    init(options) {
-      return {
-        ready: true,
-        options,
-      };
-    },
+import {
+  showErrorToast,
+  showSuccessToast,
+  showWarningToast,
+} from '../utils/toast.js';
 
-    execute(input) {
-      if (!input || !Array.isArray(input.items)) {
-        throw new Error('Invalid input');
-      }
-
-      return input.items.map((item) => ({
-        id: item.id,
-        value: item.value * 2,
-      }));
-    },
-  };
-
-  const LibraryService = {
-    instance: null,
-
-    initialize(options) {
-      this.instance = ExternalLibrary.init(options);
-      return this.instance;
-    },
-
-    configure(options) {
-      if (!this.instance) {
-        throw new Error('Library not initialized');
-      }
-
-      this.instance.options = {
-        ...this.instance.options,
-        ...options,
-      };
-
-      return this.instance.options;
-    },
-
-    runMainFeature(data) {
-      return ExternalLibrary.execute(data);
-    },
-
-    runAndRender(data, selector) {
-      const result = this.runMainFeature(data);
-      const container = document.querySelector(selector);
-
-      if (!container) {
-        return false;
-      }
-
-      container.innerHTML = result
-        .map((item) => `<span data-id="${item.id}">${item.value}</span>`)
-        .join('');
-
-      return true;
-    },
-  };
+describe('Toast helpers (real)', function() {
+  let originalToastify;
 
   beforeEach(function() {
-    LibraryService.instance = null;
+    originalToastify = window.Toastify;
+    window.Toastify = function() {
+      return {
+        showToast: function() {}
+      };
+    };
   });
 
   afterEach(function() {
-    const fixture = document.getElementById('library-spec-fixture');
-    if (fixture) {
-      fixture.remove();
-    }
+    window.Toastify = originalToastify;
   });
 
-  describe('initialize()', function() {
-    it('debe inicializar la libreria correctamente', function() {
-      const instance = LibraryService.initialize({
-        mode: 'test',
-      });
-
-      expect(instance).toBeDefined();
-      expect(instance.ready).toBe(true);
-      expect(instance.options.mode).toBe('test');
+  it('showSuccessToast debe llamar a Toastify con color success correcto', function() {
+    const showToastSpy = jasmine.createSpy('showToast');
+    spyOn(window, 'Toastify').and.callFake(function() {
+      return { showToast: showToastSpy };
     });
 
-    it('debe aplicar configuracion correctamente', function() {
-      LibraryService.initialize({ mode: 'test', retries: 1 });
-      const config = LibraryService.configure({ retries: 3, timeout: 2000 });
+    const resultado = showSuccessToast('Operacion ok');
 
-      expect(config.mode).toBe('test');
-      expect(config.retries).toBe(3);
-      expect(config.timeout).toBe(2000);
+    expect(resultado).toBe(true);
+    expect(window.Toastify).toHaveBeenCalled();
+    const opciones = window.Toastify.calls.mostRecent().args[0];
+    expect(opciones.text).toBe('Operacion ok');
+    expect(opciones.style.background).toBe('#198754');
+    expect(showToastSpy).toHaveBeenCalled();
+  });
+
+  it('showWarningToast debe usar texto oscuro (#212529)', function() {
+    spyOn(window, 'Toastify').and.callFake(function() {
+      return { showToast: function() {} };
     });
 
-    it('debe ejecutar la funcionalidad principal integrada', function() {
-      const data = {
-        items: [
-          { id: 1, value: 10 },
-          { id: 2, value: 7 },
-        ],
-      };
+    showWarningToast('Atencion');
 
-      const result = LibraryService.runMainFeature(data);
+    const opciones = window.Toastify.calls.mostRecent().args[0];
+    expect(opciones.style.color).toBe('#212529');
+  });
 
-      expect(result).toBeDefined();
-      expect(Array.isArray(result)).toBe(true);
-      expect(result.length).toBe(2);
-      expect(result[0].value).toBe(20);
-    });
+  it('debe retornar false cuando window.Toastify no existe', function() {
+    window.Toastify = undefined;
 
-    it('debe manejar errores de la libreria correctamente', function() {
-      try {
-        LibraryService.runMainFeature({});
-        fail('Deberia haber lanzado un error');
-      } catch (error) {
-        expect(error.message).toContain('Invalid input');
-      }
-    });
+    const resultado = showSuccessToast('Sin libreria');
 
-    it('debe interactuar con otras partes del sistema (DOM)', function() {
-      const fixture = document.createElement('div');
-      fixture.id = 'library-spec-fixture';
-      fixture.innerHTML = '<div id="library-output"></div>';
-      document.body.appendChild(fixture);
+    expect(resultado).toBe(false);
+  });
 
-      const data = {
-        items: [
-          { id: 1, value: 5 },
-          { id: 2, value: 9 },
-        ],
-      };
+  it('debe retornar false si Toastify lanza un error interno sin romper el flujo', function() {
+    spyOn(window, 'Toastify').and.throwError('Toastify interno');
 
-      const rendered = LibraryService.runAndRender(data, '#library-output');
-      const outputNodes = document.querySelectorAll('#library-output span');
+    let resultado;
 
-      expect(rendered).toBe(true);
-      expect(outputNodes.length).toBe(2);
-      expect(outputNodes[0].textContent).toBe('10');
-      expect(outputNodes[1].textContent).toBe('18');
-    });
+    expect(function() {
+      resultado = showErrorToast('Error');
+    }).not.toThrow();
+
+    expect(resultado).toBe(false);
   });
 });

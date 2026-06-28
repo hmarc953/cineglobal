@@ -13,7 +13,7 @@ export function renderizarPeliculas(peliculas, SELECTORES) {
     return;
   }
 
-  peliculas.forEach((pelicula) => {
+  peliculas.forEach((pelicula, indice) => {
     const tituloSeguro = escaparHTML(pelicula.titulo);
     const categoriaSegura = escaparHTML(pelicula.categoria);
     const clasificacionSegura = escaparHTML(pelicula.clasificacion);
@@ -31,7 +31,7 @@ export function renderizarPeliculas(peliculas, SELECTORES) {
     columna.className = 'col-12 col-md-6 col-lg-3';
     columna.innerHTML = `
       <article class="movie-card" data-state="success">
-        <img class="movie-image img-fluid" src="${imagenSegura}" alt="${tituloSeguro}" width="300" height="350">
+        <img class="movie-image img-fluid" src="${imagenSegura}" alt="${tituloSeguro}" width="300" height="350" loading="lazy" decoding="async" fetchpriority="${indice === 0 ? 'high' : 'low'}">
         <h3 class="movie-title">${tituloSeguro}</h3>
         <data class="movie-date" value="${fechaIsoSegura}">Fecha de estreno: ${fechaVisibleSegura}</data>
         <p class="movie-description">${categoriaSegura} - ${clasificacionSegura}</p>

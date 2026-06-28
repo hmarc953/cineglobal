@@ -78,23 +78,24 @@
 - **Best Practices:** Sin impacto negativo. No aparecieron advertencias nuevas bloqueantes relacionadas con terceros, CDN o seguridad del runtime.
 - **SEO:** Sin impacto negativo. La librería externa no alteró metadatos, indexabilidad ni contenido relevante para SEO.
 
-### Recomendaciones
+### Acciones aplicadas para resolver insights
 
-- Minimizar el peso de la librería externa o cargarla bajo demanda si no es crítica.
-- Validar si la librería genera listeners, DOM extra o estilos que impacten en long tasks.
-- Verificar la política de integridad (SRI) y dependencias CDN si aplica.
-- Mantener monitoreo de Lighthouse luego de cambios sobre la integración de la librería.
+- **Entrega de imágenes optimizada en cartelera:** se agregó `loading="lazy"`, `decoding="async"` y prioridad de fetch por orden de render para reducir trabajo inicial y mejorar carga percibida.
+- **Render-blocking reducido en recursos no críticos:** la hoja de estilos de Toastify se carga con `preload` + `onload` (y fallback `noscript`) para evitar bloqueo innecesario del render inicial.
+- **Conexión temprana a CDN:** se incorporó `preconnect` y `dns-prefetch` a jsDelivr para bajar latencia de descarga de dependencias.
+- **Trabajo de render acotado en tarjetas:** se aplicó `content-visibility: auto` con `contain-intrinsic-size` en cards para disminuir costo de pintado fuera de viewport.
+- **Seguimiento continuo:** se mantiene monitoreo de Lighthouse tras cada ajuste para validar impacto real en performance móvil y desktop.
 
 ## Issues Generadas
 
 - No se detectaron nuevos problemas críticos en Accessibility, Best Practices o SEO.
 - Los hallazgos de Performance ya se encuentran documentados y vigentes en:
-  - [#218] [Performance] Resolver render-blocking requests (CDN de Bootstrap).
-  - [#219] [Performance] Tareas largas detectadas en el hilo principal (long tasks).
+  - [#218](https://github.com/hmarc953/cineglobal/issues/218) [Performance] Resolver render-blocking requests (CDN de Bootstrap).
+  - [#219](https://github.com/hmarc953/cineglobal/issues/219) [Performance] Tareas largas detectadas en el hilo principal (long tasks).
 - No fue necesario crear nuevas issues adicionales para la integración de la librería externa, ya que las oportunidades observadas coinciden con issues abiertas existentes.
 
 ## Conclusiones
 
-La integración de la librería externa no degradó ninguna métrica respecto del estado post-fetch. Los 4 umbrales mínimos continúan ampliamente superados (Performance 99, Accessibility 100, Best Practices 100, SEO 100). El sistema mantiene estabilidad en accesibilidad y SEO, y mejora levemente en Performance (+1). Las oportunidades de mejora observadas permanecen acotadas al área de rendimiento y ya están correctamente trazadas en las issues #218 y #219. El proyecto queda aprobado para continuar con el cierre del rol Tester QA/JS.
+La integración de la librería externa no degradó ninguna métrica respecto del estado post-fetch. Los 4 umbrales mínimos continúan ampliamente superados (Performance 99, Accessibility 100, Best Practices 100, SEO 100). El sistema mantiene estabilidad en accesibilidad y SEO, y mejora levemente en Performance (+1). Las oportunidades de mejora observadas permanecen acotadas al área de rendimiento y ya están correctamente trazadas en las issues [#218](https://github.com/hmarc953/cineglobal/issues/218) y [#219](https://github.com/hmarc953/cineglobal/issues/219). El proyecto queda aprobado para continuar con el cierre del rol Tester QA/JS.
 
 ---
