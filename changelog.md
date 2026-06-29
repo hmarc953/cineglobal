@@ -58,6 +58,10 @@
 ---
 ### Fixed
 
+- [fix/correcciones-segundo-parcial]Corrección de incosistencias detectadas en Segundo Parcial
+PR: [#]() - @9919-Mili (Tester QA/JS - Testing Avanzado)
+
+
 - [fix/correccion-dev-storage] Ajustes en localStorage y sessionStorage
   PR: [#180](https://github.com/hmarc953/cineglobal/pull/180) - @9919-Mili (Desarrollador JS Local y Session Storage)
 
