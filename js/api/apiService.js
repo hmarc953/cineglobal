@@ -1,5 +1,21 @@
 /**
- * Servicio para consumo de API externa
+ * Justificacion tecnica de API
+ *
+ * Se usa The Movie Database (TMDB) porque ofrece un catalogo amplio,
+ * documentacion publica estable y un esquema consistente para peliculas.
+ * Esta eleccion evita hardcodear datos y permite renovar la cartelera
+ * sin cambios de estructura en la aplicacion.
+ *
+ * Endpoint consumido:
+ * - GET https://api.themoviedb.org/3/discover/movie
+ *
+ * Formato esperado de respuesta:
+ * - Objeto JSON con `results` (Array) o directamente un Array de peliculas.
+ * - Cada pelicula debe incluir, al menos, datos compatibles con el mapeo interno:
+ *   `title`, `overview`, `poster_path`, `genre_ids`, `release_date`, `vote_average`.
+ *
+ * Si la respuesta no respeta ese contrato, este servicio lanza
+ * `FORMATO_API_INVALIDO` para activar el fallback local.
  */
 const ApiService = {
   /**
@@ -14,7 +30,10 @@ const ApiService = {
       const response = await fetch(endpoint);
 
       if (!response.ok) {
-        throw new Error(`HTTP_${response.status}`);
+        const error = new Error(`HTTP_${response.status}`);
+        error.userMessage =
+          'El servidor respondió con un error.';
+        throw error;
       }
 
       const json = await response.json();
@@ -308,7 +327,7 @@ const ApiService = {
   },
 
   /**
-   * Cuenta elementos utilizando reduce().
+   * Cuenta elementos del arreglo de resultados.
    *
    * @param {Array} datos
    * @returns {number}
@@ -318,11 +337,8 @@ const ApiService = {
       return 0;
     }
 
-    return datos.reduce(
-      (total) => total + 1,
-      0
-    );
-  },
+    return datos.length;
+},
 
   /**
    * Calcula métricas del catálogo usando reduce().

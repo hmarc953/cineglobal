@@ -1,0 +1,122 @@
+[
+  {
+    "id": "hoppers",
+    "titulo": "Hoppers Operacion Castor",
+    "categoria": "Accion",
+    "clasificacion": "ATP",
+    "fechaEstreno": "2024-03-03",
+    "imagen": "assets/images/hoppers.jpeg",
+    "funciones": [
+      {
+        "id": "hop-pal-es-1800",
+        "cine": "Palermo",
+        "idioma": "Espanol",
+        "horario": "18:00",
+        "asientosDisponibles": 40,
+        "precio": 120
+      },
+      {
+        "id": "hop-aba-es-1900",
+        "cine": "Abasto",
+        "idioma": "Espanol",
+        "horario": "19:00",
+        "asientosDisponibles": 35,
+        "precio": 120
+      },
+      {
+        "id": "hop-lav-sub-2000",
+        "cine": "Lavalle",
+        "idioma": "Subtitulada",
+        "horario": "20:00",
+        "asientosDisponibles": 30,
+        "precio": 120
+      },
+      {
+        "id": "hop-pue-en-2200",
+        "cine": "Puerto Madero",
+        "idioma": "Ingles",
+        "horario": "22:00",
+        "asientosDisponibles": 28,
+        "precio": 120
+      }
+    ]
+  },
+  {
+    "id": "scream-7",
+    "titulo": "Scream 7",
+    "categoria": "Accion",
+    "clasificacion": "+16",
+    "fechaEstreno": "2026-10-01",
+    "imagen": "assets/images/scream-7.jpg",
+    "funciones": [
+      {
+        "id": "scr-pal-sub-2130",
+        "cine": "Palermo",
+        "idioma": "Subtitulada",
+        "horario": "21:30",
+        "asientosDisponibles": 25,
+        "precio": 140
+      },
+      {
+        "id": "scr-aba-en-2200",
+        "cine": "Abasto",
+        "idioma": "Ingles",
+        "horario": "22:00",
+        "asientosDisponibles": 20,
+        "precio": 140
+      }
+    ]
+  },
+  {
+    "id": "el-agente-secreto",
+    "titulo": "El Agente Secreto",
+    "categoria": "Drama",
+    "clasificacion": "+13",
+    "fechaEstreno": "2026-02-26",
+    "imagen": "assets/images/el-agente-secreto.jpg",
+    "funciones": [
+      {
+        "id": "age-pal-es-2100",
+        "cine": "Palermo",
+        "idioma": "Espanol",
+        "horario": "21:00",
+        "asientosDisponibles": 34,
+        "precio": 130
+      },
+      {
+        "id": "age-aba-sub-1930",
+        "cine": "Abasto",
+        "idioma": "Subtitulada",
+        "horario": "19:30",
+        "asientosDisponibles": 26,
+        "precio": 130
+      }
+    ]
+  },
+  {
+    "id": "mario-galaxy",
+    "titulo": "Super Mario Galaxy: The Movie",
+    "categoria": "Animacion",
+    "clasificacion": "ATP",
+    "fechaEstreno": "2026-04-01",
+    "imagen": "assets/images/mario-galaxy.jpg",
+    "funciones": [
+      {
+        "id": "mar-pal-es-1800",
+        "cine": "Palermo",
+        "idioma": "Espanol",
+        "horario": "18:00",
+        "asientosDisponibles": 45,
+        "precio": 125
+      },
+      {
+        "id": "mar-pue-es-2030",
+        "cine": "Puerto Madero",
+        "idioma": "Espanol",
+        "horario": "20:30",
+        "asientosDisponibles": 38,
+        "precio": 125
+      }
+    ]
+  }
+]

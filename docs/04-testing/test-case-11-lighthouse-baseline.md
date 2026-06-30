@@ -49,8 +49,10 @@
 
 ## Issues Generadas
 
-- [#209] - Agregar meta descripcion al index.html
-- [#208] - Corregir contraste de color insuficiente (Accessibility)
+- [#209](https://github.com/hmarc953/cineglobal/issues/209) - Agregar meta descripcion al index.html
+- [#208](https://github.com/hmarc953/cineglobal/issues/208) - Corregir contraste de color insuficiente (Accessibility)
+- [#218](https://github.com/hmarc953/cineglobal/issues/218)
+- [#219](https://github.com/hmarc953/cineglobal/issues/219)
 
 ## Conclusiones
 

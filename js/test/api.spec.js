@@ -1,48 +1,6 @@
-describe('ApiService', function() {
-  const ApiService = {
-    async fetchData(endpoint) {
-      const response = await fetch(endpoint);
+import ApiService from '../api/apiService.js';
 
-      if (!response.ok) {
-        throw new Error(`HTTP error: ${response.status}`);
-      }
-
-      return response.json();
-    },
-
-    renderData(data, selector) {
-      const container = document.querySelector(selector);
-
-      if (!container) {
-        return false;
-      }
-
-      container.innerHTML = data
-        .map((item) => `<li data-id="${item.id}">${item.name}</li>`)
-        .join('');
-
-      return true;
-    },
-  };
-
-  const DataProcessor = {
-    mapData(rawData) {
-      return rawData.map((item) => ({
-        id: item.id,
-        name: item.name,
-        label: item.name.toUpperCase(),
-      }));
-    },
-
-    filterData(rawData) {
-      return rawData.filter((item) => item.active === true);
-    },
-
-    reduceData(rawData) {
-      return rawData.reduce((acc, item) => acc + item.value, 0);
-    },
-  };
-
+describe('ApiService (real)', function() {
   let originalFetch;
 
   beforeEach(function() {
@@ -51,120 +9,126 @@ describe('ApiService', function() {
 
   afterEach(function() {
     window.fetch = originalFetch;
-
-    const fixture = document.getElementById('api-spec-fixture');
-    if (fixture) {
-      fixture.remove();
-    }
   });
 
   describe('fetchData()', function() {
-    it('debe obtener datos exitosamente de la API', async function() {
-      const mockData = [
-        { id: 1, name: 'Test 1' },
-        { id: 2, name: 'Test 2' },
-      ];
+    it('debe obtener datos y devolverlos sanitizados', async function() {
+      const mockData = {
+        results: [
+          {
+            id: 10,
+            title: 'Pelicula A',
+            poster_path: '/poster-a.jpg',
+            genre_ids: [28],
+            release_date: '2026-05-01'
+          }
+        ]
+      };
 
       spyOn(window, 'fetch').and.resolveTo({
         ok: true,
         status: 200,
         json: async function() {
           return mockData;
-        },
+        }
       });
 
-      // Test de caso exitoso
       const data = await ApiService.fetchData('/endpoint');
-      expect(data).toBeDefined();
+
       expect(Array.isArray(data)).toBe(true);
-      expect(data.length).toBe(2);
+      expect(data.length).toBe(1);
+      expect(data[0].id).toBe('10');
+      expect(data[0].title).toBe('Pelicula A');
+      expect(data[0].categoria).toBe('Accion');
+      expect(data[0].imagen).toContain('https://image.tmdb.org/t/p/w500');
     });
 
-    it('debe manejar errores HTTP correctamente', async function() {
+    it('debe exponer error controlado para HTTP no exitoso', async function() {
       spyOn(window, 'fetch').and.resolveTo({
         ok: false,
         status: 404,
         json: async function() {
           return { message: 'Not Found' };
-        },
+        }
       });
 
-      // Test de error 404
       try {
         await ApiService.fetchData('/invalid-endpoint');
         fail('Deberia haber lanzado un error');
       } catch (error) {
-        expect(error.message).toContain('HTTP error');
-        expect(error.message).toContain('404');
-      }
-    });
-
-    it('debe manejar errores de red correctamente', async function() {
-      spyOn(window, 'fetch').and.rejectWith(new Error('Network error'));
-
-      try {
-        await ApiService.fetchData('/endpoint');
-        fail('Deberia haber lanzado un error de red');
-      } catch (error) {
-        expect(error.message).toContain('Network error');
+        expect(error.message).toBe('HTTP_404');
+        expect(error.userMessage).toBe('El servidor respondió con un error.');
       }
     });
   });
 
-  describe('DataProcessor', function() {
-    it('debe procesar datos con map correctamente', function() {
-      const rawData = [{ id: 1, name: 'Test' }];
-      const processed = DataProcessor.mapData(rawData);
+  describe('HOF reales de ApiService', function() {
+    it('sanitizarDatos() debe aplicar filter y map sobre los datos reales', function() {
+      const datosEntrada = {
+        results: [
+          {
+            id: 1,
+            title: 'Titulo <B>',
+            genre_ids: [35],
+            poster_path: '/uno.jpg',
+            release_date: '2026-03-10'
+          },
+          {
+            id: null,
+            title: 'Sin ID'
+          },
+          {
+            id: 2,
+            title: 'Dos',
+            categoria: 'Drama',
+            imagen: 'assets/images/demo.jpg',
+            funciones: [
+              {
+                id: 'f-ok',
+                cine: 'Palermo',
+                idioma: 'Espanol',
+                horario: '18:00',
+                asientosDisponibles: 20,
+                precio: 100
+              },
+              {
+                id: '',
+                cine: 'Palermo',
+                idioma: 'Espanol',
+                horario: '18:00',
+                asientosDisponibles: 0,
+                precio: 0
+              }
+            ]
+          }
+        ]
+      };
 
-      expect(processed).toBeDefined();
-      expect(processed.length).toBe(1);
-      expect(processed[0].label).toBe('TEST');
+      const salida = ApiService.sanitizarDatos(datosEntrada);
+
+      expect(salida.length).toBe(2);
+      expect(salida[0].id).toBe('1');
+      expect(salida[0].title).toBe('Titulo B');
+      expect(salida[0].categoria).toBe('Comedia');
+      expect(salida[1].funciones.length).toBe(1);
+      expect(salida[1].funciones[0].id).toBe('f-ok');
     });
 
-    it('debe procesar datos con filter correctamente', function() {
-      const rawData = [
-        { id: 1, active: true },
-        { id: 2, active: false },
-        { id: 3, active: true },
+    it('calcularMetricasCatalogo() debe usar reduce y devolver metricas reales', function() {
+      const datos = [
+        { categoria: 'Accion' },
+        { categoria: 'Accion' },
+        { categoria: 'Drama' },
+        { categoria: '' },
       ];
 
-      const filtered = DataProcessor.filterData(rawData);
+      const metricas = ApiService.calcularMetricasCatalogo(datos);
 
-      expect(filtered.length).toBe(2);
-      expect(filtered.every((item) => item.active)).toBe(true);
-    });
-
-    it('debe procesar datos con reduce correctamente', function() {
-      const rawData = [
-        { id: 1, value: 10 },
-        { id: 2, value: 20 },
-        { id: 3, value: 5 },
-      ];
-
-      const total = DataProcessor.reduceData(rawData);
-
-      expect(total).toBe(35);
-    });
-  });
-
-  describe('Integracion con DOM', function() {
-    it('debe renderizar datos en el DOM cuando aplica', function() {
-      const fixture = document.createElement('div');
-      fixture.id = 'api-spec-fixture';
-      fixture.innerHTML = '<ul id="api-list"></ul>';
-      document.body.appendChild(fixture);
-
-      const data = [
-        { id: 1, name: 'Elemento A' },
-        { id: 2, name: 'Elemento B' },
-      ];
-
-      const result = ApiService.renderData(data, '#api-list');
-      const items = document.querySelectorAll('#api-list li');
-
-      expect(result).toBe(true);
-      expect(items.length).toBe(2);
-      expect(items[0].textContent).toBe('Elemento A');
+      expect(metricas.total).toBe(4);
+      expect(metricas.porCategoria.Accion).toBe(2);
+      expect(metricas.porCategoria.Drama).toBe(1);
+      expect(metricas.porCategoria['Sin categoria']).toBe(1);
+      expect(metricas.categoriaPrincipal).toBe('Accion');
     });
   });
 });

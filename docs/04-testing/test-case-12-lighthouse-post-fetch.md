@@ -72,9 +72,9 @@
 ### Análisis de Impacto
 
 - **Performance:** La integración de fetch asíncrono no degradó el rendimiento; por el contrario, mejoró 1 punto (97→98). El fetch externo hacia TMDB no introduce latencia visible porque el sitio carga con datos estáticos del fallback local cuando la API no responde.
-- **Accessibility:** Mejora de 4 puntos (96→100). El contraste insuficiente reportado en el baseline fue corregido (issue #208).
+- **Accessibility:** Mejora de 4 puntos (96→100). El contraste insuficiente reportado en el baseline fue corregido ([issue #208](https://github.com/hmarc953/cineglobal/issues/208)).
 - **Best Practices:** Sin cambios. Puntaje máximo mantenido.
-- **SEO:** Mejora de 9 puntos (91→100). La meta description fue agregada correctamente (issue #209), eliminando el único hallazgo del baseline.
+- **SEO:** Mejora de 9 puntos (91→100). La meta description fue agregada correctamente ([issue #209](https://github.com/hmarc953/cineglobal/issues/209)), eliminando el único hallazgo del baseline.
 
 ### Recomendaciones
 
@@ -85,13 +85,13 @@
 
 ## Issues Generadas
 
-- [#218] [Performance] Resolver render-blocking requests (CDN de Bootstrap).
-- [#219] [Performance] Tareas largas detectadas en el hilo principal (long tasks).
-- Issues del baseline ya resueltas: #208 (contraste) y #209 (meta description) confirmadas como cerradas por este resultado.
+- [#218](https://github.com/hmarc953/cineglobal/issues/218) [Performance] Resolver render-blocking requests (CDN de Bootstrap).
+- [#219](https://github.com/hmarc953/cineglobal/issues/219) [Performance] Tareas largas detectadas en el hilo principal (long tasks).
+- Issues del baseline ya resueltas: [#208](https://github.com/hmarc953/cineglobal/issues/208) (contraste) y [#209](https://github.com/hmarc953/cineglobal/issues/209) (meta description) confirmadas como cerradas por este resultado.
 
 ## Conclusiones
 
-La integración de `feature/dev-async-fetch-api` no degradó ninguna métrica respecto del baseline. Los 4 umbrales mínimos se superan holgadamente (Performance 98, Accessibility 100, Best Practices 100, SEO 100). Las correcciones aplicadas previamente a partir de los hallazgos del baseline impactaron positivamente en Accessibility (+4) y SEO (+9). Persisten dos oportunidades de mejora de Performance documentadas en las issues #218 y #219, pero no comprometen la aprobación del post-fetch. El proyecto está en condiciones óptimas para avanzar con la integración de la librería externa.
+La integración de `feature/dev-async-fetch-api` no degradó ninguna métrica respecto del baseline. Los 4 umbrales mínimos se superan holgadamente (Performance 98, Accessibility 100, Best Practices 100, SEO 100). Las correcciones aplicadas previamente a partir de los hallazgos del baseline impactaron positivamente en Accessibility (+4) y SEO (+9). Persisten dos oportunidades de mejora de Performance documentadas en las issues [#218](https://github.com/hmarc953/cineglobal/issues/218) y [#219](https://github.com/hmarc953/cineglobal/issues/219), pero no comprometen la aprobación del post-fetch. El proyecto está en condiciones óptimas para avanzar con la integración de la librería externa.
 
 ---
 

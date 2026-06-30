@@ -253,10 +253,18 @@ async function cargarDatosIniciales() {
       {
         maxIntentos: 2,
         onRetry: ({ proximoIntento, maxIntentos }) => {
+          const mensajeReintento =
+            `Reintentando carga de cartelera (${proximoIntento}/${maxIntentos})...`;
+
+          mostrarLoading(
+            estadoApi,
+            mensajeReintento
+          );
+
           if (mensajeApi) {
             mostrarMensaje(
               mensajeApi,
-              `Reintentando carga de cartelera (${proximoIntento}/${maxIntentos})...`,
+              mensajeReintento,
               'loading'
             );
           }
@@ -287,34 +295,15 @@ async function cargarDatosIniciales() {
       );
     }
 
-    const peliculas = datosApi.map((pelicula) => {
-      const funcionesApi =
-        Array.isArray(pelicula.funciones) && pelicula.funciones.length > 0
-          ? pelicula.funciones.map(
-              (funcion) =>
-                new Funcion(
-                  funcion.id,
-                  funcion.cine,
-                  funcion.idioma,
-                  funcion.horario,
-                  funcion.asientosDisponibles,
-                  funcion.precio
-                )
-            )
-          : crearFuncionesParaPeliculaExterna(pelicula.id);
-
-      return new Pelicula(
-        String(pelicula.id),
-        pelicula.title || pelicula.titulo,
-        pelicula.categoria,
-        pelicula.clasificacion,
-        normalizarFechaEstrenoParaModelo(
-          pelicula.fechaEstreno || pelicula.release_date
-        ),
-        pelicula.imagen,
-        funcionesApi
-      );
-    });
+    performance?.mark?.('build-catalogo-start');
+    const peliculas =
+      await construirPeliculasDesdeApi(datosApi);
+    performance?.mark?.('build-catalogo-end');
+    performance?.measure?.(
+      'build-catalogo',
+      'build-catalogo-start',
+      'build-catalogo-end'
+    );
 
     estadoApp.catalogoPeliculas =
       new CatalogoPeliculas(peliculas);
@@ -356,10 +345,80 @@ async function cargarDatosIniciales() {
 
     estadoApp.catalogoPeliculas =
       catalogoCache ||
-      new CatalogoPeliculas(crearPeliculasIniciales());
+      new CatalogoPeliculas(
+        await cargarPeliculasInicialesDesdeJson()
+      );
   } finally {
     ocultarLoading(estadoApi);
   }
+}
+
+/**
+ * Construye instancias de dominio a partir de la respuesta de API.
+ *
+ * @param {Array<Object>} datosApi
+ * @returns {Array<Pelicula>}
+ */
+function cederAlMainThread() {
+  return new Promise((resolve) => {
+    if (typeof window !== 'undefined' && typeof window.requestIdleCallback === 'function') {
+      window.requestIdleCallback(
+        () => resolve(),
+        { timeout: 50 }
+      );
+      return;
+    }
+
+    setTimeout(resolve, 0);
+  });
+}
+
+async function construirPeliculasDesdeApi(datosApi = []) {
+  if (!Array.isArray(datosApi)) {
+    return [];
+  }
+
+  const peliculas = [];
+  const TAMANO_LOTE = 8;
+
+  for (let indice = 0; indice < datosApi.length; indice += 1) {
+    const pelicula = datosApi[indice];
+
+    const funcionesApi =
+      Array.isArray(pelicula.funciones) && pelicula.funciones.length > 0
+        ? pelicula.funciones.map(
+            (funcion) =>
+              new Funcion(
+                funcion.id,
+                funcion.cine,
+                funcion.idioma,
+                funcion.horario,
+                funcion.asientosDisponibles,
+                funcion.precio
+              )
+          )
+        : crearFuncionesParaPeliculaExterna(pelicula.id);
+
+    peliculas.push(
+      new Pelicula(
+        String(pelicula.id),
+        pelicula.title || pelicula.titulo,
+        pelicula.categoria,
+        pelicula.clasificacion,
+        normalizarFechaEstrenoParaModelo(
+          pelicula.fechaEstreno || pelicula.release_date
+        ),
+        pelicula.imagen,
+        funcionesApi
+      )
+    );
+
+    if ((indice + 1) % TAMANO_LOTE === 0) {
+      await cederAlMainThread();
+    }
+  }
+
+  return peliculas;
 }
 
 /**
@@ -421,59 +480,28 @@ function normalizarFechaEstrenoParaModelo(fechaCruda) {
 // ==============================
 // Datos iniciales de cartelera
 // ==============================
-function crearPeliculasIniciales() {
-  return [
-    new Pelicula(
-      'hoppers',
-      'Hoppers Operacion Castor',
-      'Accion',
-      'ATP',
-      '2024-03-03',
-      'assets/images/hoppers.jpeg',
-      [
-        new Funcion('hop-pal-es-1800', 'Palermo', 'Espanol', '18:00', 40, 120),
-        new Funcion('hop-aba-es-1900', 'Abasto', 'Espanol', '19:00', 35, 120),
-        new Funcion('hop-lav-sub-2000', 'Lavalle', 'Subtitulada', '20:00', 30, 120),
-        new Funcion('hop-pue-en-2200', 'Puerto Madero', 'Ingles', '22:00', 28, 120),
-      ]
-    ),
-    new Pelicula(
-      'scream-7',
-      'Scream 7',
-      'Accion',
-      '+16',
-      '2026-10-01',
-      'assets/images/scream-7.jpg',
-      [
-        new Funcion('scr-pal-sub-2130', 'Palermo', 'Subtitulada', '21:30', 25, 140),
-        new Funcion('scr-aba-en-2200', 'Abasto', 'Ingles', '22:00', 20, 140),
-      ]
-    ),
-    new Pelicula(
-      'el-agente-secreto',
-      'El Agente Secreto',
-      'Drama',
-      '+13',
-      '2026-02-26',
-      'assets/images/el-agente-secreto.jpg',
-      [
-        new Funcion('age-pal-es-2100', 'Palermo', 'Espanol', '21:00', 34, 130),
-        new Funcion('age-aba-sub-1930', 'Abasto', 'Subtitulada', '19:30', 26, 130),
-      ]
-    ),
-    new Pelicula(
-      'mario-galaxy',
-      'Super Mario Galaxy: The Movie',
-      'Animacion',
-      'ATP',
-      '2026-04-01',
-      'assets/images/mario-galaxy.jpg',
-      [
-        new Funcion('mar-pal-es-1800', 'Palermo', 'Espanol', '18:00', 45, 125),
-        new Funcion('mar-pue-es-2030', 'Puerto Madero', 'Espanol', '20:30', 38, 125),
-      ]
-    ),
-  ];
+async function cargarPeliculasInicialesDesdeJson() {
+  try {
+    const response = await fetch('js/api/peliculas.json');
+
+    if (!response.ok) {
+      throw new Error(`HTTP_${response.status}`);
+    }
+
+    const datos = await response.json();
+
+    if (!Array.isArray(datos)) {
+      throw new SyntaxError('FORMATO_JSON_INVALIDO');
+    }
+
+    return construirPeliculasDesdeApi(datos);
+  } catch (error) {
+    console.warn(
+      'No se pudo cargar peliculas.json para el fallback local:',
+      error.message || error
+    );
+    return [];
+  }
 }
 
 // ==============================
