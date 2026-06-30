@@ -24,6 +24,10 @@
 
 ### Fixed
 
+- [fix/correcciones-segundo-parcial]Corrección de incosistencias detectadas en Segundo Parcial
+PR: [#223](https://github.com/hmarc953/cineglobal/pull/223#issue-4770499744) - @9919-Mili (Tester QA/JS - Testing Avanzado)
+
+
 - [fix/209-contraste-accesibilidad] Corregir contraste de colores
   PR: [#209](https://github.com/hmarc953/cineglobal/pull/209) @hmarc953 (Coordinador / DevOps)
 
