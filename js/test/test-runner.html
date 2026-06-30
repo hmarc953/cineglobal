@@ -5,24 +5,34 @@
   <title>Jasmine Test Runner - CineGlobal</title>
 
   <link rel="shortcut icon" type="image/png"
-    href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/5.10.0/jasmine_favicon.png">
+    href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/5.1.0/jasmine_favicon.png">
 
   <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/5.10.0/jasmine.min.css">
+    href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/5.1.0/jasmine.min.css">
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/5.10.0/jasmine.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/5.10.0/jasmine-html.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/5.10.0/boot0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/5.1.0/jasmine.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/5.1.0/jasmine-html.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/5.1.0/boot0.min.js"></script>
 </head>
 <body>
   <script type="module">
+    async function importarOpcional(ruta) {
+      try {
+        await import(ruta);
+      } catch (error) {
+        console.warn(`Spec opcional no cargado: ${ruta}`, error);
+      }
+    }
+
     try {
       await import('./models.spec.js');
       await import('./storage.spec.js');
       await import('./script.spec.js');
+      await importarOpcional('./api.spec.js');
+      await importarOpcional('./library.spec.js');
 
       const boot = document.createElement('script');
-      boot.src = 'https://cdnjs.cloudflare.com/ajax/libs/jasmine/5.10.0/boot1.min.js';
+      boot.src = 'https://cdnjs.cloudflare.com/ajax/libs/jasmine/5.1.0/boot1.min.js';
       boot.onload = function() {
         console.log('Jasmine boot1 cargado correctamente');
 

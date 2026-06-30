@@ -107,7 +107,7 @@ describe('Controlador - Eventos y DOM', function() {
             <option value="" selected disabled hidden>Elija un idioma</option>
           </select>
 
-          <select id="compraFuncion" name="funcionId" data-validate="required" disabled>
+          <select id="compraHorario" name="funcionId" data-validate="required" disabled>
             <option value="" selected disabled hidden>Elija un horario</option>
           </select>
 
@@ -147,14 +147,6 @@ describe('Controlador - Eventos y DOM', function() {
           <p id="mensajeConsulta" class="cineglobal-ui-message" hidden></p>
           <button type="submit">Enviar</button>
         </form>
-      </div>
-
-      <div id="modalConfirmLogin">
-        <p id="confirmLoginTexto"></p>
-      </div>
-
-      <div id="modalConfirmRegistro">
-        <p id="confirmRegistroTexto"></p>
       </div>
 
       <div id="modalConfirmCompra">
@@ -248,8 +240,8 @@ describe('Controlador - Eventos y DOM', function() {
     const idioma = obtenerPrimerValorSeleccionable('#compraIdioma');
     dispararChange('#compraIdioma', idioma);
 
-    const funcion = obtenerPrimerValorSeleccionable('#compraFuncion');
-    dispararChange('#compraFuncion', funcion);
+    const funcion = obtenerPrimerValorSeleccionable('#compraHorario');
+    dispararChange('#compraHorario', funcion);
 
     dispararChange('#compraAsientos', '2');
   }
@@ -279,13 +271,14 @@ describe('Controlador - Eventos y DOM', function() {
   // Filtros de películas
   // ==============================
   describe('filtros de películas', function() {
-    it('muestra mensaje de vacío cuando no hay resultados', function() {
+    it('renderiza la cartelera vacia cuando no hay resultados', function() {
       dispararInput('#filtroTitulo', 'PeliculaQueNoExiste12345');
 
       const estadoFiltros = document.querySelector('#estadoFiltros');
+      const cards = document.querySelectorAll('.movie-card');
 
-      expect(estadoFiltros.textContent).toContain('No se encontraron');
-      expect(estadoFiltros.classList.contains('alert-danger')).toBeTrue();
+      expect(cards.length).toBe(0);
+      expect(estadoFiltros.hidden).toBeTrue();
     });
 
     it('muestra cantidad de resultados al filtrar con éxito', function() {
@@ -295,8 +288,7 @@ describe('Controlador - Eventos y DOM', function() {
       const cards = document.querySelectorAll('.movie-card');
 
       expect(cards.length).toBe(1);
-      expect(estadoFiltros.textContent).toContain('pelicula(s) encontradas');
-      expect(estadoFiltros.classList.contains('alert-success')).toBeTrue();
+      expect(estadoFiltros.hidden).toBeTrue();
     });
 
     it('limpia los filtros y vuelve a renderizar el catálogo completo', function() {
@@ -345,12 +337,12 @@ describe('Controlador - Eventos y DOM', function() {
       const idioma = obtenerPrimerValorSeleccionable('#compraIdioma');
       dispararChange('#compraIdioma', idioma);
 
-      const selectFuncion = document.querySelector('#compraFuncion');
+      const selectFuncion = document.querySelector('#compraHorario');
       expect(selectFuncion.disabled).toBeFalse();
       expect(selectFuncion.options.length).toBeGreaterThan(1);
 
-      const funcion = obtenerPrimerValorSeleccionable('#compraFuncion');
-      dispararChange('#compraFuncion', funcion);
+      const funcion = obtenerPrimerValorSeleccionable('#compraHorario');
+      dispararChange('#compraHorario', funcion);
 
       const selectAsientos = document.querySelector('#compraAsientos');
       expect(selectAsientos.disabled).toBeFalse();
@@ -385,17 +377,18 @@ describe('Controlador - Eventos y DOM', function() {
   // Login y registro
   // ==============================
   describe('login y registro', function() {
-    it('muestra confirmación al iniciar sesión con el usuario administrador inicial', function() {
+    it('inicia sesión con el usuario administrador inicial', function() {
       dispararInput('#loginEmail', 'admin@cineglobal.com');
       dispararInput('#loginPassword', 'Admin123');
       
       dispararSubmit('#formLogin');
 
-      const confirmacion = document.querySelector('#confirmLoginTexto');
-      const modalConfirmLogin = document.querySelector('#modalConfirmLogin');
+      const usuarioActivo = sessionStorage.getItem('cine:usuario:activo');
+      const modalLogin = document.querySelector('#modalLogin');
 
-      expect(confirmacion.textContent).toContain('admin@cineglobal.com');
-      expect(modalConfirmLogin.dataset.modalVisible).toBe('true');
+      expect(usuarioActivo).not.toBeNull();
+      expect(usuarioActivo).toContain('admin@cineglobal.com');
+      expect(modalLogin.dataset.modalVisible).toBe('false');
     });
 
     it('muestra error al iniciar sesión con credenciales inválidas', function() {
@@ -410,7 +403,7 @@ describe('Controlador - Eventos y DOM', function() {
       expect(mensajeLogin.classList.contains('alert-danger')).toBeTrue();
     });
 
-    it('muestra confirmación al registrar un usuario válido', function() {
+    it('registra un usuario válido y lo persiste en storage', function() {
       dispararInput('#registroNombre', 'Usuario Test');
       dispararInput('#registroEmail', 'usuario@test.com');
       dispararInput('#registroPassword', 'Usuario123');
@@ -418,11 +411,10 @@ describe('Controlador - Eventos y DOM', function() {
 
       dispararSubmit('#formRegistro');
 
-      const confirmacion = document.querySelector('#confirmRegistroTexto');
-      const modalConfirmRegistro = document.querySelector('#modalConfirmRegistro');
+      const storageUsuarios = localStorage.getItem('cine:usuarios');
 
-      expect(confirmacion.textContent).toContain('usuario@test.com');
-      expect(modalConfirmRegistro.dataset.modalVisible).toBe('true');
+      expect(storageUsuarios).not.toBeNull();
+      expect(storageUsuarios).toContain('usuario@test.com');
     });
 
     it('muestra error cuando las contraseñas de registro no coinciden', function() {

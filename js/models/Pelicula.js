@@ -11,7 +11,7 @@ export class Pelicula {
    * @param {string} titulo - Título de la película.
    * @param {string} categoria - Categoría o género.
    * @param {string} clasificacion - Clasificación de edad.
-   * @param {Date|string} fechaEstreno - Fecha de estreno.
+  * @param {Date|string} fechaEstreno - Fecha de estreno.
    * @param {string} imagen - Ruta o referencia de la imagen.
    * @param {Array<Funcion>} [funciones=[]] - Funciones asociadas a la película.
    */
@@ -127,7 +127,7 @@ export class Pelicula {
 
   /**
    * Crea una instancia de Pelicula a partir de un objeto plano.
-   * @param {{id: string, titulo: string, categoria: string, clasificacion: string, fechaEstreno: string, imagen: string, funciones?: Array<object>}} json - Objeto de origen.
+  * @param {{id: string, titulo: string, categoria: string, clasificacion: string, fechaEstreno: string, imagen: string, funciones?: Array<object>}} json - Objeto de origen.
    * @returns {Pelicula|null} Nueva instancia de Pelicula o null si el JSON es inválido.
    */
   static fromJSON(json) {

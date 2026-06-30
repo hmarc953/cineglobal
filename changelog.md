@@ -1,6 +1,39 @@
 # Changelog
 
 ## [Unreleased]
+
+## [Release Segundo Parcial] - 2026-06-24
+
+### Added
+
+- [feature/coord-devops-segundo-parcial] Planificación inicial y actualizacion
+  PR: [#206](https://github.com/hmarc953/cineglobal/pull/206) @hmarc953 (Coordinador / DevOps)
+
+- [feature/dev-libreria-externa-toastify] Integración de Toastify como librería externa
+  PR: [#215](https://github.com/hmarc953/cineglobal/pull/215) @abartomioli (Desarrollador JS Librerías Externas)
+
+- [feature/dev-async-fetch-api] Se incorpora la integración con la API.
+  PR: [#211](https://github.com/hmarc953/cineglobal/pull/211) - @Santi22-7 (Desarrollador JS Asíncrono - Fetch&APIs)
+
+- [feature/tester-qa-js-testing-suite] Suite QA avanzada y auditorías Lighthouse del Segundo Parcial.
+  PR: [#220](https://github.com/hmarc953/cineglobal/pull/220) @9919-Mili (Tester QA/JS - Testing Avanzado)
+
+- [feature/coord-devops-cierre-spec-sp] [DevOps] Cierre del spec-devops
+  PR: [#221](https://github.com/hmarc953/cineglobal/pull/221) @hmarc953 (Coordinador / DevOps)
+ 
+
+### Fixed
+
+- [fix/correcciones-segundo-parcial]Corrección de incosistencias detectadas en Segundo Parcial
+PR: [#223](https://github.com/hmarc953/cineglobal/pull/223#issue-4770499744) - @9919-Mili (Tester QA/JS - Testing Avanzado)
+
+
+- [fix/209-contraste-accesibilidad] Corregir contraste de colores
+  PR: [#209](https://github.com/hmarc953/cineglobal/pull/209) @hmarc953 (Coordinador / DevOps)
+
+- [fix/meta-description-index] Agregar meta description en index
+  PR: [#208](https://github.com/hmarc953/cineglobal/pull/208) @hmarc953 (Coordinador / DevOps)
+
 ## [Release Actividad Obligatoria N°4] - 2026-05-18
 
 ### Added

@@ -87,7 +87,41 @@ body {
   font-family: var(--font-main);
 }
 
+.filters .form-control.filter-select,
+.filters .form-select.filter-select {
+  background-color: var(--color-card) !important;
+  color: var(--color-text-main) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  font-family: var(--font-main);
+  min-height: 40px;
+}
+
+.form-control.filter-select {
+  background-color: var(--color-card) !important;
+  color: var(--color-text-main) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  font-family: var(--font-main);
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.form-control.filter-select::placeholder {
+  color: var(--color-text-main) !important;
+  opacity: 1;
+}
+
 .form-select:focus {
+  border-color: var(--color-accent) !important;
+  box-shadow: 0 0 0 0.2rem rgba(194, 0, 0, 0.25) !important;
+}
+
+.filters .form-control.filter-select:focus,
+.filters .form-select.filter-select:focus {
+  border-color: var(--color-accent) !important;
+  box-shadow: 0 0 0 0.2rem rgba(194, 0, 0, 0.25) !important;
+}
+
+.form-control.filter-select:focus {
   border-color: var(--color-accent) !important;
   box-shadow: 0 0 0 0.2rem rgba(194, 0, 0, 0.25) !important;
 }
@@ -96,14 +130,27 @@ body {
    5. Tablas (.table)
    Se adapta el fondo, borde y color de texto para modo oscuro.
 ================================================== */
-.table {
+.table,
+.table.table-dark {
   --bs-table-bg: var(--color-card);
   --bs-table-color: var(--color-text-main);
   --bs-table-border-color: var(--bs-border-color);
+  --bs-table-striped-bg: #282828;
+  --bs-table-striped-color: var(--color-text-main);
 
   background-color: var(--color-card) !important;
   color: var(--color-text-main) !important;
   border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.table > :not(caption) > * > * {
+  background-color: var(--color-card) !important;
+  color: var(--color-text-main) !important;
+}
+
+.table caption {
+  background-color: var(--color-bg-main);
+  color: var(--color-text-secondary);
 }
 
 .table thead th {
@@ -118,6 +165,7 @@ body {
 .table-striped > tbody > tr:nth-of-type(odd) {
   --bs-table-accent-bg: #282828;
   background-color: #282828 !important;
+  color: var(--color-text-main) !important;
 }
 
 /* ==================================================

@@ -2,7 +2,7 @@
 
 ## 1. Objetivo del proyecto
 
-CineGlobal es una aplicación web front-end que permite visualizar películas y horarios de funciones de distintos cines a partir de datos estáticos o mock. El objetivo es construir una interfaz usable en HTML/CSS/JavaScript para aprender conceptos de desarrollo web.
+CineGlobal es una aplicación web front-end que permite visualizar películas y horarios de funciones de distintos cines. El objetivo es construir una interfaz usable en HTML, CSS y JavaScript, incorporando datos asíncronos, persistencia, librerías externas y testing automatizado.
 
 ## 2. Alcance
 
@@ -46,7 +46,21 @@ CineGlobal es una aplicación web front-end que permite visualizar películas y 
 
 ### 2.5 Actividad Obligatoria 4
 
-- Una aplicación web interactiva completa que utiliza manipulación del DOM, eventos del usuario, Programación Orientada a Objetos (POO) y  almacenamiento persistente mediante Storage API. 
+- Una aplicación web interactiva completa que utiliza manipulación del DOM, eventos del usuario, Programación Orientada a Objetos (POO) y almacenamiento persistente mediante Storage API.
+- Eliminación de `prompt()` y `alert()` para reemplazarlos por interacciones dentro de la interfaz.
+- Modularización del código JavaScript mediante ES Modules.
+- Ampliación del testing automatizado con Jasmine.
+
+### 2.6 Segundo Parcial
+
+- Implementación de consumo asíncrono de datos mediante `fetch`, promises y JSON/API.
+- Manejo visual de estados de carga, éxito y error.
+- Procesamiento de colecciones mediante `map`, `filter` y `reduce`.
+- Integración de una librería externa de JavaScript mediante CDN.
+- Incorporación de tests Jasmine para funciones asíncronas y para la librería externa.
+- Ejecución de auditorías Lighthouse baseline, post-fetch y post-librería.
+- Actualización de documentación técnica, `README.md` y `changelog.md`.
+- Preparación y validación de la rama `release/segundo-parcial`.
 
 ## 3. Actores o usuarios del sistema
 
@@ -68,20 +82,33 @@ CineGlobal es una aplicación web front-end que permite visualizar películas y 
 - **RF-08**: El sistema permite filtrar películas por género, cine o franja horaria.
 - **RF-09**: El sistema permite consultar soporte.
 
+### Funcionalidad Interactiva y Persistencia (A4 - Completados)
+- **RF-10**: El sistema gestiona los flujos mediante eventos del usuario y manipulación del DOM, sin utilizar `prompt()` ni `alert()`.
+- **RF-11**: La lógica de negocio se organiza mediante clases y módulos JavaScript con separación de responsabilidades.
+- **RF-12**: El sistema persiste los datos requeridos mediante `localStorage` y `sessionStorage`.
+
+### Funcionalidad Asíncrona e Integraciones (Segundo Parcial)
+- **RF-13**: El sistema obtiene datos de forma asíncrona desde una API externa o un archivo JSON mediante `fetch` y promises.
+- **RF-14**: La interfaz informa los estados de carga, éxito y error durante las operaciones asíncronas.
+- **RF-15**: El sistema procesa colecciones de datos mediante `map`, `filter` y `reduce`.
+- **RF-16**: Una librería externa integrada mediante CDN aporta funcionalidad específica sin duplicar código propio existente.
+
 ## 4b. Requerimientos No-Funcionales del Sistema
 
 - **NFR-01**: Testing automatizado con Jasmine (>80% cobertura de funciones)
 - **NFR-02**: Diagramas de actividades previos a implementación
 - **NFR-03**: Code reviews asistidos por Copilot Agent
+- **NFR-04**: Tests Jasmine para operaciones asíncronas y para la integración de la librería externa
+- **NFR-05**: Auditorías Lighthouse con un mínimo de 80 en Performance y 90 en Accessibility
+- **NFR-06**: Trazabilidad de tareas mediante GitHub Projects, Issues, Pull Requests y `changelog.md`
 
 ## 5. Reglas o supuestos del sistema
 
 - No se implementa backend ni base de datos.
-- Los horarios y datos de películas serán estáticos (mock) definidos en el front-end.
-- El foco es aprender HTML
+- Los datos se obtendrán desde una API externa o un archivo JSON consumido desde el front-end.
+- El foco es aplicar HTML, CSS y JavaScript en una aplicación web modular, interactiva y verificable.
 
 ## 6. Funcionalidades previstas para futuras iteraciones
 
-- Cargar datos desde un archivo JSON local.
 - Mejora de la vista de detalle con carteles y valoraciones.
 - Guardar favoritos en localStorage.

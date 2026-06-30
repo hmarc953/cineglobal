@@ -6,7 +6,13 @@ import { CatalogoPeliculas } from './models/CatalogoPeliculas.js';
 import { Compra } from './models/Compra.js';
 import { ConsultaSoporte } from './models/ConsultaSoporte.js';
 import { StorageUtil } from './utils/storage.js';
-
+import {
+  showErrorToast,
+  showInfoToast,
+  showSuccessToast,
+  showWarningToast,
+} from './utils/toast.js';
+import ApiService from './api/apiService.js';
 import {
   consultarElemento,
   valorCampo,
@@ -55,6 +61,8 @@ const SELECTORES = {
   selectClasificacion: '#clasificacion',
   botonLimpiarFiltros: '#btnLimpiarFiltros',
   listadoPeliculas: '#listaPeliculas',
+  mensajeApi: '#mensajeApi',
+  estadoApiCartelera: '#estadoApiCartelera',
   estadoFiltros: '#estadoFiltros',
 
   formularioLogin: '#formLogin',
@@ -87,8 +95,6 @@ const SELECTORES = {
   mensajePago: '#mensajePago',
   mensajeConsulta: '#mensajeConsulta',
   resumenCompra: '#resumenCompra',
-  confirmLoginTexto: '#confirmLoginTexto',
-  confirmRegistroTexto: '#confirmRegistroTexto',
   confirmCompraTexto: '#confirmCompraTexto',
   confirmConsultaTexto: '#confirmConsultaTexto',
   selectCompraCine: '#compraCine',
@@ -125,12 +131,17 @@ const usuarioInicial = {
 // ==============================
 document.addEventListener('DOMContentLoaded', inicializarApp);
 
-function inicializarApp() {
+async function inicializarApp() {
   cargarStorage();
-  cargarDatosIniciales();
+
+  await cargarDatosIniciales();
+
   configurarEventos();
   restaurarFiltros();
-  renderizarPeliculas(estadoApp.catalogoPeliculas.listarPeliculas(), SELECTORES);
+  renderizarPeliculas(
+    estadoApp.catalogoPeliculas.listarPeliculas(),
+    SELECTORES
+  );
   validarFormulariosIniciales();
 }
 
@@ -138,112 +149,359 @@ function cargarStorage() {
   estadoApp.storage = StorageUtil;
 }
 
-function cargarDatosIniciales() {
-  // Intenta restaurar el gestor de usuarios persistido.
+function obtenerTmdbApiKey() {
+  const claveConfig =
+    window.CINEGLOBAL_CONFIG?.TMDB_API_KEY || '';
+
+  const esEntornoLocal =
+    window.location.hostname === 'localhost' ||
+    window.location.hostname === '127.0.0.1' ||
+    window.location.hostname === '';
+
+  const claveSession =
+    esEntornoLocal
+      ? sessionStorage.getItem('cineglobal:tmdb-api-key') || ''
+      : '';
+
+  return claveConfig.trim() || claveSession.trim();
+}
+
+async function cargarDatosIniciales() {
   let gestor = null;
+
   try {
     gestor = GestorUsuarios.cargarDesdeStorage();
   } catch (e) {
-    console.warn('Error al cargar GestorUsuarios desde storage:', e.message || e);
+    console.warn(
+      'Error al cargar GestorUsuarios desde storage:',
+      e.message || e
+    );
   }
 
-  // Si no hay datos previos, crea el usuario administrador inicial
-  // y deja persistida esa estructura base.
   if (gestor) {
     estadoApp.gestorUsuarios = gestor;
   } else {
-    const usuarios = [new Usuario('user_admin', usuarioInicial.nombre, usuarioInicial.email, usuarioInicial.password)];
-    estadoApp.gestorUsuarios = new GestorUsuarios(usuarios);
+    const usuarios = [
+      new Usuario(
+        'user_admin',
+        usuarioInicial.nombre,
+        usuarioInicial.email,
+        usuarioInicial.password
+      )
+    ];
+
+    estadoApp.gestorUsuarios =
+      new GestorUsuarios(usuarios);
+
     try {
       estadoApp.gestorUsuarios.guardarEnStorage();
     } catch (e) {
-      console.warn('No se pudo guardar GestorUsuarios en storage:', e.message || e);
+      console.warn(
+        'No se pudo guardar GestorUsuarios en storage:',
+        e.message || e
+      );
     }
   }
 
-  // Recupera el usuario activo, priorizando datos persistentes.
-  const usuarioGuardadoLocal = obtenerDato(STORAGE_KEYS.usuarioActivo, 'local');
-  const usuarioGuardadoSession = obtenerDato(STORAGE_KEYS.usuarioActivo, 'session');
-  const usuarioJson = usuarioGuardadoLocal || usuarioGuardadoSession || null;
-  estadoApp.usuarioActivo = usuarioJson ? Usuario.fromJSON(usuarioJson) : null;
+  const usuarioGuardadoLocal =
+    obtenerDato(STORAGE_KEYS.usuarioActivo, 'local');
 
-  // Intenta restaurar el catálogo persistido y, si no existe,
-  // carga la cartelera inicial de la aplicación.
-  let catalogo = null;
+  const usuarioGuardadoSession =
+    obtenerDato(STORAGE_KEYS.usuarioActivo, 'session');
+
+  const usuarioJson =
+    usuarioGuardadoLocal ||
+    usuarioGuardadoSession ||
+    null;
+
+  estadoApp.usuarioActivo =
+    usuarioJson
+      ? Usuario.fromJSON(usuarioJson)
+      : null;
+
+  let catalogoCache = null;
   try {
-    catalogo = CatalogoPeliculas.cargarDesdeStorage();
+    catalogoCache = CatalogoPeliculas.cargarDesdeStorage();
   } catch (e) {
-    console.warn('Error al cargar CatalogoPeliculas desde storage:', e.message || e);
+    console.warn(
+      'Error al cargar CatalogoPeliculas desde storage:',
+      e.message || e
+    );
   }
 
-  if (catalogo) {
-    estadoApp.catalogoPeliculas = catalogo;
-  } else {
-    estadoApp.catalogoPeliculas = new CatalogoPeliculas(crearPeliculasIniciales());
+  const TMDB_API_KEY = obtenerTmdbApiKey();
+  const TMDB_BASE_URL =
+    'https://api.themoviedb.org/3/movie/popular';
+  const API_PELICULAS_URL = TMDB_API_KEY.trim()
+    ? `${TMDB_BASE_URL}?api_key=${encodeURIComponent(TMDB_API_KEY.trim())}&language=es-ES&page=1`
+    : null;
+
+  const estadoApi =
+    consultarElemento(SELECTORES.estadoApiCartelera) ||
+    consultarElemento(SELECTORES.estadoFiltros);
+  const mensajeApi = consultarElemento(SELECTORES.mensajeApi);
+
+  try {
+    mostrarLoading(estadoApi, 'Cargando cartelera...');
+
+    if (!API_PELICULAS_URL) {
+      throw new Error('TMDB_API_KEY_NO_CONFIGURADA');
+    }
+
+    const datosApi = await ApiService.fetchDataConReintento(
+      API_PELICULAS_URL,
+      {
+        maxIntentos: 2,
+        onRetry: ({ proximoIntento, maxIntentos }) => {
+          const mensajeReintento =
+            `Reintentando carga de cartelera (${proximoIntento}/${maxIntentos})...`;
+
+          mostrarLoading(
+            estadoApi,
+            mensajeReintento
+          );
+
+          if (mensajeApi) {
+            mostrarMensaje(
+              mensajeApi,
+              mensajeReintento,
+              'loading'
+            );
+          }
+        }
+      }
+    );
+
+    if (!Array.isArray(datosApi) || datosApi.length === 0) {
+      const error = new Error('API_SIN_RESULTADOS');
+      error.userMessage =
+        'TheMovieDB no devolvió películas. Se usará la cartelera almacenada o local.';
+      throw error;
+    }
+
+    const metricasApi =
+      ApiService.calcularMetricasCatalogo(datosApi);
+
+    if (mensajeApi) {
+      const detalleCategoria =
+        metricasApi.categoriaPrincipal
+          ? ` Categoría predominante: ${metricasApi.categoriaPrincipal}.`
+          : '';
+
+      mostrarMensaje(
+        mensajeApi,
+        `API procesada: ${metricasApi.total} película(s).${detalleCategoria}`,
+        'success'
+      );
+    }
+
+    performance?.mark?.('build-catalogo-start');
+    const peliculas =
+      await construirPeliculasDesdeApi(datosApi);
+    performance?.mark?.('build-catalogo-end');
+    performance?.measure?.(
+      'build-catalogo',
+      'build-catalogo-start',
+      'build-catalogo-end'
+    );
+
+    estadoApp.catalogoPeliculas =
+      new CatalogoPeliculas(peliculas);
+
     try {
       estadoApp.catalogoPeliculas.guardarEnStorage();
     } catch (e) {
-      console.warn('No se pudo guardar CatalogoPeliculas en storage:', e.message || e);
+      console.warn(
+        'No se pudo guardar CatalogoPeliculas en storage:',
+        e.message || e
+      );
     }
+
+    const totalPeliculas =
+      ApiService.contarResultados(datosApi);
+
+    mostrarExito(
+      estadoApi,
+      `Cartelera cargada correctamente. ${totalPeliculas} película(s) disponibles.`
+    );
+  } catch (error) {
+    const esFaltaApiKey =
+      error.message === 'TMDB_API_KEY_NO_CONFIGURADA';
+
+    if (!esFaltaApiKey) {
+      const mensajeError =
+      error.userMessage ||
+        'No se pudo cargar la cartelera externa. Se usará la cartelera almacenada o local.';
+
+      mostrarError(estadoApi, mensajeError);
+    } else {
+      limpiarMensaje(estadoApi);
+    }
+
+    console.warn(
+      'Error al cargar API. Se utilizará fallback local/cache.',
+      error
+    );
+
+    estadoApp.catalogoPeliculas =
+      catalogoCache ||
+      new CatalogoPeliculas(
+        await cargarPeliculasInicialesDesdeJson()
+      );
+  } finally {
+    ocultarLoading(estadoApi);
   }
 }
 
+/**
+ * Construye instancias de dominio a partir de la respuesta de API.
+ *
+ * @param {Array<Object>} datosApi
+ * @returns {Array<Pelicula>}
+ */
+function cederAlMainThread() {
+  return new Promise((resolve) => {
+    if (typeof window !== 'undefined' && typeof window.requestIdleCallback === 'function') {
+      window.requestIdleCallback(
+        () => resolve(),
+        { timeout: 50 }
+      );
+      return;
+    }
+
+    setTimeout(resolve, 0);
+  });
+}
+
+async function construirPeliculasDesdeApi(datosApi = []) {
+  if (!Array.isArray(datosApi)) {
+    return [];
+  }
+
+  const peliculas = [];
+  const TAMANO_LOTE = 8;
+
+  for (let indice = 0; indice < datosApi.length; indice += 1) {
+    const pelicula = datosApi[indice];
+
+    const funcionesApi =
+      Array.isArray(pelicula.funciones) && pelicula.funciones.length > 0
+        ? pelicula.funciones.map(
+            (funcion) =>
+              new Funcion(
+                funcion.id,
+                funcion.cine,
+                funcion.idioma,
+                funcion.horario,
+                funcion.asientosDisponibles,
+                funcion.precio
+              )
+          )
+        : crearFuncionesParaPeliculaExterna(pelicula.id);
+
+    peliculas.push(
+      new Pelicula(
+        String(pelicula.id),
+        pelicula.title || pelicula.titulo,
+        pelicula.categoria,
+        pelicula.clasificacion,
+        normalizarFechaEstrenoParaModelo(
+          pelicula.fechaEstreno || pelicula.release_date
+        ),
+        pelicula.imagen,
+        funcionesApi
+      )
+    );
+
+    if ((indice + 1) % TAMANO_LOTE === 0) {
+      await cederAlMainThread();
+    }
+  }
+
+  return peliculas;
+}
+
+/**
+ * Genera funciones compatibles con CineGlobal para películas externas.
+ *
+ * @param {string|number} peliculaId
+ * @returns {Array<Funcion>}
+ */
+function crearFuncionesParaPeliculaExterna(peliculaId) {
+  const idBase = String(peliculaId || 'externa');
+
+  return [
+    new Funcion(
+      `${idBase}-pal-es-1800`,
+      'Palermo',
+      'Espanol',
+      '18:00',
+      40,
+      120
+    ),
+    new Funcion(
+      `${idBase}-aba-sub-2030`,
+      'Abasto',
+      'Subtitulada',
+      '20:30',
+      35,
+      130
+    ),
+    new Funcion(
+      `${idBase}-pue-en-2200`,
+      'Puerto Madero',
+      'Ingles',
+      '22:00',
+      30,
+      140
+    )
+  ];
+}
+
+/**
+ * Normaliza fecha para evitar Date inválida al construir Pelicula.
+ *
+ * @param {string|null|undefined} fechaCruda
+ * @returns {string}
+ */
+function normalizarFechaEstrenoParaModelo(fechaCruda) {
+  if (typeof fechaCruda !== 'string' || !fechaCruda.trim()) {
+    return '2099-12-31';
+  }
+
+  const fecha = new Date(fechaCruda);
+
+  if (Number.isNaN(fecha.getTime())) {
+    return '2099-12-31';
+  }
+
+  return fecha.toISOString().slice(0, 10);
+}
 // ==============================
 // Datos iniciales de cartelera
 // ==============================
-function crearPeliculasIniciales() {
-  return [
-    new Pelicula(
-      'hoppers',
-      'Hoppers Operacion Castor',
-      'Accion',
-      'ATP',
-      '2024-03-03',
-      'assets/images/hoppers.jpeg',
-      [
-        new Funcion('hop-pal-es-1800', 'Palermo', 'Espanol', '18:00', 40, 120),
-        new Funcion('hop-aba-es-1900', 'Abasto', 'Espanol', '19:00', 35, 120),
-        new Funcion('hop-lav-sub-2000', 'Lavalle', 'Subtitulada', '20:00', 30, 120),
-        new Funcion('hop-pue-en-2200', 'Puerto Madero', 'Ingles', '22:00', 28, 120),
-      ]
-    ),
-    new Pelicula(
-      'scream-7',
-      'Scream 7',
-      'Accion',
-      '+16',
-      '2026-10-01',
-      'assets/images/scream-7.jpg',
-      [
-        new Funcion('scr-pal-sub-2130', 'Palermo', 'Subtitulada', '21:30', 25, 140),
-        new Funcion('scr-aba-en-2200', 'Abasto', 'Ingles', '22:00', 20, 140),
-      ]
-    ),
-    new Pelicula(
-      'el-agente-secreto',
-      'El Agente Secreto',
-      'Drama',
-      '+13',
-      '2026-02-26',
-      'assets/images/el-agente-secreto.jpg',
-      [
-        new Funcion('age-pal-es-2100', 'Palermo', 'Espanol', '21:00', 34, 130),
-        new Funcion('age-aba-sub-1930', 'Abasto', 'Subtitulada', '19:30', 26, 130),
-      ]
-    ),
-    new Pelicula(
-      'mario-galaxy',
-      'Super Mario Galaxy: The Movie',
-      'Animacion',
-      'ATP',
-      '2026-04-01',
-      'assets/images/mario-galaxy.jpg',
-      [
-        new Funcion('mar-pal-es-1800', 'Palermo', 'Espanol', '18:00', 45, 125),
-        new Funcion('mar-pue-es-2030', 'Puerto Madero', 'Espanol', '20:30', 38, 125),
-      ]
-    ),
-  ];
+async function cargarPeliculasInicialesDesdeJson() {
+  try {
+    const response = await fetch('js/api/peliculas.json');
+
+    if (!response.ok) {
+      throw new Error(`HTTP_${response.status}`);
+    }
+
+    const datos = await response.json();
+
+    if (!Array.isArray(datos)) {
+      throw new SyntaxError('FORMATO_JSON_INVALIDO');
+    }
+
+    return construirPeliculasDesdeApi(datos);
+  } catch (error) {
+    console.warn(
+      'No se pudo cargar peliculas.json para el fallback local:',
+      error.message || error
+    );
+    return [];
+  }
 }
 
 // ==============================
@@ -288,11 +546,20 @@ function manejarFiltroPeliculas(event) {
   ocultarLoading(estadoFiltros);
 
   renderizarPeliculas(resultados, SELECTORES);
-  mostrarMensaje(
-    consultarElemento(SELECTORES.estadoFiltros),
-    resultados.length ? `${resultados.length} pelicula(s) encontradas.` : 'No se encontraron peliculas con esos filtros.',
-    resultados.length ? 'success' : 'error'
-  );
+  const mensajeFiltros = resultados.length
+    ? `${resultados.length} pelicula(s) encontradas.`
+    : 'No se encontraron peliculas con esos filtros.';
+
+  limpiarMensaje(estadoFiltros);
+
+  if (debeNotificarFiltro(event)) {
+    if (resultados.length) {
+      showInfoToast(mensajeFiltros);
+    } else {
+      showWarningToast(mensajeFiltros);
+    }
+  }
+
   persistirDato(STORAGE_KEYS.filtros, filtros, 'session');
 }
 
@@ -303,6 +570,14 @@ function manejarLimpiarFiltros() {
   limpiarMensaje(consultarElemento(SELECTORES.estadoFiltros));
   eliminarDato(STORAGE_KEYS.filtros, 'session');
   renderizarPeliculas(estadoApp.catalogoPeliculas.listarPeliculas(), SELECTORES);
+}
+
+function debeNotificarFiltro(event) {
+  if (event?.type === 'input') {
+    return false;
+  }
+
+  return true;
 }
 
 // ==============================
@@ -328,12 +603,10 @@ function manejarLogin(event) {
 
   estadoApp.usuarioActivo = usuario;
   persistirDato(STORAGE_KEYS.usuarioActivo, usuario.toJSON(), 'session');
-  mostrarExito(mensaje, `Bienvenido/a, ${usuario.nombre}.`);
-  actualizarConfirmacion(SELECTORES.confirmLoginTexto, `Inicio de sesion realizado correctamente para ${usuario.email}.`);
+  showSuccessToast(`Sesion iniciada: ${usuario.nombre}.`);
   limpiarFormulario(formulario);
   actualizarEstadoSubmit(formulario);
   cerrarModal('modalLogin');
-  abrirModal('modalConfirmLogin');
 }
 
 function manejarRegistro(event) {
@@ -372,12 +645,10 @@ function manejarRegistro(event) {
     console.warn('No se pudo persistir GestorUsuarios:', e.message || e);
   }
 
-  mostrarExito(mensaje, 'Cuenta creada correctamente.');
-  actualizarConfirmacion(SELECTORES.confirmRegistroTexto, `La cuenta ${usuario.email} fue creada correctamente.`);
+  showSuccessToast('Cuenta creada correctamente.');
   limpiarFormulario(formulario);
   actualizarEstadoSubmit(formulario);
   cerrarModal('modalRegistro');
-  abrirModal('modalConfirmRegistro');
 }
 
 // ==============================
@@ -436,7 +707,7 @@ function manejarSeleccionCompra(event) {
   estadoApp.funcionSeleccionada = funcion;
   estadoApp.cantidadEntradas = Number(datos.cantidadEntradas);
   renderizarResumenCompra(estadoApp.peliculaSeleccionada, funcion, estadoApp.cantidadEntradas);
-  mostrarExito(mensaje, 'Funcion seleccionada. Continuá con los datos de pago.');
+  showInfoToast('Funcion seleccionada. Continua con el pago.');
   cerrarModal('modalCompra');
   abrirModal('modalPago');
 }
@@ -470,7 +741,12 @@ function manejarConfirmacionCompra(event) {
   }
 
   // Una vez confirmada, se persiste en storage como parte del historial.
-  guardarEnListaStorage(STORAGE_KEYS.compras, compra.toJSON(), 'local');
+  const compraGuardada = guardarEnListaStorage(STORAGE_KEYS.compras, compra.toJSON(), 'local');
+  if (compraGuardada) {
+    showSuccessToast('Compra guardada en el historial.');
+  } else {
+    showErrorToast('No se pudo guardar la compra en el historial.');
+  }
   actualizarConfirmacion(
     SELECTORES.confirmCompraTexto,
     `Compra confirmada para ${estadoApp.peliculaSeleccionada.titulo}. Codigo: ${compra.codigoConfirmacion}. Total: $${compra.total}.`
@@ -505,7 +781,10 @@ function manejarConsultaSoporte(event) {
   }
 
   const ticket = consulta.generarTicket();
-  guardarEnListaStorage(STORAGE_KEYS.tickets, consulta.toJSON(), 'local');
+  const ticketGuardado = guardarEnListaStorage(STORAGE_KEYS.tickets, consulta.toJSON(), 'local');
+  if (!ticketGuardado) {
+    showErrorToast(`Consulta enviada, pero no se pudo guardar el ticket: ${ticket}.`);
+  }
   actualizarConfirmacion(SELECTORES.confirmConsultaTexto, `Tu consulta fue enviada correctamente. Ticket: ${ticket}.`);
   mostrarExito(mensaje, `Consulta enviada. Ticket: ${ticket}.`);
   limpiarFormulario(formulario);
@@ -715,7 +994,7 @@ function guardarEnListaStorage(clave, item, tipo) {
   const listaActual = obtenerDato(clave, tipo) || [];
   const lista = Array.isArray(listaActual) ? listaActual : [];
   lista.push(item);
-  persistirDato(clave, lista, tipo);
+  return persistirDato(clave, lista, tipo);
 }
 
 function persistirDato(clave, valor, tipo = 'local') {
@@ -772,13 +1051,15 @@ function normalizarTextoSeleccion(valor) {
 
   return mapa[sinAcentos] || valor;
 }
-
 function normalizarClasificacion(clasificacion) {
+  // Si clasificacion es null o undefined, usamos un string vacio o 'atp' por defecto
+  const valorLimpio = String(clasificacion || '').trim().toLowerCase();
+
   const mapaClasificacion = {
     atp: 'ATP',
     '13': '+13',
     '16': '+16',
   };
 
-  return mapaClasificacion[clasificacion] || clasificacion;
+  return mapaClasificacion[valorLimpio] || clasificacion || 'ATP';
 }
