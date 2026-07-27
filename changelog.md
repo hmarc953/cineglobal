@@ -2,8 +2,6 @@
 
 ## [Unreleased]
 
-## [Release Final] - 2026-07-27
-
 ### Added
 
 - [feature/anexo-frameworks-node-js-matricula-160313] [Programación Web I][MESA N°645005][N°Matrícula 160313] Examen Final
