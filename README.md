@@ -127,8 +127,6 @@ actual en Vanilla JavaScript.
 ## Anexos
 
 - [Mesa N° 645005 - Matrícula N° 160313 - Anexo "Frameworks & NodeJS"](anexos-mesa-645005-matricula-160313/anexos.md)
-  - [Análisis de React](anexos-mesa-645005-matricula-160313/framework-react.md)
-  - [Análisis de Angular](anexos-mesa-645005-matricula-160313/framework-angular.md)
 
 ## Integrantes del Grupo
 
