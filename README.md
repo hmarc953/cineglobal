@@ -124,7 +124,7 @@ actual en Vanilla JavaScript.
 - [Desarrollador JS Asíncrono - Fetch&APIs](docs/03-specs/segundo-parcial/spec-dev-async-fetch.md)
 - [Tester QA/JS - Testing Avanzado](docs/03-specs/segundo-parcial/spec-tester-qa-segundo-parcial.md)
 
-### Anexo del Examen Final
+## Anexos
 
 - [Mesa N° 645005 - Matrícula N° 160313 - Anexo "Frameworks & NodeJS"](anexos-mesa-645005-matricula-160313/anexos.md)
   - [Análisis de React](anexos-mesa-645005-matricula-160313/framework-react.md)
