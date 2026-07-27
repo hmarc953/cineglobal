@@ -2,7 +2,6 @@
 
 ## Datos Académicos
 
-- Estudiante responsable del examen final: Marc Holste
 - N° de matrícula: 160313
 - N° de mesa: 645005
 - Carrera: Tecnicatura Universitaria en Programación de Sistemas
