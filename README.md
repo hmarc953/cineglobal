@@ -2,14 +2,19 @@
 
 ## Datos Académicos
 
+- N° de matrícula: 160313
+- N° de mesa: 645005
 - Carrera: Tecnicatura Universitaria en Programación de Sistemas
 - Materia: Programación Web I
+- Profesor: Lic. Matías Velasquez
+- Año: 2026
 
 ## Descripción
 
 ### Breve descripción del proyecto
-CineGlobal es una aplicación web front-end que permite visualizar películas y 
-horarios de funciones de distintos cines a partir de datos estáticos o mock.
+CineGlobal es una aplicación web front-end que permite visualizar películas y
+horarios de funciones de distintos cines a partir de una API externa, datos
+almacenados en caché o un archivo JSON local utilizado como respaldo.
 
 Tecnologías utilizadas:
 - HTML
@@ -23,11 +28,13 @@ Tecnologías utilizadas:
 - GitHub Projects, Issues y Pull Requests
 
 ### Objetivo del entregable
-Esta entrega corresponde al Segundo Parcial y busca extender CineGlobal mediante
-el consumo asíncrono de datos con `fetch`, promises y JSON/API, la integración de
-una librería externa de JavaScript y testing avanzado con Jasmine. También
-incorpora auditorías Lighthouse de performance y accesibilidad, junto con el
-mantenimiento de la documentación, el changelog y el flujo de trabajo en GitHub.
+Esta entrega corresponde a la parte escrita del Examen Final de Programación Web I.
+Su objetivo es incorporar el anexo técnico **"Frameworks & NodeJS"**, en el que se
+analizan React y Angular como posibles alternativas de evolución para CineGlobal.
+La documentación incluye una introducción a Node.js, una comparación entre los
+stacks MERN y MEAN, la justificación de cada tecnología, el nivel de dificultad de
+adaptación y ejemplos de código "antes y después" respecto de la implementación
+actual en Vanilla JavaScript.
 
 
 
@@ -116,6 +123,10 @@ mantenimiento de la documentación, el changelog y el flujo de trabajo en GitHub
 - [Desarrollador JS Librerías Externas](docs/03-specs/segundo-parcial/spec-dev-libreria-externa.md)
 - [Desarrollador JS Asíncrono - Fetch&APIs](docs/03-specs/segundo-parcial/spec-dev-async-fetch.md)
 - [Tester QA/JS - Testing Avanzado](docs/03-specs/segundo-parcial/spec-tester-qa-segundo-parcial.md)
+
+## Anexos
+
+- [Mesa N° 645005 - Matrícula N° 160313 - Anexo "Frameworks & NodeJS"](anexos-mesa-645005-matricula-160313/anexos.md)
 
 ## Integrantes del Grupo
 

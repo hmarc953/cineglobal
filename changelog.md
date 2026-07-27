@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+### Added
+
+- [feature/anexo-frameworks-node-js-matricula-160313] [Programación Web I][MESA N°645005][N°Matrícula 160313] Examen Final
+  PR: [#225](https://github.com/hmarc953/cineglobal/pull/225)
+
 ## [Release Segundo Parcial] - 2026-06-24
 
 ### Added
