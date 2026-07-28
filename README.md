@@ -2,8 +2,8 @@
 
 ## Datos Académicos
 
-- N° de matrícula: 160313
-- N° de mesa: 645005
+- N° de matrícula: 148249
+- N° de mesa: 645008
 - Carrera: Tecnicatura Universitaria en Programación de Sistemas
 - Materia: Programación Web I
 - Profesor: Lic. Matías Velasquez
@@ -11,32 +11,22 @@
 
 ## Descripción
 
-### Breve descripción del proyecto
-CineGlobal es una aplicación web front-end que permite visualizar películas y
-horarios de funciones de distintos cines a partir de una API externa, datos
-almacenados en caché o un archivo JSON local utilizado como respaldo.
+### Introducción
 
-Tecnologías utilizadas:
-- HTML
-- CSS
-- Bootstrap 5.3.3 (CDN vía jsDelivr)
-- JavaScript (ES6+) y ES Modules
-- DOM API y Event Listeners
-- Web Storage API (`localStorage` y `sessionStorage`)
-- Jasmine 5.10.0 (testing vía CDN)
-- PlantUML (diagramas de actividades)
-- GitHub Projects, Issues y Pull Requests
+CineGlobal es una aplicación web creada para consultar y explorar la cartelera de películas, junto con sus funciones y horarios, mediante una interfaz intuitiva y de fácil utilización. El proyecto fue desarrollado para cumplir con los requerimientos establecidos en la Actividad Obligatoria N.º 1, incluyendo la visualización de películas disponibles, el acceso a la información detallada de cada una, la selección de funciones, la aplicación de filtros de búsqueda y un diseño adaptable tanto a computadoras como a dispositivos móviles.
 
-### Objetivo del entregable
-Esta entrega corresponde a la parte escrita del Examen Final de Programación Web I.
-Su objetivo es incorporar el anexo técnico **"Frameworks & NodeJS"**, en el que se
-analizan React y Angular como posibles alternativas de evolución para CineGlobal.
-La documentación incluye una introducción a Node.js, una comparación entre los
-stacks MERN y MEAN, la justificación de cada tecnología, el nivel de dificultad de
-adaptación y ejemplos de código "antes y después" respecto de la implementación
-actual en Vanilla JavaScript.
+Durante la Actividad Obligatoria N.º 1 se llevó a cabo un estudio enfocado en la organización de la información, la experiencia de navegación y la representación adecuada de los datos relacionados con el cine. A partir de este análisis se definieron los procesos principales del sistema, como la consulta de películas, la visualización de funciones disponibles y la validación de la compra de entradas. Estos resultados sirvieron como base para estructurar el desarrollo del proyecto, priorizando una experiencia de usuario clara y una presentación ordenada de la información.
 
+### Stack tecnológico
 
+El sistema fue implementado utilizando **HTML**, **CSS** y **JavaScript (ES6+)**, tecnologías responsables de la estructura, el diseño y la lógica de la aplicación. Para facilitar la construcción de una interfaz adaptable y uniforme se incorporó **Bootstrap**, mientras que las APIs nativas del navegador, como **Fetch**, permiten obtener información de manera asíncrona. Asimismo, **localStorage** y **sessionStorage** se utilizan para almacenar información localmente y conservar datos durante el uso de la aplicación.
+
+En cuanto a la documentación y el proceso de desarrollo, se empleó **PlantUML** para la elaboración de diagramas de actividades y **Jasmine** como herramienta para la creación y ejecución de pruebas automatizadas, contribuyendo a verificar el correcto funcionamiento del sistema.
+
+## Anexos
+
+- [Mesa N° 645008 - Matrícula N° 148249 - Anexo "Frameworks & NodeJS"](..//cineglobal/anexos-mesa-645008-matricula-148249/anexos.md)
+- [Mesa N° 645005 - Matrícula N° 160313 - Anexo "Frameworks & NodeJS"](//anexos-mesa-645005-matricula-160313/anexos.md)
 
 ### Funcionalidades del Proyecto (Histórico)
 
@@ -124,9 +114,7 @@ actual en Vanilla JavaScript.
 - [Desarrollador JS Asíncrono - Fetch&APIs](docs/03-specs/segundo-parcial/spec-dev-async-fetch.md)
 - [Tester QA/JS - Testing Avanzado](docs/03-specs/segundo-parcial/spec-tester-qa-segundo-parcial.md)
 
-## Anexos
 
-- [Mesa N° 645005 - Matrícula N° 160313 - Anexo "Frameworks & NodeJS"](anexos-mesa-645005-matricula-160313/anexos.md)
 
 ## Integrantes del Grupo
 
@@ -136,3 +124,5 @@ actual en Vanilla JavaScript.
 | Alejandro Bartomioli     | 153041          | @abartomioli   | Desarrollador JS Librerias Externas         |
 | Milagros Magali Araujo   | 148197          | @9919-Mili     | Tester QA/JS - Testing Avanzado             |
 | Marc Holste              | 160313          | @hmarc953      | Coordinador / DevOps - Gestion y Resolucion |
+
+
