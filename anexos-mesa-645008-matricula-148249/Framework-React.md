@@ -1,4 +1,4 @@
-# Framework React
+# framework react
 
 ## Descripción general del framework
 

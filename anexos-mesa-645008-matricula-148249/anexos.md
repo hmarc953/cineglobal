@@ -68,8 +68,8 @@ En general, MERN suele ser elegido cuando se busca flexibilidad y rapidez en el 
 ### Framework React
 
 React fue seleccionado para el desarrollo de la interfaz de usuario debido a su arquitectura basada en componentes reutilizables, su amplio ecosistema y su capacidad para crear aplicaciones dinámicas con una excelente experiencia de usuario. Además, facilita el mantenimiento y la escalabilidad del proyecto.
-- [Link a Framework React ](..//anexos-mesa-645008-matricula-148249/Framework-React.md)
+- [Link a Framework React ](..//anexos-mesa-645008-matricula-148249/framework-react.md)
 ### Framework Express.js
 
 Express.js fue elegido para el desarrollo del backend por su simplicidad, rendimiento y facilidad de integración con Node.js. Permite crear APIs REST de manera eficiente y gestionar las solicitudes del cliente de forma organizada, reduciendo la complejidad del desarrollo del servidor.
-- [Link a Framework Express.js ](..//anexos-mesa-645008-matricula-148249/Framework-Express.js.md)
+- [Link a Framework Express.js ](..//anexos-mesa-645008-matricula-148249/framework-express.js.md)
