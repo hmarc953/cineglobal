@@ -52,6 +52,7 @@ Debido a estos cambios, la curva de aprendizaje puede considerarse intermedia pa
 
 **Función utilizada:** `manejarFiltroPeliculas()`
 **lineas de codigo:** 537-548
+- [Link a lineas de codigo ](..//js/script.js#L537-L548)
 Actualmente, luego de aplicar los filtros, la aplicación vuelve a renderizar manualmente la lista de películas.
 
 ```javascript

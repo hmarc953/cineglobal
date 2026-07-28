@@ -50,6 +50,7 @@ Estos cambios mejorarían la escalabilidad, la organización del código y facil
 
 **Función utilizada:** `cargarDatosIniciales()`
 **lineas de codigo:** 251-273
+- [Link a lineas de codigo ](..//js/script.js#L251-L273)
  Actualmente la aplicación obtiene las películas mediante el servicio ApiService, que encapsula las solicitudes HTTP (utilizando fetch) e implementa una lógica de reintentos automáticos para mejorar la confiabilidad de la carga de datos.
 
 
